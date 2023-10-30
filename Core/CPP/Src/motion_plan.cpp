@@ -6,12 +6,12 @@
  */
 
 
-#include "motion.h"
+#include "../Inc/motion.h"
 #include "../../Module/Include/index.h"
-#include "controll.h"
-#include "sensing_task.h"
-#include "run_task.h"
-#include "turn_table.h"
+#include "../Inc/controll.h"
+#include "../Inc/sensing_task.h"
+#include "../Inc/run_task.h"
+#include "../Inc/turn_table.h"
 
 void motion_plan::motion_start()
 {

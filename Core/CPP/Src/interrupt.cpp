@@ -6,20 +6,20 @@
  */
 
 
-#include <motion.h>
+#include "../Inc/motion.h"
 #include "../../Module/Include/index.h"
-#include "interrupt.h"
-#include "sensing_task.h"
-#include "controll.h"
+#include "../Inc/interrupt.h"
+#include "../Inc/sensing_task.h"
+#include "../Inc/controll.h"
 #include "../../Module/Include/macro.h"
-#include "log_data.h"
-#include "Kalman_filter.h"
+#include "../Inc/log_data.h"
+#include "../Inc/Kalman_filter.h"
 
 float lambda_slip;
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
-    if (htim == &htim5){
+    if (htim == &htim9){
     	Interrupt::getInstance().preprocess();
     	Interrupt::getInstance().main();
     	Interrupt::getInstance().postprocess();
@@ -27,7 +27,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 }
 
 void Interrupt_Initialize(){
-	HAL_TIM_Base_Start_IT(&htim5);
+	HAL_TIM_Base_Start_IT(&htim9);
 }
 
 void Interrupt::preprocess(){

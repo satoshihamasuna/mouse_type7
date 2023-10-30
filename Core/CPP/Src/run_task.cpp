@@ -7,11 +7,11 @@
 
 #include "../../Module/Include/index.h"
 #include "../../Module/Include/typedef.h"
-#include "run_task.h"
+#include "../Inc/run_task.h"
 #include "../../Module/Include/macro.h"
-#include "turn_table.h"
-#include "sensing_task.h"
-#include "motion.h"
+#include "../Inc/turn_table.h"
+#include "../Inc/sensing_task.h"
+#include "../Inc/motion.h"
 #define BRAKE_TIME_LIMIT (200)
 
 void RunTask::MotionFree(float *run_time,float run_time_limit)

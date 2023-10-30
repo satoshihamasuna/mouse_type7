@@ -8,10 +8,10 @@
 #include "../../Module/Include/index.h"
 #include "../../Module/Include/typedef.h"
 #include "../../Module/Include/macro.h"
-#include "make_path.h"
-#include "run_task.h"
-#include "motion.h"
-#include "log_data.h"
+#include "../Inc/make_path.h"
+#include "../Inc/run_task.h"
+#include "../Inc/motion.h"
+#include "../Inc/log_data.h"
 #define DIJKSTRA_MAX_TIME (65535-1)
 
 t_posDijkstra Dijkstra::conv_t_pos2t_posDijkstra(t_position pos,t_direction wall_pos)

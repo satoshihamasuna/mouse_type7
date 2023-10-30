@@ -8,7 +8,7 @@
 
 
 #include "../../Module/Include/index.h"
-#include "log_data.h"
+#include "../Inc/log_data.h"
 #include "stdio.h"
 
 void LogData::indicate_data()

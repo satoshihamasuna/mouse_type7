@@ -7,11 +7,11 @@
 
 
 
-#include "sensing_task.h"
-#include "sens_table.h"
+#include "../Inc/sensing_task.h"
+#include "../Inc/sens_table.h"
 #include "../../Module/Include/typedef.h"
 #include "../../Module/Include/index.h"
-#include "motion.h"
+#include "../Inc/motion.h"
 
 float filtering_z_radvelo = 0.0;
 t_wall_state SensingTask::conv_Sensin2Wall(t_sensor_dir sens_dir)

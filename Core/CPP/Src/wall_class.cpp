@@ -7,7 +7,7 @@
 
 
 
-#include "wall_class.h"
+#include "../Inc/wall_class.h"
 #include "../../Module/Include/typedef.h"
 
 void wall_class::init_maze(){

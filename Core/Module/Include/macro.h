@@ -34,7 +34,7 @@ extern "C" {
 #define MOTOR_BR		(1.0/100000.0)			//mNm/rpm
 #define L_BAR_DT		(20.0/1000.0)
 
-#define ENC_RESOLUTION	(1024)
+#define ENC_RESOLUTION	(200)
 
 //#define DEBUG_MODE	0
 #define ENABLE_MODE1   0x10

@@ -89,11 +89,11 @@ void Motor_SetDuty_Right( int16_t duty_r )
 
 void FAN_Motor_Initialize()
 {
-	HAL_TIM_PWM_Start(&htim1,TIM_CHANNEL_1);
+	HAL_TIM_PWM_Start(&htim5,TIM_CHANNEL_2);
 }
 
 void FAN_Motor_Stop(){
-	HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_1);
+	HAL_TIM_PWM_Stop(&htim5, TIM_CHANNEL_2);
 }
 
 void FAN_Motor_SetDuty(int16_t duty_f)
@@ -109,5 +109,5 @@ void FAN_Motor_SetDuty(int16_t duty_f)
 	}else {
 		pulse_f = ABS(duty_f);
 	}
-	__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, pulse_f);
+	__HAL_TIM_SET_COMPARE(&htim5, TIM_CHANNEL_2, pulse_f);
 }

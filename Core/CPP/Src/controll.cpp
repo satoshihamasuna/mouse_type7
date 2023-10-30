@@ -4,7 +4,7 @@
  *  Created on: 2023/06/18
  *      Author: sato1
  */
-#include "controll.h"
+#include "../Inc/controll.h"
 #include "../../Module/Include/typedef.h"
 #include "../../Module/Include/macro.h"
 
