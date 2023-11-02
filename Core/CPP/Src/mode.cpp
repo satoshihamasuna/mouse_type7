@@ -316,7 +316,7 @@ namespace Mode
 						  mp.motion_start();
 						  LogData::getInstance().data_count = 0;
 						  LogData::getInstance().log_enable = True;
-						  mp.straight( 90.0*3.0,6.0,0.3,0.0);
+						  mp.straight( 90.0*3.0,6.0,0.6,0.0);
 						  while(motion_task::getInstance().run_task !=No_run){}
 						  /*
 						  mp.searchSlalom( &param_L90_search);
@@ -1337,6 +1337,8 @@ namespace Mode
 		make_map map_data(&wall_data,&maze_q);
 		Dijkstra run_path(&wall_data);
 		uint32_t time = Interrupt::getInstance().return_time_count();
+		 float fr,fl,sr,sl;
+		 int16_t int_fr,int_fl,int_sr,int_sl;
 		while(debug_end == False)
 		{
 			enable = Mode::Select(enable,0x01,Encoder_GetProperty_Left());
@@ -1358,8 +1360,6 @@ namespace Mode
 			switch((enable<<4)|param)
 			{
 				case ENABLE|0x00:
-					 float fr,fl,sr,sl;
-					 int16_t int_fr,int_fl,int_sr,int_sl;
 					 fr = SensingTask::getInstance().sen_fr.distance;	fl = SensingTask::getInstance().sen_fl.distance;
 					 sr = SensingTask::getInstance().sen_r.avg_distance;	sl = SensingTask::getInstance().sen_l.avg_distance;
 					 int_fr = SensingTask::getInstance().sen_r.value_sum;	int_fl = SensingTask::getInstance().sen_l.value_sum;
@@ -1367,7 +1367,6 @@ namespace Mode
 					 printf("fr:%f,fl:%f,sr:%f,sl:%f\n",fr,fl,sr,sl);
 					 printf("fr:%4d,fl:%4d,sr:%4d,sl:%4d\n",int_fr,int_fl,int_sr,int_sl);
 					 break;
-			  	    break;
 				case ENABLE|0x01:
 					 float on_fr,off_fr,on_fl,off_fl;
 					 int16_t int_on_fr,int_off_fr,int_on_fl,int_off_fl;
@@ -1381,36 +1380,29 @@ namespace Mode
 					 printf("fr:%f,fl:%f,sr:%f,sl:%f\n",fr,fl,sr,sl);
 					 printf("fr:%4d,fl:%4d,sr:%4d,sl:%4d\n",int_fr,int_fl,int_sr,int_sl);
 					 break;
-				 break;
 				case ENABLE|0x02:
-					if(SensingTask::getInstance().IrSensor_Avg() > 2500){
-						  for(int i = 0;i < 11;i++)
-						  {
-							  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
-							  HAL_Delay(50);
-						  }
-				  		  enable = 0x00;
-				  		  HAL_Delay(500);
-					}
+					printf("gyro:%lf\n",(-1.0)*read_gyro_z_axis()*PI/180);
+					HAL_Delay(10);
 					break;
 				case ENABLE|0x03:
-					if(SensingTask::getInstance().IrSensor_Avg() > 2500){
-						  for(int i = 0;i < 11;i++)
-						  {
-							  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
-							  HAL_Delay(50);
-						  }
-
-						  enable = 0x00;
-						  HAL_Delay(500);
+					while(1)
+					{
+						printf("length:%lf\n",motion_task::getInstance().mouse.length);
+						HAL_Delay(10);
+						if(HAL_GPIO_ReadPin(Button_GPIO_Port, Button_Pin) == 1) break;
 					}
-					break;
+						break;
 				case ENABLE|0x04:
 					if(SensingTask::getInstance().IrSensor_Avg() > 2500){
 						  for(int i = 0;i < 11;i++)
 						  {
 							  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
 							  HAL_Delay(50);
+						  }
+						  mp.free_rotation();
+						  while(motion_task::getInstance().run_task !=No_run){
+								printf("gyro:%ld,%ld\n",Encoder_GetProperty_Right().sp_pulse,Encoder_GetProperty_Left().sp_pulse);
+								HAL_Delay(10);
 						  }
 						  enable = 0x00;
 						  HAL_Delay(500);
