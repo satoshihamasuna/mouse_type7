@@ -134,6 +134,9 @@ typedef struct{
 	int32_t prev_sp_pulse;
 	float 	wheel_speed;
 	float	prev_wheel_speed;
+	int32_t buff[30];
+	int32_t sum;
+	int cnt;
 }t_encoder;
 
 typedef struct{

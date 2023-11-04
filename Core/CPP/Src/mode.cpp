@@ -316,7 +316,7 @@ namespace Mode
 						  mp.motion_start();
 						  LogData::getInstance().data_count = 0;
 						  LogData::getInstance().log_enable = True;
-						  mp.straight( 90.0*3.0,6.0,0.6,0.0);
+						  mp.straight( 90.0*2.0,6.0,0.3,0.0);
 						  while(motion_task::getInstance().run_task !=No_run){}
 						  /*
 						  mp.searchSlalom( &param_L90_search);

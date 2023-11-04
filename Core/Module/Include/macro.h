@@ -17,6 +17,8 @@ extern "C" {
 #define MASK_SEARCH	0x01
 #define MASK_SECOND	0x03
 
+#define ENC_RESOLUTION	(200)
+
 #define TIRE_DIAMETER	(13.8f)							//mm
 #define TIRE_RADIUS		(TIRE_DIAMETER/2.0f)			//mm
 #define MMPP			(TIRE_DIAMETER*PI/ENC_RESOLUTION)	//mm
@@ -34,7 +36,7 @@ extern "C" {
 #define MOTOR_BR		(1.0/100000.0)			//mNm/rpm
 #define L_BAR_DT		(20.0/1000.0)
 
-#define ENC_RESOLUTION	(200)
+
 
 //#define DEBUG_MODE	0
 #define ENABLE_MODE1   0x10

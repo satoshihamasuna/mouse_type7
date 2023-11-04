@@ -19,15 +19,23 @@ float lambda_slip;
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
-    if (htim == &htim11){
-    	Interrupt::getInstance().preprocess();
-    	Interrupt::getInstance().main();
-    	Interrupt::getInstance().postprocess();
-    }
+    //if (htim == &htim11){
+    	//Interrupt::getInstance().preprocess();
+    	//Interrupt::getInstance().main();
+    	//Interrupt::getInstance().postprocess();
+    //}
 }
 
+void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
+{
+	Interrupt::getInstance().preprocess();
+	Interrupt::getInstance().main();
+	Interrupt::getInstance().postprocess();
+}
+
+
 void Interrupt_Initialize(){
-	HAL_TIM_Base_Start_IT(&htim11);
+	//HAL_TIM_Base_Start_IT(&htim11);
 }
 
 void Interrupt::preprocess(){
@@ -62,7 +70,7 @@ void Interrupt::preprocess(){
 	lambda_slip = (MAX(sp,(Renc.wheel_speed - Lenc.wheel_speed)/2.0) == 0.0f) ? 0.0 : (sp-(Renc.wheel_speed - Lenc.wheel_speed)/2.0)/MAX(sp,(Renc.wheel_speed - Lenc.wheel_speed)/2.0);
 	if(lambda_slip >= 0.2) lambda_slip = 0.2;
 	else if(lambda_slip <= -0.2) lambda_slip = -0.2;
-	motion_task::getInstance().mouse.length  += motion_task::getInstance().mouse.velo; //(1.0)*(Renc.wheel_speed - Lenc.wheel_speed)/2.0+0.0*sp;
+	motion_task::getInstance().mouse.length  += velo_sum/((float)(ACC_BUFF_SIZE));; //(1.0)*(Renc.wheel_speed - Lenc.wheel_speed)/2.0+0.0*sp;
 	motion_task::getInstance().mouse.accel    = (-1.0)*acc_sum/((float)(ACC_BUFF_SIZE));
 	motion_task::getInstance().mouse.rad_velo = (-1.0)*read_gyro_z_axis()*PI/180;
 	motion_task::getInstance().mouse.radian  += motion_task::getInstance().mouse.rad_velo/1000.0;
