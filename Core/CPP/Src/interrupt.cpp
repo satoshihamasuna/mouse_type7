@@ -66,11 +66,12 @@ void Interrupt::preprocess(){
 
 	acc_time_cnt = (acc_time_cnt == (ACC_BUFF_SIZE-1))? 0:acc_time_cnt + 1;
 	float sp = KalmanFilter::getInstance().calc_speed_filter((-1.0)*acc_sum/((float)(ACC_BUFF_SIZE)), velo_sum/((float)(ACC_BUFF_SIZE)));
-	motion_task::getInstance().mouse.velo 	  = (-1.0/2.0f)*acc_sum/((float)(ACC_BUFF_SIZE))*((float)(ACC_BUFF_SIZE))/1000.0f+velo_sum/((float)(ACC_BUFF_SIZE));//sp;//(Renc.wheel_speed - Lenc.wheel_speed)/2.0;
+	motion_task::getInstance().mouse.velo 	  = (-1.0/2.0f)*acc_sum/((float)(ACC_BUFF_SIZE))*((float)(ACC_BUFF_SIZE))/1000.0f+(Renc.wheel_speed - Lenc.wheel_speed)/2.0;
 	lambda_slip = (MAX(sp,(Renc.wheel_speed - Lenc.wheel_speed)/2.0) == 0.0f) ? 0.0 : (sp-(Renc.wheel_speed - Lenc.wheel_speed)/2.0)/MAX(sp,(Renc.wheel_speed - Lenc.wheel_speed)/2.0);
 	if(lambda_slip >= 0.2) lambda_slip = 0.2;
 	else if(lambda_slip <= -0.2) lambda_slip = -0.2;
-	motion_task::getInstance().mouse.length  += velo_sum/((float)(ACC_BUFF_SIZE));; //(1.0)*(Renc.wheel_speed - Lenc.wheel_speed)/2.0+0.0*sp;
+	//(読み間違い対策)
+	motion_task::getInstance().mouse.length  += (1.0)*(SIGN(Renc.wheel_speed)*ABS(((float)(Renc.sp_pulse)) - SIGN(Lenc.wheel_speed)*ABS((float)(Lenc.sp_pulse))))/2.0*MMPP;
 	motion_task::getInstance().mouse.accel    = (-1.0)*acc_sum/((float)(ACC_BUFF_SIZE));
 	motion_task::getInstance().mouse.rad_velo = (-1.0)*read_gyro_z_axis()*PI/180;
 	motion_task::getInstance().mouse.radian  += motion_task::getInstance().mouse.rad_velo/1000.0;
@@ -104,8 +105,8 @@ void Interrupt::postprocess()
 		LogData::getInstance().data[5][LogData::getInstance().data_count%1000] = Battery_GetVoltage()  ;
 		LogData::getInstance().data[6][LogData::getInstance().data_count%1000] = acc_sum;
 		LogData::getInstance().data[7][LogData::getInstance().data_count%1000] = velo_sum ;
-		LogData::getInstance().data[8][LogData::getInstance().data_count%1000] = Encoder_GetProperty_Right().wheel_speed;//SensingTask::getInstance().sen_r.distance;//Rvelo_sum/((float)(ACC_BUFF_SIZE));
-		LogData::getInstance().data[9][LogData::getInstance().data_count%1000] = Encoder_GetProperty_Left().wheel_speed;//SensingTask::getInstance().sen_l.distance;//Lvelo_sum/((float)(ACC_BUFF_SIZE));
+		LogData::getInstance().data[8][LogData::getInstance().data_count%1000] = Encoder_GetProperty_Right().sp_pulse;//SensingTask::getInstance().sen_r.distance;//Rvelo_sum/((float)(ACC_BUFF_SIZE));
+		LogData::getInstance().data[9][LogData::getInstance().data_count%1000] = Encoder_GetProperty_Left().sp_pulse;//SensingTask::getInstance().sen_l.distance;//Lvelo_sum/((float)(ACC_BUFF_SIZE));
 		LogData::getInstance().data[10][LogData::getInstance().data_count%1000] = motion_task::getInstance().V_r;
 		LogData::getInstance().data[11][LogData::getInstance().data_count%1000] = motion_task::getInstance().V_l;
 		LogData::getInstance().data_count++;

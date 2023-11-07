@@ -7,6 +7,6 @@ encoder.c:47:10:Encoder_Counts_Right	4	static
 encoder.c:51:9:Encoder_GetPosition_Right	4	static
 encoder.c:55:9:Encoder_GetPosition_Left	4	static
 encoder.c:59:6:Encoder_SetSpeed_Right	8	static
-encoder.c:78:6:Encoder_SetSpeed_Left	16	static
+encoder.c:78:6:Encoder_SetSpeed_Left	8	static
 encoder.c:96:11:Encoder_GetProperty_Right	16	static
 encoder.c:100:11:Encoder_GetProperty_Left	16	static

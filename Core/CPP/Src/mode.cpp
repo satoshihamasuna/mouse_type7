@@ -316,7 +316,7 @@ namespace Mode
 						  mp.motion_start();
 						  LogData::getInstance().data_count = 0;
 						  LogData::getInstance().log_enable = True;
-						  mp.straight( 90.0*2.0,6.0,0.3,0.0);
+						  mp.straight( 90.0*7.0,6.0,0.3,0.0);
 						  while(motion_task::getInstance().run_task !=No_run){}
 						  /*
 						  mp.searchSlalom( &param_L90_search);
@@ -364,13 +364,13 @@ namespace Mode
 						  motion_task::getInstance().ct.omega_ctrl.Gain_Set(0.4, 0.05, 0.0);
 						  KalmanFilter::getInstance().filter_init();
 						  mp.motion_start( );
-						  mp.fix_wall( 400);
+						  //mp.fix_wall( 400);
 						  for(int i = 50; i <= 500; i = i + 50)
 						  {
 							  FAN_Motor_SetDuty(i*2);;
-							  HAL_Delay(5);
+							  HAL_Delay(1);
 						  }
-						  while(motion_task::getInstance().run_task !=No_run){}
+						  //while(motion_task::getInstance().run_task !=No_run){}
 						  mp.search_straight(SECTION,acc,velo,velo);
 						  while(motion_task::getInstance().run_task !=No_run){}
 						  LogData::getInstance().data_count = 0;
@@ -1410,13 +1410,24 @@ namespace Mode
 					break;
 				case ENABLE|0x05:
 					if(SensingTask::getInstance().IrSensor_Avg() > 2500){
-						  for(int i = 0;i < 11;i++)
-						  {
-							  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
-							  HAL_Delay(50);
-						  }
-						  enable = 0x00;
-						  HAL_Delay(500);
+
+								  for(int i = 0;i < 11;i++)
+								  {
+									  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
+									  HAL_Delay(50);
+								  }
+								  motion_task::getInstance().ct.speed_ctrl.Gain_Set(6.0, 0.05, 0.0);
+								  motion_task::getInstance().ct.omega_ctrl.Gain_Set(0.4, 0.01, 0.0);
+								  KalmanFilter::getInstance().filter_init();
+								  mp.motion_start();
+								  LogData::getInstance().data_count = 0;
+								  LogData::getInstance().log_enable = True;
+								  mp.pivot_turn(DEG2RAD(90.0f), 40.0*PI, 4.0*PI);
+								  while(motion_task::getInstance().run_task !=No_run){}
+								  LogData::getInstance().log_enable = False;
+								  enable = 0x00;
+								  HAL_Delay(500);
+
 					}
 					break;
 				case ENABLE|0x06:

@@ -13,6 +13,7 @@ extern "C" {
 #endif
 
 #include <stdio.h>
+#include "macro.h"
 
 typedef enum{
 	True   = 1,
@@ -134,7 +135,7 @@ typedef struct{
 	int32_t prev_sp_pulse;
 	float 	wheel_speed;
 	float	prev_wheel_speed;
-	int32_t buff[30];
+	int32_t buff[ACC_BUFF_SIZE];
 	int32_t sum;
 	int cnt;
 }t_encoder;

@@ -17,7 +17,9 @@ extern "C" {
 #define MASK_SEARCH	0x01
 #define MASK_SECOND	0x03
 
-#define ENC_RESOLUTION	(200)
+#define ACC_BUFF_SIZE (50)
+
+#define ENC_RESOLUTION	(30)
 
 #define TIRE_DIAMETER	(13.8f)							//mm
 #define TIRE_RADIUS		(TIRE_DIAMETER/2.0f)			//mm
@@ -27,7 +29,7 @@ extern "C" {
 #define WEIGHT			(15.0)					//g
 #define MOTOR_K_ER		(0.057)					//mV/rpm
 #define MOTOR_K_TR		(0.54)	//0.4//0.594				//mNm/A
-#define MOTOR_R			(2.5)//6.0
+#define MOTOR_R			(5.0)//6.0
 #define GEAR_N			(40.0/9.0)
 #define MOUSE_INERTIA	0.0023f//0.001f//0.003,0.0022				//g・m^2
 #define RAD_2_RPM		60.0/(2.0*3.141592)

@@ -35,8 +35,8 @@ Core/CPP/Src/kalman_filter.o: ../Core/CPP/Src/kalman_filter.cpp \
  ../Core/Inc/adc.h ../Core/Inc/main.h ../Core/Inc/dma.h ../Core/Inc/spi.h \
  ../Core/Inc/tim.h ../Core/Inc/usart.h ../Core/Inc/gpio.h \
  ../Core/CPP/Src/../Inc/../../Module/Include/typedef.h \
- ../Core/CPP/Src/../Inc/../../Module/Include/lsm6dsr_reg.h \
  ../Core/CPP/Src/../Inc/../../Module/Include/macro.h \
+ ../Core/CPP/Src/../Inc/../../Module/Include/lsm6dsr_reg.h \
  ../Core/CPP/Src/../Inc/singleton.h
 
 ../Core/CPP/Src/../Inc/Kalman_filter.h:
@@ -123,8 +123,8 @@ Core/CPP/Src/kalman_filter.o: ../Core/CPP/Src/kalman_filter.cpp \
 
 ../Core/CPP/Src/../Inc/../../Module/Include/typedef.h:
 
-../Core/CPP/Src/../Inc/../../Module/Include/lsm6dsr_reg.h:
-
 ../Core/CPP/Src/../Inc/../../Module/Include/macro.h:
+
+../Core/CPP/Src/../Inc/../../Module/Include/lsm6dsr_reg.h:
 
 ../Core/CPP/Src/../Inc/singleton.h:

@@ -34,8 +34,8 @@ Core/CPP/Src/run_task.o: ../Core/CPP/Src/run_task.cpp \
  ../Core/Inc/adc.h ../Core/Inc/main.h ../Core/Inc/dma.h ../Core/Inc/spi.h \
  ../Core/Inc/tim.h ../Core/Inc/usart.h ../Core/Inc/gpio.h \
  ../Core/CPP/Src/../../Module/Include/typedef.h \
- ../Core/CPP/Src/../../Module/Include/lsm6dsr_reg.h \
  ../Core/CPP/Src/../../Module/Include/macro.h \
+ ../Core/CPP/Src/../../Module/Include/lsm6dsr_reg.h \
  ../Core/CPP/Src/../../Module/Include/typedef.h \
  ../Core/CPP/Src/../Inc/run_task.h \
  ../Core/CPP/Src/../Inc/../../Module/Include/typedef.h \
@@ -127,9 +127,9 @@ Core/CPP/Src/run_task.o: ../Core/CPP/Src/run_task.cpp \
 
 ../Core/CPP/Src/../../Module/Include/typedef.h:
 
-../Core/CPP/Src/../../Module/Include/lsm6dsr_reg.h:
-
 ../Core/CPP/Src/../../Module/Include/macro.h:
+
+../Core/CPP/Src/../../Module/Include/lsm6dsr_reg.h:
 
 ../Core/CPP/Src/../../Module/Include/typedef.h:
 

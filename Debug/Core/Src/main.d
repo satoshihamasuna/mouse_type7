@@ -34,8 +34,8 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Core/Inc/tim.h ../Core/Inc/usart.h ../Core/Inc/gpio.h \
  ../Core/Src/../Module/Include/index.h \
  ../Core/Src/../Module/Include/typedef.h \
- ../Core/Src/../Module/Include/lsm6dsr_reg.h \
- ../Core/Src/../Module/Include/macro.h
+ ../Core/Src/../Module/Include/macro.h \
+ ../Core/Src/../Module/Include/lsm6dsr_reg.h
 
 ../Core/Inc/main.h:
 
@@ -119,6 +119,6 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 
 ../Core/Src/../Module/Include/typedef.h:
 
-../Core/Src/../Module/Include/lsm6dsr_reg.h:
-
 ../Core/Src/../Module/Include/macro.h:
+
+../Core/Src/../Module/Include/lsm6dsr_reg.h:

@@ -34,20 +34,20 @@ Core/CPP/Src/mode.o: ../Core/CPP/Src/mode.cpp \
  ../Core/Inc/adc.h ../Core/Inc/main.h ../Core/Inc/dma.h ../Core/Inc/spi.h \
  ../Core/Inc/tim.h ../Core/Inc/usart.h ../Core/Inc/gpio.h \
  ../Core/CPP/Src/../../Module/Include/typedef.h \
- ../Core/CPP/Src/../../Module/Include/lsm6dsr_reg.h \
  ../Core/CPP/Src/../../Module/Include/macro.h \
+ ../Core/CPP/Src/../../Module/Include/lsm6dsr_reg.h \
  ../Core/CPP/Src/../../Module/Include/macro.h \
  ../Core/CPP/Src/../../Module/Include/typedef.h \
  ../Core/CPP/Src/../Inc/sensing_task.h ../Core/CPP/Src/../Inc/singleton.h \
  ../Core/CPP/Src/../Inc/../../Module/Include/typedef.h \
  ../Core/CPP/Src/../Inc/motion.h ../Core/CPP/Src/../Inc/run_task.h \
  ../Core/CPP/Src/../Inc/controll.h ../Core/CPP/Src/../Inc/interrupt.h \
+ ../Core/CPP/Src/../Inc/../../Module/Include/macro.h \
  ../Core/CPP/Src/../Inc/controll.h ../Core/CPP/Src/../Inc/log_data.h \
  ../Core/CPP/Src/../Inc/Kalman_filter.h \
  ../Core/CPP/Src/../Inc/../../Module/Include/index.h \
  ../Core/CPP/Src/../Inc/run_param.h ../Core/CPP/Src/../Inc/search_class.h \
  ../Core/CPP/Src/../Inc/wall_class.h \
- ../Core/CPP/Src/../Inc/../../Module/Include/macro.h \
  ../Core/CPP/Src/../Inc/sensing_task.h \
  ../Core/CPP/Src/../Inc/make_map_class.h \
  ../Core/CPP/Src/../Inc/queue_class.h ../Core/CPP/Src/../Inc/motion.h \
@@ -140,9 +140,9 @@ Core/CPP/Src/mode.o: ../Core/CPP/Src/mode.cpp \
 
 ../Core/CPP/Src/../../Module/Include/typedef.h:
 
-../Core/CPP/Src/../../Module/Include/lsm6dsr_reg.h:
-
 ../Core/CPP/Src/../../Module/Include/macro.h:
+
+../Core/CPP/Src/../../Module/Include/lsm6dsr_reg.h:
 
 ../Core/CPP/Src/../../Module/Include/macro.h:
 
@@ -162,6 +162,8 @@ Core/CPP/Src/mode.o: ../Core/CPP/Src/mode.cpp \
 
 ../Core/CPP/Src/../Inc/interrupt.h:
 
+../Core/CPP/Src/../Inc/../../Module/Include/macro.h:
+
 ../Core/CPP/Src/../Inc/controll.h:
 
 ../Core/CPP/Src/../Inc/log_data.h:
@@ -175,8 +177,6 @@ Core/CPP/Src/mode.o: ../Core/CPP/Src/mode.cpp \
 ../Core/CPP/Src/../Inc/search_class.h:
 
 ../Core/CPP/Src/../Inc/wall_class.h:
-
-../Core/CPP/Src/../Inc/../../Module/Include/macro.h:
 
 ../Core/CPP/Src/../Inc/sensing_task.h:
 

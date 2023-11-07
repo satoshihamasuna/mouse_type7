@@ -34,8 +34,8 @@ Core/Module/Src/imu.o: ../Core/Module/Src/imu.c \
  ../Core/Inc/adc.h ../Core/Inc/main.h ../Core/Inc/dma.h ../Core/Inc/spi.h \
  ../Core/Inc/tim.h ../Core/Inc/usart.h ../Core/Inc/gpio.h \
  ../Core/Module/Src/../Include/typedef.h \
- ../Core/Module/Src/../Include/lsm6dsr_reg.h \
  ../Core/Module/Src/../Include/macro.h \
+ ../Core/Module/Src/../Include/lsm6dsr_reg.h \
  ../Core/Module/Src/../Include/lsm6dsr_reg.h
 
 ../Core/Module/Src/../Include/index.h:
@@ -120,8 +120,8 @@ Core/Module/Src/imu.o: ../Core/Module/Src/imu.c \
 
 ../Core/Module/Src/../Include/typedef.h:
 
-../Core/Module/Src/../Include/lsm6dsr_reg.h:
-
 ../Core/Module/Src/../Include/macro.h:
+
+../Core/Module/Src/../Include/lsm6dsr_reg.h:
 
 ../Core/Module/Src/../Include/lsm6dsr_reg.h:

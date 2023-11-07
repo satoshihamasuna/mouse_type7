@@ -49,11 +49,11 @@ uint32_t Encoder_Counts_Right(){
 }
 
 int32_t Encoder_GetPosition_Right(){
-	return ((int32_t)ENC_CNT_R - (int32_t)ENC_ZERO);
+	return (-1)*((int32_t)ENC_CNT_R - (int32_t)ENC_ZERO);
 }
 
 int32_t Encoder_GetPosition_Left(){
-	return ((int32_t)ENC_CNT_L - (int32_t)ENC_ZERO);
+	return (-1)*((int32_t)ENC_CNT_L - (int32_t)ENC_ZERO);
 }
 
 void Encoder_SetSpeed_Right(){
@@ -63,7 +63,7 @@ void Encoder_SetSpeed_Right(){
 
 	Encoder_ResetPosition_Right();
 	//raw dataの確認．
-	enc_R.cnt = (enc_R.cnt == 30 - 1) ? 0 : enc_R.cnt + 1;
+	enc_R.cnt = (enc_R.cnt == ACC_BUFF_SIZE - 1) ? 0 : enc_R.cnt + 1;
 	enc_R.sum = enc_R.sum - enc_R.buff[enc_R.cnt];
 	enc_R.buff[enc_R.cnt] = enc_R.sp_pulse;
 	enc_R.sum += enc_R.sp_pulse;
@@ -71,7 +71,7 @@ void Encoder_SetSpeed_Right(){
 
 	enc_R.prev_wheel_speed = enc_R.wheel_speed;
 
-	enc_R.wheel_speed =   (float)(ABS(enc_R.sp_pulse))*MMPP * m_dt; //計測はmm mm/ms-> m/s
+	enc_R.wheel_speed =   ((float)(enc_R.sum))/((float)(ACC_BUFF_SIZE))*MMPP * m_dt; //計測はmm mm/ms-> m/s
 
 }
 
@@ -82,7 +82,7 @@ void Encoder_SetSpeed_Left(){
 
 	Encoder_ResetPosition_Left();
 
-	enc_L.cnt = (enc_L.cnt == 30 - 1) ? 0 : enc_L.cnt + 1;
+	enc_L.cnt = (enc_L.cnt == ACC_BUFF_SIZE - 1) ? 0 : enc_L.cnt + 1;
 	enc_L.sum = enc_L.sum - enc_L.buff[enc_L.cnt];
 	enc_L.buff[enc_L.cnt] = enc_L.sp_pulse;
 	enc_L.sum += enc_L.sp_pulse;
@@ -90,7 +90,7 @@ void Encoder_SetSpeed_Left(){
 
 	enc_L.prev_wheel_speed = enc_L.wheel_speed;
 
-	enc_L.wheel_speed =   (-1.0)*(float)(ABS(enc_L.sp_pulse))* MMPP * m_dt;
+	enc_L.wheel_speed =    ((float)(enc_L.sum))/((float)(ACC_BUFF_SIZE))* MMPP * m_dt;
 }
 
 t_encoder Encoder_GetProperty_Right(){

@@ -283,5 +283,5 @@ void SensingTask::SetWallControll_RadVelo(t_machine_param *target_,t_machine_par
 
 int16_t SensingTask::IrSensor_Avg()
 {
-	return (sen_fl.value + sen_fr.value + sen_l.value + sen_r.value)/4 ;
+	return (sen_l.value + sen_r.value)/2 ;
 }

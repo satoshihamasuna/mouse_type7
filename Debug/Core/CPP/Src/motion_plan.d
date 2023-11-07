@@ -1,6 +1,7 @@
 Core/CPP/Src/motion_plan.o: ../Core/CPP/Src/motion_plan.cpp \
  ../Core/CPP/Src/../Inc/motion.h \
  ../Core/CPP/Src/../Inc/../../Module/Include/typedef.h \
+ ../Core/CPP/Src/../Inc/../../Module/Include/macro.h \
  ../Core/CPP/Src/../Inc/singleton.h ../Core/CPP/Src/../Inc/run_task.h \
  ../Core/CPP/Src/../Inc/controll.h \
  ../Core/CPP/Src/../../Module/Include/index.h ../Core/Inc/main.h \
@@ -46,6 +47,8 @@ Core/CPP/Src/motion_plan.o: ../Core/CPP/Src/motion_plan.cpp \
 ../Core/CPP/Src/../Inc/motion.h:
 
 ../Core/CPP/Src/../Inc/../../Module/Include/typedef.h:
+
+../Core/CPP/Src/../Inc/../../Module/Include/macro.h:
 
 ../Core/CPP/Src/../Inc/singleton.h:
 

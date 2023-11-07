@@ -1,6 +1,7 @@
 Core/CPP/Src/interrupt.o: ../Core/CPP/Src/interrupt.cpp \
  ../Core/CPP/Src/../Inc/motion.h \
  ../Core/CPP/Src/../Inc/../../Module/Include/typedef.h \
+ ../Core/CPP/Src/../Inc/../../Module/Include/macro.h \
  ../Core/CPP/Src/../Inc/singleton.h ../Core/CPP/Src/../Inc/run_task.h \
  ../Core/CPP/Src/../Inc/controll.h \
  ../Core/CPP/Src/../../Module/Include/index.h ../Core/Inc/main.h \
@@ -40,8 +41,9 @@ Core/CPP/Src/interrupt.o: ../Core/CPP/Src/interrupt.cpp \
  ../Core/CPP/Src/../../Module/Include/typedef.h \
  ../Core/CPP/Src/../../Module/Include/lsm6dsr_reg.h \
  ../Core/CPP/Src/../../Module/Include/macro.h \
- ../Core/CPP/Src/../Inc/interrupt.h ../Core/CPP/Src/../Inc/sensing_task.h \
- ../Core/CPP/Src/../Inc/controll.h \
+ ../Core/CPP/Src/../Inc/interrupt.h \
+ ../Core/CPP/Src/../Inc/../../Module/Include/macro.h \
+ ../Core/CPP/Src/../Inc/sensing_task.h ../Core/CPP/Src/../Inc/controll.h \
  ../Core/CPP/Src/../../Module/Include/macro.h \
  ../Core/CPP/Src/../Inc/log_data.h ../Core/CPP/Src/../Inc/Kalman_filter.h \
  ../Core/CPP/Src/../Inc/../../Module/Include/index.h
@@ -49,6 +51,8 @@ Core/CPP/Src/interrupt.o: ../Core/CPP/Src/interrupt.cpp \
 ../Core/CPP/Src/../Inc/motion.h:
 
 ../Core/CPP/Src/../Inc/../../Module/Include/typedef.h:
+
+../Core/CPP/Src/../Inc/../../Module/Include/macro.h:
 
 ../Core/CPP/Src/../Inc/singleton.h:
 
@@ -143,6 +147,8 @@ Core/CPP/Src/interrupt.o: ../Core/CPP/Src/interrupt.cpp \
 ../Core/CPP/Src/../../Module/Include/macro.h:
 
 ../Core/CPP/Src/../Inc/interrupt.h:
+
+../Core/CPP/Src/../Inc/../../Module/Include/macro.h:
 
 ../Core/CPP/Src/../Inc/sensing_task.h:
 

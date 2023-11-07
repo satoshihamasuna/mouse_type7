@@ -9,8 +9,8 @@
 #define CPP_INC_INTERRUPT_H_
 
 #include "singleton.h"
+#include "../../Module/Include/macro.h"
 
-#define ACC_BUFF_SIZE (30)
 
 class Interrupt:public Singleton<Interrupt>
 {

@@ -1,6 +1,7 @@
 Core/CPP/Src/sensing_task.o: ../Core/CPP/Src/sensing_task.cpp \
  ../Core/CPP/Src/../Inc/sensing_task.h ../Core/CPP/Src/../Inc/singleton.h \
  ../Core/CPP/Src/../Inc/../../Module/Include/typedef.h \
+ ../Core/CPP/Src/../Inc/../../Module/Include/macro.h \
  ../Core/CPP/Src/../Inc/sens_table.h \
  ../Core/CPP/Src/../../Module/Include/typedef.h \
  ../Core/CPP/Src/../../Module/Include/index.h ../Core/Inc/main.h \
@@ -48,6 +49,8 @@ Core/CPP/Src/sensing_task.o: ../Core/CPP/Src/sensing_task.cpp \
 ../Core/CPP/Src/../Inc/singleton.h:
 
 ../Core/CPP/Src/../Inc/../../Module/Include/typedef.h:
+
+../Core/CPP/Src/../Inc/../../Module/Include/macro.h:
 
 ../Core/CPP/Src/../Inc/sens_table.h:
 

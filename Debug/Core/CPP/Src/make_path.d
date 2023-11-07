@@ -34,8 +34,8 @@ Core/CPP/Src/make_path.o: ../Core/CPP/Src/make_path.cpp \
  ../Core/Inc/adc.h ../Core/Inc/main.h ../Core/Inc/dma.h ../Core/Inc/spi.h \
  ../Core/Inc/tim.h ../Core/Inc/usart.h ../Core/Inc/gpio.h \
  ../Core/CPP/Src/../../Module/Include/typedef.h \
- ../Core/CPP/Src/../../Module/Include/lsm6dsr_reg.h \
  ../Core/CPP/Src/../../Module/Include/macro.h \
+ ../Core/CPP/Src/../../Module/Include/lsm6dsr_reg.h \
  ../Core/CPP/Src/../../Module/Include/typedef.h \
  ../Core/CPP/Src/../../Module/Include/macro.h \
  ../Core/CPP/Src/../Inc/make_path.h \
@@ -130,9 +130,9 @@ Core/CPP/Src/make_path.o: ../Core/CPP/Src/make_path.cpp \
 
 ../Core/CPP/Src/../../Module/Include/typedef.h:
 
-../Core/CPP/Src/../../Module/Include/lsm6dsr_reg.h:
-
 ../Core/CPP/Src/../../Module/Include/macro.h:
+
+../Core/CPP/Src/../../Module/Include/lsm6dsr_reg.h:
 
 ../Core/CPP/Src/../../Module/Include/typedef.h:
 
