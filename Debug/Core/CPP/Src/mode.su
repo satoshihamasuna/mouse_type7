@@ -10,7 +10,7 @@ mode.cpp:51:7:void Mode::Demo()	45896	static
 mode.cpp:267:7:void Mode::Debug()	45944	static
 mode.cpp:793:7:void Mode::Debug2()	45952	static
 mode.cpp:1325:7:void Mode::Interface_Check()	46376	static
-mode.cpp:1549:7:void Mode::Select_Mode()	688	static
+mode.cpp:1558:7:void Mode::Select_Mode()	688	static
 singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = Interrupt]	4	static
 queue_class.h:22:3:ring_queue<SIZE, T>::ring_queue() [with unsigned int SIZE = 1024; T = t_MapNode]	16	static
 run_task.h:114:7:RunTask::RunTask()	16	static
@@ -23,6 +23,6 @@ Kalman_filter.h:14:7:KalmanFilter::KalmanFilter()	16	static
 singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = KalmanFilter]	8	static
 log_data.h:14:7:LogData::LogData()	16	static
 singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = LogData]	8	static
-mode.cpp:1583:1:void __static_initialization_and_destruction_0(int, int)	16	static
-mode.cpp:1583:1:cpp)	8	static
-mode.cpp:1583:1:cpp)	8	static
+mode.cpp:1592:1:void __static_initialization_and_destruction_0(int, int)	16	static
+mode.cpp:1592:1:cpp)	8	static
+mode.cpp:1592:1:cpp)	8	static

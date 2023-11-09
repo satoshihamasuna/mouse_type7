@@ -885,8 +885,14 @@ void RunTask::fix_wall(t_machine_param *target_,float *run_time,float run_time_l
 	if(SensingTask::getInstance().sen_fr.distance < 70.0 && SensingTask::getInstance().sen_fl.distance < 70.0)
 	{
 		set_run_mode_state(SPIN_TURN_MODE);
-		float sp_err = ((SensingTask::getInstance().sen_fr.distance - 45.0) + (SensingTask::getInstance().sen_fl.distance - 45.0))/2.0f;
-		float om_err = ((SensingTask::getInstance().sen_fr.distance - 45.0) - (SensingTask::getInstance().sen_fl.distance - 45.0))/2.0f;
+		float sp_err = 0.0f;
+		float om_err = 0.0f;
+		if(SensingTask::getInstance().sen_fr.distance > 44.0 && SensingTask::getInstance().sen_fl.distance > 44.0)
+		{
+			sp_err = ((SensingTask::getInstance().sen_fr.distance - 45.0) + (SensingTask::getInstance().sen_fl.distance - 45.0))/2.0f;
+			om_err = ((SensingTask::getInstance().sen_fr.distance - 45.0) - (SensingTask::getInstance().sen_fl.distance - 45.0))/2.0f;
+
+		}
 
 		target_->accel = (1.0 * sp_err - 100.0*target_->velo);
 		target_->velo = target_->velo + target_->accel/1000.0f;
