@@ -224,9 +224,9 @@ void motion_plan::searchSlalom(const t_param *turn_param)
 		else
 			move_task->rT.post_run_fix = 0.0;
 	}
-	move_task->straight_gain_set.set_sp_gain(6.0,  0.1, 0.0001);
-	move_task->straight_gain_set.set_om_gain(0.2, 0.01, 0.00);
-	move_task->turn_gain_set.set_sp_gain(6.0, 0.1, 0.0);
+	move_task->straight_gain_set.set_sp_gain(12.0,  0.1, 0.0001);
+	move_task->straight_gain_set.set_om_gain(0.4, 0.01, 0.00);
+	move_task->turn_gain_set.set_sp_gain(12.0, 0.1, 0.0);
 	move_task->turn_gain_set.set_om_gain(turn_param->om_gain->Kp, turn_param->om_gain->Ki, turn_param->om_gain->Kd);
 }
 

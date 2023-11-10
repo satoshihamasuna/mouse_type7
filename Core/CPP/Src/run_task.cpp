@@ -893,6 +893,10 @@ void RunTask::fix_wall(t_machine_param *target_,float *run_time,float run_time_l
 			om_err = ((SensingTask::getInstance().sen_fr.distance - 45.0) - (SensingTask::getInstance().sen_fl.distance - 45.0))/2.0f;
 
 		}
+		else
+		{
+			sp_err = -5.0;
+		}
 
 		target_->accel = (1.0 * sp_err - 100.0*target_->velo);
 		target_->velo = target_->velo + target_->accel/1000.0f;

@@ -12,8 +12,8 @@
 #include "run_task.h"
 #include "../../Module/Include/typedef.h"
 
-const static t_pid_gain sp_gain_search_turn = {6.0, 0.05, 0.0};//{12.0,0.1,0.0};
-const static t_pid_gain om_gain_search_turn = {0.4, 0.01, 0.0};//{0.50f, 0.0005f, 0.001f};
+const static t_pid_gain sp_gain_search_turn = {12.0, 0.05, 0.0};//{12.0,0.1,0.0};
+const static t_pid_gain om_gain_search_turn = {0.65, 0.01, 0.0};//{0.50f, 0.0005f, 0.001f};
 const static t_turn_param_table slalom_L90_table = {0.30f, 26.50f,8.50,10.71, 90.0f,Turn_L};
 const static t_turn_param_table slalom_R90_table = {0.30f,-26.50f,8.50,10.71,-90.0f,Turn_R};
 const static t_param param_L90_search = {&slalom_L90_table ,&sp_gain_search_turn,&om_gain_search_turn};
