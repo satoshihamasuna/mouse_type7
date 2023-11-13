@@ -217,7 +217,7 @@ void motion_task::motionPostControll()
 
 			if(ABS(z_acc) >= 30.0)
 			{
-				error_cnt = error_cnt +	30;
+				//error_cnt = error_cnt +	30;
 			}
 
 			if(ABS(mouse.rad_velo - target.rad_velo) > 10.0)

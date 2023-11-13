@@ -102,7 +102,7 @@ void Interrupt::postprocess()
 		LogData::getInstance().data[2][LogData::getInstance().data_count%1000] = motion_task::getInstance().mouse.rad_velo;
 		LogData::getInstance().data[3][LogData::getInstance().data_count%1000] = motion_task::getInstance().target.rad_velo;
 		LogData::getInstance().data[4][LogData::getInstance().data_count%1000] = motion_task::getInstance().mouse.length ;
-		LogData::getInstance().data[5][LogData::getInstance().data_count%1000] = Battery_GetVoltage()  ;
+		LogData::getInstance().data[5][LogData::getInstance().data_count%1000] = (-1.0)*read_accel_y_axis();;//Battery_GetVoltage()  ;
 		LogData::getInstance().data[6][LogData::getInstance().data_count%1000] = acc_sum;
 		LogData::getInstance().data[7][LogData::getInstance().data_count%1000] = velo_sum ;
 		LogData::getInstance().data[8][LogData::getInstance().data_count%1000] = Encoder_GetProperty_Right().sp_pulse;//SensingTask::getInstance().sen_r.distance;//Rvelo_sum/((float)(ACC_BUFF_SIZE));
