@@ -226,6 +226,23 @@ namespace Mode
 					}
 					break;
 				case ENABLE|0x0C:
+				   if(SensingTask::getInstance().IrSensor_Avg() > 2500)
+				   {
+						for(int i = 0;i < 11;i++)
+						{
+							(i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
+							HAL_Delay(50);
+						}
+				  		motion_task::getInstance().ct.speed_ctrl.Gain_Set(6.0, 0.05, 0.0);
+				  		motion_task::getInstance().ct.omega_ctrl.Gain_Set(0.4, 0.01, 0.0);
+				  		KalmanFilter::getInstance().filter_init();
+				  		run_path.turn_time_set(mode_1400);
+						run_path.run_Dijkstra_suction(		start, Dir_None, goal, MAZE_GOAL_SIZE,800,
+															st_mode_1600_v0, (int)(sizeof(st_mode_1600_v0)/sizeof(t_straight_param *const)),
+															di_mode_1600_v0, (int)(sizeof(di_mode_1600_v0)/sizeof(t_straight_param *const)), mode_1600,&mp);
+
+						enable = 0x00;
+					}
 					break;
 				case ENABLE|0x0D:
 					break;
@@ -365,7 +382,7 @@ namespace Mode
 						  KalmanFilter::getInstance().filter_init();
 						  mp.motion_start( );
 						  mp.fix_wall( 400);
-							for(int i = 10; i <= 500; i = i + 10)
+							for(int i = 10; i <= 750; i = i + 10)
 							{
 								FAN_Motor_SetDuty(i);;
 								HAL_Delay(3);
@@ -841,18 +858,18 @@ namespace Mode
 						  motion_task::getInstance().ct.omega_ctrl.Gain_Set(0.05, 0.01, 0.00);
 						  KalmanFilter::getInstance().filter_init();
 						  mp.motion_start( );
-						  /*
+
 						  mp.fix_wall( 400);
-						  for(int i = 50; i <= 500; i = i + 50)
+						  for(int i = 50; i <= 800; i = i + 20)
 						  {
-							  FAN_Motor_SetDuty(i*2);;
-							  HAL_Delay(5);
+							  FAN_Motor_SetDuty(i);;
+							  HAL_Delay(3);
 						  }
 						  while(motion_task::getInstance().run_task !=No_run){}
-						  */
+
 						  LogData::getInstance().data_count = 0;
 						  LogData::getInstance().log_enable = True;
-						  mp.straight( 90.0*8.0,8.0,1.8,0.0);
+						  mp.straight( 90.0*7.5,40.0,5.0,0.0);
 						  while(motion_task::getInstance().run_task !=No_run){}
 						  /*
 						  mp.searchSlalom( &param_L90_search);
@@ -935,13 +952,13 @@ namespace Mode
 						  motion_task::getInstance().ct.omega_ctrl.Gain_Set(0.4, 0.05, 0.0);
 						  KalmanFilter::getInstance().filter_init();
 						  mp.motion_start( );
-						  //mp.fix_wall( 400);
+						  mp.fix_wall( 400);
 							for(int i = 10; i <= 600; i = i + 10)
 							{
 								FAN_Motor_SetDuty(i);;
 								HAL_Delay(3);
 							}
-						  //while(motion_task::getInstance().run_task !=No_run){}
+						  while(motion_task::getInstance().run_task !=No_run){}
 						  mp.straight(SECTION,acc,velo,velo);
 						  while(motion_task::getInstance().run_task !=No_run){}
 						  LogData::getInstance().data_count = 0;
@@ -969,13 +986,13 @@ namespace Mode
 						  motion_task::getInstance().ct.omega_ctrl.Gain_Set(0.4, 0.05, 0.0);
 						  KalmanFilter::getInstance().filter_init();
 						  mp.motion_start( );
-						  //mp.fix_wall( 400);
+						  mp.fix_wall( 400);
 							for(int i = 10; i <= 600; i = i + 10)
 							{
 								FAN_Motor_SetDuty(i);;
 								HAL_Delay(3);
 							}
-						  //while(motion_task::getInstance().run_task !=No_run){}
+						  while(motion_task::getInstance().run_task !=No_run){}
 						  mp.straight(SECTION,acc,velo,velo);
 						  while(motion_task::getInstance().run_task !=No_run){}
 						  LogData::getInstance().data_count = 0;
@@ -1003,13 +1020,13 @@ namespace Mode
 						  motion_task::getInstance().ct.omega_ctrl.Gain_Set(0.4, 0.05, 0.0);
 						  KalmanFilter::getInstance().filter_init();
 						  mp.motion_start( );
-						  //mp.fix_wall( 400);
-							for(int i = 10; i <= 600; i = i + 10)
+						  mp.fix_wall( 400);
+							for(int i = 10; i <= 800; i = i + 10)
 							{
 								FAN_Motor_SetDuty(i);;
 								HAL_Delay(3);
 							}
-						  //while(motion_task::getInstance().run_task !=No_run){}
+						  while(motion_task::getInstance().run_task !=No_run){}
 						  mp.straight(SECTION,acc,velo,velo);
 						  while(motion_task::getInstance().run_task !=No_run){}
 						  LogData::getInstance().data_count = 0;
@@ -1037,13 +1054,13 @@ namespace Mode
 						  motion_task::getInstance().ct.omega_ctrl.Gain_Set(0.4, 0.05, 0.0);
 						  KalmanFilter::getInstance().filter_init();
 						  mp.motion_start( );
-						  //mp.fix_wall( 400);
+						  mp.fix_wall( 400);
 							for(int i = 10; i <= 600; i = i + 10)
 							{
 								FAN_Motor_SetDuty(i);;
 								HAL_Delay(3);
 							}
-						  //while(motion_task::getInstance().run_task !=No_run){}
+						  while(motion_task::getInstance().run_task !=No_run){}
 						  mp.diagonal(DIAG_SECTION*2,acc,velo,velo);
 						  while(motion_task::getInstance().run_task !=No_run){}
 						  LogData::getInstance().data_count = 0;
@@ -1071,13 +1088,13 @@ namespace Mode
 						  motion_task::getInstance().ct.omega_ctrl.Gain_Set(0.4, 0.05, 0.0);
 						  KalmanFilter::getInstance().filter_init();
 						  mp.motion_start( );
-						  //mp.fix_wall( 400);
+						  mp.fix_wall( 400);
 							for(int i = 10; i <= 600; i = i + 10)
 							{
 								FAN_Motor_SetDuty(i);;
 								HAL_Delay(3);
 							}
-						  //while(motion_task::getInstance().run_task !=No_run){}
+						  while(motion_task::getInstance().run_task !=No_run){}
 						  mp.diagonal(DIAG_SECTION*2,acc,velo,velo);
 						  while(motion_task::getInstance().run_task !=No_run){}
 						  LogData::getInstance().data_count = 0;
@@ -1104,13 +1121,13 @@ namespace Mode
 						  motion_task::getInstance().ct.speed_ctrl.Gain_Set(6.0, 0.05, 0.0);
 						  motion_task::getInstance().ct.omega_ctrl.Gain_Set(0.4, 0.05, 0.0);
 						  KalmanFilter::getInstance().filter_init();
-						  mp.motion_start( );
-							for(int i = 10; i <= 600; i = i + 10)
-							{
-								FAN_Motor_SetDuty(i);;
-								HAL_Delay(3);
-							}
-						  //while(motion_task::getInstance().run_task !=No_run){}
+						  mp.fix_wall( 400);
+												for(int i = 10; i <= 600; i = i + 10)
+												{
+													FAN_Motor_SetDuty(i);;
+													HAL_Delay(3);
+												}
+											  while(motion_task::getInstance().run_task !=No_run){}
 						  mp.diagonal(DIAG_SECTION*2,acc,velo,velo);
 						  while(motion_task::getInstance().run_task !=No_run){}
 						  LogData::getInstance().data_count = 0;
@@ -1138,13 +1155,13 @@ namespace Mode
 						  motion_task::getInstance().ct.omega_ctrl.Gain_Set(0.4, 0.05, 0.0);
 						  KalmanFilter::getInstance().filter_init();
 						  mp.motion_start( );
-						  //mp.fix_wall( 400);
-							for(int i = 10; i <= 600; i = i + 10)
-							{
-								FAN_Motor_SetDuty(i);;
-								HAL_Delay(3);
-							}
-						  //while(motion_task::getInstance().run_task !=No_run){}
+						  mp.fix_wall( 400);
+												for(int i = 10; i <= 600; i = i + 10)
+												{
+													FAN_Motor_SetDuty(i);;
+													HAL_Delay(3);
+												}
+											  while(motion_task::getInstance().run_task !=No_run){}
 						  mp.search_straight(SECTION,acc,velo,velo);
 						  while(motion_task::getInstance().run_task !=No_run){}
 						  LogData::getInstance().data_count = 0;
@@ -1172,13 +1189,13 @@ namespace Mode
 						  motion_task::getInstance().ct.omega_ctrl.Gain_Set(0.4, 0.005, 0.0);
 						  KalmanFilter::getInstance().filter_init();
 						  mp.motion_start( );
-						  //mp.fix_wall( 400);
-							for(int i = 10; i <= 600; i = i + 10)
-							{
-								FAN_Motor_SetDuty(i);;
-								HAL_Delay(3);
-							}
-						  //while(motion_task::getInstance().run_task !=No_run){}
+						  mp.fix_wall( 400);
+												for(int i = 10; i <= 600; i = i + 10)
+												{
+													FAN_Motor_SetDuty(i);;
+													HAL_Delay(3);
+												}
+											  while(motion_task::getInstance().run_task !=No_run){}
 						  mp.straight(SECTION,acc,velo,velo);
 						  while(motion_task::getInstance().run_task !=No_run){}
 						  LogData::getInstance().data_count = 0;
@@ -1206,13 +1223,13 @@ namespace Mode
 						  motion_task::getInstance().ct.omega_ctrl.Gain_Set(0.4, 0.05, 0.0);
 						  KalmanFilter::getInstance().filter_init();
 						  mp.motion_start( );
-						  //mp.fix_wall( 400);
-							for(int i = 10; i <= 600; i = i + 10)
-							{
-								FAN_Motor_SetDuty(i);;
-								HAL_Delay(3);
-							}
-						  //while(motion_task::getInstance().run_task !=No_run){}
+						  mp.fix_wall( 400);
+												for(int i = 10; i <= 600; i = i + 10)
+												{
+													FAN_Motor_SetDuty(i);;
+													HAL_Delay(3);
+												}
+											  while(motion_task::getInstance().run_task !=No_run){}
 						  mp.diagonal(DIAG_SECTION,acc,velo,velo);
 						  while(motion_task::getInstance().run_task !=No_run){}
 						  LogData::getInstance().data_count = 0;
@@ -1240,13 +1257,13 @@ namespace Mode
 						  motion_task::getInstance().ct.omega_ctrl.Gain_Set(0.4, 0.05, 0.0);
 						  KalmanFilter::getInstance().filter_init();
 						  mp.motion_start( );
-						  //mp.fix_wall( 400);
-							for(int i = 10; i <= 600; i = i + 10)
-							{
-								FAN_Motor_SetDuty(i);;
-								HAL_Delay(3);
-							}
-						  //while(motion_task::getInstance().run_task !=No_run){}
+						  mp.fix_wall( 400);
+												for(int i = 10; i <= 600; i = i + 10)
+												{
+													FAN_Motor_SetDuty(i);;
+													HAL_Delay(3);
+												}
+											  while(motion_task::getInstance().run_task !=No_run){}
 						  mp.diagonal(DIAG_SECTION*2,acc,velo,velo);
 						  while(motion_task::getInstance().run_task !=No_run){}
 						  LogData::getInstance().data_count = 0;
@@ -1274,13 +1291,13 @@ namespace Mode
 						  motion_task::getInstance().ct.omega_ctrl.Gain_Set(0.4, 0.05, 0.0);
 						  KalmanFilter::getInstance().filter_init();
 						  mp.motion_start( );
-						  //mp.fix_wall( 400);
-							for(int i = 10; i <= 600; i = i + 10)
-							{
-								FAN_Motor_SetDuty(i);;
-								HAL_Delay(3);
-							}
-						  //while(motion_task::getInstance().run_task !=No_run){}
+						  mp.fix_wall( 400);
+												for(int i = 10; i <= 600; i = i + 10)
+												{
+													FAN_Motor_SetDuty(i);;
+													HAL_Delay(3);
+												}
+											  while(motion_task::getInstance().run_task !=No_run){}
 						  mp.diagonal(DIAG_SECTION*2,acc,velo,velo);
 						  while(motion_task::getInstance().run_task !=No_run){}
 						  LogData::getInstance().data_count = 0;

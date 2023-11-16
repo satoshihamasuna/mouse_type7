@@ -103,7 +103,7 @@ void motion_plan::straight(float len_target,float acc,float max_sp,float end_sp)
 	move_task->rT.reset_brake_time();
 	move_task->_turn_param = nullptr;
 	move_task->rT.is_wallControl_Enable = Non_controll;
-	move_task->straight_gain_set.set_sp_gain(12.0, 0.05, 0.0);
+	move_task->straight_gain_set.set_sp_gain(20.0, 0.01, 0.0);
 	move_task->straight_gain_set.set_om_gain(0.4, 0.01, 0.00);
 	move_task->turn_gain_set.set_sp_gain(6.0, 0.05, 0.0);
 	move_task->turn_gain_set.set_om_gain(0.4, 0.05, 0.00);
