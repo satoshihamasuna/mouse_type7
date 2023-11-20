@@ -26,7 +26,7 @@ extern "C" {
 #define MMPP			(TIRE_DIAMETER*PI/ENC_RESOLUTION)	//mm
 #define TREAD_WIDTH		((18.0-2.0)*2)
 
-#define WEIGHT			(15.0)					//g
+#define WEIGHT			(18.0)					//g
 #define MOTOR_K_ER		(0.057)					//mV/rpm
 #define MOTOR_K_TR		(0.54)	//0.4//0.594				//mNm/A
 #define MOTOR_R			(5.0)//6.0

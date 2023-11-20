@@ -218,7 +218,7 @@ namespace Mode
 				  		motion_task::getInstance().ct.omega_ctrl.Gain_Set(0.4, 0.01, 0.0);
 				  		KalmanFilter::getInstance().filter_init();
 				  		run_path.turn_time_set(mode_1400);
-						run_path.run_Dijkstra_suction(		start, Dir_None, goal, MAZE_GOAL_SIZE,800,
+						run_path.run_Dijkstra_suction(		start, Dir_None, goal, MAZE_GOAL_SIZE,600,
 															st_mode_1400_v0, (int)(sizeof(st_mode_1400_v0)/sizeof(t_straight_param *const)),
 															di_mode_1400_v0, (int)(sizeof(di_mode_1400_v0)/sizeof(t_straight_param *const)), mode_1400,&mp);
 
@@ -237,9 +237,9 @@ namespace Mode
 				  		motion_task::getInstance().ct.omega_ctrl.Gain_Set(0.4, 0.01, 0.0);
 				  		KalmanFilter::getInstance().filter_init();
 				  		run_path.turn_time_set(mode_1400);
-						run_path.run_Dijkstra_suction(		start, Dir_None, goal, MAZE_GOAL_SIZE,800,
-															st_mode_1600_v0, (int)(sizeof(st_mode_1600_v0)/sizeof(t_straight_param *const)),
-															di_mode_1600_v0, (int)(sizeof(di_mode_1600_v0)/sizeof(t_straight_param *const)), mode_1600,&mp);
+						run_path.run_Dijkstra_suction(		start, Dir_None, goal, MAZE_GOAL_SIZE,650,
+															st_mode_1500_v0, (int)(sizeof(st_mode_1500_v0)/sizeof(t_straight_param *const)),
+															di_mode_1500_v0, (int)(sizeof(di_mode_1500_v0)/sizeof(t_straight_param *const)), mode_1500,&mp);
 
 						enable = 0x00;
 					}
@@ -296,9 +296,9 @@ namespace Mode
 		make_map map_data(&wall_data,&maze_q);
 		Dijkstra run_path(&wall_data);
 		const t_param *const *turn_mode;
-		turn_mode = mode_1600;
+		turn_mode = mode_1500;
 		float acc  = 18.0;
-		float velo = 1.6;
+		float velo = 1.5;
 		uint32_t time = Interrupt::getInstance().return_time_count();
 		while(debug_end == False)
 		{
@@ -587,7 +587,7 @@ namespace Mode
 						  KalmanFilter::getInstance().filter_init();
 						  mp.motion_start( );
 						  mp.fix_wall( 400);
-						  for(int i = 50; i <= 500; i = i + 50)
+						  for(int i = 50; i <= 700; i = i + 50)
 						  {
 							  FAN_Motor_SetDuty(i);;
 							  HAL_Delay(5);
@@ -869,7 +869,7 @@ namespace Mode
 
 						  LogData::getInstance().data_count = 0;
 						  LogData::getInstance().log_enable = True;
-						  mp.straight( 90.0*7.5,40.0,5.0,0.0);
+						  mp.straight( 90.0*6.0,20.0,3.0,0.0);
 						  while(motion_task::getInstance().run_task !=No_run){}
 						  /*
 						  mp.searchSlalom( &param_L90_search);

@@ -680,7 +680,7 @@ void RunTask::long_turn(t_motion_param *mt_param,const t_param *turn_param,t_mac
 
 			if(SensingTask::getInstance().Division_Wall_Correction() == True)
 			{
-				machine_->length = (0.2*machine_->length + 0.8*(5.0));
+				machine_->length = (0.2*machine_->length + 0.8*(10.0));
 				Indicate_LED(0xff);
 			}
 		}

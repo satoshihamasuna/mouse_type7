@@ -168,8 +168,8 @@ const static t_straight_param *const st_mode_1200_v1[] = {&st_param_1200,&st_par
 const static t_straight_param *const st_mode_1400_v0[] = {	&st_param_1400,&st_param_1600,&st_param_1800,&st_param_2000,&st_param_2200,&st_param_2400,
 															&st_param_2600,&st_param_2800,&st_param_3000	};
 
-const static t_straight_param *const st_mode_1600_v0[] = {	&st_param_1600,&st_param_1800,&st_param_2000,&st_param_2200,&st_param_2400,
-															&st_param_2600,&st_param_2800,&st_param_3000	};
+const static t_straight_param *const st_mode_1500_v0[] = {	&st_param_1500,&st_param_1600,&st_param_1800,&st_param_2000,&st_param_2200,&st_param_2400,
+		&st_param_2600,&st_param_2800,&st_param_3000		};
 
 const static t_straight_param *const di_mode_300_v0[] = {&st_param_300};
 const static t_straight_param *const di_mode_300_v1[] = {&st_param_300,&st_param_500};
@@ -179,7 +179,8 @@ const static t_straight_param *const di_mode_1000_v1[] = {&st_param_1000,&st_par
 const static t_straight_param *const di_mode_1200_v0[] = {&st_param_1200,&st_param_1300,&st_param_1400,&st_param_1500};
 const static t_straight_param *const di_mode_1200_v1[] = {&st_param_1200,&st_param_1300,&st_param_1400,&st_param_1500};
 const static t_straight_param *const di_mode_1400_v0[] = {&st_param_1400,&st_param_1600,&st_param_1800,&st_param_2000};
-const static t_straight_param *const di_mode_1600_v0[] = {&st_param_1600,&st_param_1800,&st_param_2000};
+const static t_straight_param *const di_mode_1500_v0[] = {&st_param_1500,&st_param_1600,&st_param_1800,&st_param_2000,&st_param_2200,&st_param_2400,
+		&st_param_2600,&st_param_2800,&st_param_3000	};
 
 const static t_pid_gain sp_gain_dummy = {0.0f,0.0f,0.0f};
 const static t_pid_gain om_gain_dummy = {0.0f, 0.0f, 0.0f};
@@ -451,7 +452,7 @@ const static t_param param_R180_1400 = {&slalom_R180_1400_table,&sp_gain_turn180
 
 //not adjust
 const static t_pid_gain sp_gain_turnV90_1400 = {20.0, 0.4, 0.05};
-const static t_pid_gain om_gain_turnV90_1400 = {0.4, 0.02, 0.0};
+const static t_pid_gain om_gain_turnV90_1400 = {0.6, 0.02, 0.0};
 const static t_turn_param_table slalom_LV90_1400_table = {1.40f, 38.50f,9.57,26.82, 90.0f,Turn_L};
 const static t_turn_param_table slalom_RV90_1400_table = {1.40f,-38.50f,9.57,26.82,-90.0f,Turn_R};
 const static t_param param_LV90_1400 = {&slalom_LV90_1400_table,&sp_gain_turnV90_1400,&om_gain_turnV90_1400};
@@ -505,8 +506,8 @@ const static t_turn_param_table slalom_R90_1600_table = {1.60f,-50.0f,15.20,36.6
 const static t_param param_L90_1600 = {&slalom_L90_1600_table,&sp_gain_turn90_1600,&om_gain_turn90_1600};
 const static t_param param_R90_1600 = {&slalom_R90_1600_table,&sp_gain_turn90_1600,&om_gain_turn90_1600};
 
-const static t_pid_gain sp_gain_turn180_1600 = {24.0, 0.04, 0.05};
-const static t_pid_gain om_gain_turn180_1600 = {0.6, 0.02, 0.0};
+const static t_pid_gain sp_gain_turn180_1600 = {20.0, 0.1, 0.05};
+const static t_pid_gain om_gain_turn180_1600 = {0.8, 0.05, 0.0};
 const static t_turn_param_table slalom_L180_1600_table = {1.60f, 50.50f,7.67,31.07, 180.0f,Turn_L};
 const static t_turn_param_table slalom_R180_1600_table = {1.60f,-50.50f,7.67,31.07,-180.0f,Turn_R};
 const static t_param param_L180_1600 = {&slalom_L180_1600_table,&sp_gain_turn180_1600,&om_gain_turn180_1600};
@@ -514,9 +515,9 @@ const static t_param param_R180_1600 = {&slalom_R180_1600_table,&sp_gain_turn180
 
 //not adjust
 const static t_pid_gain sp_gain_turnV90_1600 = {20.0, 0.6, 0.0};
-const static t_pid_gain om_gain_turnV90_1600 = {0.4, 0.02, 0.0};
-const static t_turn_param_table slalom_LV90_1600_table = {1.60f, 38.50f,9.57,26.82, 90.0f,Turn_L};
-const static t_turn_param_table slalom_RV90_1600_table = {1.60f,-38.50f,9.57,26.82,-90.0f,Turn_R};
+const static t_pid_gain om_gain_turnV90_1600 = {0.3, 0.05, 0.05};
+const static t_turn_param_table slalom_LV90_1600_table = {1.60f, 40.0f,6.90,24.91, 90.0f,Turn_L};
+const static t_turn_param_table slalom_RV90_1600_table = {1.60f,-40.0f,6.90,24.91,-90.0f,Turn_R};
 const static t_param param_LV90_1600 = {&slalom_LV90_1600_table,&sp_gain_turnV90_1600,&om_gain_turnV90_1600};
 const static t_param param_RV90_1600 = {&slalom_RV90_1600_table,&sp_gain_turnV90_1600,&om_gain_turnV90_1600};
 
@@ -561,15 +562,15 @@ const static t_param *const mode_1600[] = 	{	&param_dummy,		&param_dummy,		&para
 												&param_RV90_1600,	&param_LV90_1600
 											};
 
-/*
-const static t_pid_gain sp_gain_turn90_1500 = {6.0, 0.05, 0.0};
+
+const static t_pid_gain sp_gain_turn90_1500 = {20.0, 0.6, 0.0};
 const static t_pid_gain om_gain_turn90_1500 = {0.4, 0.05, 0.0};
 const static t_turn_param_table slalom_L90_1500_table = {1.50f, 55.5f,11.58,32.07, 90.0f,Turn_L};
 const static t_turn_param_table slalom_R90_1500_table = {1.50f,-55.5f,11.58,32.07,-90.0f,Turn_R};
 const static t_param param_L90_1500 = {&slalom_L90_1500_table,&sp_gain_turn90_1500,&om_gain_turn90_1500};
 const static t_param param_R90_1500 = {&slalom_R90_1500_table,&sp_gain_turn90_1500,&om_gain_turn90_1500};
 
-const static t_pid_gain sp_gain_turn180_1500 = {6.0, 0.05, 0.0};
+const static t_pid_gain sp_gain_turn180_1500 = {20.0, 0.6, 0.0};
 const static t_pid_gain om_gain_turn180_1500 = {0.4, 0.05, 0.0};
 const static t_turn_param_table slalom_L180_1500_table = {1.50f, 49.50f,9.64,28.80, 180.0f,Turn_L};
 const static t_turn_param_table slalom_R180_1500_table = {1.50f,-49.50f,9.64,28.80,-180.0f,Turn_R};
@@ -577,14 +578,14 @@ const static t_param param_L180_1500 = {&slalom_L180_1500_table,&sp_gain_turn180
 const static t_param param_R180_1500 = {&slalom_R180_1500_table,&sp_gain_turn180_1500,&om_gain_turn180_1500};
 
 //not adjust
-const static t_pid_gain sp_gain_turnV90_1500 = {6.0, 0.05, 0.0};
+const static t_pid_gain sp_gain_turnV90_1500 = {20.0, 0.6, 0.0};
 const static t_pid_gain om_gain_turnV90_1500 = {0.4, 0.05, 0.0};
 const static t_turn_param_table slalom_LV90_1500_table = {1.50f, 42.50f,3.64,23.15, 90.0f,Turn_L};
 const static t_turn_param_table slalom_RV90_1500_table = {1.50f,-42.50f,3.64,23.15,-90.0f,Turn_R};
 const static t_param param_LV90_1500 = {&slalom_LV90_1500_table,&sp_gain_turnV90_1500,&om_gain_turnV90_1500};
 const static t_param param_RV90_1500 = {&slalom_RV90_1500_table,&sp_gain_turnV90_1500,&om_gain_turnV90_1500};
 
-const static t_pid_gain sp_gain_turnIn45_1500 = {6.0, 0.05, 0.0};
+const static t_pid_gain sp_gain_turnIn45_1500 = {20.0, 0.6, 0.0};
 const static t_pid_gain om_gain_turnIn45_1500 = {0.4, 0.05, 0.0};
 const static t_turn_param_table slalom_inL45_1500_table = {1.50f, 50.0f,8.93,45.03, 45.0f,Turn_L};
 const static t_turn_param_table slalom_inR45_1500_table = {1.50f,-50.0f,8.93,45.03,-45.0f,Turn_R};
@@ -592,7 +593,7 @@ const static t_param param_inL45_1500 = {&slalom_inL45_1500_table,&sp_gain_turnI
 const static t_param param_inR45_1500 = {&slalom_inR45_1500_table,&sp_gain_turnIn45_1500,&om_gain_turnIn45_1500};
 
 //k = 300
-const static t_pid_gain sp_gain_turnOut45_1500 = {6.0, 0.05, 0.0};
+const static t_pid_gain sp_gain_turnOut45_1500 = {20.0, 0.6, 0.0};
 const static t_pid_gain om_gain_turnOut45_1500 = {0.4, 0.05, 0.0};
 const static t_turn_param_table slalom_outL45_1500_table = {1.50f, 50.0f,27.61,26.35, 45.0f,Turn_L};
 const static t_turn_param_table slalom_outR45_1500_table = {1.50f,-50.0f,27.61,26.35,-45.0f,Turn_R};
@@ -600,7 +601,7 @@ const static t_param param_outL45_1500 = {&slalom_outL45_1500_table,&sp_gain_tur
 const static t_param param_outR45_1500 = {&slalom_outR45_1500_table,&sp_gain_turnOut45_1500,&om_gain_turnOut45_1500};
 
 
-const static t_pid_gain sp_gain_turnIn135_1500 = {6.0, 0.05, 0.0};
+const static t_pid_gain sp_gain_turnIn135_1500 = {20.0, 0.6, 0.0};
 const static t_pid_gain om_gain_turnIn135_1500 = {0.4, 0.05, 0.0};//{0.7f, 0.7f, 0.0f};
 const static t_turn_param_table slalom_inL135_1500_table = {1.50f, 42.0f,18.07,31.20, 135.0f,Turn_L};
 const static t_turn_param_table slalom_inR135_1500_table = {1.50f,-42.0f,18.07,31.20,-135.0f,Turn_R};
@@ -608,7 +609,7 @@ const static t_param param_inL135_1500 = {&slalom_inL135_1500_table,&sp_gain_tur
 const static t_param param_inR135_1500 = {&slalom_inR135_1500_table,&sp_gain_turnIn135_1500,&om_gain_turnIn135_1500};
 
 //
-const static t_pid_gain sp_gain_turnOut135_1500 = {6.0, 0.05, 0.0};
+const static t_pid_gain sp_gain_turnOut135_1500 = {20.0, 0.6, 0.0};
 const static t_pid_gain om_gain_turnOut135_1500 = {0.4, 0.05, 0.0};
 const static t_turn_param_table slalom_outL135_1500_table = {1.50f, 42.0f,10.45,39.01, 135.0f,Turn_L};
 const static t_turn_param_table slalom_outR135_1500_table = {1.50f,-42.0f,10.45,39.01,-135.0f,Turn_R};
@@ -624,5 +625,5 @@ const static t_param *const mode_1500[] = 	{	&param_dummy,		&param_dummy,		&para
 												&param_outR135_1500,	&param_outL135_1500,
 												&param_RV90_1500,	&param_LV90_1500
 											};
-*/
+
 #endif /* CPP_INC_RUN_PARAM_H_ */

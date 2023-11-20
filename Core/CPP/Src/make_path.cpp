@@ -617,7 +617,7 @@ void Dijkstra::run_Dijkstra_suction(t_position start_pos,t_direction start_wallP
 	}
 
 	motionPlan->motion_start();
-	motionPlan->fix_wall( suction/10*3+50);
+	motionPlan->fix_wall( suction/10*3+500);
 	for(int i = 10; i <= suction; i = i + 10)
 	{
 		FAN_Motor_SetDuty(i);;
