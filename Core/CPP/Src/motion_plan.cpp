@@ -56,6 +56,7 @@ void motion_plan::search_straight(float len_target,float acc,float max_sp,float 
 	move_task->ct.speed_ctrl.I_param_reset();
 	move_task->ct.omega_ctrl.I_param_reset();
 	move_task->mouse.length  = 0.0;
+	move_task->mouse.x_point  = 0.0;
 	move_task->mouse.radian  = 0.0;move_task->mouse.x_point = 0.0;
 	//move_task->target.velo = 0.0;
 	move_task->target.accel = 0.0;
@@ -130,6 +131,7 @@ void motion_plan::diagonal(float len_target,float acc,float max_sp,float end_sp)
 	move_task->ct.speed_ctrl.I_param_reset();
 	move_task->ct.omega_ctrl.I_param_reset();
 	move_task->mouse.length  = 0.0;
+	move_task->mouse.x_point  = 0.0;
 	move_task->mouse.radian  = 0.0;
 	//move_task->target.velo = 0.0;
 	move_task->target.accel = 0.0;
@@ -164,6 +166,7 @@ void motion_plan::pivot_turn(float rad_target,float rad_acc,float rad_velo)
 	move_task->ct.speed_ctrl.I_param_reset();
 	move_task->ct.omega_ctrl.I_param_reset();
 	move_task->mouse.length  = 0.0;
+	move_task->mouse.x_point  = 0.0;
 	move_task->mouse.radian  = 0.0;
 	move_task->mouse.x_point = 0.0;
 	move_task->target.velo = 0.0;
@@ -576,6 +579,7 @@ void motion_plan::fix_wall(float set_time)
 	move_task->target.rad_accel = 0.0;
 	move_task->_turn_param = nullptr;
 	move_task->target.length = 0.0;
+	move_task->mouse.x_point  = 0.0;
 	move_task->target.radian = 0.0;
 	move_task->run_time_limit = set_time;
 	move_task->run_time = 0.0;
