@@ -7,10 +7,10 @@ make_path.h:140:3:Dijkstra::Dijkstra(wall_class*)	16	static
 test_wall.h:57:7:void test_maze::test_wall_set(wall_class*)	24	static
 mode.cpp:36:10:uint8_t Mode::Select(uint8_t, uint8_t, t_encoder)	24	static
 mode.cpp:51:7:void Mode::Demo()	45904	static
-mode.cpp:284:7:void Mode::Debug()	45944	static
-mode.cpp:811:7:void Mode::Debug2()	45952	static
-mode.cpp:1345:7:void Mode::Interface_Check()	46376	static
-mode.cpp:1578:7:void Mode::Select_Mode()	688	static
+mode.cpp:301:7:void Mode::Debug()	45944	static
+mode.cpp:828:7:void Mode::Debug2()	45952	static
+mode.cpp:1362:7:void Mode::Interface_Check()	46376	static
+mode.cpp:1595:7:void Mode::Select_Mode()	688	static
 singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = Interrupt]	4	static
 queue_class.h:22:3:ring_queue<SIZE, T>::ring_queue() [with unsigned int SIZE = 1024; T = t_MapNode]	16	static
 run_task.h:114:7:RunTask::RunTask()	16	static
@@ -23,6 +23,6 @@ Kalman_filter.h:14:7:KalmanFilter::KalmanFilter()	16	static
 singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = KalmanFilter]	8	static
 log_data.h:14:7:LogData::LogData()	16	static
 singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = LogData]	8	static
-mode.cpp:1612:1:void __static_initialization_and_destruction_0(int, int)	16	static
-mode.cpp:1612:1:cpp)	8	static
-mode.cpp:1612:1:cpp)	8	static
+mode.cpp:1629:1:void __static_initialization_and_destruction_0(int, int)	16	static
+mode.cpp:1629:1:cpp)	8	static
+mode.cpp:1629:1:cpp)	8	static

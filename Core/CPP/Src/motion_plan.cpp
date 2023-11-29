@@ -177,10 +177,10 @@ void motion_plan::pivot_turn(float rad_target,float rad_acc,float rad_velo)
 	move_task->target.length = 0.0;
 	move_task->target.radian = 0.0;
 	move_task->rT.is_wallControl_Enable = Non_controll;
-	move_task->straight_gain_set.set_sp_gain( 6.0, 0.05, 0.00);
-	move_task->straight_gain_set.set_om_gain(0.4, 0.05, 0.00);
-	move_task->turn_gain_set.set_sp_gain(6.0, 0.05, 0.00);
-	move_task->turn_gain_set.set_om_gain(0.4, 0.05, 0.00);move_task->mouse.x_point = 0.0;
+	move_task->straight_gain_set.set_sp_gain( 12.0, 0.05, 0.00);
+	move_task->straight_gain_set.set_om_gain(0.6, 0.0005, 0.00);
+	move_task->turn_gain_set.set_sp_gain(12.0, 0.05, 0.00);
+	move_task->turn_gain_set.set_om_gain(0.6, 0.0005, 0.00);move_task->mouse.x_point = 0.0;
 	SensingTask::getInstance().Division_Wall_Correction_Reset();
 
 }

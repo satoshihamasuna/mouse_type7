@@ -50,8 +50,11 @@ void RunTask::search_straight(t_motion_param mt_param,t_machine_param *target_,t
 		{
 			if(mt_param.length == 90.0f)
 			{
-				machine_->length = (machine_->length + 45.0)/2.0f;
-				Indicate_LED(0xff);
+				if(ABS(machine_->length - 45.0) < 8.0f)
+				{
+					machine_->length = (machine_->length + 45.0)/2.0f;
+					Indicate_LED(0xff);
+				}
 			}
 		}
 
@@ -402,7 +405,7 @@ void RunTask::search_slalom(t_motion_param *mt_param,const t_param *turn_param,t
 	{
 		is_wallControl_Enable = Non_controll;
 		set_run_mode_state(TURN_MODE);
-		float turn_time_limit = DEG2RAD(turn_param->param->degree)/(accel_Integral*mt_param->rad_max_velo);
+		float turn_time_limit = ABS(DEG2RAD(turn_param->param->degree)/(accel_Integral*mt_param->rad_max_velo));
 		machine_->length = 0.0;
 		if(run_turn_table_time <= (turn_time_limit*1000.0f))
 		{

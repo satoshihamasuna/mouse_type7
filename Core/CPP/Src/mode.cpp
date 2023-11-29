@@ -245,6 +245,23 @@ namespace Mode
 					}
 					break;
 				case ENABLE|0x0D:
+				   if(SensingTask::getInstance().IrSensor_Avg() > 2500)
+				   {
+						for(int i = 0;i < 11;i++)
+						{
+							(i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
+							HAL_Delay(50);
+						}
+				  		motion_task::getInstance().ct.speed_ctrl.Gain_Set(6.0, 0.05, 0.0);
+				  		motion_task::getInstance().ct.omega_ctrl.Gain_Set(0.4, 0.01, 0.0);
+				  		KalmanFilter::getInstance().filter_init();
+				  		run_path.turn_time_set(mode_1400);
+						run_path.run_Dijkstra_suction(		start, Dir_None, goal, MAZE_GOAL_SIZE,650,
+															st_mode_1500_v1, (int)(sizeof(st_mode_1500_v1)/sizeof(t_straight_param *const)),
+															di_mode_1500_v1, (int)(sizeof(di_mode_1500_v1)/sizeof(t_straight_param *const)), mode_1500,&mp);
+
+						enable = 0x00;
+					}
 					break;
 				case ENABLE|0x0E:
 				   if(SensingTask::getInstance().IrSensor_Avg() > 2500)
@@ -860,7 +877,7 @@ namespace Mode
 						  mp.motion_start( );
 
 						  mp.fix_wall( 400);
-						  for(int i = 50; i <= 800; i = i + 20)
+						  for(int i = 50; i <= 500; i = i + 20)
 						  {
 							  FAN_Motor_SetDuty(i);;
 							  HAL_Delay(3);
@@ -869,7 +886,7 @@ namespace Mode
 
 						  LogData::getInstance().data_count = 0;
 						  LogData::getInstance().log_enable = True;
-						  mp.straight( 90.0*6.0,20.0,3.0,0.0);
+						  mp.straight( 90.0*6.0,12.0,2.2,0.0);
 						  while(motion_task::getInstance().run_task !=No_run){}
 						  /*
 						  mp.searchSlalom( &param_L90_search);
