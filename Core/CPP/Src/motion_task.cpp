@@ -210,14 +210,14 @@ void motion_task::motionPostControll()
 		if(target.velo != 0.0f)
 		{
 			int error_flag = error_cnt;
-			if(ABS((mouse.velo - target.velo)/target.velo) >= 0.5)
+			if(ABS((mouse.velo - target.velo)) >= 2.0)
 			{
-				//error_cnt = error_cnt + 50;
+				error_cnt = error_cnt + 50;
 			}
 
 			if(ABS(z_acc) >= 30.0)
 			{
-				//error_cnt = error_cnt +	30;
+				error_cnt = error_cnt +	30;
 			}
 
 			if(ABS(mouse.rad_velo - target.rad_velo) > 10.0)
