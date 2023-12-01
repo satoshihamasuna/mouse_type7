@@ -2,8 +2,9 @@ Core/CPP/Src/motion_task.o: ../Core/CPP/Src/motion_task.cpp \
  ../Core/CPP/Src/../Inc/motion.h \
  ../Core/CPP/Src/../Inc/../../Module/Include/typedef.h \
  ../Core/CPP/Src/../Inc/../../Module/Include/macro.h \
- ../Core/CPP/Src/../Inc/singleton.h ../Core/CPP/Src/../Inc/run_task.h \
- ../Core/CPP/Src/../Inc/controll.h ../Core/CPP/Src/../Inc/run_task.h \
+ ../Core/CPP/Src/../Inc/run_param.h ../Core/CPP/Src/../Inc/run_task.h \
+ ../Core/CPP/Src/../Inc/singleton.h ../Core/CPP/Src/../Inc/controll.h \
+ ../Core/CPP/Src/../Inc/run_task.h \
  ../Core/CPP/Src/../../Module/Include/index.h ../Core/Inc/main.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
  ../Core/Inc/stm32f4xx_hal_conf.h \
@@ -50,9 +51,11 @@ Core/CPP/Src/motion_task.o: ../Core/CPP/Src/motion_task.cpp \
 
 ../Core/CPP/Src/../Inc/../../Module/Include/macro.h:
 
-../Core/CPP/Src/../Inc/singleton.h:
+../Core/CPP/Src/../Inc/run_param.h:
 
 ../Core/CPP/Src/../Inc/run_task.h:
+
+../Core/CPP/Src/../Inc/singleton.h:
 
 ../Core/CPP/Src/../Inc/controll.h:
 

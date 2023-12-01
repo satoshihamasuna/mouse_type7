@@ -886,7 +886,8 @@ namespace Mode
 
 						  LogData::getInstance().data_count = 0;
 						  LogData::getInstance().log_enable = True;
-						  mp.straight( 90.0*6.0,12.0,2.2,0.0);
+						  const  t_straight_param *st_param = &st_param_1500;
+						  mp.straight( 90.0*8.0,st_param->param->acc,st_param->param->max_velo,0.0,st_param->sp_gain,st_param->om_gain);
 						  while(motion_task::getInstance().run_task !=No_run){}
 						  /*
 						  mp.searchSlalom( &param_L90_search);

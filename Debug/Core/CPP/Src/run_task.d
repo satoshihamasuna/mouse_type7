@@ -42,8 +42,8 @@ Core/CPP/Src/run_task.o: ../Core/CPP/Src/run_task.cpp \
  ../Core/CPP/Src/../../Module/Include/macro.h \
  ../Core/CPP/Src/../Inc/turn_table.h \
  ../Core/CPP/Src/../Inc/sensing_task.h ../Core/CPP/Src/../Inc/singleton.h \
- ../Core/CPP/Src/../Inc/motion.h ../Core/CPP/Src/../Inc/run_task.h \
- ../Core/CPP/Src/../Inc/controll.h
+ ../Core/CPP/Src/../Inc/motion.h ../Core/CPP/Src/../Inc/run_param.h \
+ ../Core/CPP/Src/../Inc/run_task.h ../Core/CPP/Src/../Inc/controll.h
 
 ../Core/CPP/Src/../../Module/Include/index.h:
 
@@ -146,6 +146,8 @@ Core/CPP/Src/run_task.o: ../Core/CPP/Src/run_task.cpp \
 ../Core/CPP/Src/../Inc/singleton.h:
 
 ../Core/CPP/Src/../Inc/motion.h:
+
+../Core/CPP/Src/../Inc/run_param.h:
 
 ../Core/CPP/Src/../Inc/run_task.h:
 
