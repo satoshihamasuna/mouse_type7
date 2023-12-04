@@ -71,7 +71,7 @@ void Interrupt::preprocess(){
 	if(lambda_slip >= 0.2) lambda_slip = 0.2;
 	else if(lambda_slip <= -0.2) lambda_slip = -0.2;
 	//(読み間違い対策)
-	motion_task::getInstance().mouse.length  += (1.0)*(ABS(((float)(Renc.sp_pulse)) + ABS((float)(Lenc.sp_pulse))))/2.0*MMPP;
+	motion_task::getInstance().mouse.length  += motion_task::getInstance().mouse.velo;//(1.0)*((((float)(Renc.sp_pulse)) - ((float)(Lenc.sp_pulse))))/2.0*MMPP;
 	motion_task::getInstance().mouse.accel    = (-1.0)*acc_sum/((float)(ACC_BUFF_SIZE));
 	motion_task::getInstance().mouse.rad_velo = (-1.0)*read_gyro_z_axis()*PI/180;
 	motion_task::getInstance().mouse.radian  += motion_task::getInstance().mouse.rad_velo/1000.0;
@@ -105,8 +105,8 @@ void Interrupt::postprocess()
 		LogData::getInstance().data[5][LogData::getInstance().data_count%1000] = (-1.0)*read_accel_y_axis();;//Battery_GetVoltage()  ;
 		LogData::getInstance().data[6][LogData::getInstance().data_count%1000] = acc_sum;
 		LogData::getInstance().data[7][LogData::getInstance().data_count%1000] = velo_sum ;
-		LogData::getInstance().data[8][LogData::getInstance().data_count%1000] = (float)Encoder_GetProperty_Right().sp_pulse;//SensingTask::getInstance().sen_r.distance;//Rvelo_sum/((float)(ACC_BUFF_SIZE));
-		LogData::getInstance().data[9][LogData::getInstance().data_count%1000] = (float) Encoder_GetProperty_Left().sp_pulse;//SensingTask::getInstance().sen_l.distance;//Lvelo_sum/((float)(ACC_BUFF_SIZE));
+		LogData::getInstance().data[8][LogData::getInstance().data_count%1000] = SensingTask::getInstance().sen_r.distance;//(float)Encoder_GetProperty_Right().sp_pulse;//SensingTask::getInstance().sen_r.distance;//Rvelo_sum/((float)(ACC_BUFF_SIZE));
+		LogData::getInstance().data[9][LogData::getInstance().data_count%1000] = SensingTask::getInstance().sen_l.distance;//(float) Encoder_GetProperty_Left().sp_pulse;//SensingTask::getInstance().sen_l.distance;//Lvelo_sum/((float)(ACC_BUFF_SIZE));
 		LogData::getInstance().data[10][LogData::getInstance().data_count%1000] = motion_task::getInstance().V_r;
 		LogData::getInstance().data[11][LogData::getInstance().data_count%1000] = motion_task::getInstance().V_l;
 		LogData::getInstance().data_count++;

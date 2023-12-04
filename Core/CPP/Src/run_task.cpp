@@ -50,9 +50,9 @@ void RunTask::search_straight(t_motion_param mt_param,t_machine_param *target_,t
 		{
 			if(mt_param.length == 90.0f)
 			{
-				if(ABS(machine_->length - 45.0) < 8.0f)
+				if(ABS(machine_->length - 55.0) < 8.0f)
 				{
-					machine_->length = (machine_->length + 45.0)/2.0f;
+					machine_->length = (machine_->length + 55.0)/2.0f;
 					Indicate_LED(0xff);
 				}
 			}
@@ -471,7 +471,7 @@ void RunTask::turn_in(t_motion_param *mt_param,const t_param *turn_param,t_machi
 			target_->velo = turn_param->param->velo;
 			if(SensingTask::getInstance().Division_Wall_Correction() == True)
 			{
-				machine_->length = (0.2*machine_->length + 0.8*(6.0));
+				machine_->length = (0.2*machine_->length + 0.8*(10.0));
 				Indicate_LED(0xff);
 			}
 		}

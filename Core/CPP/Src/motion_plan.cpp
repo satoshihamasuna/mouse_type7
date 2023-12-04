@@ -94,7 +94,7 @@ void motion_plan::straight(float len_target,float acc,float max_sp,float end_sp,
 	move_task->ct.omega_ctrl.I_param_reset();
 	move_task->mouse.length  = 0.0;
 	move_task->mouse.radian  = 0.0;
-	move_task->mouse.x_point = 0.0;
+	//move_task->mouse.x_point = 0.0;
 	//move_task->target.velo = 0.0;
 	move_task->target.accel = 0.0;
 	//move_task->target.rad_velo = 0.0;
@@ -131,7 +131,7 @@ void motion_plan::diagonal(float len_target,float acc,float max_sp,float end_sp,
 	move_task->ct.speed_ctrl.I_param_reset();
 	move_task->ct.omega_ctrl.I_param_reset();
 	move_task->mouse.length  = 0.0;
-	move_task->mouse.x_point  = 0.0;
+	//move_task->mouse.x_point  = 0.0;
 	move_task->mouse.radian  = 0.0;
 	//move_task->target.velo = 0.0;
 	move_task->target.accel = 0.0;
@@ -251,7 +251,7 @@ void motion_plan::turn_in(const t_param *turn_param,t_run_pattern run_pt,const t
 	move_task->ct.omega_ctrl.I_param_reset();
 	move_task->mouse.length  = 0.0;
 	move_task->mouse.radian  = 0.0;
-	move_task->mouse.x_point = 0.0;
+	//move_task->mouse.x_point = 0.0;
 	move_task->run_time		 = 0.0;
 	//move_task->target.velo = 0.0;
 	move_task->target.accel = 0.0;
@@ -286,6 +286,7 @@ void motion_plan::turn_in(const t_param *turn_param,t_run_pattern run_pt,const t
 	{
 		if(turn_param->param->turn_dir == Turn_R)
 		{
+			//diff = -move_task->mouse.x_point;
 			if(l_fix == True)
 			{
 				diff =((-1.0)*(45.0 - SensingTask::getInstance().sen_l.distance));
@@ -299,6 +300,7 @@ void motion_plan::turn_in(const t_param *turn_param,t_run_pattern run_pt,const t
 		}
 		else if(turn_param->param->turn_dir == Turn_L)
 		{
+
 			if(r_fix == True)
 			{
 				diff =((45.0 - SensingTask::getInstance().sen_r.distance));

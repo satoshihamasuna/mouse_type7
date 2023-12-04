@@ -247,8 +247,8 @@ void Dijkstra::expand(t_posDijkstra pos)
 			turn_inL135_expand(pos, pos_dir);
 			turn_inR45_expand(pos, pos_dir);
 			turn_inL45_expand(pos, pos_dir);
-			turn_inR45_expand(pos, pos_dir);
-			turn_inL45_expand(pos, pos_dir);
+			//turn_inR45_expand(pos, pos_dir);
+			//turn_inL45_expand(pos, pos_dir);
 			longturn_R90_expand(pos, pos_dir);
 			longturn_L90_expand(pos, pos_dir);
 			longturn_R180_expand(pos, pos_dir);

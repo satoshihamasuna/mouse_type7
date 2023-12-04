@@ -19,6 +19,8 @@
 
 #define ALLOW_SIDE_DIFF 8.0
 
+const  t_straight_param *search_st_param = &st_param_320;
+
 t_bool Search::i_am_goal(int x,int y,int gx,int gy,int goal_size){
 	t_bool flag = False;
 	if(gx <= x && x < (gx + goal_size))
@@ -67,11 +69,11 @@ t_position Search::search_adachi_1(	t_position start_pos,t_position goal_pos,int
 		case Front:
 			if(my_position.x == 0 && my_position.x == 0 )
 			{
-				motion_plan->straight(45.0+15.0, 4.0, 0.30f, 0.30f);
+				motion_plan->straight(45.0+15.0, search_st_param->param->acc, search_st_param->param->max_velo, search_st_param->param->max_velo);
 			}
 			else
 			{
-				motion_plan->straight(45.0, 4.0, 0.30f, 0.30f);
+				motion_plan->straight(45.0, search_st_param->param->acc, search_st_param->param->max_velo, search_st_param->param->max_velo);
 			}
 			_map->make_map_queue(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01);
 			while(motion_task::getInstance().run_task !=No_run){}
@@ -80,7 +82,7 @@ t_position Search::search_adachi_1(	t_position start_pos,t_position goal_pos,int
 			motion_plan->pivot_turn(DEG2RAD(-90.0f), -40.0*PI, -4.0*PI);
 			while(motion_task::getInstance().run_task !=No_run){}
 
-			motion_plan->straight(45.0, 4.0, 0.30f, 0.30f);
+			motion_plan->straight(45.0, search_st_param->param->acc, search_st_param->param->max_velo, search_st_param->param->max_velo);
 			_map->make_map_queue(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01);
 			while(motion_task::getInstance().run_task !=No_run){}
 			break;
@@ -88,7 +90,7 @@ t_position Search::search_adachi_1(	t_position start_pos,t_position goal_pos,int
 			motion_plan->pivot_turn(DEG2RAD(90.0f), 40.0*PI, 4.0*PI);
 			while(motion_task::getInstance().run_task !=No_run){}
 
-			motion_plan->straight(45.0, 4.0, 0.30f, 0.30f);
+			motion_plan->straight(45.0, search_st_param->param->acc, search_st_param->param->max_velo, search_st_param->param->max_velo);
 			_map->make_map_queue(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01);
 			while(motion_task::getInstance().run_task !=No_run){}
 
@@ -97,7 +99,7 @@ t_position Search::search_adachi_1(	t_position start_pos,t_position goal_pos,int
 			motion_plan->pivot_turn(DEG2RAD(180.0f), 40.0*PI, 4.0*PI);
 			while(motion_task::getInstance().run_task !=No_run){}
 
-			motion_plan->straight(45.0, 4.0, 0.30f, 0.30f);
+			motion_plan->straight(45.0, search_st_param->param->acc, search_st_param->param->max_velo, search_st_param->param->max_velo);
 			_map->make_map_queue(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01);
 			while(motion_task::getInstance().run_task !=No_run){}
 			break;
@@ -116,14 +118,14 @@ t_position Search::search_adachi_1(	t_position start_pos,t_position goal_pos,int
 		switch(direction)
 		{
 			case Front:
-				motion_plan->search_straight(90.0, 4.0, 0.30f, 0.30f);
+				motion_plan->search_straight(90.0, search_st_param->param->acc, search_st_param->param->max_velo, search_st_param->param->max_velo);
 				_map->make_map_queue(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01);
 				while(motion_task::getInstance().run_task !=No_run){}
 				break;
 			case Right:
 				if(SensingTask::getInstance().sen_l.is_wall == True && ABS(SensingTask::getInstance().sen_l.distance - 45.0) >= ALLOW_SIDE_DIFF)
 				{
-					motion_plan->straight(45.0, 4.0, 0.30f, 0.00f);
+					motion_plan->straight(45.0, search_st_param->param->acc, search_st_param->param->max_velo, 0.00f);
 					_map->make_map_queue(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01);
 					while(motion_task::getInstance().run_task !=No_run){}
 
@@ -142,12 +144,12 @@ t_position Search::search_adachi_1(	t_position start_pos,t_position goal_pos,int
 					motion_plan->pivot_turn(DEG2RAD(-180.0f), -40.0*PI, -4.0*PI);
 					while(motion_task::getInstance().run_task !=No_run){}
 
-					motion_plan->straight(45.0, 4.0, 0.30f, 0.30f);
+					motion_plan->straight(45.0, search_st_param->param->acc, search_st_param->param->max_velo, search_st_param->param->max_velo);
 					while(motion_task::getInstance().run_task !=No_run){}
 				}
 				else if(_wall->get_WallState(my_position) == WALL && ABS(SensingTask::getInstance().sen_fr.distance - SensingTask::getInstance().sen_fl.distance) >= ALLOW_SIDE_DIFF)
 				{
-					motion_plan->straight(45.0, 4.0, 0.30f, 0.00f);
+					motion_plan->straight(45.0, search_st_param->param->acc, search_st_param->param->max_velo, 0.00f);
 					_map->make_map_queue(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01);
 					while(motion_task::getInstance().run_task !=No_run){}
 
@@ -159,7 +161,7 @@ t_position Search::search_adachi_1(	t_position start_pos,t_position goal_pos,int
 					motion_plan->pivot_turn(DEG2RAD(-90.0f), -40.0*PI, -4.0*PI);
 					while(motion_task::getInstance().run_task !=No_run){}
 
-					motion_plan->straight(45.0, 4.0, 0.30f, 0.30f);
+					motion_plan->straight(45.0, search_st_param->param->acc, search_st_param->param->max_velo, search_st_param->param->max_velo);
 					while(motion_task::getInstance().run_task !=No_run){}
 				}
 				else
@@ -172,7 +174,7 @@ t_position Search::search_adachi_1(	t_position start_pos,t_position goal_pos,int
 			case Left:
 				if(SensingTask::getInstance().sen_r.is_wall == True && ABS(SensingTask::getInstance().sen_r.distance - 45.0) >= ALLOW_SIDE_DIFF)
 				{
-					motion_plan->straight(45.0, 4.0, 0.30f, 0.00f);
+					motion_plan->straight(45.0, search_st_param->param->acc, search_st_param->param->max_velo, 0.00f);
 					_map->make_map_queue(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01);
 					while(motion_task::getInstance().run_task !=No_run){}
 
@@ -191,12 +193,12 @@ t_position Search::search_adachi_1(	t_position start_pos,t_position goal_pos,int
 					motion_plan->pivot_turn( DEG2RAD(180.0f), 40.0*PI, 4.0*PI);
 					while(motion_task::getInstance().run_task !=No_run){}
 
-					motion_plan->straight(45.0, 4.0, 0.30f, 0.30f);
+					motion_plan->straight(45.0, search_st_param->param->acc, search_st_param->param->max_velo, search_st_param->param->max_velo);
 					while(motion_task::getInstance().run_task !=No_run){}
 				}
 				else if(_wall->get_WallState(my_position) == WALL && ABS(SensingTask::getInstance().sen_fr.distance - SensingTask::getInstance().sen_fl.distance) >= ALLOW_SIDE_DIFF)
 				{
-					motion_plan->straight( 45.0, 4.0, 0.30f, 0.00f);
+					motion_plan->straight( 45.0, search_st_param->param->acc, search_st_param->param->max_velo, 0.00f);
 					_map->make_map_queue(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01);
 					while(motion_task::getInstance().run_task !=No_run){}
 
@@ -208,7 +210,7 @@ t_position Search::search_adachi_1(	t_position start_pos,t_position goal_pos,int
 					motion_plan->pivot_turn(DEG2RAD(90.0f), 40.0*PI, 4.0*PI);
 					while(motion_task::getInstance().run_task !=No_run){}
 
-					motion_plan->straight(45.0, 4.0, 0.30f, 0.30f);
+					motion_plan->straight(45.0, search_st_param->param->acc, search_st_param->param->max_velo, search_st_param->param->max_velo);
 					while(motion_task::getInstance().run_task !=No_run){}
 				}
 				else
@@ -219,7 +221,7 @@ t_position Search::search_adachi_1(	t_position start_pos,t_position goal_pos,int
 				}
 				break;
 			case Rear:
-				motion_plan->straight(45.0, 4.0, 0.30f, 0.00f);
+				motion_plan->straight(45.0, search_st_param->param->acc, search_st_param->param->max_velo, 0.00f);
 				_map->make_map_queue(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01);
 
 				while(motion_task::getInstance().run_task !=No_run){}
@@ -255,14 +257,14 @@ t_position Search::search_adachi_1(	t_position start_pos,t_position goal_pos,int
 					while(motion_task::getInstance().run_task !=No_run){}
 				}
 
-				motion_plan->straight( 45.0, 4.0, 0.30f, 0.30f);
+				motion_plan->straight( 45.0, search_st_param->param->acc, search_st_param->param->max_velo, search_st_param->param->max_velo);
 				while(motion_task::getInstance().run_task !=No_run){}
 				break;
 		}
 		my_position = tmp_my_pos;
 	}
 	_wall->set_wall(my_position);
-	motion_plan->straight( 45.0, 4.0, 0.30f, 0.0f);
+	motion_plan->straight( 45.0, search_st_param->param->acc, search_st_param->param->max_velo, 0.0f);
 	while(motion_task::getInstance().run_task !=No_run){}
 	HAL_Delay(100);
 	return my_position;
@@ -287,11 +289,11 @@ t_position Search::search_adachi_1_acc(	t_position start_pos,t_position goal_pos
 		case Front:
 			if(my_position.x == 0 && my_position.x == 0 )
 			{
-				motion_plan->straight(45.0+15.0, 4.0, 0.30f, 0.30f);
+				motion_plan->straight(45.0+15.0, search_st_param->param->acc, search_st_param->param->max_velo, search_st_param->param->max_velo);
 			}
 			else
 			{
-				motion_plan->straight(45.0, 4.0, 0.30f, 0.30f);
+				motion_plan->straight(45.0, search_st_param->param->acc, search_st_param->param->max_velo, search_st_param->param->max_velo);
 			}
 			_map->make_map_queue(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01);
 			while(motion_task::getInstance().run_task !=No_run){}
@@ -300,7 +302,7 @@ t_position Search::search_adachi_1_acc(	t_position start_pos,t_position goal_pos
 			motion_plan->pivot_turn(DEG2RAD(-90.0f), -40.0*PI, -4.0*PI);
 			while(motion_task::getInstance().run_task !=No_run){}
 
-			motion_plan->straight(45.0, 4.0, 0.30f, 0.30f);
+			motion_plan->straight(45.0, search_st_param->param->acc, search_st_param->param->max_velo, search_st_param->param->max_velo);
 			_map->make_map_queue(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01);
 			while(motion_task::getInstance().run_task !=No_run){}
 			break;
@@ -308,7 +310,7 @@ t_position Search::search_adachi_1_acc(	t_position start_pos,t_position goal_pos
 			motion_plan->pivot_turn(DEG2RAD(90.0f), 40.0*PI, 4.0*PI);
 			while(motion_task::getInstance().run_task !=No_run){}
 
-			motion_plan->straight(45.0, 4.0, 0.30f, 0.30f);
+			motion_plan->straight(45.0, search_st_param->param->acc, search_st_param->param->max_velo, search_st_param->param->max_velo);
 			_map->make_map_queue(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01);
 			while(motion_task::getInstance().run_task !=No_run){}
 
@@ -317,7 +319,7 @@ t_position Search::search_adachi_1_acc(	t_position start_pos,t_position goal_pos
 			motion_plan->pivot_turn(DEG2RAD(180.0f), 40.0*PI, 4.0*PI);
 			while(motion_task::getInstance().run_task !=No_run){}
 
-			motion_plan->straight(45.0, 4.0, 0.30f, 0.30f);
+			motion_plan->straight(45.0, search_st_param->param->acc, search_st_param->param->max_velo, search_st_param->param->max_velo);
 			_map->make_map_queue(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01);
 			while(motion_task::getInstance().run_task !=No_run){}
 			break;
@@ -348,7 +350,7 @@ t_position Search::search_adachi_1_acc(	t_position start_pos,t_position goal_pos
 		switch(direction | next_acc_flag)
 		{
 			case Front:
-				motion_plan->search_straight(90.0, 6.0, motion_task::getInstance().target.velo, 0.30f);
+				motion_plan->search_straight(90.0, 6.0, motion_task::getInstance().target.velo, search_st_param->param->max_velo);
 				_map->make_map_queue(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01);
 				while(motion_task::getInstance().run_task !=No_run){}
 				break;
@@ -356,7 +358,7 @@ t_position Search::search_adachi_1_acc(	t_position start_pos,t_position goal_pos
 				if(next_acc_dir == Front)
 					motion_plan->search_straight(90.0, 6.0, 0.60, 0.60f);
 				else
-					motion_plan->search_straight(90.0, 6.0, motion_task::getInstance().target.velo, 0.30f);
+					motion_plan->search_straight(90.0, 6.0, motion_task::getInstance().target.velo, search_st_param->param->max_velo);
 				_map->make_map_queue(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01);
 				while(motion_task::getInstance().run_task !=No_run){}
 				break;
@@ -364,7 +366,7 @@ t_position Search::search_adachi_1_acc(	t_position start_pos,t_position goal_pos
 			case (Right|0x80):
 				if(SensingTask::getInstance().sen_l.is_wall == True && ABS(SensingTask::getInstance().sen_l.distance - 45.0) >= ALLOW_SIDE_DIFF)
 				{
-					motion_plan->straight(45.0, 4.0, 0.30f, 0.00f);
+					motion_plan->straight(45.0, search_st_param->param->acc, search_st_param->param->max_velo, 0.00f);
 					_map->make_map_queue(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01);
 					while(motion_task::getInstance().run_task !=No_run){}
 
@@ -383,12 +385,12 @@ t_position Search::search_adachi_1_acc(	t_position start_pos,t_position goal_pos
 					motion_plan->pivot_turn(DEG2RAD(-180.0f), -40.0*PI, -4.0*PI);
 					while(motion_task::getInstance().run_task !=No_run){}
 
-					motion_plan->straight(45.0, 4.0, 0.30f, 0.30f);
+					motion_plan->straight(45.0, search_st_param->param->acc, search_st_param->param->max_velo, search_st_param->param->max_velo);
 					while(motion_task::getInstance().run_task !=No_run){}
 				}
 				else if(_wall->get_WallState(my_position) == WALL && ABS(SensingTask::getInstance().sen_fr.distance - SensingTask::getInstance().sen_fl.distance) >= ALLOW_SIDE_DIFF)
 				{
-					motion_plan->straight(45.0, 4.0, 0.30f, 0.00f);
+					motion_plan->straight(45.0, search_st_param->param->acc, search_st_param->param->max_velo, 0.00f);
 					_map->make_map_queue(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01);
 					while(motion_task::getInstance().run_task !=No_run){}
 
@@ -400,7 +402,7 @@ t_position Search::search_adachi_1_acc(	t_position start_pos,t_position goal_pos
 					motion_plan->pivot_turn(DEG2RAD(-90.0f), -40.0*PI, -4.0*PI);
 					while(motion_task::getInstance().run_task !=No_run){}
 
-					motion_plan->straight(45.0, 4.0, 0.30f, 0.30f);
+					motion_plan->straight(45.0, search_st_param->param->acc, search_st_param->param->max_velo, search_st_param->param->max_velo);
 					while(motion_task::getInstance().run_task !=No_run){}
 				}
 				else
@@ -414,7 +416,7 @@ t_position Search::search_adachi_1_acc(	t_position start_pos,t_position goal_pos
 			case (Left|0x80):
 				if(SensingTask::getInstance().sen_r.is_wall == True && ABS(SensingTask::getInstance().sen_r.distance - 45.0) >= ALLOW_SIDE_DIFF)
 				{
-					motion_plan->straight(45.0, 4.0, 0.30f, 0.00f);
+					motion_plan->straight(45.0, search_st_param->param->acc, search_st_param->param->max_velo, 0.00f);
 					_map->make_map_queue(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01);
 					while(motion_task::getInstance().run_task !=No_run){}
 
@@ -433,12 +435,12 @@ t_position Search::search_adachi_1_acc(	t_position start_pos,t_position goal_pos
 					motion_plan->pivot_turn( DEG2RAD(180.0f), 40.0*PI, 4.0*PI);
 					while(motion_task::getInstance().run_task !=No_run){}
 
-					motion_plan->straight(45.0, 4.0, 0.30f, 0.30f);
+					motion_plan->straight(45.0, search_st_param->param->acc, search_st_param->param->max_velo, search_st_param->param->max_velo);
 					while(motion_task::getInstance().run_task !=No_run){}
 				}
 				else if(_wall->get_WallState(my_position) == WALL && ABS(SensingTask::getInstance().sen_fr.distance - SensingTask::getInstance().sen_fl.distance) >= ALLOW_SIDE_DIFF)
 				{
-					motion_plan->straight( 45.0, 4.0, 0.30f, 0.00f);
+					motion_plan->straight( 45.0, search_st_param->param->acc, search_st_param->param->max_velo, 0.00f);
 					_map->make_map_queue(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01);
 					while(motion_task::getInstance().run_task !=No_run){}
 
@@ -450,7 +452,7 @@ t_position Search::search_adachi_1_acc(	t_position start_pos,t_position goal_pos
 					motion_plan->pivot_turn(DEG2RAD(90.0f), 40.0*PI, 4.0*PI);
 					while(motion_task::getInstance().run_task !=No_run){}
 
-					motion_plan->straight(45.0, 4.0, 0.30f, 0.30f);
+					motion_plan->straight(45.0, search_st_param->param->acc, search_st_param->param->max_velo, search_st_param->param->max_velo);
 					while(motion_task::getInstance().run_task !=No_run){}
 				}
 				else
@@ -462,7 +464,7 @@ t_position Search::search_adachi_1_acc(	t_position start_pos,t_position goal_pos
 				break;
 			case Rear:
 			case (Rear|0x80):
-				motion_plan->straight(45.0, 4.0, 0.30f, 0.00f);
+				motion_plan->straight(45.0, search_st_param->param->acc, search_st_param->param->max_velo, 0.00f);
 				_map->make_map_queue(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01);
 
 				while(motion_task::getInstance().run_task !=No_run){}
@@ -498,14 +500,14 @@ t_position Search::search_adachi_1_acc(	t_position start_pos,t_position goal_pos
 					while(motion_task::getInstance().run_task !=No_run){}
 				}
 
-				motion_plan->straight( 45.0, 4.0, 0.30f, 0.30f);
+				motion_plan->straight( 45.0, search_st_param->param->acc, search_st_param->param->max_velo, search_st_param->param->max_velo);
 				while(motion_task::getInstance().run_task !=No_run){}
 				break;
 		}
 		my_position = tmp_my_pos;
 	}
 	_wall->set_wall(my_position);
-	motion_plan->straight( 45.0, 4.0, 0.30f, 0.0f);
+	motion_plan->straight( 45.0, search_st_param->param->acc, search_st_param->param->max_velo, 0.0f);
 	while(motion_task::getInstance().run_task !=No_run){}
 	HAL_Delay(100);
 	return my_position;
@@ -531,11 +533,11 @@ t_position Search::search_adachi_2(	t_position start_pos,t_position goal_pos,int
 		case Front:
 			if(my_position.x == 0 && my_position.x == 0 )
 			{
-				motion_plan->straight( 45.0+15.0, 4.0, 0.30f, 0.30f);
+				motion_plan->straight( 45.0+15.0, search_st_param->param->acc, search_st_param->param->max_velo, search_st_param->param->max_velo);
 			}
 			else
 			{
-				motion_plan->straight( 45.0, 4.0, 0.30f, 0.30f);
+				motion_plan->straight( 45.0, search_st_param->param->acc, search_st_param->param->max_velo, search_st_param->param->max_velo);
 			}
 			_map->make_map_queue_zenmen(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01);
 			while(motion_task::getInstance().run_task !=No_run){}
@@ -544,7 +546,7 @@ t_position Search::search_adachi_2(	t_position start_pos,t_position goal_pos,int
 			motion_plan->pivot_turn( DEG2RAD(-90.0f), -40.0*PI, -4.0*PI);
 			while(motion_task::getInstance().run_task !=No_run){}
 
-			motion_plan->straight( 45.0, 4.0, 0.30f, 0.30f);
+			motion_plan->straight( 45.0, search_st_param->param->acc, search_st_param->param->max_velo, search_st_param->param->max_velo);
 			_map->make_map_queue_zenmen(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01);
 			while(motion_task::getInstance().run_task !=No_run){}
 			break;
@@ -552,7 +554,7 @@ t_position Search::search_adachi_2(	t_position start_pos,t_position goal_pos,int
 			motion_plan->pivot_turn( DEG2RAD(90.0f), 40.0*PI, 4.0*PI);
 			while(motion_task::getInstance().run_task !=No_run){}
 
-			motion_plan->straight( 45.0, 4.0, 0.30f, 0.30f);
+			motion_plan->straight( 45.0, search_st_param->param->acc, search_st_param->param->max_velo, search_st_param->param->max_velo);
 			_map->make_map_queue_zenmen(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01);
 			while(motion_task::getInstance().run_task !=No_run){}
 
@@ -561,7 +563,7 @@ t_position Search::search_adachi_2(	t_position start_pos,t_position goal_pos,int
 			motion_plan->pivot_turn( DEG2RAD(180.0f), 40.0*PI, 4.0*PI);
 			while(motion_task::getInstance().run_task !=No_run){}
 
-			motion_plan->straight( 45.0, 4.0, 0.30f, 0.30f);
+			motion_plan->straight( 45.0, search_st_param->param->acc, search_st_param->param->max_velo, search_st_param->param->max_velo);
 			_map->make_map_queue_zenmen(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01);
 			while(motion_task::getInstance().run_task !=No_run){}
 			break;
@@ -580,14 +582,14 @@ t_position Search::search_adachi_2(	t_position start_pos,t_position goal_pos,int
 		switch(direction)
 		{
 			case Front:
-				motion_plan->search_straight( 90.0, 4.0, 0.30f, 0.30f);
+				motion_plan->search_straight( 90.0, search_st_param->param->acc, search_st_param->param->max_velo, search_st_param->param->max_velo);
 				_map->make_map_queue_zenmen(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01);
 				while(motion_task::getInstance().run_task !=No_run){}
 				break;
 			case Right:
 				if(SensingTask::getInstance().sen_l.is_wall == True && ABS(SensingTask::getInstance().sen_l.distance - 45.0) >= ALLOW_SIDE_DIFF)
 				{
-					motion_plan->straight( 45.0, 4.0, 0.30f, 0.00f);
+					motion_plan->straight( 45.0, search_st_param->param->acc, search_st_param->param->max_velo, 0.00f);
 					_map->make_map_queue_zenmen(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01);
 					while(motion_task::getInstance().run_task !=No_run){}
 
@@ -606,12 +608,12 @@ t_position Search::search_adachi_2(	t_position start_pos,t_position goal_pos,int
 					motion_plan->pivot_turn( DEG2RAD(-180.0f), -40.0*PI, -4.0*PI);
 					while(motion_task::getInstance().run_task !=No_run){}
 
-					motion_plan->straight( 45.0, 4.0, 0.30f, 0.30f);
+					motion_plan->straight( 45.0, search_st_param->param->acc, search_st_param->param->max_velo, search_st_param->param->max_velo);
 					while(motion_task::getInstance().run_task !=No_run){}
 				}
 				else if(_wall->get_WallState(my_position) == WALL && ABS(SensingTask::getInstance().sen_fr.distance - SensingTask::getInstance().sen_fl.distance) >= ALLOW_SIDE_DIFF)
 				{
-					motion_plan->straight( 45.0, 4.0, 0.30f, 0.00f);
+					motion_plan->straight( 45.0, search_st_param->param->acc, search_st_param->param->max_velo, 0.00f);
 					_map->make_map_queue_zenmen(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01);
 					while(motion_task::getInstance().run_task !=No_run){}
 
@@ -623,7 +625,7 @@ t_position Search::search_adachi_2(	t_position start_pos,t_position goal_pos,int
 					motion_plan->pivot_turn( DEG2RAD(-90.0f), -40.0*PI, -4.0*PI);
 					while(motion_task::getInstance().run_task !=No_run){}
 
-					motion_plan->straight( 45.0, 4.0, 0.30f, 0.30f);
+					motion_plan->straight( 45.0, search_st_param->param->acc, search_st_param->param->max_velo, search_st_param->param->max_velo);
 					while(motion_task::getInstance().run_task !=No_run){}
 				}
 				else
@@ -636,7 +638,7 @@ t_position Search::search_adachi_2(	t_position start_pos,t_position goal_pos,int
 			case Left:
 				if(SensingTask::getInstance().sen_r.is_wall == True && ABS(SensingTask::getInstance().sen_r.distance - 45.0) >= ALLOW_SIDE_DIFF)
 				{
-					motion_plan->straight( 45.0, 4.0, 0.30f, 0.00f);
+					motion_plan->straight( 45.0, search_st_param->param->acc, search_st_param->param->max_velo, 0.00f);
 					_map->make_map_queue_zenmen(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01);
 					while(motion_task::getInstance().run_task !=No_run){}
 
@@ -655,12 +657,12 @@ t_position Search::search_adachi_2(	t_position start_pos,t_position goal_pos,int
 					motion_plan->pivot_turn( DEG2RAD(180.0f), 40.0*PI, 4.0*PI);
 										while(motion_task::getInstance().run_task !=No_run){}
 
-					motion_plan->straight( 45.0, 4.0, 0.30f, 0.30f);
+					motion_plan->straight( 45.0, search_st_param->param->acc, search_st_param->param->max_velo, search_st_param->param->max_velo);
 					while(motion_task::getInstance().run_task !=No_run){}
 				}
 				else if(_wall->get_WallState(my_position) == WALL && ABS(SensingTask::getInstance().sen_fr.distance - SensingTask::getInstance().sen_fl.distance) >= ALLOW_SIDE_DIFF)
 				{
-					motion_plan->straight( 45.0, 4.0, 0.30f, 0.00f);
+					motion_plan->straight( 45.0, search_st_param->param->acc, search_st_param->param->max_velo, 0.00f);
 					_map->make_map_queue_zenmen(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01);
 					while(motion_task::getInstance().run_task !=No_run){}
 
@@ -672,7 +674,7 @@ t_position Search::search_adachi_2(	t_position start_pos,t_position goal_pos,int
 					motion_plan->pivot_turn( DEG2RAD(90.0f), 40.0*PI, 4.0*PI);
 					while(motion_task::getInstance().run_task !=No_run){}
 
-					motion_plan->straight( 45.0, 4.0, 0.30f, 0.30f);
+					motion_plan->straight( 45.0, search_st_param->param->acc, search_st_param->param->max_velo, search_st_param->param->max_velo);
 					while(motion_task::getInstance().run_task !=No_run){}
 				}
 				else
@@ -683,7 +685,7 @@ t_position Search::search_adachi_2(	t_position start_pos,t_position goal_pos,int
 				}
 				break;
 			case Rear:
-				motion_plan->straight( 45.0, 4.0, 0.30f, 0.00f);
+				motion_plan->straight( 45.0, search_st_param->param->acc, search_st_param->param->max_velo, 0.00f);
 				_map->make_map_queue_zenmen(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01);
 				while(motion_task::getInstance().run_task !=No_run){}
 				if(_wall->get_WallState(my_position) == WALL)
@@ -722,14 +724,14 @@ t_position Search::search_adachi_2(	t_position start_pos,t_position goal_pos,int
 					motion_plan->pivot_turn( DEG2RAD(180.0f), 40.0*PI, 4.0*PI);
 					while(motion_task::getInstance().run_task !=No_run){}
 				}
-				motion_plan->straight( 45.0, 4.0, 0.30f, 0.30f);
+				motion_plan->straight( 45.0, search_st_param->param->acc, search_st_param->param->max_velo, search_st_param->param->max_velo);
 				while(motion_task::getInstance().run_task !=No_run){}
 				break;
 		}
 		my_position = tmp_my_pos;
 	}
 	_wall->set_wall(my_position);
-	motion_plan->straight( 45.0, 4.0, 0.30f, 0.0f);
+	motion_plan->straight( 45.0, search_st_param->param->acc, search_st_param->param->max_velo, 0.0f);
 	while(motion_task::getInstance().run_task !=No_run){}
 	HAL_Delay(100);
 	return my_position;
@@ -755,11 +757,11 @@ t_position Search::search_adachi_2_acc(	t_position start_pos,t_position goal_pos
 		case Front:
 			if(my_position.x == 0 && my_position.x == 0 )
 			{
-				motion_plan->straight( 45.0+15.0, 4.0, 0.30f, 0.30f);
+				motion_plan->straight( 45.0+15.0, search_st_param->param->acc, search_st_param->param->max_velo, search_st_param->param->max_velo);
 			}
 			else
 			{
-				motion_plan->straight( 45.0, 4.0, 0.30f, 0.30f);
+				motion_plan->straight( 45.0, search_st_param->param->acc, search_st_param->param->max_velo, search_st_param->param->max_velo);
 			}
 			_map->make_map_queue_zenmen(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01);
 			while(motion_task::getInstance().run_task !=No_run){}
@@ -768,7 +770,7 @@ t_position Search::search_adachi_2_acc(	t_position start_pos,t_position goal_pos
 			motion_plan->pivot_turn( DEG2RAD(-90.0f), -40.0*PI, -4.0*PI);
 			while(motion_task::getInstance().run_task !=No_run){}
 
-			motion_plan->straight( 45.0, 4.0, 0.30f, 0.30f);
+			motion_plan->straight( 45.0, search_st_param->param->acc, search_st_param->param->max_velo, search_st_param->param->max_velo);
 			_map->make_map_queue_zenmen(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01);
 			while(motion_task::getInstance().run_task !=No_run){}
 			break;
@@ -776,7 +778,7 @@ t_position Search::search_adachi_2_acc(	t_position start_pos,t_position goal_pos
 			motion_plan->pivot_turn( DEG2RAD(90.0f), 40.0*PI, 4.0*PI);
 			while(motion_task::getInstance().run_task !=No_run){}
 
-			motion_plan->straight( 45.0, 4.0, 0.30f, 0.30f);
+			motion_plan->straight( 45.0, search_st_param->param->acc, search_st_param->param->max_velo, search_st_param->param->max_velo);
 			_map->make_map_queue_zenmen(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01);
 			while(motion_task::getInstance().run_task !=No_run){}
 
@@ -785,7 +787,7 @@ t_position Search::search_adachi_2_acc(	t_position start_pos,t_position goal_pos
 			motion_plan->pivot_turn( DEG2RAD(180.0f), 40.0*PI, 4.0*PI);
 			while(motion_task::getInstance().run_task !=No_run){}
 
-			motion_plan->straight( 45.0, 4.0, 0.30f, 0.30f);
+			motion_plan->straight( 45.0, search_st_param->param->acc, search_st_param->param->max_velo, search_st_param->param->max_velo);
 			_map->make_map_queue_zenmen(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01);
 			while(motion_task::getInstance().run_task !=No_run){}
 			break;
@@ -815,15 +817,15 @@ t_position Search::search_adachi_2_acc(	t_position start_pos,t_position goal_pos
 		switch(direction | next_acc_flag)
 		{
 			case Front:
-				motion_plan->search_straight( 90.0, 4.0, motion_task::getInstance().target.velo, 0.30f);
+				motion_plan->search_straight( 90.0, search_st_param->param->acc, motion_task::getInstance().target.velo, search_st_param->param->max_velo);
 				_map->make_map_queue_zenmen(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01);
 				while(motion_task::getInstance().run_task !=No_run){}
 				break;
 			case Front|0x80:
 				if(next_acc_dir == Front)
-					motion_plan->search_straight(90.0, 4.0, 0.60, 0.60f);
+					motion_plan->search_straight(90.0, search_st_param->param->acc, 0.60, 0.60f);
 				else
-					motion_plan->search_straight(90.0, 4.0, motion_task::getInstance().target.velo, 0.30f);
+					motion_plan->search_straight(90.0, search_st_param->param->acc, motion_task::getInstance().target.velo, search_st_param->param->max_velo);
 				_map->make_map_queue_zenmen(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01);
 				while(motion_task::getInstance().run_task !=No_run){}
 				break;
@@ -831,7 +833,7 @@ t_position Search::search_adachi_2_acc(	t_position start_pos,t_position goal_pos
 			case Right|0x80:
 				if(SensingTask::getInstance().sen_l.is_wall == True && ABS(SensingTask::getInstance().sen_l.distance - 45.0) >= ALLOW_SIDE_DIFF)
 				{
-					motion_plan->straight( 45.0, 4.0, 0.30f, 0.00f);
+					motion_plan->straight( 45.0, search_st_param->param->acc, search_st_param->param->max_velo, 0.00f);
 					_map->make_map_queue_zenmen(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01);
 					while(motion_task::getInstance().run_task !=No_run){}
 
@@ -850,12 +852,12 @@ t_position Search::search_adachi_2_acc(	t_position start_pos,t_position goal_pos
 					motion_plan->pivot_turn( DEG2RAD(-180.0f), -40.0*PI, -4.0*PI);
 					while(motion_task::getInstance().run_task !=No_run){}
 
-					motion_plan->straight( 45.0, 4.0, 0.30f, 0.30f);
+					motion_plan->straight( 45.0, search_st_param->param->acc, search_st_param->param->max_velo, search_st_param->param->max_velo);
 					while(motion_task::getInstance().run_task !=No_run){}
 				}
 				else if(_wall->get_WallState(my_position) == WALL && ABS(SensingTask::getInstance().sen_fr.distance - SensingTask::getInstance().sen_fl.distance) >= ALLOW_SIDE_DIFF)
 				{
-					motion_plan->straight( 45.0, 4.0, 0.30f, 0.00f);
+					motion_plan->straight( 45.0, search_st_param->param->acc, search_st_param->param->max_velo, 0.00f);
 					_map->make_map_queue_zenmen(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01);
 					while(motion_task::getInstance().run_task !=No_run){}
 
@@ -867,7 +869,7 @@ t_position Search::search_adachi_2_acc(	t_position start_pos,t_position goal_pos
 					motion_plan->pivot_turn( DEG2RAD(-90.0f), -40.0*PI, -4.0*PI);
 					while(motion_task::getInstance().run_task !=No_run){}
 
-					motion_plan->straight( 45.0, 4.0, 0.30f, 0.30f);
+					motion_plan->straight( 45.0, search_st_param->param->acc, search_st_param->param->max_velo, search_st_param->param->max_velo);
 					while(motion_task::getInstance().run_task !=No_run){}
 				}
 				else
@@ -881,7 +883,7 @@ t_position Search::search_adachi_2_acc(	t_position start_pos,t_position goal_pos
 			case Left|0x80:
 				if(SensingTask::getInstance().sen_r.is_wall == True && ABS(SensingTask::getInstance().sen_r.distance - 45.0) >= ALLOW_SIDE_DIFF)
 				{
-					motion_plan->straight( 45.0, 4.0, 0.30f, 0.00f);
+					motion_plan->straight( 45.0, search_st_param->param->acc, search_st_param->param->max_velo, 0.00f);
 					_map->make_map_queue_zenmen(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01);
 					while(motion_task::getInstance().run_task !=No_run){}
 
@@ -900,12 +902,12 @@ t_position Search::search_adachi_2_acc(	t_position start_pos,t_position goal_pos
 					motion_plan->pivot_turn( DEG2RAD(180.0f), 40.0*PI, 4.0*PI);
 										while(motion_task::getInstance().run_task !=No_run){}
 
-					motion_plan->straight( 45.0, 4.0, 0.30f, 0.30f);
+					motion_plan->straight( 45.0, search_st_param->param->acc, search_st_param->param->max_velo, search_st_param->param->max_velo);
 					while(motion_task::getInstance().run_task !=No_run){}
 				}
 				else if(_wall->get_WallState(my_position) == WALL && ABS(SensingTask::getInstance().sen_fr.distance - SensingTask::getInstance().sen_fl.distance) >= ALLOW_SIDE_DIFF)
 				{
-					motion_plan->straight( 45.0, 4.0, 0.30f, 0.00f);
+					motion_plan->straight( 45.0, search_st_param->param->acc, search_st_param->param->max_velo, 0.00f);
 					_map->make_map_queue_zenmen(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01);
 					while(motion_task::getInstance().run_task !=No_run){}
 
@@ -917,7 +919,7 @@ t_position Search::search_adachi_2_acc(	t_position start_pos,t_position goal_pos
 					motion_plan->pivot_turn( DEG2RAD(90.0f), 40.0*PI, 4.0*PI);
 					while(motion_task::getInstance().run_task !=No_run){}
 
-					motion_plan->straight( 45.0, 4.0, 0.30f, 0.30f);
+					motion_plan->straight( 45.0, search_st_param->param->acc, search_st_param->param->max_velo, search_st_param->param->max_velo);
 					while(motion_task::getInstance().run_task !=No_run){}
 				}
 				else
@@ -929,7 +931,7 @@ t_position Search::search_adachi_2_acc(	t_position start_pos,t_position goal_pos
 				break;
 			case Rear:
 			case Rear|0x80:
-				motion_plan->straight( 45.0, 4.0, 0.30f, 0.00f);
+				motion_plan->straight( 45.0, search_st_param->param->acc, search_st_param->param->max_velo, 0.00f);
 				_map->make_map_queue_zenmen(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01);
 				while(motion_task::getInstance().run_task !=No_run){}
 				if(_wall->get_WallState(my_position) == WALL)
@@ -968,14 +970,14 @@ t_position Search::search_adachi_2_acc(	t_position start_pos,t_position goal_pos
 					motion_plan->pivot_turn( DEG2RAD(180.0f), 40.0*PI, 4.0*PI);
 					while(motion_task::getInstance().run_task !=No_run){}
 				}
-				motion_plan->straight( 45.0, 4.0, 0.30f, 0.30f);
+				motion_plan->straight( 45.0, search_st_param->param->acc, search_st_param->param->max_velo, search_st_param->param->max_velo);
 				while(motion_task::getInstance().run_task !=No_run){}
 				break;
 		}
 		my_position = tmp_my_pos;
 	}
 	_wall->set_wall(my_position);
-	motion_plan->straight( 45.0, 4.0, 0.30f, 0.0f);
+	motion_plan->straight( 45.0, search_st_param->param->acc, search_st_param->param->max_velo, 0.0f);
 	while(motion_task::getInstance().run_task !=No_run){}
 	HAL_Delay(100);
 	return my_position;
