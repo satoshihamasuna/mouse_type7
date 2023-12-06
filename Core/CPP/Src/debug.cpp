@@ -31,7 +31,7 @@
 
 namespace Mode
 {
-	void Debug(const  t_straight_param *st_param,const t_param *const *turn_mode)
+	void Debug(const  t_straight_param *st_param,const t_param *const *turn_mode,int suction)
 	{
 		t_bool debug_end = False;
 		uint8_t mode = Return_LED_Status() & 0x30;
@@ -119,7 +119,7 @@ namespace Mode
 						  KalmanFilter::getInstance().filter_init();
 						  mp.motion_start( );
 						  mp.fix_wall( 400);
-							for(int i = 10; i <= 750; i = i + 10)
+							for(int i = 10; i <= suction; i = i + 10)
 							{
 								FAN_Motor_SetDuty(i);;
 								HAL_Delay(3);
@@ -153,7 +153,7 @@ namespace Mode
 						  KalmanFilter::getInstance().filter_init();
 						  mp.motion_start( );
 						  mp.fix_wall( 400);
-						  for(int i = 50; i <= 500; i = i + 50)
+						  for(int i = 50; i <= suction; i = i + 50)
 						  {
 							  FAN_Motor_SetDuty(i);;
 							  HAL_Delay(5);
@@ -185,7 +185,7 @@ namespace Mode
 						  KalmanFilter::getInstance().filter_init();
 						  mp.motion_start( );
 						  mp.fix_wall( 400);
-						  for(int i = 50; i <= 500; i = i + 50)
+						  for(int i = 50; i <= suction; i = i + 50)
 						  {
 							  FAN_Motor_SetDuty(i);;
 							  HAL_Delay(5);
@@ -218,7 +218,7 @@ namespace Mode
 						  KalmanFilter::getInstance().filter_init();
 						  mp.motion_start( );
 						  mp.fix_wall( 400);
-						  for(int i = 50; i <= 500; i = i + 50)
+						  for(int i = 50; i <= suction; i = i + 50)
 						  {
 							  FAN_Motor_SetDuty(i);;
 							  HAL_Delay(5);
@@ -250,7 +250,7 @@ namespace Mode
 						  KalmanFilter::getInstance().filter_init();
 						  mp.motion_start( );
 						  mp.fix_wall( 400);
-						  for(int i = 50; i <= 500; i = i + 50)
+						  for(int i = 50; i <= suction; i = i + 50)
 						  {
 							  FAN_Motor_SetDuty(i);;
 							  HAL_Delay(5);
@@ -283,7 +283,7 @@ namespace Mode
 						  KalmanFilter::getInstance().filter_init();
 						  mp.motion_start( );
 						  mp.fix_wall( 400);
-						  for(int i = 50; i <= 500; i = i + 50)
+						  for(int i = 50; i <= suction; i = i + 50)
 						  {
 							  FAN_Motor_SetDuty(i);;
 							  HAL_Delay(5);
@@ -316,7 +316,7 @@ namespace Mode
 						  KalmanFilter::getInstance().filter_init();
 						  mp.motion_start( );
 						  mp.fix_wall( 400);
-						  for(int i = 50; i <= 700; i = i + 50)
+						  for(int i = 50; i <= suction; i = i + 50)
 						  {
 							  FAN_Motor_SetDuty(i);;
 							  HAL_Delay(5);
@@ -349,7 +349,7 @@ namespace Mode
 						  KalmanFilter::getInstance().filter_init();
 						  mp.motion_start( );
 						  mp.fix_wall( 400);
-						  for(int i = 50; i <= 500; i = i + 50)
+						  for(int i = 50; i <= suction; i = i + 50)
 						  {
 							  FAN_Motor_SetDuty(i);;
 							  HAL_Delay(5);
@@ -382,7 +382,7 @@ namespace Mode
 						  KalmanFilter::getInstance().filter_init();
 						  mp.motion_start( );
 						  mp.fix_wall( 400);
-						  for(int i = 50; i <= 500; i = i + 50)
+						  for(int i = 50; i <= suction; i = i + 50)
 						  {
 							  FAN_Motor_SetDuty(i);;
 							  HAL_Delay(5);
@@ -415,7 +415,7 @@ namespace Mode
 						  KalmanFilter::getInstance().filter_init();
 						  mp.motion_start( );
 						  mp.fix_wall( 400);
-						  for(int i = 50; i <= 500; i = i + 50)
+						  for(int i = 50; i <= suction; i = i + 50)
 						  {
 							  FAN_Motor_SetDuty(i);;
 							  HAL_Delay(5);
@@ -448,7 +448,7 @@ namespace Mode
 						  KalmanFilter::getInstance().filter_init();
 						  mp.motion_start( );
 						  mp.fix_wall( 400);
-						  for(int i = 50; i <= 500; i = i + 50)
+						  for(int i = 50; i <= suction; i = i + 50)
 						  {
 							  FAN_Motor_SetDuty(i);;
 							  HAL_Delay(5);
@@ -480,7 +480,7 @@ namespace Mode
 						  KalmanFilter::getInstance().filter_init();
 						  mp.motion_start( );
 						  mp.fix_wall( 400);
-						  for(int i = 50; i <= 500; i = i + 50)
+						  for(int i = 50; i <= suction; i = i + 50)
 						  {
 							  FAN_Motor_SetDuty(i);;
 							  HAL_Delay(5);

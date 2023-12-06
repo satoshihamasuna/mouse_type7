@@ -286,7 +286,7 @@ void motion_plan::turn_in(const t_param *turn_param,t_run_pattern run_pt,const t
 	{
 		if(turn_param->param->turn_dir == Turn_R)
 		{
-			//diff = -move_task->mouse.x_point;
+			diff = -move_task->mouse.x_point;
 			if(l_fix == True)
 			{
 				diff =((-1.0)*(45.0 - SensingTask::getInstance().sen_l.distance));
@@ -300,6 +300,7 @@ void motion_plan::turn_in(const t_param *turn_param,t_run_pattern run_pt,const t
 		}
 		else if(turn_param->param->turn_dir == Turn_L)
 		{
+			diff = -move_task->mouse.x_point;
 
 			if(r_fix == True)
 			{
@@ -318,6 +319,7 @@ void motion_plan::turn_in(const t_param *turn_param,t_run_pattern run_pt,const t
 	{
 		if(turn_param->param->turn_dir == Turn_R)
 		{
+			diff = -move_task->mouse.x_point;
 			if(l_fix == True)
 			{
 				diff =((-1.0)*(45.0 - SensingTask::getInstance().sen_l.distance));
@@ -331,6 +333,7 @@ void motion_plan::turn_in(const t_param *turn_param,t_run_pattern run_pt,const t
 		}
 		else if(turn_param->param->turn_dir == Turn_L)
 		{
+			diff = -move_task->mouse.x_point;
 			if(r_fix == True)
 			{
 				diff =((45.0 - SensingTask::getInstance().sen_r.distance));
@@ -363,7 +366,7 @@ void motion_plan::turn_out(const t_param *turn_param,t_run_pattern run_pt,const 
 	move_task->ct.omega_ctrl.I_param_reset();
 	move_task->mouse.length  = 0.0;
 	move_task->mouse.radian  = 0.0;
-	move_task->mouse.x_point = 0.0;
+	//move_task->mouse.x_point = 0.0;
 	move_task->run_time		 = 0.0;
 	//move_task->target.velo = 0.0;
 	move_task->target.accel = 0.0;
@@ -378,6 +381,32 @@ void motion_plan::turn_out(const t_param *turn_param,t_run_pattern run_pt,const 
 	move_task->straight_gain_set.set_om_gain(om_gain->Kp, om_gain->Ki, om_gain->Kd);
 	move_task->turn_gain_set.set_sp_gain(turn_param->sp_gain->Kp, turn_param->sp_gain->Ki, turn_param->sp_gain->Kd);
 	move_task->turn_gain_set.set_om_gain(turn_param->om_gain->Kp, turn_param->om_gain->Ki, turn_param->om_gain->Kd);
+	if(ABS(turn_param->param->degree) == 135.0f)
+	{
+		if(turn_param->param->turn_dir == Turn_R)
+		{
+			move_task->rT.prev_run_fix = move_task->mouse.x_point;
+			move_task->rT.post_run_fix = move_task->mouse.x_point*SQRT2;
+		}
+		else if(turn_param->param->turn_dir == Turn_L)
+		{
+			move_task->rT.prev_run_fix = (-1.0)*move_task->mouse.x_point;
+			move_task->rT.post_run_fix = (-1.0)*move_task->mouse.x_point*SQRT2;
+		}
+	}
+	else if(ABS(turn_param->param->degree) == 45.0f)
+	{
+		if(turn_param->param->turn_dir == Turn_R)
+		{
+			move_task->rT.prev_run_fix = (-1.0)*move_task->mouse.x_point;
+			move_task->rT.post_run_fix = move_task->mouse.x_point*SQRT2;
+		}
+		else if(turn_param->param->turn_dir == Turn_L)
+		{
+			move_task->rT.prev_run_fix = move_task->mouse.x_point;
+			move_task->rT.post_run_fix = (-1.0)*move_task->mouse.x_point*SQRT2;
+		}
+	}
 }
 void motion_plan::long_turn(const t_param *turn_param,t_run_pattern run_pt,const t_pid_gain *sp_gain,const t_pid_gain *om_gain)
 {
@@ -397,7 +426,7 @@ void motion_plan::long_turn(const t_param *turn_param,t_run_pattern run_pt,const
 	move_task->ct.omega_ctrl.I_param_reset();
 	move_task->mouse.length  = 0.0;
 	move_task->mouse.radian  = 0.0;
-	move_task->mouse.x_point = 0.0;
+	//move_task->mouse.x_point = 0.0;
 	move_task->run_time		 = 0.0;
 	//move_task->target.velo = 0.0;
 	move_task->target.accel = 0.0;
@@ -532,7 +561,7 @@ void motion_plan::turn_v90(const t_param *turn_param,t_run_pattern run_pt,const 
 	move_task->ct.omega_ctrl.I_param_reset();
 	move_task->mouse.length  = 0.0;
 	move_task->mouse.radian  = 0.0;
-	move_task->mouse.x_point = 0.0;
+	//move_task->mouse.x_point = 0.0;
 	move_task->run_time		 = 0.0;
 	//move_task->target.velo = 0.0;
 	move_task->target.accel = 0.0;
@@ -550,6 +579,16 @@ void motion_plan::turn_v90(const t_param *turn_param,t_run_pattern run_pt,const 
 	move_task->straight_gain_set.set_om_gain(om_gain->Kp, om_gain->Ki, om_gain->Kd);
 	move_task->turn_gain_set.set_sp_gain(turn_param->sp_gain->Kp, turn_param->sp_gain->Ki, turn_param->sp_gain->Kd);
 	move_task->turn_gain_set.set_om_gain(turn_param->om_gain->Kp, turn_param->om_gain->Ki, turn_param->om_gain->Kd);
+	if(turn_param->param->turn_dir == Turn_R)
+	{
+		move_task->rT.prev_run_fix = 0.0;
+		move_task->rT.post_run_fix = move_task->mouse.x_point;
+	}
+	else if(turn_param->param->turn_dir == Turn_L)
+	{
+		move_task->rT.prev_run_fix = 0.0;
+		move_task->rT.post_run_fix = (-1.0)*move_task->mouse.x_point;
+	}
 }
 
 void motion_plan::fix_wall(float set_time)

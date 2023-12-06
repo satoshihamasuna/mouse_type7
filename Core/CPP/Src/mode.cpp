@@ -136,6 +136,23 @@ namespace Mode
 				case ENABLE|0x05:
 					break;
 				case ENABLE|0x06:
+				   if(SensingTask::getInstance().IrSensor_Avg() > 2500)
+				   {
+						for(int i = 0;i < 11;i++)
+						{
+							(i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
+							HAL_Delay(50);
+						}
+				  		motion_task::getInstance().ct.speed_ctrl.Gain_Set(6.0, 0.05, 0.0);
+				  		motion_task::getInstance().ct.omega_ctrl.Gain_Set(0.4, 0.01, 0.0);
+				  		KalmanFilter::getInstance().filter_init();
+				  		run_path.turn_time_set(mode_1000);
+						run_path.run_Dijkstra(		start, Dir_None, goal,MAZE_GOAL_SIZE,
+															st_mode_700_v0, (int)(sizeof(st_mode_700_v0)/sizeof(t_straight_param *const)),
+															di_mode_700_v0, (int)(sizeof(di_mode_1000_v0)/sizeof(t_straight_param *const)), mode_700,&mp);
+
+						enable = 0x00;
+					}
 					break;
 				case ENABLE|0x07:
 					if(SensingTask::getInstance().IrSensor_Avg() > 2500)
@@ -324,11 +341,17 @@ namespace Mode
 					enable = 0;
 					break;
 				case ENABLE|0x02:
-					Mode::Debug(&st_param_1500,mode_1500);
+					//Mode::Debug(&st_param_700,mode_700,0);
+				Mode::Debug(&st_param_1200,mode_1200,500);
+				    Mode::Debug(&st_param_1400_acc2G,mode_1400,500);
+					Mode::Debug(&st_param_1500_acc2G,mode_1500,500);
 					enable = 0;
 					break;
 				case ENABLE|0x03:
-					Mode::Debug2(&st_param_1500_acc2G,mode_1500);
+				    Mode::Debug2(&st_param_1200,mode_1200,500);
+				    Mode::Debug2(&st_param_1400_acc2G,mode_1400,500);
+					Mode::Debug2(&st_param_1500_acc2G,mode_1500,500);
+					//Mode::Debug2(&st_param_700,mode_700,0);
 					enable = 0;
 					break;
 				default:

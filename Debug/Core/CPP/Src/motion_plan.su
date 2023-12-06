@@ -10,8 +10,8 @@ motion_plan.cpp:115:6:void motion_plan::diagonal(float, float, float, float, con
 motion_plan.cpp:152:6:void motion_plan::pivot_turn(float, float, float)	80	static
 motion_plan.cpp:188:6:void motion_plan::searchSlalom(const t_param*)	72	static
 motion_plan.cpp:236:6:void motion_plan::turn_in(const t_param*, t_run_pattern, const t_pid_gain*, const t_pid_gain*)	120	static
-motion_plan.cpp:348:6:void motion_plan::turn_out(const t_param*, t_run_pattern, const t_pid_gain*, const t_pid_gain*)	80	static
-motion_plan.cpp:382:6:void motion_plan::long_turn(const t_param*, t_run_pattern, const t_pid_gain*, const t_pid_gain*)	144	static
-motion_plan.cpp:517:6:void motion_plan::turn_v90(const t_param*, t_run_pattern, const t_pid_gain*, const t_pid_gain*)	80	static
-motion_plan.cpp:555:6:void motion_plan::fix_wall(float)	72	static
+motion_plan.cpp:351:6:void motion_plan::turn_out(const t_param*, t_run_pattern, const t_pid_gain*, const t_pid_gain*)	96	static
+motion_plan.cpp:411:6:void motion_plan::long_turn(const t_param*, t_run_pattern, const t_pid_gain*, const t_pid_gain*)	144	static
+motion_plan.cpp:546:6:void motion_plan::turn_v90(const t_param*, t_run_pattern, const t_pid_gain*, const t_pid_gain*)	80	static
+motion_plan.cpp:594:6:void motion_plan::fix_wall(float)	72	static
 singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = SensingTask]	4	static

@@ -565,7 +565,7 @@ void RunTask::turn_out(t_motion_param *mt_param,const t_param *turn_param,t_mach
 		set_run_mode_state(DIAGONAL_MODE);
 		is_wallControl_Enable = Enable_di;
 		run_turn_table_time = 0.0f;
-		if(machine_->length < turn_param->param->Lstart)
+		if(machine_->length < (turn_param->param->Lstart))
 		{
 			target_->velo = turn_param->param->velo;
 			if(SensingTask::getInstance().Division_Wall_Correction() == True)
@@ -594,7 +594,7 @@ void RunTask::turn_out(t_motion_param *mt_param,const t_param *turn_param,t_mach
 		is_wallControl_Enable = Enable_st;
 		run_turn_table_time = 0.0f;
 		set_run_mode_state(STRAIGHT_MODE);
-		if(machine_->length < turn_param->param->Lend)
+		if(machine_->length < (turn_param->param->Lend))
 		{
 			target_->velo = turn_param->param->velo;
 			if(SensingTask::getInstance().Division_Wall_Correction() == True)
@@ -785,7 +785,7 @@ void RunTask::turn_v90(t_motion_param *mt_param,const t_param *turn_param,t_mach
 		is_wallControl_Enable = Enable_di;
 		run_turn_table_time = 0.0f;
 		set_run_mode_state(DIAGONAL_MODE);
-		if(machine_->length < turn_param->param->Lstart)
+		if(machine_->length < (turn_param->param->Lstart))
 		{
 			target_->velo = turn_param->param->velo;
 			if(SensingTask::getInstance().Division_Wall_Correction() == True)
@@ -815,7 +815,7 @@ void RunTask::turn_v90(t_motion_param *mt_param,const t_param *turn_param,t_mach
 		is_wallControl_Enable = Enable_di;
 		run_turn_table_time = 0.0f;
 		set_run_mode_state(DIAGONAL_MODE);
-		if(machine_->length < turn_param->param->Lend)
+		if(machine_->length < (turn_param->param->Lend))
 		{
 			target_->velo = turn_param->param->velo;
 		}
