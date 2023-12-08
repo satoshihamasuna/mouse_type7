@@ -235,7 +235,7 @@ namespace Mode
 				  		motion_task::getInstance().ct.omega_ctrl.Gain_Set(0.4, 0.01, 0.0);
 				  		KalmanFilter::getInstance().filter_init();
 				  		run_path.turn_time_set(mode_1400);
-						run_path.run_Dijkstra_suction(		start, Dir_None, goal, MAZE_GOAL_SIZE,600,
+						run_path.run_Dijkstra_suction(		start, Dir_None, goal, MAZE_GOAL_SIZE,700,
 															st_mode_1400_v0, (int)(sizeof(st_mode_1400_v0)/sizeof(t_straight_param *const)),
 															di_mode_1400_v0, (int)(sizeof(di_mode_1400_v0)/sizeof(t_straight_param *const)), mode_1400,&mp);
 
@@ -254,9 +254,9 @@ namespace Mode
 				  		motion_task::getInstance().ct.omega_ctrl.Gain_Set(0.4, 0.01, 0.0);
 				  		KalmanFilter::getInstance().filter_init();
 				  		run_path.turn_time_set(mode_1400);
-						run_path.run_Dijkstra_suction(		start, Dir_None, goal, MAZE_GOAL_SIZE,650,
-															st_mode_1500_v0, (int)(sizeof(st_mode_1500_v0)/sizeof(t_straight_param *const)),
-															di_mode_1500_v0, (int)(sizeof(di_mode_1500_v0)/sizeof(t_straight_param *const)), mode_1500,&mp);
+						run_path.run_Dijkstra_suction(		start, Dir_None, goal, MAZE_GOAL_SIZE,700,
+															st_mode_1400_v1, (int)(sizeof(st_mode_1400_v1)/sizeof(t_straight_param *const)),
+															di_mode_1400_v1, (int)(sizeof(di_mode_1400_v1)/sizeof(t_straight_param *const)), mode_1400,&mp);
 
 						enable = 0x00;
 					}
@@ -273,9 +273,9 @@ namespace Mode
 				  		motion_task::getInstance().ct.omega_ctrl.Gain_Set(0.4, 0.01, 0.0);
 				  		KalmanFilter::getInstance().filter_init();
 				  		run_path.turn_time_set(mode_1400);
-						run_path.run_Dijkstra_suction(		start, Dir_None, goal, MAZE_GOAL_SIZE,650,
-															st_mode_1500_v1, (int)(sizeof(st_mode_1500_v1)/sizeof(t_straight_param *const)),
-															di_mode_1500_v1, (int)(sizeof(di_mode_1500_v1)/sizeof(t_straight_param *const)), mode_1500,&mp);
+						run_path.run_Dijkstra_suction(		start, Dir_None, goal, MAZE_GOAL_SIZE,700,
+															st_mode_1500_v0, (int)(sizeof(st_mode_1500_v0)/sizeof(t_straight_param *const)),
+															di_mode_1500_v0, (int)(sizeof(di_mode_1500_v0)/sizeof(t_straight_param *const)), mode_1500,&mp);
 
 						enable = 0x00;
 					}

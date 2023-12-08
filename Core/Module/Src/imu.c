@@ -50,7 +50,7 @@ void IMU_initialize()
 	  HAL_Delay(50);
 	  write_byte(CTRL2_G, GYRO_ODR_SET|GYRO_4000_DPS);
 	  HAL_Delay(50);
-	  write_byte(0x15,0x02);
+	  write_byte(0x15,0x00);
 	  HAL_Delay(50);
 
 }

@@ -134,6 +134,7 @@ void RunTask::straight(t_motion_param mt_param,t_machine_param *target_,t_machin
 	if(mt_param.max_velo > mt_param.end_velo) deccel_length += 10.0;
 	if(deccel_length < ( mt_param.length - machine_->length ))
 	{
+		if(mt_param.length < 50.0f) is_wallControl_Enable = Non_controll;
 		target_->accel = mt_param.accel;
 		target_->velo  = target_->velo + target_->accel*delta_t_ms/1000.0;
 		if(target_->velo > mt_param.max_velo)
@@ -149,6 +150,7 @@ void RunTask::straight(t_motion_param mt_param,t_machine_param *target_,t_machin
 		target_->accel = mt_param.deccel;
 		target_->velo  = target_->velo + target_->accel*delta_t_ms/1000.0;
 
+		if(mt_param.length < 50.0f) is_wallControl_Enable = Non_controll;
 		if(mt_param.end_velo == 0.0f)
 		{
 			if(target_->velo < 0.15)
@@ -348,6 +350,7 @@ void RunTask::pivotturn(t_motion_param mt_param,t_machine_param *target_,t_machi
 			brake_time = 0;
 		}
 	}
+	machine_->x_point = 0.0f;
 
 }
 
@@ -540,6 +543,33 @@ void RunTask::turn_in(t_motion_param *mt_param,const t_param *turn_param,t_machi
 			target_->radian = 0.0f;
 			machine_->radian = 0.0f;
 			machine_->x_point = 0.0f;
+
+			if(ABS(turn_param->param->degree) == 135.0f)
+			{
+				/*
+				if(turn_param->param->turn_dir == Turn_R)
+				{
+					machine_->x_point = -(45.0f-(ABS(motion_task::getInstance().mouse.turn_y)-turn_param->param->Lend/SQRT2 + turn_param->param->Lstart)) / SQRT2;
+				}
+				if(turn_param->param->turn_dir == Turn_L)
+				{
+					machine_->x_point = (45.0f- (ABS(motion_task::getInstance().mouse.turn_y)-turn_param->param->Lend/SQRT2 + turn_param->param->Lstart))  / SQRT2;
+				}
+				*/
+			}
+			else if(ABS(turn_param->param->degree) == 45.0f)
+			{
+				/*
+				if(turn_param->param->turn_dir == Turn_R)
+				{
+					machine_->x_point = (90.0f- ABS(motion_task::getInstance().mouse.turn_y)-turn_param->param->Lend/SQRT2 - turn_param->param->Lend) / SQRT2;
+				}
+				if(turn_param->param->turn_dir == Turn_L)
+				{
+					machine_->x_point = -(90.0f - ABS(motion_task::getInstance().mouse.turn_y)-turn_param->param->Lend/SQRT2 - turn_param->param->Lend)  / SQRT2;
+				}*/
+			}
+
 			Indicate_LED(0x04);
 
 		}
@@ -654,6 +684,30 @@ void RunTask::turn_out(t_motion_param *mt_param,const t_param *turn_param,t_mach
 			target_->rad_accel = 0.0f;
 			target_->radian = 0.0f;
 			machine_->x_point = 0.0f;
+			/*
+			if(ABS(turn_param->param->degree) == 135.0f)
+			{
+				if(turn_param->param->turn_dir == Turn_R)
+				{
+					machine_->x_point = -(90.0f- ABS(motion_task::getInstance().mouse.turn_x)-turn_param->param->Lstart/SQRT2);
+				}
+				if(turn_param->param->turn_dir == Turn_L)
+				{
+					machine_->x_point = (90.0f- ABS(motion_task::getInstance().mouse.turn_x)-turn_param->param->Lstart/SQRT2);
+				}
+			}
+			else if(ABS(turn_param->param->degree) == 45.0f)
+			{
+				if(turn_param->param->turn_dir == Turn_R)
+				{
+					machine_->x_point = -(45.0f- ABS(motion_task::getInstance().mouse.turn_x)-turn_param->param->Lstart/SQRT2);
+				}
+				if(turn_param->param->turn_dir == Turn_L)
+				{
+					machine_->x_point = (45.0f - ABS(motion_task::getInstance().mouse.turn_x)-turn_param->param->Lstart/SQRT2);
+				}
+			}
+			*/
 			Indicate_LED(0x04);
 
 		}
@@ -867,9 +921,17 @@ void RunTask::turn_v90(t_motion_param *mt_param,const t_param *turn_param,t_mach
 			target_->rad_accel = 0.0f;
 			target_->radian = 0.0f;
 			machine_->x_point = 0.0f;
-			motion_task::getInstance().ct.omega_ctrl.I_param_reset();
+			if(turn_param->param->turn_dir == Turn_R)
+			{
+				//machine_->x_point = -(45.0*SQRT2 - motion_task::getInstance().mouse.turn_y-turn_param->param->Lstart);
+			}
+			if(turn_param->param->turn_dir == Turn_L)
+			{
+				//machine_->x_point = (45.0*SQRT2 - motion_task::getInstance().mouse.turn_y-turn_param->param->Lstart);
+			}
+			//motion_task::getInstance().ct.omega_ctrl.I_param_reset();
 			Indicate_LED(0x04);
-			motion_task::getInstance().ct.speed_ctrl.I_param_reset();
+			//motion_task::getInstance().ct.speed_ctrl.I_param_reset();
 		}
 
 	}
@@ -890,16 +952,50 @@ void RunTask::fix_wall(t_machine_param *target_,float *run_time,float run_time_l
 		set_run_mode_state(SPIN_TURN_MODE);
 		float sp_err = 0.0f;
 		float om_err = 0.0f;
-		if(SensingTask::getInstance().sen_fr.distance > 44.0 && SensingTask::getInstance().sen_fl.distance > 44.0)
+		float r_err = 0.0;
+		float l_err = 0.0;
+
+		if(SensingTask::getInstance().sen_fr.distance > 50.0 && SensingTask::getInstance().sen_fl.distance > 50.0 )
 		{
-			sp_err = ((SensingTask::getInstance().sen_fr.distance - 45.0) + (SensingTask::getInstance().sen_fl.distance - 45.0))/2.0f;
-			om_err = ((SensingTask::getInstance().sen_fr.distance - 45.0) - (SensingTask::getInstance().sen_fl.distance - 45.0))/2.0f;
+
+			r_err = (SensingTask::getInstance().sen_fr.distance - 45.0);
+			l_err = (SensingTask::getInstance().sen_fl.distance - 45.0);
+		//	sp_err = ((SensingTask::getInstance().sen_fr.distance - 45.0) + (SensingTask::getInstance().sen_fl.distance - 45.0))/2.0f;
+		//	om_err = ((SensingTask::getInstance().sen_fr.distance - 45.0) - (SensingTask::getInstance().sen_fl.distance - 45.0))/2.0f;
 
 		}
 		else
 		{
-			sp_err = -5.0;
+			int r_check = 0;
+			int l_check = 0;
+			if((SensingTask::getInstance().sen_fr.distance > 43.0)
+			&&(SensingTask::getInstance().sen_r.distance > 36.0 && SensingTask::getInstance().sen_l.distance > 39.0))
+			{
+				//r_err = (SensingTask::getInstance().sen_fr.distance - 45.0);
+				r_check = 1;
+			}
+			if((SensingTask::getInstance().sen_fl.distance > 43.0)
+			&&(SensingTask::getInstance().sen_r.distance > 36.0 && SensingTask::getInstance().sen_l.distance > 39.0))
+			{
+				//l_err = (SensingTask::getInstance().sen_fl.distance - 45.0);
+				l_check = 1;
+			}
+			if(r_check == 1 || r_check == 1)
+			{
+				if(r_check == 1) r_err = (SensingTask::getInstance().sen_fr.distance - 45.0);
+				if(l_check == 1) l_err = (SensingTask::getInstance().sen_fl.distance - 45.0);
+				if(r_check == 1 && l_check == 0) r_err = r_err * 2;
+				if(r_check == 0 && l_check == 1) l_err = l_err * 2;
+			}
+			else
+			{
+				r_err = -10.0f;
+				l_err = -10.0f;
+				*run_time = *run_time-0.5f;
+			}
 		}
+		sp_err = (r_err+ l_err)/2.0f;
+		om_err = (r_err- l_err)/2.0f;
 
 		target_->accel = (1.0 * sp_err - 100.0*target_->velo);
 		target_->velo = target_->velo + target_->accel/1000.0f;

@@ -58,6 +58,12 @@ void motion_plan::search_straight(float len_target,float acc,float max_sp,float 
 	move_task->mouse.length  = 0.0;
 	move_task->mouse.x_point  = 0.0;
 	move_task->mouse.radian  = 0.0;move_task->mouse.x_point = 0.0;
+	move_task->mouse.turn_x_dash = 0.0f;
+	move_task->mouse.turn_y_dash = 0.0f;
+	move_task->mouse.turn_x = 0.0f;
+	move_task->mouse.turn_y = 0.0f;
+	move_task->mouse.turn_slip_theta = 0.0f;
+	move_task->mouse.turn_slip_dot = 0.0f;
 	//move_task->target.velo = 0.0;
 	move_task->target.accel = 0.0;
 	//move_task->target.rad_velo = 0.0;
@@ -94,6 +100,12 @@ void motion_plan::straight(float len_target,float acc,float max_sp,float end_sp,
 	move_task->ct.omega_ctrl.I_param_reset();
 	move_task->mouse.length  = 0.0;
 	move_task->mouse.radian  = 0.0;
+	move_task->mouse.turn_x_dash = 0.0f;
+	move_task->mouse.turn_y_dash = 0.0f;
+	move_task->mouse.turn_x = 0.0f;
+	move_task->mouse.turn_y = 0.0f;
+	move_task->mouse.turn_slip_theta = 0.0f;
+	move_task->mouse.turn_slip_dot = 0.0f;
 	//move_task->mouse.x_point = 0.0;
 	//move_task->target.velo = 0.0;
 	move_task->target.accel = 0.0;
@@ -133,6 +145,12 @@ void motion_plan::diagonal(float len_target,float acc,float max_sp,float end_sp,
 	move_task->mouse.length  = 0.0;
 	//move_task->mouse.x_point  = 0.0;
 	move_task->mouse.radian  = 0.0;
+	move_task->mouse.turn_x_dash = 0.0f;
+	move_task->mouse.turn_y_dash = 0.0f;
+	move_task->mouse.turn_x = 0.0f;
+	move_task->mouse.turn_y = 0.0f;
+	move_task->mouse.turn_slip_theta = 0.0f;
+	move_task->mouse.turn_slip_dot = 0.0f;
 	//move_task->target.velo = 0.0;
 	move_task->target.accel = 0.0;
 	//move_task->target.rad_velo = 0.0;
@@ -169,6 +187,12 @@ void motion_plan::pivot_turn(float rad_target,float rad_acc,float rad_velo)
 	move_task->mouse.x_point  = 0.0;
 	move_task->mouse.radian  = 0.0;
 	move_task->mouse.x_point = 0.0;
+	move_task->mouse.turn_x_dash = 0.0f;
+	move_task->mouse.turn_y_dash = 0.0f;
+	move_task->mouse.turn_x = 0.0f;
+	move_task->mouse.turn_y = 0.0f;
+	move_task->mouse.turn_slip_theta = 0.0f;
+	move_task->mouse.turn_slip_dot = 0.0f;
 	move_task->target.velo = 0.0;
 	move_task->target.accel = 0.0;
 	move_task->target.rad_velo = 0.0;
@@ -203,6 +227,12 @@ void motion_plan::searchSlalom(const t_param *turn_param)
 	move_task->mouse.x_point = 0.0;
 	move_task->mouse.length  = 0.0;
 	move_task->mouse.radian  = 0.0;
+	move_task->mouse.turn_x_dash = 0.0f;
+	move_task->mouse.turn_y_dash = 0.0f;
+	move_task->mouse.turn_x = 0.0f;
+	move_task->mouse.turn_y = 0.0f;
+	move_task->mouse.turn_slip_theta = 0.0f;
+	move_task->mouse.turn_slip_dot = 0.0f;
 	move_task->run_time		 = 0.0;
 	//move_task->target.velo = 0.0;
 	move_task->target.accel = 0.0;
@@ -251,6 +281,12 @@ void motion_plan::turn_in(const t_param *turn_param,t_run_pattern run_pt,const t
 	move_task->ct.omega_ctrl.I_param_reset();
 	move_task->mouse.length  = 0.0;
 	move_task->mouse.radian  = 0.0;
+	move_task->mouse.turn_x_dash = 0.0f;
+	move_task->mouse.turn_y_dash = 0.0f;
+	move_task->mouse.turn_x = 0.0f;
+	move_task->mouse.turn_y = 0.0f;
+	move_task->mouse.turn_slip_theta = 0.0f;
+	move_task->mouse.turn_slip_dot = 0.0f;
 	//move_task->mouse.x_point = 0.0;
 	move_task->run_time		 = 0.0;
 	//move_task->target.velo = 0.0;
@@ -366,6 +402,12 @@ void motion_plan::turn_out(const t_param *turn_param,t_run_pattern run_pt,const 
 	move_task->ct.omega_ctrl.I_param_reset();
 	move_task->mouse.length  = 0.0;
 	move_task->mouse.radian  = 0.0;
+	move_task->mouse.turn_x_dash = 0.0f;
+	move_task->mouse.turn_y_dash = 0.0f;
+	move_task->mouse.turn_x = 0.0f;
+	move_task->mouse.turn_y = 0.0f;
+	move_task->mouse.turn_slip_theta = 0.0f;
+	move_task->mouse.turn_slip_dot = 0.0f;
 	//move_task->mouse.x_point = 0.0;
 	move_task->run_time		 = 0.0;
 	//move_task->target.velo = 0.0;
@@ -426,6 +468,12 @@ void motion_plan::long_turn(const t_param *turn_param,t_run_pattern run_pt,const
 	move_task->ct.omega_ctrl.I_param_reset();
 	move_task->mouse.length  = 0.0;
 	move_task->mouse.radian  = 0.0;
+	move_task->mouse.turn_x_dash = 0.0f;
+	move_task->mouse.turn_y_dash = 0.0f;
+	move_task->mouse.turn_x = 0.0f;
+	move_task->mouse.turn_y = 0.0f;
+	move_task->mouse.turn_slip_theta = 0.0f;
+	move_task->mouse.turn_slip_dot = 0.0f;
 	//move_task->mouse.x_point = 0.0;
 	move_task->run_time		 = 0.0;
 	//move_task->target.velo = 0.0;
@@ -450,15 +498,15 @@ void motion_plan::long_turn(const t_param *turn_param,t_run_pattern run_pt,const
 	{
 		t_bool r_fix,l_fix;
 		r_fix = l_fix = False;
-		if(SensingTask::getInstance().sen_r.is_wall == True && ABS(45.0 - SensingTask::getInstance().sen_r.distance) <= 10.0)
+		if(SensingTask::getInstance().sen_r.is_wall == True && ABS(45.0 - SensingTask::getInstance().sen_r.distance) <= 15.0)
 		{
 			r_fix = True;
 		}
-		if(SensingTask::getInstance().sen_l.is_wall == True && ABS(45.0 - SensingTask::getInstance().sen_l.distance) <= 10.0)
+		if(SensingTask::getInstance().sen_l.is_wall == True && ABS(45.0 - SensingTask::getInstance().sen_l.distance) <= 15.0)
 		{
 			l_fix = True;
 		}
-		float diff = 0.0;
+		float diff = move_task->mouse.x_point;
 
 		if(turn_param->param->turn_dir == Turn_R)
 		{
@@ -488,8 +536,8 @@ void motion_plan::long_turn(const t_param *turn_param,t_run_pattern run_pt,const
 
 	if(ABS(turn_param->param->degree) == 180.0f)
 	{
-		float diff = 0.0;
-		float fix_th = 10.0;
+		float diff = 0.0f;//move_task->mouse.x_point;
+		float fix_th = 15.0;
 		if(turn_param->param->Lstart < 10.0) fix_th = turn_param->param->Lstart;
 		if(turn_param->param->turn_dir == Turn_L)
 		{
@@ -507,7 +555,8 @@ void motion_plan::long_turn(const t_param *turn_param,t_run_pattern run_pt,const
 			}
 			else
 			{
-				move_task->rT.post_run_fix = 0.0;
+				move_task->rT.turn_rmin_fix = 0.0f;//(-1.0)*PI/accel_Integral/10.0f*diff;
+				mt_set_.rad_max_velo    =  turn_param->param->velo/(turn_param->param->r_min+move_task->rT.turn_rmin_fix)*1000.0f;
 			}
 		}
 		else if(turn_param->param->turn_dir == Turn_R)
@@ -526,7 +575,8 @@ void motion_plan::long_turn(const t_param *turn_param,t_run_pattern run_pt,const
 			}
 			else
 			{
-				move_task->rT.post_run_fix = 0.0;
+				move_task->rT.turn_rmin_fix = 0.0f;//(1.0)*PI/accel_Integral/10.0f*diff;
+				mt_set_.rad_max_velo    =  turn_param->param->velo/(turn_param->param->r_min+move_task->rT.turn_rmin_fix)*1000.0f;
 			}
 		}
 
@@ -561,6 +611,12 @@ void motion_plan::turn_v90(const t_param *turn_param,t_run_pattern run_pt,const 
 	move_task->ct.omega_ctrl.I_param_reset();
 	move_task->mouse.length  = 0.0;
 	move_task->mouse.radian  = 0.0;
+	move_task->mouse.turn_x_dash = 0.0f;
+	move_task->mouse.turn_y_dash = 0.0f;
+	move_task->mouse.turn_x = 0.0f;
+	move_task->mouse.turn_y = 0.0f;
+	move_task->mouse.turn_slip_theta = 0.0f;
+	move_task->mouse.turn_slip_dot = 0.0f;
 	//move_task->mouse.x_point = 0.0;
 	move_task->run_time		 = 0.0;
 	//move_task->target.velo = 0.0;
@@ -581,12 +637,12 @@ void motion_plan::turn_v90(const t_param *turn_param,t_run_pattern run_pt,const 
 	move_task->turn_gain_set.set_om_gain(turn_param->om_gain->Kp, turn_param->om_gain->Ki, turn_param->om_gain->Kd);
 	if(turn_param->param->turn_dir == Turn_R)
 	{
-		move_task->rT.prev_run_fix = 0.0;
+		move_task->rT.prev_run_fix = (-1.0)*move_task->mouse.x_point;
 		move_task->rT.post_run_fix = move_task->mouse.x_point;
 	}
 	else if(turn_param->param->turn_dir == Turn_L)
 	{
-		move_task->rT.prev_run_fix = 0.0;
+		move_task->rT.prev_run_fix = (1.0)*move_task->mouse.x_point;
 		move_task->rT.post_run_fix = (-1.0)*move_task->mouse.x_point;
 	}
 }

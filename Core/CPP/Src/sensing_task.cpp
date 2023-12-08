@@ -240,7 +240,8 @@ void SensingTask::SetWallControll_RadVelo(t_machine_param *target_,t_machine_par
 	else
 	{
 		ir_rad_acc_controll = -(sen_l.error - sen_r.error);
-		machine_->x_point = ir_rad_acc_controll;
+		if(sen_r.is_controll == True || sen_l.is_controll == True)
+		machine_->x_point = (ir_rad_acc_controll+machine_->x_point)/2.0;
 	}
 
 	if(sen_r.is_controll == True || sen_l.is_controll == True)
