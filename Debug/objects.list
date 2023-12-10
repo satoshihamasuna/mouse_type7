@@ -20,6 +20,7 @@
 "Core/CPP/Src/search.o"
 "Core/CPP/Src/sensing_task.o"
 "Core/CPP/Src/wall_class.o"
+"Core/CPP/Src/wallscan_matching.o"
 "Core/Module/Src/battery.o"
 "Core/Module/Src/encoder.o"
 "Core/Module/Src/imu.o"

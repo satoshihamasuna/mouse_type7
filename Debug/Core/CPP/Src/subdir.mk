@@ -25,7 +25,8 @@ CPP_SRCS += \
 ../Core/CPP/Src/run_task.cpp \
 ../Core/CPP/Src/search.cpp \
 ../Core/CPP/Src/sensing_task.cpp \
-../Core/CPP/Src/wall_class.cpp 
+../Core/CPP/Src/wall_class.cpp \
+../Core/CPP/Src/wallscan_matching.cpp 
 
 OBJS += \
 ./Core/CPP/Src/adachi.o \
@@ -49,7 +50,8 @@ OBJS += \
 ./Core/CPP/Src/run_task.o \
 ./Core/CPP/Src/search.o \
 ./Core/CPP/Src/sensing_task.o \
-./Core/CPP/Src/wall_class.o 
+./Core/CPP/Src/wall_class.o \
+./Core/CPP/Src/wallscan_matching.o 
 
 CPP_DEPS += \
 ./Core/CPP/Src/adachi.d \
@@ -73,7 +75,8 @@ CPP_DEPS += \
 ./Core/CPP/Src/run_task.d \
 ./Core/CPP/Src/search.d \
 ./Core/CPP/Src/sensing_task.d \
-./Core/CPP/Src/wall_class.d 
+./Core/CPP/Src/wall_class.d \
+./Core/CPP/Src/wallscan_matching.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
@@ -121,4 +124,6 @@ Core/CPP/Src/sensing_task.o: ../Core/CPP/Src/sensing_task.cpp
 	arm-none-eabi-g++ "$<" -mcpu=cortex-m4 -std=gnu++14 -g3 -DUSE_HAL_DRIVER -DSTM32F411xE -DDEBUG -c -I../Drivers/CMSIS/Include -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Core/Inc -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -O0 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-threadsafe-statics -fno-use-cxa-atexit -Wall -fstack-usage -MMD -MP -MF"Core/CPP/Src/sensing_task.d" -MT"$@" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "$@"
 Core/CPP/Src/wall_class.o: ../Core/CPP/Src/wall_class.cpp
 	arm-none-eabi-g++ "$<" -mcpu=cortex-m4 -std=gnu++14 -g3 -DUSE_HAL_DRIVER -DSTM32F411xE -DDEBUG -c -I../Drivers/CMSIS/Include -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Core/Inc -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -O0 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-threadsafe-statics -fno-use-cxa-atexit -Wall -fstack-usage -MMD -MP -MF"Core/CPP/Src/wall_class.d" -MT"$@" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "$@"
+Core/CPP/Src/wallscan_matching.o: ../Core/CPP/Src/wallscan_matching.cpp
+	arm-none-eabi-g++ "$<" -mcpu=cortex-m4 -std=gnu++14 -g3 -DUSE_HAL_DRIVER -DSTM32F411xE -DDEBUG -c -I../Drivers/CMSIS/Include -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Core/Inc -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -O0 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-threadsafe-statics -fno-use-cxa-atexit -Wall -fstack-usage -MMD -MP -MF"Core/CPP/Src/wallscan_matching.d" -MT"$@" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "$@"
 

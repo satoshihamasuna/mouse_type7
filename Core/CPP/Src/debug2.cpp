@@ -107,11 +107,14 @@ namespace Mode
 						  mp.motion_start();
 						  LogData::getInstance().data_count = 0;
 						  LogData::getInstance().log_enable = True;
-						  mp.straight( 45.0,6.0,0.3,0.3);
+						  mp.straight( 45.0,6.0,0.32,0.32,&search_sp_gain,&search_om_gain);
 						  while(motion_task::getInstance().run_task !=No_run){}
+						  for(int i = 0;i < 8;i++)
+						  {
 						  mp.searchSlalom( &param_R90_search);
 						  while(motion_task::getInstance().run_task !=No_run){}
-						  mp.straight(45.0,6.0,0.3,0.0);
+						  }
+						  mp.straight(45.0,6.0,0.32,0.0,&search_sp_gain,&search_om_gain);
 						  while(motion_task::getInstance().run_task !=No_run){}
 						  LogData::getInstance().log_enable = False;
 						  enable = 0x00;
