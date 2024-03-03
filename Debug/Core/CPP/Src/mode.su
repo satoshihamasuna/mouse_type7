@@ -5,9 +5,10 @@ gthr-default.h:229:1:int __gthread_key_delete(__gthread_key_t)	16	static
 make_path.h:89:3:calcRunTime::calcRunTime()	16	static
 make_path.h:140:3:Dijkstra::Dijkstra(wall_class*)	16	static
 test_wall.h:57:7:void test_maze::test_wall_set(wall_class*)	24	static
-mode.cpp:36:10:uint8_t Mode::Select(uint8_t, uint8_t, t_encoder)	24	static
-mode.cpp:51:7:void Mode::Demo()	45936	static
-mode.cpp:355:7:void Mode::Select_Mode()	688	static
+path_follow.h:34:8:void path_follow_class::set_path_follow_gain(float, float)	24	static
+mode.cpp:37:10:uint8_t Mode::Select(uint8_t, uint8_t, t_encoder)	24	static
+mode.cpp:52:7:void Mode::Demo()	45696	static
+mode.cpp:358:7:void Mode::Select_Mode()	448	static
 singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = Interrupt]	4	static
 queue_class.h:22:3:ring_queue<SIZE, T>::ring_queue() [with unsigned int SIZE = 1024; T = t_MapNode]	16	static
 run_task.h:114:7:RunTask::RunTask()	16	static
@@ -16,8 +17,10 @@ controll.h:30:7:constexpr mouse_Controll::mouse_Controll()	16	static
 motion.h:19:7:motion_task::motion_task()	16	static
 singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = motion_task]	8	static
 singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = SensingTask]	4	static
+path_follow.h:15:7:path_follow_class::path_follow_class()	16	static
+singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = path_follow_class]	8	static
 Kalman_filter.h:14:7:KalmanFilter::KalmanFilter()	16	static
 singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = KalmanFilter]	8	static
-mode.cpp:395:1:void __static_initialization_and_destruction_0(int, int)	16	static
-mode.cpp:395:1:cpp)	8	static
-mode.cpp:395:1:cpp)	8	static
+mode.cpp:398:1:void __static_initialization_and_destruction_0(int, int)	16	static
+mode.cpp:398:1:cpp)	8	static
+mode.cpp:398:1:cpp)	8	static

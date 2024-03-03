@@ -17,11 +17,11 @@ extern "C" {
 #define MASK_SEARCH	0x01
 #define MASK_SECOND	0x03
 
-#define ACC_BUFF_SIZE (50)
+#define ACC_BUFF_SIZE (30)
 
-#define ENC_RESOLUTION	(30)
+#define ENC_RESOLUTION	(200)
 
-#define TIRE_DIAMETER	(13.6f)							//mm
+#define TIRE_DIAMETER	(13.8f)							//mm
 #define TIRE_RADIUS		(TIRE_DIAMETER/2.0f)			//mm
 #define MMPP			(TIRE_DIAMETER*PI/ENC_RESOLUTION)	//mm
 #define TREAD_WIDTH		((18.0-2.0)*2)
@@ -74,8 +74,8 @@ extern "C" {
 #define MAZE_SIZE_Y  32
 #define MAZE_SIZE  1024
 
-#define MAZE_GOAL_X  8
-#define MAZE_GOAL_Y  7
+#define MAZE_GOAL_X  0
+#define MAZE_GOAL_Y  1
 #define MAZE_GOAL_SIZE  2
 #define MAP_MAX_VALUE 1024
 

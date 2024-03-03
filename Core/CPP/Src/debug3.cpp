@@ -29,6 +29,7 @@
 #include "../Inc/flash.h"
 #include "../Inc/make_path.h"
 #include "../Inc/mode.h"
+#include "../Inc/path_follow.h"
 
 #define ENABLE (0x01 << 4)
 
@@ -52,6 +53,7 @@ namespace Mode
 	float acc  = 12.0;
 	float velo = 1.4;
 	uint32_t time = Interrupt::getInstance().return_time_count();
+	path_follow_class::getInstance().set_path_follow_gain(50.0, 0.0);
 	while(debug_end == False)
 	{
 		enable = Mode::Select(enable,0x01,Encoder_GetProperty_Left());

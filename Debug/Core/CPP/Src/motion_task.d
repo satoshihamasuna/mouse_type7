@@ -43,7 +43,8 @@ Core/CPP/Src/motion_task.o: ../Core/CPP/Src/motion_task.cpp \
  ../Core/CPP/Src/../../Module/Include/lsm6dsr_reg.h \
  ../Core/CPP/Src/../../Module/Include/macro.h \
  ../Core/CPP/Src/../../Module/Include/typedef.h \
- ../Core/CPP/Src/../Inc/sensing_task.h
+ ../Core/CPP/Src/../Inc/sensing_task.h \
+ ../Core/CPP/Src/../Inc/path_follow.h
 
 ../Core/CPP/Src/../Inc/motion.h:
 
@@ -150,3 +151,5 @@ Core/CPP/Src/motion_task.o: ../Core/CPP/Src/motion_task.cpp \
 ../Core/CPP/Src/../../Module/Include/typedef.h:
 
 ../Core/CPP/Src/../Inc/sensing_task.h:
+
+../Core/CPP/Src/../Inc/path_follow.h:

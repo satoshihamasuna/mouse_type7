@@ -26,6 +26,7 @@
 #include "../Inc/flash.h"
 #include "../Inc/make_path.h"
 #include "../Inc/mode.h"
+#include "../Inc/path_follow.h"
 
 #define ENABLE (0x01 << 4)
 
@@ -45,7 +46,7 @@ namespace Mode
 		wall_data.init_maze();
 		make_map map_data(&wall_data,&maze_q);
 		Dijkstra run_path(&wall_data);
-
+		path_follow_class::getInstance().set_path_follow_gain(50.0, 0.0);
 		uint32_t time = Interrupt::getInstance().return_time_count();
 		while(debug_end == False)
 		{

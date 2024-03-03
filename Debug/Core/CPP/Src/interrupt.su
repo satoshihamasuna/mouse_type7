@@ -3,7 +3,7 @@ cmath:184:3:constexpr float std::cos(float)	16	static
 interrupt.cpp:21:6:void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef*)	16	static
 interrupt.cpp:30:6:void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef*)	16	static
 interrupt.cpp:38:6:void Interrupt_Initialize()	4	static
-interrupt.cpp:42:6:void Interrupt::preprocess()	528	static
+interrupt.cpp:42:6:void Interrupt::preprocess()	368	static
 interrupt.cpp:98:6:void Interrupt::main()	16	static
 interrupt.cpp:104:6:void Interrupt::postprocess()	32	static
 singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = Interrupt]	4	static

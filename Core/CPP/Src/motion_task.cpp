@@ -11,6 +11,8 @@
 #include "../../Module/Include/index.h"
 #include "../../Module/Include/typedef.h"
 #include "../Inc/sensing_task.h"
+#include "../Inc/path_follow.h"
+
 
 float battery = 0.0;
 
@@ -125,8 +127,21 @@ void motion_task::motionControll()
 		float sp_FF_controll_r =  MOTOR_R*motor_r_ampere + MOTOR_K_ER*motor_r_rpm/1000;
 		float sp_FF_controll_l =  MOTOR_R*motor_l_ampere + MOTOR_K_ER*motor_l_rpm/1000;
 
+
+		float omega_controll_input = target.rad_velo;
+		if(rT.get_run_mode_state() == TURN_MODE)
+		{
+			omega_controll_input = path_follow_class::getInstance().calc_control_yaw_rate(target.velo, mouse.velo, target.rad_velo, mouse.rad_velo);
+		}
+		else
+		{
+			path_follow_class::getInstance().reset_position_error();
+			path_follow_class::getInstance().reset_yaw_theta_error();
+		}
+
+
 		float sp_fb_controll = ct.speed_ctrl.Controll(target.velo, mouse.velo, 1.0);
-		float om_fb_controll = ct.omega_ctrl.Controll(target.rad_velo, mouse.rad_velo,  1.0);
+		float om_fb_controll = ct.omega_ctrl.Controll(omega_controll_input, mouse.rad_velo,  1.0);
 
 
 

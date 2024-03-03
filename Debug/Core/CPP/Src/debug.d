@@ -56,7 +56,8 @@ Core/CPP/Src/debug.o: ../Core/CPP/Src/debug.cpp \
  ../Core/CPP/Src/../Inc/make_map_class.h \
  ../Core/CPP/Src/../Inc/wall_class.h ../Core/CPP/Src/../Inc/queue_class.h \
  ../Core/CPP/Src/../Inc/priority_queue.h ../Core/CPP/Src/../Inc/flash.h \
- ../Core/CPP/Src/../Inc/make_path.h ../Core/CPP/Src/../Inc/mode.h
+ ../Core/CPP/Src/../Inc/make_path.h ../Core/CPP/Src/../Inc/mode.h \
+ ../Core/CPP/Src/../Inc/path_follow.h
 
 ../Core/CPP/Src/../../Module/Include/index.h:
 
@@ -203,3 +204,5 @@ Core/CPP/Src/debug.o: ../Core/CPP/Src/debug.cpp \
 ../Core/CPP/Src/../Inc/make_path.h:
 
 ../Core/CPP/Src/../Inc/mode.h:
+
+../Core/CPP/Src/../Inc/path_follow.h:

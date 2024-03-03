@@ -27,6 +27,7 @@
 #include "../Inc/make_path.h"
 #include "../Inc/test_wall.h"
 #include "../Inc/mode.h"
+#include "../Inc/path_follow.h"
 
 #define ENABLE (0x01 << 4)
 
@@ -68,6 +69,8 @@ namespace Mode
 		start.x = start.y = 0;start.dir = North;
 		goal.x = MAZE_GOAL_X, goal.y = MAZE_GOAL_Y;
 		uint8_t goal_size = MAZE_GOAL_SIZE;
+
+		path_follow_class::getInstance().set_path_follow_gain(50.0, 0.0);
 
 		while(demo_end == False)
 		{
@@ -181,8 +184,8 @@ namespace Mode
 				  		KalmanFilter::getInstance().filter_init();
 				  		run_path.turn_time_set(mode_1000);
 						run_path.run_Dijkstra(		start, Dir_None, goal,MAZE_GOAL_SIZE,
-															st_mode_700_v0, (int)(sizeof(st_mode_700_v0)/sizeof(t_straight_param *const)),
-															di_mode_700_v0, (int)(sizeof(di_mode_1000_v0)/sizeof(t_straight_param *const)), mode_700,&mp);
+															st_mode_500_v0, (int)(sizeof(st_mode_500_v0)/sizeof(t_straight_param *const)),
+															di_mode_500_v0, (int)(sizeof(di_mode_500_v0)/sizeof(t_straight_param *const)), mode_500,&mp);
 
 						enable = 0x00;
 					}
