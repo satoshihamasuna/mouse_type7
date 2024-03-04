@@ -32,4 +32,6 @@ Core/Module/Src \
 Core/Src \
 Core/Startup \
 Drivers/STM32F4xx_HAL_Driver/Src \
+Drivers/ntshell-v0.3.1/src/lib/core \
+Drivers/ntshell-v0.3.1/src/lib/util \
 
