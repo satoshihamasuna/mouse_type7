@@ -1,11 +1,6 @@
-Core/CPP/Src/motion_task.o: ../Core/CPP/Src/motion_task.cpp \
- ../Core/CPP/Src/../Inc/motion.h \
- ../Core/CPP/Src/../Inc/../../Module/Include/typedef.h \
- ../Core/CPP/Src/../Inc/../../Module/Include/macro.h \
- ../Core/CPP/Src/../Inc/run_param.h ../Core/CPP/Src/../Inc/run_task.h \
- ../Core/CPP/Src/../Inc/singleton.h ../Core/CPP/Src/../Inc/controll.h \
- ../Core/CPP/Src/../Inc/run_task.h \
- ../Core/CPP/Src/../../Module/Include/index.h ../Core/Inc/main.h \
+Core/CPP/Pheripheral/Src/indicator.o: \
+ ../Core/CPP/Pheripheral/Src/indicator.c \
+ ../Core/CPP/Pheripheral/Src/../Include/index.h ../Core/Inc/main.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
  ../Core/Inc/stm32f4xx_hal_conf.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
@@ -39,30 +34,13 @@ Core/CPP/Src/motion_task.o: ../Core/CPP/Src/motion_task.cpp \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
  ../Core/Inc/adc.h ../Core/Inc/main.h ../Core/Inc/dma.h ../Core/Inc/spi.h \
  ../Core/Inc/tim.h ../Core/Inc/usart.h ../Core/Inc/gpio.h \
- ../Core/CPP/Src/../../Module/Include/typedef.h \
- ../Core/CPP/Src/../../Module/Include/lsm6dsr_reg.h \
- ../Core/CPP/Src/../../Module/Include/macro.h \
- ../Core/CPP/Src/../../Module/Include/typedef.h \
- ../Core/CPP/Src/../Inc/sensing_task.h \
- ../Core/CPP/Src/../Inc/path_follow.h
+ ../Core/CPP/Pheripheral/Src/../Include/typedef.h \
+ ../Core/CPP/Pheripheral/Src/../Include/macro.h \
+ ../Core/CPP/Pheripheral/Src/../Include/ir_sensor.h \
+ ../Core/CPP/Pheripheral/Src/../Include/maze_typedef.h \
+ ../Core/CPP/Pheripheral/Src/../Include/lsm6dsr_reg.h
 
-../Core/CPP/Src/../Inc/motion.h:
-
-../Core/CPP/Src/../Inc/../../Module/Include/typedef.h:
-
-../Core/CPP/Src/../Inc/../../Module/Include/macro.h:
-
-../Core/CPP/Src/../Inc/run_param.h:
-
-../Core/CPP/Src/../Inc/run_task.h:
-
-../Core/CPP/Src/../Inc/singleton.h:
-
-../Core/CPP/Src/../Inc/controll.h:
-
-../Core/CPP/Src/../Inc/run_task.h:
-
-../Core/CPP/Src/../../Module/Include/index.h:
+../Core/CPP/Pheripheral/Src/../Include/index.h:
 
 ../Core/Inc/main.h:
 
@@ -142,14 +120,12 @@ Core/CPP/Src/motion_task.o: ../Core/CPP/Src/motion_task.cpp \
 
 ../Core/Inc/gpio.h:
 
-../Core/CPP/Src/../../Module/Include/typedef.h:
+../Core/CPP/Pheripheral/Src/../Include/typedef.h:
 
-../Core/CPP/Src/../../Module/Include/lsm6dsr_reg.h:
+../Core/CPP/Pheripheral/Src/../Include/macro.h:
 
-../Core/CPP/Src/../../Module/Include/macro.h:
+../Core/CPP/Pheripheral/Src/../Include/ir_sensor.h:
 
-../Core/CPP/Src/../../Module/Include/typedef.h:
+../Core/CPP/Pheripheral/Src/../Include/maze_typedef.h:
 
-../Core/CPP/Src/../Inc/sensing_task.h:
-
-../Core/CPP/Src/../Inc/path_follow.h:
+../Core/CPP/Pheripheral/Src/../Include/lsm6dsr_reg.h:

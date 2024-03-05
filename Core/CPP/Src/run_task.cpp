@@ -5,10 +5,10 @@
  *      Author: sato1
  */
 
-#include "../../Module/Include/index.h"
-#include "../../Module/Include/typedef.h"
+#include "../Pheripheral/Include/index.h"
+#include "../Pheripheral/Include/typedef.h"
 #include "../Inc/run_task.h"
-#include "../../Module/Include/macro.h"
+#include "../Pheripheral/Include/macro.h"
 #include "../Inc/turn_table.h"
 #include "../Inc/sensing_task.h"
 #include "../Inc/motion.h"

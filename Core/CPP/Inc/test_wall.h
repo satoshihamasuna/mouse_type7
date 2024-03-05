@@ -7,9 +7,9 @@
 
 #ifndef CPP_INC_TEST_WALL_H_
 #define CPP_INC_TEST_WALL_H_
-#include "../../Module/Include/typedef.h"
-#include "../../Module/Include/macro.h"
-#include "../../Module/Include/index.h"
+#include "../Pheripheral/Include/typedef.h"
+#include "../Pheripheral/Include/macro.h"
+#include "../Pheripheral/Include/index.h"
 #include "wall_class.h"
 
 #define TEST_GOAL_X 17

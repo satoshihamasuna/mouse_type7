@@ -8,9 +8,9 @@
 #include "../Inc/queue_class.h"
 #include "../Inc/make_map_class.h"
 #include "../Inc/make_path.h"
-#include "../../Module/Include/typedef.h"
-#include "../../Module/Include/index.h"
-#include "../../Module/Include/macro.h"
+//#include "../../Module/Include/typedef.h"
+//#include "../../Module/Include/index.h"
+//#include "../../Module/Include/macro.h"
 
 #define DIR_TURN_NEWS_R90(x) ((x + 1 + 4) % 4)
 #define DIR_TURN_NEWS_L90(x) ((x - 1 + 4) % 4)

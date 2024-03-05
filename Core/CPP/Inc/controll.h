@@ -10,6 +10,12 @@
 
 #include "singleton.h"
 
+typedef struct{
+	float Kp;
+	float Ki;
+	float Kd;
+}t_pid_gain;
+
 class PID_Controller
 {
 	private:

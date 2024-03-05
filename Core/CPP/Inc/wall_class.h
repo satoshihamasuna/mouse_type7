@@ -8,8 +8,8 @@
 #ifndef CPP_INC_WALL_CLASS_H_
 #define CPP_INC_WALL_CLASS_H_
 
-#include "../../Module/Include/typedef.h"
-#include "../../Module/Include/macro.h"
+#include "../Pheripheral/Include/typedef.h"
+#include "../Pheripheral/Include/macro.h"
 #include "sensing_task.h"
 
 

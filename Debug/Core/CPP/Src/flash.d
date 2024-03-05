@@ -30,17 +30,20 @@ Core/CPP/Src/flash.o: ../Core/CPP/Src/flash.cpp \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
- ../Core/CPP/Src/../../Module/Include/index.h ../Core/Inc/main.h \
+ ../Core/CPP/Src/../Pheripheral/Include/index.h ../Core/Inc/main.h \
  ../Core/Inc/adc.h ../Core/Inc/main.h ../Core/Inc/dma.h ../Core/Inc/spi.h \
  ../Core/Inc/tim.h ../Core/Inc/usart.h ../Core/Inc/gpio.h \
- ../Core/CPP/Src/../../Module/Include/typedef.h \
- ../Core/CPP/Src/../../Module/Include/macro.h \
- ../Core/CPP/Src/../../Module/Include/lsm6dsr_reg.h \
- ../Core/CPP/Src/../../Module/Include/macro.h \
+ ../Core/CPP/Src/../Pheripheral/Include/typedef.h \
+ ../Core/CPP/Src/../Pheripheral/Include/macro.h \
+ ../Core/CPP/Src/../Pheripheral/Include/ir_sensor.h \
+ ../Core/CPP/Src/../Pheripheral/Include/maze_typedef.h \
+ ../Core/CPP/Src/../Pheripheral/Include/lsm6dsr_reg.h \
+ ../Core/CPP/Src/../Pheripheral/Include/macro.h \
  ../Core/CPP/Src/../Inc/wall_class.h \
- ../Core/CPP/Src/../Inc/../../Module/Include/typedef.h \
- ../Core/CPP/Src/../Inc/../../Module/Include/macro.h \
- ../Core/CPP/Src/../Inc/sensing_task.h ../Core/CPP/Src/../Inc/singleton.h
+ ../Core/CPP/Src/../Inc/../Pheripheral/Include/typedef.h \
+ ../Core/CPP/Src/../Inc/../Pheripheral/Include/macro.h \
+ ../Core/CPP/Src/../Inc/sensing_task.h ../Core/CPP/Src/../Inc/singleton.h \
+ ../Core/CPP/Src/../Inc/run_task.h ../Core/CPP/Src/../Inc/controll.h
 
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 
@@ -104,7 +107,7 @@ Core/CPP/Src/flash.o: ../Core/CPP/Src/flash.cpp \
 
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:
 
-../Core/CPP/Src/../../Module/Include/index.h:
+../Core/CPP/Src/../Pheripheral/Include/index.h:
 
 ../Core/Inc/main.h:
 
@@ -122,20 +125,28 @@ Core/CPP/Src/flash.o: ../Core/CPP/Src/flash.cpp \
 
 ../Core/Inc/gpio.h:
 
-../Core/CPP/Src/../../Module/Include/typedef.h:
+../Core/CPP/Src/../Pheripheral/Include/typedef.h:
 
-../Core/CPP/Src/../../Module/Include/macro.h:
+../Core/CPP/Src/../Pheripheral/Include/macro.h:
 
-../Core/CPP/Src/../../Module/Include/lsm6dsr_reg.h:
+../Core/CPP/Src/../Pheripheral/Include/ir_sensor.h:
 
-../Core/CPP/Src/../../Module/Include/macro.h:
+../Core/CPP/Src/../Pheripheral/Include/maze_typedef.h:
+
+../Core/CPP/Src/../Pheripheral/Include/lsm6dsr_reg.h:
+
+../Core/CPP/Src/../Pheripheral/Include/macro.h:
 
 ../Core/CPP/Src/../Inc/wall_class.h:
 
-../Core/CPP/Src/../Inc/../../Module/Include/typedef.h:
+../Core/CPP/Src/../Inc/../Pheripheral/Include/typedef.h:
 
-../Core/CPP/Src/../Inc/../../Module/Include/macro.h:
+../Core/CPP/Src/../Inc/../Pheripheral/Include/macro.h:
 
 ../Core/CPP/Src/../Inc/sensing_task.h:
 
 ../Core/CPP/Src/../Inc/singleton.h:
+
+../Core/CPP/Src/../Inc/run_task.h:
+
+../Core/CPP/Src/../Inc/controll.h:

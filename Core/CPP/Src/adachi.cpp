@@ -7,7 +7,7 @@
 
 
 #include "../Inc/adachi_class.h"
-#include "../../Module/Include/typedef.h"
+#include "../Pheripheral/Include/typedef.h"
 
 t_position pos_set(uint8_t _x,uint8_t _y ,t_direction _dir)
 {

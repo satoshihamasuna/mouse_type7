@@ -1,6 +1,6 @@
 Core/CPP/Src/kalman_filter.o: ../Core/CPP/Src/kalman_filter.cpp \
  ../Core/CPP/Src/../Inc/Kalman_filter.h \
- ../Core/CPP/Src/../Inc/../../Module/Include/index.h ../Core/Inc/main.h \
+ ../Core/CPP/Src/../Inc/../Pheripheral/Include/index.h ../Core/Inc/main.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
  ../Core/Inc/stm32f4xx_hal_conf.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
@@ -34,14 +34,16 @@ Core/CPP/Src/kalman_filter.o: ../Core/CPP/Src/kalman_filter.cpp \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
  ../Core/Inc/adc.h ../Core/Inc/main.h ../Core/Inc/dma.h ../Core/Inc/spi.h \
  ../Core/Inc/tim.h ../Core/Inc/usart.h ../Core/Inc/gpio.h \
- ../Core/CPP/Src/../Inc/../../Module/Include/typedef.h \
- ../Core/CPP/Src/../Inc/../../Module/Include/macro.h \
- ../Core/CPP/Src/../Inc/../../Module/Include/lsm6dsr_reg.h \
+ ../Core/CPP/Src/../Inc/../Pheripheral/Include/typedef.h \
+ ../Core/CPP/Src/../Inc/../Pheripheral/Include/macro.h \
+ ../Core/CPP/Src/../Inc/../Pheripheral/Include/ir_sensor.h \
+ ../Core/CPP/Src/../Inc/../Pheripheral/Include/maze_typedef.h \
+ ../Core/CPP/Src/../Inc/../Pheripheral/Include/lsm6dsr_reg.h \
  ../Core/CPP/Src/../Inc/singleton.h
 
 ../Core/CPP/Src/../Inc/Kalman_filter.h:
 
-../Core/CPP/Src/../Inc/../../Module/Include/index.h:
+../Core/CPP/Src/../Inc/../Pheripheral/Include/index.h:
 
 ../Core/Inc/main.h:
 
@@ -121,10 +123,14 @@ Core/CPP/Src/kalman_filter.o: ../Core/CPP/Src/kalman_filter.cpp \
 
 ../Core/Inc/gpio.h:
 
-../Core/CPP/Src/../Inc/../../Module/Include/typedef.h:
+../Core/CPP/Src/../Inc/../Pheripheral/Include/typedef.h:
 
-../Core/CPP/Src/../Inc/../../Module/Include/macro.h:
+../Core/CPP/Src/../Inc/../Pheripheral/Include/macro.h:
 
-../Core/CPP/Src/../Inc/../../Module/Include/lsm6dsr_reg.h:
+../Core/CPP/Src/../Inc/../Pheripheral/Include/ir_sensor.h:
+
+../Core/CPP/Src/../Inc/../Pheripheral/Include/maze_typedef.h:
+
+../Core/CPP/Src/../Inc/../Pheripheral/Include/lsm6dsr_reg.h:
 
 ../Core/CPP/Src/../Inc/singleton.h:

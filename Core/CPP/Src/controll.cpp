@@ -5,8 +5,8 @@
  *      Author: sato1
  */
 #include "../Inc/controll.h"
-#include "../../Module/Include/typedef.h"
-#include "../../Module/Include/macro.h"
+#include "../Pheripheral/Include/typedef.h"
+#include "../Pheripheral/Include/macro.h"
 
 void PID_Controller::Gain_Set(float _Kp,float _Ki,float _Kd)
 {

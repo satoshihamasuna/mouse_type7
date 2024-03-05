@@ -9,7 +9,7 @@
 #define CPP_INC_QUEUE_CLASS_H_
 
 #include <iostream>
-#include "../../Module/Include/typedef.h"
+#include "../Pheripheral/Include/typedef.h"
 template<std::size_t SIZE,typename T>
 class ring_queue{
 	private:

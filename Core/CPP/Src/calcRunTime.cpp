@@ -7,11 +7,11 @@
 
 
 #include "../Inc/make_path.h"
-#include "../../Module/Include/typedef.h"
+#include "../Pheripheral/Include/typedef.h"
 #include "../Inc/wall_class.h"
 #include "../Inc/run_task.h"
 #include "../Inc/turn_table.h"
-
+#include "../Inc/controll.h"
 #define OFF_SET_LENGTH 10.0
 
 void calcRunTime::turn_time_set(const t_param *const *mode)

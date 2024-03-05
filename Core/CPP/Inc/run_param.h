@@ -8,9 +8,10 @@
 #ifndef CPP_INC_RUN_PARAM_H_
 #define CPP_INC_RUN_PARAM_H_
 
-
+#include "controll.h"
 #include "run_task.h"
-#include "../../Module/Include/typedef.h"
+#include "../Pheripheral/Include/typedef.h"
+
 
 const static t_pid_gain basic_sp_gain = {20.0,0.04,0.0};
 const static t_pid_gain basic_om_gain = {0.60f, 0.01f, 0.00f};

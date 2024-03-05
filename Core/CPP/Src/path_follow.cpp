@@ -8,8 +8,6 @@
 
 #include "../Inc/motion.h"
 #include "../Inc/run_task.h"
-#include "../../Module/Include/index.h"
-#include "../../Module/Include/typedef.h"
 #include "../Inc/sensing_task.h"
 #include "../Inc/path_follow.h"
 #include <math.h>

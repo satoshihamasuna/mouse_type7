@@ -9,8 +9,8 @@
 
 #include "../Inc/sensing_task.h"
 #include "../Inc/sens_table.h"
-#include "../../Module/Include/typedef.h"
-#include "../../Module/Include/index.h"
+#include "../Pheripheral/Include/typedef.h"
+#include "../Pheripheral/Include/index.h"
 #include "../Inc/motion.h"
 
 float filtering_z_radvelo = 0.0;

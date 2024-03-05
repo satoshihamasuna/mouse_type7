@@ -9,9 +9,10 @@
 #define CPP_INC_PRIORITY_QUEUE_H_
 
 #include <iostream>
-#include "../../Module/Include/typedef.h"
-#include "../../Module/Include/macro.h"
+#include "../Pheripheral/Include/typedef.h"
+#include "../Pheripheral/Include/macro.h"
 #include "wall_class.h"
+#include "make_map_class.h"
 
 template<std::size_t SIZE,typename T>
 class Priority_queue{

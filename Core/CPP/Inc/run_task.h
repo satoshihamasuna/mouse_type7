@@ -8,7 +8,48 @@
 #ifndef CPP_INC_RUN_TASK_H_
 #define CPP_INC_RUN_TASK_H_
 
-#include "../../Module/Include/typedef.h"
+#include "../Pheripheral/Include/typedef.h"
+#include "controll.h"
+
+typedef enum{
+	Turn_None 	= 0,
+	Turn_R 		= 1,
+	Turn_L		= 2,
+	Prev_Turn	= 3,
+	Post_Turn	= 4,
+}t_turn_dir;
+
+typedef struct{
+	float velo;
+	float accel;
+	float length;
+	float rad_accel;
+	float rad_velo;
+	float radian;
+	float x_point;
+	float turn_x;
+	float turn_x_dash;
+	float turn_y;
+	float turn_y_dash;
+	float turn_slip_theta;
+	float turn_slip_dot;
+}t_machine_param;
+
+typedef struct{
+	float velo;
+	float max_velo;
+	float end_velo;
+	float accel;
+	float deccel;
+	float length;
+	float rad_accel;
+	float rad_deccel;
+	float rad_max_velo;
+	float radian;
+	t_turn_dir turn_d;
+}t_motion_param;
+
+
 
 typedef enum{
 	No_run				= 0,

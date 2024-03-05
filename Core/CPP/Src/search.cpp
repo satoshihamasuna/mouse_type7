@@ -8,8 +8,8 @@
 
 #include "../Inc/queue_class.h"
 #include "../Inc/make_map_class.h"
-#include "../../Module/Include/typedef.h"
-#include "../../Module/Include/index.h"
+#include "../Pheripheral/Include/typedef.h"
+#include "../Pheripheral/Include/index.h"
 #include "../Inc/Kalman_filter.h"
 #include "../Inc/search_class.h"
 #include "../Inc/adachi_class.h"

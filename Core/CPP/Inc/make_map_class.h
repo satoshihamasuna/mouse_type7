@@ -8,10 +8,17 @@
 #ifndef CPP_INC_MAKE_MAP_CLASS_H_
 #define CPP_INC_MAKE_MAP_CLASS_H_
 
-#include "../../Module/Include/typedef.h"
-#include "../../Module/Include/macro.h"
+#include "../Pheripheral/Include/typedef.h"
+#include "../Pheripheral/Include/macro.h"
 #include "queue_class.h"
 #include "wall_class.h"
+
+typedef struct{
+	int16_t st_x;
+	int16_t st_y;
+	int16_t cost;
+	int16_t cost_h;
+}t_MapNode;
 
 class make_map{
 	public:

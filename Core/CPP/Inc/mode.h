@@ -8,8 +8,8 @@
 #ifndef CPP_INC_MODE_H_
 #define CPP_INC_MODE_H_
 
-#include "../../Module/Include/index.h"
-#include "../../Module/Include/typedef.h"
+#include "../Pheripheral/Include/index.h"
+#include "../Pheripheral/Include/typedef.h"
 
 
 namespace Mode

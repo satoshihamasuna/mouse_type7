@@ -14,6 +14,7 @@
 #include "motion.h"
 #include "adachi_class.h"
 
+
 class Search
 {
 	private:

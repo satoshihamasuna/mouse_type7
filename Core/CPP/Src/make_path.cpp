@@ -5,13 +5,14 @@
  *      Author: sato1
  */
 
-#include "../../Module/Include/index.h"
-#include "../../Module/Include/typedef.h"
-#include "../../Module/Include/macro.h"
+#include "../Pheripheral/Include/index.h"
+#include "../Pheripheral/Include/typedef.h"
+#include "../Pheripheral/Include/macro.h"
 #include "../Inc/make_path.h"
 #include "../Inc/run_task.h"
 #include "../Inc/motion.h"
 #include "../Inc/log_data.h"
+#include "../Inc/controll.h"
 #define DIJKSTRA_MAX_TIME (65535-1)
 
 t_posDijkstra Dijkstra::conv_t_pos2t_posDijkstra(t_position pos,t_direction wall_pos)
@@ -625,8 +626,8 @@ void Dijkstra::run_Dijkstra_suction(t_position start_pos,t_direction start_wallP
 	}
 	while(controll_task::getInstance().run_task !=No_run){}
 	motionPlan->motion_start( );
-	  LogData::getInstance().data_count = 0;
-	  LogData::getInstance().log_enable = True;
+	LogData::getInstance().data_count = 0;
+	LogData::getInstance().log_enable = True;
 	motionPlan->straight(  16.10-3.0, straight_base_velo().param->acc, straight_base_velo().param->max_velo, straight_base_velo().param->max_velo);
 	while(controll_task::getInstance().run_task !=No_run);
 	uint16_t section_count = 0;

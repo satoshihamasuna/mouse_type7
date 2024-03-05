@@ -10,7 +10,7 @@
 
 #include <stdio.h>
 #include "singleton.h"
-#include "../../Module/Include/typedef.h"
+#include "../Pheripheral/Include/typedef.h"
 
 class path_follow_class:public Singleton<path_follow_class>
 {

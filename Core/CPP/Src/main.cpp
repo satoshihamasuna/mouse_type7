@@ -7,13 +7,13 @@
 
 #include <iostream>
 
-#include "../../Module/Include/index.h"
+#include "../Pheripheral/Include/index.h"
 #include "stdio.h"
 #include "../Inc/Sensing_task.h"
 #include "../Inc/motion.h"
 #include "../Inc/interrupt.h"
 #include "../Inc/controll.h"
-#include "../../Module/Include/macro.h"
+#include "../Pheripheral/Include/macro.h"
 #include "../Inc/log_data.h"
 #include "../Inc/Kalman_filter.h"
 #include "../Inc/run_param.h"

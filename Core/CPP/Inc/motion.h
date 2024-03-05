@@ -9,7 +9,7 @@
 #define CPP_INC_MOTION_H_
 
 #include <stdio.h>
-#include "../../Module/Include/typedef.h"
+#include "../Pheripheral/Include/typedef.h"
 #include "run_param.h"
 #include "singleton.h"
 #include "run_task.h"
