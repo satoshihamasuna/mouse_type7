@@ -58,7 +58,7 @@ namespace Mode
 		uint32_t time = Interrupt::getInstance().return_time_count();
 
 		ring_queue<1024,t_MapNode> maze_q;
-		motion_plan mp(&motion_task::getInstance());
+		motion_plan mp(&controll_task::getInstance());
 		Search solve_maze;
 		wall_class wall_data(&SensingTask::getInstance());
 		wall_data.init_maze();
@@ -100,8 +100,8 @@ namespace Mode
 						}
 
 						Indicate_LED(mode|param);
-						motion_task::getInstance().ct.speed_ctrl.Gain_Set(6.0, 0.05, 0.0);
-						motion_task::getInstance().ct.omega_ctrl.Gain_Set(0.4, 0.05, 0.0);
+						controll_task::getInstance().ct.speed_ctrl.Gain_Set(6.0, 0.05, 0.0);
+						controll_task::getInstance().ct.omega_ctrl.Gain_Set(0.4, 0.05, 0.0);
 						KalmanFilter::getInstance().filter_init();
 						t_position return_pos = solve_maze.search_adachi_1_acc(start, goal, goal_size, &wall_data, &map_data,&mp);
 						write_save_data(&wall_data);
@@ -119,8 +119,8 @@ namespace Mode
 						}
 
 						Indicate_LED(mode|param);
-						motion_task::getInstance().ct.speed_ctrl.Gain_Set(6.0, 0.05, 0.0);
-						motion_task::getInstance().ct.omega_ctrl.Gain_Set(0.4, 0.05, 0.0);
+						controll_task::getInstance().ct.speed_ctrl.Gain_Set(6.0, 0.05, 0.0);
+						controll_task::getInstance().ct.omega_ctrl.Gain_Set(0.4, 0.05, 0.0);
 						KalmanFilter::getInstance().filter_init();
 						t_position return_pos = solve_maze.search_adachi_1(start, goal, goal_size, &wall_data, &map_data,&mp);
 						write_save_data(&wall_data);
@@ -138,8 +138,8 @@ namespace Mode
 						}
 
 						Indicate_LED(mode|param);
-						motion_task::getInstance().ct.speed_ctrl.Gain_Set(6.0, 0.05, 0.0);
-						motion_task::getInstance().ct.omega_ctrl.Gain_Set(0.4, 0.05, 0.0);
+						controll_task::getInstance().ct.speed_ctrl.Gain_Set(6.0, 0.05, 0.0);
+						controll_task::getInstance().ct.omega_ctrl.Gain_Set(0.4, 0.05, 0.0);
 						KalmanFilter::getInstance().filter_init();
 						t_position return_pos = solve_maze.search_adachi_3_acc(start, goal, goal_size, &wall_data, &map_data,&mp);
 						write_save_data(&wall_data);
@@ -157,8 +157,8 @@ namespace Mode
 						}
 
 						Indicate_LED(mode|param);
-						motion_task::getInstance().ct.speed_ctrl.Gain_Set(6.0, 0.05, 0.0);
-						motion_task::getInstance().ct.omega_ctrl.Gain_Set(0.4, 0.05, 0.0);
+						controll_task::getInstance().ct.speed_ctrl.Gain_Set(6.0, 0.05, 0.0);
+						controll_task::getInstance().ct.omega_ctrl.Gain_Set(0.4, 0.05, 0.0);
 						KalmanFilter::getInstance().filter_init();
 						t_position return_pos = solve_maze.search_adachi_3_acc(start, goal, goal_size, &wall_data, &map_data,&mp);
 						write_save_data(&wall_data);
@@ -179,8 +179,8 @@ namespace Mode
 							(i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
 							HAL_Delay(50);
 						}
-				  		motion_task::getInstance().ct.speed_ctrl.Gain_Set(6.0, 0.05, 0.0);
-				  		motion_task::getInstance().ct.omega_ctrl.Gain_Set(0.4, 0.01, 0.0);
+				  		controll_task::getInstance().ct.speed_ctrl.Gain_Set(6.0, 0.05, 0.0);
+				  		controll_task::getInstance().ct.omega_ctrl.Gain_Set(0.4, 0.01, 0.0);
 				  		KalmanFilter::getInstance().filter_init();
 				  		run_path.turn_time_set(mode_1000);
 						run_path.run_Dijkstra(		start, Dir_None, goal,MAZE_GOAL_SIZE,
@@ -210,8 +210,8 @@ namespace Mode
 							(i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
 							HAL_Delay(50);
 						}
-				  		motion_task::getInstance().ct.speed_ctrl.Gain_Set(6.0, 0.05, 0.0);
-				  		motion_task::getInstance().ct.omega_ctrl.Gain_Set(0.4, 0.01, 0.0);
+				  		controll_task::getInstance().ct.speed_ctrl.Gain_Set(6.0, 0.05, 0.0);
+				  		controll_task::getInstance().ct.omega_ctrl.Gain_Set(0.4, 0.01, 0.0);
 				  		KalmanFilter::getInstance().filter_init();
 				  		run_path.turn_time_set(mode_1000);
 						run_path.run_Dijkstra_suction(		start, Dir_None, goal,MAZE_GOAL_SIZE,600,
@@ -229,8 +229,8 @@ namespace Mode
 							(i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
 							HAL_Delay(50);
 						}
-				  		motion_task::getInstance().ct.speed_ctrl.Gain_Set(6.0, 0.05, 0.0);
-				  		motion_task::getInstance().ct.omega_ctrl.Gain_Set(0.4, 0.01, 0.0);
+				  		controll_task::getInstance().ct.speed_ctrl.Gain_Set(6.0, 0.05, 0.0);
+				  		controll_task::getInstance().ct.omega_ctrl.Gain_Set(0.4, 0.01, 0.0);
 				  		KalmanFilter::getInstance().filter_init();
 				  		run_path.turn_time_set(mode_1000);
 						run_path.run_Dijkstra_suction(		start, Dir_None, goal, MAZE_GOAL_SIZE,600,
@@ -248,8 +248,8 @@ namespace Mode
 							(i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
 							HAL_Delay(50);
 						}
-				  		motion_task::getInstance().ct.speed_ctrl.Gain_Set(6.0, 0.05, 0.0);
-				  		motion_task::getInstance().ct.omega_ctrl.Gain_Set(0.4, 0.01, 0.0);
+				  		controll_task::getInstance().ct.speed_ctrl.Gain_Set(6.0, 0.05, 0.0);
+				  		controll_task::getInstance().ct.omega_ctrl.Gain_Set(0.4, 0.01, 0.0);
 				  		KalmanFilter::getInstance().filter_init();
 				  		run_path.turn_time_set(mode_1200);
 						run_path.run_Dijkstra_suction(		start, Dir_None, goal, MAZE_GOAL_SIZE,600,
@@ -267,8 +267,8 @@ namespace Mode
 							(i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
 							HAL_Delay(50);
 						}
-				  		motion_task::getInstance().ct.speed_ctrl.Gain_Set(6.0, 0.05, 0.0);
-				  		motion_task::getInstance().ct.omega_ctrl.Gain_Set(0.4, 0.01, 0.0);
+				  		controll_task::getInstance().ct.speed_ctrl.Gain_Set(6.0, 0.05, 0.0);
+				  		controll_task::getInstance().ct.omega_ctrl.Gain_Set(0.4, 0.01, 0.0);
 				  		KalmanFilter::getInstance().filter_init();
 				  		run_path.turn_time_set(mode_1400);
 						run_path.run_Dijkstra_suction(		start, Dir_None, goal, MAZE_GOAL_SIZE,700,
@@ -286,8 +286,8 @@ namespace Mode
 							(i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
 							HAL_Delay(50);
 						}
-				  		motion_task::getInstance().ct.speed_ctrl.Gain_Set(6.0, 0.05, 0.0);
-				  		motion_task::getInstance().ct.omega_ctrl.Gain_Set(0.4, 0.01, 0.0);
+				  		controll_task::getInstance().ct.speed_ctrl.Gain_Set(6.0, 0.05, 0.0);
+				  		controll_task::getInstance().ct.omega_ctrl.Gain_Set(0.4, 0.01, 0.0);
 				  		KalmanFilter::getInstance().filter_init();
 				  		run_path.turn_time_set(mode_1400);
 						run_path.run_Dijkstra_suction(		start, Dir_None, goal, MAZE_GOAL_SIZE,700,
@@ -305,8 +305,8 @@ namespace Mode
 							(i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
 							HAL_Delay(50);
 						}
-				  		motion_task::getInstance().ct.speed_ctrl.Gain_Set(6.0, 0.05, 0.0);
-				  		motion_task::getInstance().ct.omega_ctrl.Gain_Set(0.4, 0.01, 0.0);
+				  		controll_task::getInstance().ct.speed_ctrl.Gain_Set(6.0, 0.05, 0.0);
+				  		controll_task::getInstance().ct.omega_ctrl.Gain_Set(0.4, 0.01, 0.0);
 				  		KalmanFilter::getInstance().filter_init();
 				  		run_path.turn_time_set(mode_1400);
 						run_path.run_Dijkstra_suction(		start, Dir_None, goal, MAZE_GOAL_SIZE,700,

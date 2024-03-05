@@ -41,7 +41,7 @@ namespace Mode
 		uint8_t enable = 0x00;
 
 		ring_queue<1024,t_MapNode> maze_q;
-		motion_plan mp(&motion_task::getInstance());
+		motion_plan mp(&controll_task::getInstance());
 		//Search solve_maze;
 		wall_class wall_data(&SensingTask::getInstance());
 		wall_data.init_maze();
@@ -93,7 +93,7 @@ namespace Mode
 				case ENABLE|0x03:
 					while(1)
 					{
-						printf("length:%lf\n",motion_task::getInstance().mouse.length);
+						printf("length:%lf\n",controll_task::getInstance().mouse.length);
 						HAL_Delay(10);
 						if(HAL_GPIO_ReadPin(Button_GPIO_Port, Button_Pin) == 1) break;
 					}
@@ -106,7 +106,7 @@ namespace Mode
 							  HAL_Delay(50);
 						  }
 						  mp.free_rotation();
-						  while(motion_task::getInstance().run_task !=No_run){
+						  while(controll_task::getInstance().run_task !=No_run){
 								printf("gyro:%ld,%ld\n",Encoder_GetProperty_Right().sp_pulse,Encoder_GetProperty_Left().sp_pulse);
 								HAL_Delay(10);
 						  }
@@ -122,14 +122,14 @@ namespace Mode
 									  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
 									  HAL_Delay(50);
 								  }
-								  motion_task::getInstance().ct.speed_ctrl.Gain_Set(6.0, 0.05, 0.0);
-								  motion_task::getInstance().ct.omega_ctrl.Gain_Set(0.4, 0.01, 0.0);
+								  controll_task::getInstance().ct.speed_ctrl.Gain_Set(6.0, 0.05, 0.0);
+								  controll_task::getInstance().ct.omega_ctrl.Gain_Set(0.4, 0.01, 0.0);
 								  KalmanFilter::getInstance().filter_init();
 								  mp.motion_start();
 								  LogData::getInstance().data_count = 0;
 								  LogData::getInstance().log_enable = True;
 								  mp.pivot_turn(DEG2RAD(90.0f), 40.0*PI, 4.0*PI);
-								  while(motion_task::getInstance().run_task !=No_run){}
+								  while(controll_task::getInstance().run_task !=No_run){}
 								  LogData::getInstance().log_enable = False;
 								  enable = 0x00;
 								  HAL_Delay(500);
@@ -143,14 +143,14 @@ namespace Mode
 							  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
 							  HAL_Delay(50);
 						  }
-							  motion_task::getInstance().ct.speed_ctrl.Gain_Set(6.0, 0.05, 0.0);
-							  motion_task::getInstance().ct.omega_ctrl.Gain_Set(0.4, 0.01, 0.0);
+							  controll_task::getInstance().ct.speed_ctrl.Gain_Set(6.0, 0.05, 0.0);
+							  controll_task::getInstance().ct.omega_ctrl.Gain_Set(0.4, 0.01, 0.0);
 							  KalmanFilter::getInstance().filter_init();
 							  mp.motion_start();
 							  LogData::getInstance().data_count = 0;
 							  LogData::getInstance().log_enable = True;
 								mp.fix_wall(3000);
-								while(motion_task::getInstance().run_task !=No_run){}
+								while(controll_task::getInstance().run_task !=No_run){}
 							  LogData::getInstance().log_enable = False;
 							  enable = 0x00;
 							  HAL_Delay(500);

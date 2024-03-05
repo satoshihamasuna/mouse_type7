@@ -40,7 +40,7 @@ namespace Mode
 		uint8_t enable = 0x00;
 
 		ring_queue<1024,t_MapNode> maze_q;
-		motion_plan mp(&motion_task::getInstance());
+		motion_plan mp(&controll_task::getInstance());
 		//Search solve_maze;
 		wall_class wall_data(&SensingTask::getInstance());
 		wall_data.init_maze();
@@ -80,7 +80,7 @@ namespace Mode
 						  LogData::getInstance().data_count = 0;
 						  LogData::getInstance().log_enable = True;
 						  mp.straight( 90.0*3.0,6.0,0.3,0.0);
-						  while(motion_task::getInstance().run_task !=No_run){}
+						  while(controll_task::getInstance().run_task !=No_run){}
 
 						  LogData::getInstance().log_enable = False;
 						  enable = 0x00;
@@ -99,11 +99,11 @@ namespace Mode
 						  LogData::getInstance().data_count = 0;
 						  LogData::getInstance().log_enable = True;
 						  mp.straight( 45.0,6.0,0.3,0.3);
-						  while(motion_task::getInstance().run_task !=No_run){}
+						  while(controll_task::getInstance().run_task !=No_run){}
 						  mp.searchSlalom( &param_R90_search);
-						  while(motion_task::getInstance().run_task !=No_run){}
+						  while(controll_task::getInstance().run_task !=No_run){}
 						  mp.straight(45.0,6.0,0.3,0.0);
-						  while(motion_task::getInstance().run_task !=No_run){}
+						  while(controll_task::getInstance().run_task !=No_run){}
 						  LogData::getInstance().log_enable = False;
 						  enable = 0x00;
 						  HAL_Delay(500);
@@ -125,16 +125,16 @@ namespace Mode
 								FAN_Motor_SetDuty(i);;
 								HAL_Delay(3);
 							}
-						  while(motion_task::getInstance().run_task !=No_run){}
+						  while(controll_task::getInstance().run_task !=No_run){}
 						  LogData::getInstance().data_count = 0;
 						  LogData::getInstance().log_enable = True;
 						  mp.straight(SECTION,st_param->param->acc,st_param->param->max_velo,st_param->param->max_velo,st_param->sp_gain,st_param->om_gain);
-						  while(motion_task::getInstance().run_task !=No_run){}
+						  while(controll_task::getInstance().run_task !=No_run){}
 
 						  mp.long_turn(turn_mode[Long_turnR180],Long_turnR180,st_param->sp_gain,st_param->om_gain);
-						  while(motion_task::getInstance().run_task !=No_run){}
+						  while(controll_task::getInstance().run_task !=No_run){}
 						  mp.straight(SECTION,st_param->param->acc,st_param->param->max_velo,0.0,st_param->sp_gain,st_param->om_gain);
-						  while(motion_task::getInstance().run_task !=No_run){}
+						  while(controll_task::getInstance().run_task !=No_run){}
 						  HAL_Delay(200);
 						  FAN_Motor_SetDuty(0);;
 						  HAL_Delay(200);
@@ -159,15 +159,15 @@ namespace Mode
 							  FAN_Motor_SetDuty(i);;
 							  HAL_Delay(5);
 						  }
-						  while(motion_task::getInstance().run_task !=No_run){}
+						  while(controll_task::getInstance().run_task !=No_run){}
 						  mp.straight(SECTION,st_param->param->acc,st_param->param->max_velo,st_param->param->max_velo,st_param->sp_gain,st_param->om_gain);
-						  while(motion_task::getInstance().run_task !=No_run){}
+						  while(controll_task::getInstance().run_task !=No_run){}
 						  LogData::getInstance().data_count = 0;
 						  LogData::getInstance().log_enable = True;
 						  mp.long_turn(turn_mode[Long_turnR90],Long_turnR90,st_param->sp_gain,st_param->om_gain);
-						  while(motion_task::getInstance().run_task !=No_run){}
+						  while(controll_task::getInstance().run_task !=No_run){}
 						  mp.straight( SECTION,st_param->param->acc,st_param->param->max_velo,0.0,st_param->sp_gain,st_param->om_gain);
-						  while(motion_task::getInstance().run_task !=No_run){}
+						  while(controll_task::getInstance().run_task !=No_run){}
 						  HAL_Delay(200);
 						  FAN_Motor_SetDuty(0);;
 						  HAL_Delay(200);
@@ -191,15 +191,15 @@ namespace Mode
 							  FAN_Motor_SetDuty(i);;
 							  HAL_Delay(5);
 						  }
-						  while(motion_task::getInstance().run_task !=No_run){}
+						  while(controll_task::getInstance().run_task !=No_run){}
 						  mp.straight(SECTION,st_param->param->acc,st_param->param->max_velo,st_param->param->max_velo,st_param->sp_gain,st_param->om_gain);
-						  while(motion_task::getInstance().run_task !=No_run){}
+						  while(controll_task::getInstance().run_task !=No_run){}
 						  LogData::getInstance().data_count = 0;
 						  LogData::getInstance().log_enable = True;
 						  mp.turn_in(turn_mode[Turn_in_R45],Turn_in_R45,st_param->sp_gain,st_param->om_gain);
-						  while(motion_task::getInstance().run_task !=No_run){}
+						  while(controll_task::getInstance().run_task !=No_run){}
 						  mp.diagonal( DIAG_SECTION*2,st_param->param->acc,st_param->param->max_velo,0.0,st_param->sp_gain,st_param->om_gain);
-						  while(motion_task::getInstance().run_task !=No_run){}
+						  while(controll_task::getInstance().run_task !=No_run){}
 						  HAL_Delay(200);
 						  FAN_Motor_SetDuty(0);;
 						  HAL_Delay(200);
@@ -224,15 +224,15 @@ namespace Mode
 							  FAN_Motor_SetDuty(i);;
 							  HAL_Delay(5);
 						  }
-						  while(motion_task::getInstance().run_task !=No_run){}
+						  while(controll_task::getInstance().run_task !=No_run){}
 						  mp.straight(SECTION,st_param->param->acc,st_param->param->max_velo,st_param->param->max_velo,st_param->sp_gain,st_param->om_gain);
-						  while(motion_task::getInstance().run_task !=No_run){}
+						  while(controll_task::getInstance().run_task !=No_run){}
 						  LogData::getInstance().data_count = 0;
 						  LogData::getInstance().log_enable = True;
 						  mp.turn_in(turn_mode[Turn_in_R135],Turn_in_R135,st_param->sp_gain,st_param->om_gain);
-						  while(motion_task::getInstance().run_task !=No_run){}
+						  while(controll_task::getInstance().run_task !=No_run){}
 						  mp.diagonal( DIAG_SECTION*2,st_param->param->acc,st_param->param->max_velo,0.0,st_param->sp_gain,st_param->om_gain);
-						  while(motion_task::getInstance().run_task !=No_run){}
+						  while(controll_task::getInstance().run_task !=No_run){}
 						  HAL_Delay(200);
 						  FAN_Motor_SetDuty(0);;
 						  HAL_Delay(200);
@@ -256,15 +256,15 @@ namespace Mode
 							  FAN_Motor_SetDuty(i);;
 							  HAL_Delay(5);
 						  }
-						  while(motion_task::getInstance().run_task !=No_run){}
+						  while(controll_task::getInstance().run_task !=No_run){}
 						  mp.diagonal(DIAG_SECTION*2,st_param->param->acc,st_param->param->max_velo,st_param->param->max_velo,st_param->sp_gain,st_param->om_gain);
-						  while(motion_task::getInstance().run_task !=No_run){}
+						  while(controll_task::getInstance().run_task !=No_run){}
 						  LogData::getInstance().data_count = 0;
 						  LogData::getInstance().log_enable = True;
 						  mp.turn_out(turn_mode[Turn_out_R45],Turn_out_R45,st_param->sp_gain,st_param->om_gain);
-						  while(motion_task::getInstance().run_task !=No_run){}
+						  while(controll_task::getInstance().run_task !=No_run){}
 						  mp.straight( SECTION,st_param->param->acc,st_param->param->max_velo,0.0,st_param->sp_gain,st_param->om_gain);
-						  while(motion_task::getInstance().run_task !=No_run){}
+						  while(controll_task::getInstance().run_task !=No_run){}
 						  HAL_Delay(200);
 						  FAN_Motor_SetDuty(0);;
 						  HAL_Delay(200);
@@ -289,15 +289,15 @@ namespace Mode
 							  FAN_Motor_SetDuty(i);;
 							  HAL_Delay(5);
 						  }
-						  while(motion_task::getInstance().run_task !=No_run){}
+						  while(controll_task::getInstance().run_task !=No_run){}
 						  mp.diagonal(DIAG_SECTION*2,st_param->param->acc,st_param->param->max_velo,st_param->param->max_velo,st_param->sp_gain,st_param->om_gain);
-						  while(motion_task::getInstance().run_task !=No_run){}
+						  while(controll_task::getInstance().run_task !=No_run){}
 						  LogData::getInstance().data_count = 0;
 						  LogData::getInstance().log_enable = True;
 						  mp.turn_out(turn_mode[Turn_out_R135],Turn_out_R135,st_param->sp_gain,st_param->om_gain);
-						  while(motion_task::getInstance().run_task !=No_run){}
+						  while(controll_task::getInstance().run_task !=No_run){}
 						  mp.straight( SECTION,st_param->param->acc,st_param->param->max_velo,0.0,st_param->sp_gain,st_param->om_gain);
-						  while(motion_task::getInstance().run_task !=No_run){}
+						  while(controll_task::getInstance().run_task !=No_run){}
 						  HAL_Delay(200);
 						  FAN_Motor_SetDuty(0);;
 						  HAL_Delay(200);
@@ -322,15 +322,15 @@ namespace Mode
 							  FAN_Motor_SetDuty(i);;
 							  HAL_Delay(5);
 						  }
-						  while(motion_task::getInstance().run_task !=No_run){}
+						  while(controll_task::getInstance().run_task !=No_run){}
 						  mp.diagonal(DIAG_SECTION*2,st_param->param->acc,st_param->param->max_velo,st_param->param->max_velo,st_param->sp_gain,st_param->om_gain);
-						  while(motion_task::getInstance().run_task !=No_run){}
+						  while(controll_task::getInstance().run_task !=No_run){}
 						  LogData::getInstance().data_count = 0;
 						  LogData::getInstance().log_enable = True;
 						  mp.turn_v90(turn_mode[Turn_RV90],Turn_RV90,st_param->sp_gain,st_param->om_gain);
-						  while(motion_task::getInstance().run_task !=No_run){}
+						  while(controll_task::getInstance().run_task !=No_run){}
 						  mp.diagonal( DIAG_SECTION*2,st_param->param->acc,st_param->param->max_velo,0.0,st_param->sp_gain,st_param->om_gain);
-						  while(motion_task::getInstance().run_task !=No_run){}
+						  while(controll_task::getInstance().run_task !=No_run){}
 						  HAL_Delay(200);
 						  FAN_Motor_SetDuty(0);;
 						  HAL_Delay(200);
@@ -355,15 +355,15 @@ namespace Mode
 							  FAN_Motor_SetDuty(i);;
 							  HAL_Delay(5);
 						  }
-						  while(motion_task::getInstance().run_task !=No_run){}
+						  while(controll_task::getInstance().run_task !=No_run){}
 						  mp.straight(SECTION,st_param->param->acc,st_param->param->max_velo,st_param->param->max_velo,st_param->sp_gain,st_param->om_gain);
-						  while(motion_task::getInstance().run_task !=No_run){}
+						  while(controll_task::getInstance().run_task !=No_run){}
 						  LogData::getInstance().data_count = 0;
 						  LogData::getInstance().log_enable = True;
 						  mp.long_turn(turn_mode[Long_turnL180],Long_turnL180,st_param->sp_gain,st_param->om_gain);
-						  while(motion_task::getInstance().run_task !=No_run){}
+						  while(controll_task::getInstance().run_task !=No_run){}
 						  mp.straight( SECTION,st_param->param->acc,st_param->param->max_velo,0.0,st_param->sp_gain,st_param->om_gain);
-						  while(motion_task::getInstance().run_task !=No_run){}
+						  while(controll_task::getInstance().run_task !=No_run){}
 						  HAL_Delay(200);
 						  FAN_Motor_SetDuty(0);;
 						  HAL_Delay(200);
@@ -388,15 +388,15 @@ namespace Mode
 							  FAN_Motor_SetDuty(i);;
 							  HAL_Delay(5);
 						  }
-						  while(motion_task::getInstance().run_task !=No_run){}
+						  while(controll_task::getInstance().run_task !=No_run){}
 						  mp.straight(SECTION,st_param->param->acc,st_param->param->max_velo,st_param->param->max_velo,st_param->sp_gain,st_param->om_gain);
-						  while(motion_task::getInstance().run_task !=No_run){}
+						  while(controll_task::getInstance().run_task !=No_run){}
 						  LogData::getInstance().data_count = 0;
 						  LogData::getInstance().log_enable = True;
 						  mp.turn_in(turn_mode[Turn_in_L45],Turn_in_L45,st_param->sp_gain,st_param->om_gain);
-						  while(motion_task::getInstance().run_task !=No_run){}
+						  while(controll_task::getInstance().run_task !=No_run){}
 						  mp.diagonal( DIAG_SECTION*2,st_param->param->acc,st_param->param->max_velo,0.0,st_param->sp_gain,st_param->om_gain);
-						  while(motion_task::getInstance().run_task !=No_run){}
+						  while(controll_task::getInstance().run_task !=No_run){}
 						  HAL_Delay(200);
 						  FAN_Motor_SetDuty(0);;
 						  HAL_Delay(200);
@@ -421,15 +421,15 @@ namespace Mode
 							  FAN_Motor_SetDuty(i);;
 							  HAL_Delay(5);
 						  }
-						  while(motion_task::getInstance().run_task !=No_run){}
+						  while(controll_task::getInstance().run_task !=No_run){}
 						  mp.diagonal(DIAG_SECTION*2,st_param->param->acc,st_param->param->max_velo,st_param->param->max_velo,st_param->sp_gain,st_param->om_gain);
-						  while(motion_task::getInstance().run_task !=No_run){}
+						  while(controll_task::getInstance().run_task !=No_run){}
 						  LogData::getInstance().data_count = 0;
 						  LogData::getInstance().log_enable = True;
 						  mp.turn_out(turn_mode[Turn_out_L45],Turn_out_L45,st_param->sp_gain,st_param->om_gain);
-						  while(motion_task::getInstance().run_task !=No_run){}
+						  while(controll_task::getInstance().run_task !=No_run){}
 						  mp.straight( SECTION,st_param->param->acc,st_param->param->max_velo,0.0,st_param->sp_gain,st_param->om_gain);
-						  while(motion_task::getInstance().run_task !=No_run){}
+						  while(controll_task::getInstance().run_task !=No_run){}
 						  HAL_Delay(200);
 						  FAN_Motor_SetDuty(0);;
 						  HAL_Delay(200);
@@ -454,15 +454,15 @@ namespace Mode
 							  FAN_Motor_SetDuty(i);;
 							  HAL_Delay(5);
 						  }
-						  while(motion_task::getInstance().run_task !=No_run){}
+						  while(controll_task::getInstance().run_task !=No_run){}
 						  mp.diagonal(DIAG_SECTION*2,st_param->param->acc,st_param->param->max_velo,st_param->param->max_velo,st_param->sp_gain,st_param->om_gain);
-						  while(motion_task::getInstance().run_task !=No_run){}
+						  while(controll_task::getInstance().run_task !=No_run){}
 						  LogData::getInstance().data_count = 0;
 						  LogData::getInstance().log_enable = True;
 						  mp.turn_out(turn_mode[Turn_out_L135],Turn_out_L135,st_param->sp_gain,st_param->om_gain);
-						  while(motion_task::getInstance().run_task !=No_run){}
+						  while(controll_task::getInstance().run_task !=No_run){}
 						  mp.straight( SECTION,st_param->param->acc,st_param->param->max_velo,0.0,st_param->sp_gain,st_param->om_gain);
-						  while(motion_task::getInstance().run_task !=No_run){}
+						  while(controll_task::getInstance().run_task !=No_run){}
 						  HAL_Delay(200);
 						  FAN_Motor_SetDuty(0);;
 						  HAL_Delay(200);
@@ -486,15 +486,15 @@ namespace Mode
 							  FAN_Motor_SetDuty(i);;
 							  HAL_Delay(5);
 						  }
-						  while(motion_task::getInstance().run_task !=No_run){}
+						  while(controll_task::getInstance().run_task !=No_run){}
 						  mp.diagonal(DIAG_SECTION*2,st_param->param->acc,st_param->param->max_velo,st_param->param->max_velo,st_param->sp_gain,st_param->om_gain);
-						  while(motion_task::getInstance().run_task !=No_run){}
+						  while(controll_task::getInstance().run_task !=No_run){}
 						  LogData::getInstance().data_count = 0;
 						  LogData::getInstance().log_enable = True;
 						  mp.turn_v90(turn_mode[Turn_LV90],Turn_LV90,st_param->sp_gain,st_param->om_gain);
-						  while(motion_task::getInstance().run_task !=No_run){}
+						  while(controll_task::getInstance().run_task !=No_run){}
 						  mp.diagonal( SECTION,st_param->param->acc,st_param->param->max_velo,0.0,st_param->sp_gain,st_param->om_gain);
-						  while(motion_task::getInstance().run_task !=No_run){}
+						  while(controll_task::getInstance().run_task !=No_run){}
 						  HAL_Delay(200);
 						  FAN_Motor_SetDuty(0);;
 						  HAL_Delay(200);

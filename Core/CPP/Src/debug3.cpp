@@ -43,7 +43,7 @@ namespace Mode
 	uint8_t enable = 0x00;
 
 	ring_queue<1024,t_MapNode> maze_q;
-	motion_plan mp(&motion_task::getInstance());
+	motion_plan mp(&controll_task::getInstance());
 	wall_class wall_data(&SensingTask::getInstance());
 	wall_data.init_maze();
 	make_map map_data(&wall_data,&maze_q);

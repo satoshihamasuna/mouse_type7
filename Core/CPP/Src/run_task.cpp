@@ -217,8 +217,8 @@ void RunTask::diagonal(t_motion_param mt_param,t_machine_param *target_,t_machin
 	is_wallControl_Enable = Enable_di;
 	is_runTask = True;
 	set_run_mode_state(DIAGONAL_MODE);
-	motion_task::getInstance().ct.speed_ctrl.Gain_Set(6.0, 0.1, 0.0);//7.0/0.3
-	motion_task::getInstance().ct.omega_ctrl.Gain_Set(0.05, 0.01, 0.00);
+	controll_task::getInstance().ct.speed_ctrl.Gain_Set(6.0, 0.1, 0.0);//7.0/0.3
+	controll_task::getInstance().ct.omega_ctrl.Gain_Set(0.05, 0.01, 0.00);
 	float deccel_length = 1000*(mt_param.max_velo*mt_param.max_velo
 								-mt_param.end_velo*mt_param.end_velo)
 								/(2.0*ABS(mt_param.deccel));
@@ -549,11 +549,11 @@ void RunTask::turn_in(t_motion_param *mt_param,const t_param *turn_param,t_machi
 				/*
 				if(turn_param->param->turn_dir == Turn_R)
 				{
-					machine_->x_point = -(45.0f-(ABS(motion_task::getInstance().mouse.turn_y)-turn_param->param->Lend/SQRT2 + turn_param->param->Lstart)) / SQRT2;
+					machine_->x_point = -(45.0f-(ABS(controll_task::getInstance().mouse.turn_y)-turn_param->param->Lend/SQRT2 + turn_param->param->Lstart)) / SQRT2;
 				}
 				if(turn_param->param->turn_dir == Turn_L)
 				{
-					machine_->x_point = (45.0f- (ABS(motion_task::getInstance().mouse.turn_y)-turn_param->param->Lend/SQRT2 + turn_param->param->Lstart))  / SQRT2;
+					machine_->x_point = (45.0f- (ABS(controll_task::getInstance().mouse.turn_y)-turn_param->param->Lend/SQRT2 + turn_param->param->Lstart))  / SQRT2;
 				}
 				*/
 			}
@@ -562,11 +562,11 @@ void RunTask::turn_in(t_motion_param *mt_param,const t_param *turn_param,t_machi
 				/*
 				if(turn_param->param->turn_dir == Turn_R)
 				{
-					machine_->x_point = (90.0f- ABS(motion_task::getInstance().mouse.turn_y)-turn_param->param->Lend/SQRT2 - turn_param->param->Lend) / SQRT2;
+					machine_->x_point = (90.0f- ABS(controll_task::getInstance().mouse.turn_y)-turn_param->param->Lend/SQRT2 - turn_param->param->Lend) / SQRT2;
 				}
 				if(turn_param->param->turn_dir == Turn_L)
 				{
-					machine_->x_point = -(90.0f - ABS(motion_task::getInstance().mouse.turn_y)-turn_param->param->Lend/SQRT2 - turn_param->param->Lend)  / SQRT2;
+					machine_->x_point = -(90.0f - ABS(controll_task::getInstance().mouse.turn_y)-turn_param->param->Lend/SQRT2 - turn_param->param->Lend)  / SQRT2;
 				}*/
 			}
 
@@ -675,7 +675,7 @@ void RunTask::turn_out(t_motion_param *mt_param,const t_param *turn_param,t_mach
 		{
 			mt_param->radian =  DEG2RAD(turn_param->param->degree);
 			SensingTask::getInstance().Division_Wall_Correction_Reset();
-			motion_task::getInstance().ct.speed_ctrl.I_param_reset();
+			controll_task::getInstance().ct.speed_ctrl.I_param_reset();
 			//mt_param->turn_d = Turn_None;
 			mt_param->turn_d = Post_Turn;
 			machine_->length = 0.0;
@@ -689,22 +689,22 @@ void RunTask::turn_out(t_motion_param *mt_param,const t_param *turn_param,t_mach
 			{
 				if(turn_param->param->turn_dir == Turn_R)
 				{
-					machine_->x_point = -(90.0f- ABS(motion_task::getInstance().mouse.turn_x)-turn_param->param->Lstart/SQRT2);
+					machine_->x_point = -(90.0f- ABS(controll_task::getInstance().mouse.turn_x)-turn_param->param->Lstart/SQRT2);
 				}
 				if(turn_param->param->turn_dir == Turn_L)
 				{
-					machine_->x_point = (90.0f- ABS(motion_task::getInstance().mouse.turn_x)-turn_param->param->Lstart/SQRT2);
+					machine_->x_point = (90.0f- ABS(controll_task::getInstance().mouse.turn_x)-turn_param->param->Lstart/SQRT2);
 				}
 			}
 			else if(ABS(turn_param->param->degree) == 45.0f)
 			{
 				if(turn_param->param->turn_dir == Turn_R)
 				{
-					machine_->x_point = -(45.0f- ABS(motion_task::getInstance().mouse.turn_x)-turn_param->param->Lstart/SQRT2);
+					machine_->x_point = -(45.0f- ABS(controll_task::getInstance().mouse.turn_x)-turn_param->param->Lstart/SQRT2);
 				}
 				if(turn_param->param->turn_dir == Turn_L)
 				{
-					machine_->x_point = (45.0f - ABS(motion_task::getInstance().mouse.turn_x)-turn_param->param->Lstart/SQRT2);
+					machine_->x_point = (45.0f - ABS(controll_task::getInstance().mouse.turn_x)-turn_param->param->Lstart/SQRT2);
 				}
 			}
 			*/
@@ -858,7 +858,7 @@ void RunTask::turn_v90(t_motion_param *mt_param,const t_param *turn_param,t_mach
 		else
 		{
 			mt_param->turn_d =  turn_param->param->turn_dir;
-			motion_task::getInstance().ct.omega_ctrl.I_param_reset();
+			controll_task::getInstance().ct.omega_ctrl.I_param_reset();
 		}
 		Indicate_LED(0x01);
 	}
@@ -923,15 +923,15 @@ void RunTask::turn_v90(t_motion_param *mt_param,const t_param *turn_param,t_mach
 			machine_->x_point = 0.0f;
 			if(turn_param->param->turn_dir == Turn_R)
 			{
-				//machine_->x_point = -(45.0*SQRT2 - motion_task::getInstance().mouse.turn_y-turn_param->param->Lstart);
+				//machine_->x_point = -(45.0*SQRT2 - controll_task::getInstance().mouse.turn_y-turn_param->param->Lstart);
 			}
 			if(turn_param->param->turn_dir == Turn_L)
 			{
-				//machine_->x_point = (45.0*SQRT2 - motion_task::getInstance().mouse.turn_y-turn_param->param->Lstart);
+				//machine_->x_point = (45.0*SQRT2 - controll_task::getInstance().mouse.turn_y-turn_param->param->Lstart);
 			}
-			//motion_task::getInstance().ct.omega_ctrl.I_param_reset();
+			//controll_task::getInstance().ct.omega_ctrl.I_param_reset();
 			Indicate_LED(0x04);
-			//motion_task::getInstance().ct.speed_ctrl.I_param_reset();
+			//controll_task::getInstance().ct.speed_ctrl.I_param_reset();
 		}
 
 	}

@@ -16,7 +16,7 @@
 #include "controll.h"
 
 
-class motion_task:public Singleton<motion_task>
+class controll_task:public Singleton<controll_task>
 {
 	private:
 		int error_cnt;
@@ -50,8 +50,8 @@ class motion_plan
 		//float motion_time;
 	public:
 		//void straight(motion_task *move_task);
-		motion_task *move_task;
-		motion_plan(motion_task *_move_task)
+		controll_task *move_task;
+		motion_plan(controll_task *_move_task)
 		{
 			move_task = _move_task;
 		}

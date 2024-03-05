@@ -1,5 +1,5 @@
 /*
- * motion_task.cpp
+ * controll_task.cpp
  *
  *  Created on: 2023/06/17
  *      Author: sato1
@@ -16,7 +16,7 @@
 
 float battery = 0.0;
 
-void motion_task::motion_inInterrupt(){
+void controll_task::motion_inInterrupt(){
 	switch(run_task)
 	{
 		case Search_st_section:
@@ -105,7 +105,7 @@ void motion_task::motion_inInterrupt(){
 }
 
 
-void motion_task::motionControll()
+void controll_task::motionControll()
 {
 	/*
 	float V_r,V_l;
@@ -215,7 +215,7 @@ void motion_task::motionControll()
 
 }
 
-void motion_task::motionPostControll()
+void controll_task::motionPostControll()
 {
 
 	z_acc = 0.8*z_acc + 0.2*read_accel_z_axis();
@@ -270,7 +270,7 @@ void motion_task::motionPostControll()
 		error_cnt = 0;
 	}
 
-	if(motion_task::getInstance().is_controll_enable() == True)
+	if(controll_task::getInstance().is_controll_enable() == True)
 	{
 		if(SensingTask::getInstance().sen_l.is_wall == True)
 		{
@@ -299,7 +299,7 @@ void motion_task::motionPostControll()
 }
 
 
-t_bool motion_task::is_controll_enable()
+t_bool controll_task::is_controll_enable()
 {
 	t_bool is_controll_enable = False;
 	switch(run_task)

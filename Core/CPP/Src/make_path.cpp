@@ -505,7 +505,7 @@ void Dijkstra::run_Dijkstra(t_position start_pos,t_direction start_wallPos,t_pos
 	}
 
 	motionPlan->search_straight(15.0, straight_base_velo().param->acc, straight_base_velo().param->max_velo, straight_base_velo().param->max_velo);
-	while(motion_task::getInstance().run_task !=No_run);
+	while(controll_task::getInstance().run_task !=No_run);
 	uint16_t section_count = 0;
 	for(int i = tail ; i >= 0;i--)
 	{
@@ -586,7 +586,7 @@ void Dijkstra::run_Dijkstra(t_position start_pos,t_direction start_wallPos,t_pos
 			default :
 				break;
 		}
-		while(motion_task::getInstance().run_task !=No_run);
+		while(controll_task::getInstance().run_task !=No_run);
 	}
 }
 
@@ -623,12 +623,12 @@ void Dijkstra::run_Dijkstra_suction(t_position start_pos,t_direction start_wallP
 		FAN_Motor_SetDuty(i);;
 		HAL_Delay(3);
 	}
-	while(motion_task::getInstance().run_task !=No_run){}
+	while(controll_task::getInstance().run_task !=No_run){}
 	motionPlan->motion_start( );
 	  LogData::getInstance().data_count = 0;
 	  LogData::getInstance().log_enable = True;
 	motionPlan->straight(  16.10-3.0, straight_base_velo().param->acc, straight_base_velo().param->max_velo, straight_base_velo().param->max_velo);
-	while(motion_task::getInstance().run_task !=No_run);
+	while(controll_task::getInstance().run_task !=No_run);
 	uint16_t section_count = 0;
 	for(int i = tail ; i >= 0;i--)
 	{
@@ -709,7 +709,7 @@ void Dijkstra::run_Dijkstra_suction(t_position start_pos,t_direction start_wallP
 			default :
 				break;
 		}
-		while(motion_task::getInstance().run_task !=No_run);
+		while(controll_task::getInstance().run_task !=No_run);
 
 	}
 	  HAL_Delay(200);
