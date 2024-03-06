@@ -16,6 +16,7 @@ RM := rm -rf
 -include Core/CPP/Src/subdir.mk
 -include Core/CPP/Pheripheral/Src/subdir.mk
 -include Core/CPP/Module/Src/subdir.mk
+-include Core/CPP/Application/Src/subdir.mk
 -include subdir.mk
 -include objects.mk
 
@@ -60,8 +61,8 @@ mouse_type7.bin \
 all: mouse_type7.elf secondary-outputs
 
 # Tool invocations
-mouse_type7.elf: $(OBJS) $(USER_OBJS) C:\Users\sato1\Documents\Git\STM32\program_mouse_type7\mouse_type7\STM32F411CEUX_FLASH.ld
-	arm-none-eabi-g++ -o "mouse_type7.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\sato1\Documents\Git\STM32\program_mouse_type7\mouse_type7\STM32F411CEUX_FLASH.ld" -Wl,-Map="mouse_type7.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+mouse_type7.elf: $(OBJS) $(USER_OBJS) C:\Users\sato1\Documents\git\mouse_type7_program\mouse_type7\STM32F411CEUX_FLASH.ld
+	arm-none-eabi-g++ -o "mouse_type7.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\sato1\Documents\git\mouse_type7_program\mouse_type7\STM32F411CEUX_FLASH.ld" -Wl,-Map="mouse_type7.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

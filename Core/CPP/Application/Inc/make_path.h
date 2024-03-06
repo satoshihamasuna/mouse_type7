@@ -8,13 +8,13 @@
 #ifndef CPP_INC_MAKE_PATH_H_
 #define CPP_INC_MAKE_PATH_H_
 
-#include "../Pheripheral/Include/typedef.h"
+#include "../../Pheripheral/Include/typedef.h"
 #include "wall_class.h"
-#include "run_task.h"
-#include "singleton.h"
-#include "run_param.h"
-#include "motion.h"
-#include "controll.h"
+#include "../../Inc/run_task.h"
+#include "../../Inc/singleton.h"
+#include "../../Inc/run_param.h"
+#include "../../Inc/motion.h"
+#include "../../Inc/controll.h"
 //#define DEBUG_MODE
 
 typedef enum

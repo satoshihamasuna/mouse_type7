@@ -6,15 +6,15 @@
  */
 
 
-#include "../Inc/queue_class.h"
+#include "../../Inc/queue_class.h"
 #include "../Inc/make_map_class.h"
-#include "../Pheripheral/Include/typedef.h"
-#include "../Pheripheral/Include/index.h"
-#include "../Inc/Kalman_filter.h"
+#include "../../Pheripheral/Include/typedef.h"
+#include "../../Pheripheral/Include/index.h"
+#include "../../Inc/Kalman_filter.h"
 #include "../Inc/search_class.h"
 #include "../Inc/adachi_class.h"
-#include "../Inc/run_param.h"
-#include "../Inc/motion.h"
+#include "../../Inc/run_param.h"
+#include "../../Inc/motion.h"
 //#include "glob_var_machine.h"
 
 #define ALLOW_SIDE_DIFF 8.0

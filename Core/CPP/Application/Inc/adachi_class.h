@@ -8,10 +8,10 @@
 #ifndef CPP_INC_ADACHI_CLASS_H_
 #define CPP_INC_ADACHI_CLASS_H_
 
+#include <stdio.h>
+#include "../../Pheripheral/Include/macro.h"
 #include "make_map_class.h"
 #include "wall_class.h"
-#include <stdio.h>
-#include "../Pheripheral/Include/macro.h"
 
 
 class adachi{

@@ -8,9 +8,9 @@
 #ifndef CPP_INC_WALL_CLASS_H_
 #define CPP_INC_WALL_CLASS_H_
 
-#include "../Pheripheral/Include/typedef.h"
-#include "../Pheripheral/Include/macro.h"
-#include "sensing_task.h"
+#include "../../Pheripheral/Include/typedef.h"
+#include "../../Pheripheral/Include/macro.h"
+#include "../../Inc/sensing_task.h"
 
 
 class wall_class

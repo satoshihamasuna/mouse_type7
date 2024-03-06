@@ -8,9 +8,9 @@
 #ifndef CPP_INC_MAKE_MAP_CLASS_H_
 #define CPP_INC_MAKE_MAP_CLASS_H_
 
-#include "../Pheripheral/Include/typedef.h"
-#include "../Pheripheral/Include/macro.h"
-#include "queue_class.h"
+#include "../../Pheripheral/Include/typedef.h"
+#include "../../Pheripheral/Include/macro.h"
+#include "../../Inc/queue_class.h"
 #include "wall_class.h"
 
 typedef struct{

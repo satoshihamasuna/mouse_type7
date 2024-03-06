@@ -8,7 +8,7 @@
 #ifndef CPP_INC_FLASH_H_
 #define CPP_INC_FLASH_H_
 
-#include "wall_class.h"
+#include "../Application/Inc/wall_class.h"
 #include "../Pheripheral/Include/typedef.h"
 
 void write_save_data(wall_class *wall_property);

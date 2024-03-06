@@ -11,8 +11,8 @@
 
 #include "wall_class.h"
 #include "make_map_class.h"
-#include "motion.h"
 #include "adachi_class.h"
+#include "../../Inc/motion.h"
 
 
 class Search

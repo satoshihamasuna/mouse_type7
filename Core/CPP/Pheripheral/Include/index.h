@@ -87,9 +87,6 @@ void FAN_Motor_Stop();
 //interrupt
 void Interrupt_Initialize();
 
-//void goal_set_vwall(int *gx,int *gy,int goal_size);
-//void goal_clear_vwall(int *gx,int *gy,int goal_size);
-//t_bool i_am_goal(t_position my_pos,int *gx,int *gy,int goal_size);
 
 #ifdef __cplusplus
 }

@@ -11,8 +11,6 @@
 #include <iostream>
 #include "../Pheripheral/Include/typedef.h"
 #include "../Pheripheral/Include/macro.h"
-#include "wall_class.h"
-#include "make_map_class.h"
 
 template<std::size_t SIZE,typename T>
 class Priority_queue{
