@@ -9,8 +9,8 @@
 #define CPP_INC_PRIORITY_QUEUE_H_
 
 #include <iostream>
-#include "../../Pheripheral/Include/typedef.h"
-#include "../../Pheripheral/Include/macro.h"
+//#include "../../Pheripheral/Include/typedef.h"
+//#include "../../Pheripheral/Include/macro.h"
 
 template<std::size_t SIZE,typename T>
 class Priority_queue{
@@ -25,10 +25,12 @@ class Priority_queue{
 		{
 		     return ((a < b) ? true : false);
 		}
+		/*
 		bool less_than(t_MapNode a,t_MapNode b)
 		{
 		     return ((a.cost < b.cost) ? true : false);
 		}
+		*/
 		void min_heapify(uint16_t parent_pos)
 		{
 			uint16_t left_ch  = 2*parent_pos + 1;

@@ -10,10 +10,10 @@
 
 #include "../../Pheripheral/Include/typedef.h"
 #include "wall_class.h"
-#include "../../Inc/run_task.h"
+#include "../../Task/Inc/run_task.h"
 #include "../../Component/Inc/singleton.h"
-#include "../../Inc/run_param.h"
-#include "../../Inc/motion.h"
+#include "../../Params/run_param.h"
+#include "../../Task/Inc/motion.h"
 #include "../../Component/Inc/controll.h"
 //#define DEBUG_MODE
 

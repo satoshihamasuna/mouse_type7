@@ -10,7 +10,7 @@
 
 #include "../../Pheripheral/Include/typedef.h"
 #include "../../Pheripheral/Include/macro.h"
-#include "../../Inc/sensing_task.h"
+#include "../../Task/Inc/sensing_task.h"
 
 
 class wall_class

@@ -12,7 +12,7 @@
 #include "wall_class.h"
 #include "make_map_class.h"
 #include "adachi_class.h"
-#include "../../Inc/motion.h"
+#include "../../Task/Inc/motion.h"
 
 
 class Search

@@ -5,8 +5,54 @@
  *      Author: sato1
  */
 #include "../Inc/half_float.h"
+#include <stdint.h>
+#include <math.h>
 
+float half_to_float(half_float hf) {
+    int sign = (hf.data >> 15) & 0x0001;
+    int exponent = (hf.data >> 10) & 0x001F;
+    int fraction = hf.data & 0x03FF;
 
+    if (exponent == 0) {
+        if (fraction == 0) {
+            return sign ? -0.0f : 0.0f;
+        } else {
+            return (sign ? -1.0f : 1.0f) * fraction * (1.0f / 1024.0f) * powf(2, -14);
+        }
+    } else if (exponent == 31) {
+        if (fraction == 0) {
+            return sign ? -INFINITY : INFINITY;
+        } else {
+            return NAN;
+        }
+    } else {
+
+        return (sign ? -1.0f : 1.0f) * (1.0f + fraction * (1.0f / 1024.0f)) * powf(2, exponent - 15);
+    }
+}
+
+// FloatからHalf Floatへの変換
+half_float float_to_half(float f) {
+    half_float hf;
+    uint32_t *f_ptr = (uint32_t *)&f;
+    uint32_t f_value = *f_ptr;
+
+    uint32_t sign = (f_value >> 31) & 0x00000001;
+    uint32_t exponent = (f_value >> 23) & 0x000000FF;
+    uint32_t fraction = f_value & 0x007FFFFF;
+
+    if (exponent == 0) {
+        hf.data = (sign << 15) | (0 << 10) | (fraction >> 13);
+    } else if (exponent == 255) {
+        hf.data = (sign << 15) | (31 << 10) | 0; // Infinite or NaN, exponent is set to 31
+    } else {
+        hf.data = (sign << 15) | ((exponent - 127 + 15) << 10) | (fraction >> 13);
+    }
+
+    return hf;
+}
+
+/*
 
 // Function to convert a 16-bit half float to a 32-bit float
 half_float float_to_half(float f) {
@@ -41,6 +87,6 @@ float half_to_float(half_float hf) {
     return *((float *)&bits);
 }
 
-
+*/
 
 

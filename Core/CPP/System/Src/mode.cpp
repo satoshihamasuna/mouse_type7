@@ -8,6 +8,7 @@
 #include "../../Pheripheral/Include/index.h"
 #include "../../Pheripheral/Include/macro.h"
 #include "../../Pheripheral/Include/typedef.h"
+//#include "../../Pheripheral/Include/interrupt.h"
 
 #include "../../Subsys/Inc/search_class.h"
 #include "../../Subsys/Inc/make_map_class.h"
@@ -18,14 +19,16 @@
 #include "../../Component/Inc/Kalman_filter.h"
 #include "../../Component/Inc/queue_class.h"
 #include "../../Component/Inc/priority_queue.h"
+#include "../../Component/Inc/path_follow.h"
 
-#include "../../Inc/sensing_task.h"
-#include "../../Inc/motion.h"
-#include "../../Inc/interrupt.h"
-#include "../../Inc/log_data.h"
-#include "../../Inc/run_param.h"
-#include "../../Inc/flash.h"
-#include "../../Inc/path_follow.h"
+#include "../../Task/Inc/sensing_task.h"
+#include "../../Task/Inc/motion.h"
+
+#include "../../Module/Inc/interrupt.h"
+#include "../../Module/Inc/log_data.h"
+#include "../../Module/Inc/flash.h"
+
+#include "../../Params/run_param.h"
 
 #include "../Inc/mode.h"
 

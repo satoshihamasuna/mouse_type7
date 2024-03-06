@@ -1,0 +1,4 @@
+flash.cpp:13:6:void read_wall_flash(wall_class*)	32	static
+flash.cpp:29:6:void write_wall_flash(wall_class*)	32	static
+flash.cpp:40:6:void write_save_data(wall_class*)	16	static
+flash.cpp:47:6:void read_save_data(wall_class*)	16	static

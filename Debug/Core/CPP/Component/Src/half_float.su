@@ -1,2 +1,2 @@
-half_float.cpp:12:12:half_float float_to_half(float)	32	static
-half_float.cpp:36:7:float half_to_float(half_float)	32	static
+half_float.cpp:11:7:float half_to_float(half_float)	40	static
+half_float.cpp:35:12:half_float float_to_half(float)	40	static

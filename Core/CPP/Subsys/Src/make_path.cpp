@@ -10,9 +10,9 @@
 #include "../../Pheripheral/Include/macro.h"
 
 #include "../../Component/Inc/controll.h"
-#include "../../Inc/run_task.h"
-#include "../../Inc/motion.h"
-#include "../../Inc/log_data.h"
+#include "../../Task/Inc/run_task.h"
+#include "../../Task/Inc/motion.h"
+#include "../../Module/Inc/log_data.h"
 
 #include "../Inc/make_path.h"
 

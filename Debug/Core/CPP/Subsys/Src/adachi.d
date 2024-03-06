@@ -8,13 +8,12 @@ Core/CPP/Subsys/Src/adachi.o: ../Core/CPP/Subsys/Src/adachi.cpp \
  ../Core/CPP/Subsys/Src/../Inc/make_map_class.h \
  ../Core/CPP/Subsys/Src/../Inc/../../Pheripheral/Include/typedef.h \
  ../Core/CPP/Subsys/Src/../Inc/../../Component/Inc/queue_class.h \
- ../Core/CPP/Subsys/Src/../Inc/../../Component/Inc/../../Pheripheral/Include/typedef.h \
  ../Core/CPP/Subsys/Src/../Inc/wall_class.h \
- ../Core/CPP/Subsys/Src/../Inc/../../Inc/sensing_task.h \
- ../Core/CPP/Subsys/Src/../Inc/../../Inc/../Component/Inc/singleton.h \
- ../Core/CPP/Subsys/Src/../Inc/../../Inc/run_task.h \
- ../Core/CPP/Subsys/Src/../Inc/../../Inc/../Pheripheral/Include/typedef.h \
- ../Core/CPP/Subsys/Src/../Inc/../../Inc/../Component/Inc/controll.h
+ ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/sensing_task.h \
+ ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Component/Inc/singleton.h \
+ ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/run_task.h \
+ ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Pheripheral/Include/typedef.h \
+ ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Component/Inc/controll.h
 
 ../Core/CPP/Subsys/Src/../../Pheripheral/Include/typedef.h:
 
@@ -34,16 +33,14 @@ Core/CPP/Subsys/Src/adachi.o: ../Core/CPP/Subsys/Src/adachi.cpp \
 
 ../Core/CPP/Subsys/Src/../Inc/../../Component/Inc/queue_class.h:
 
-../Core/CPP/Subsys/Src/../Inc/../../Component/Inc/../../Pheripheral/Include/typedef.h:
-
 ../Core/CPP/Subsys/Src/../Inc/wall_class.h:
 
-../Core/CPP/Subsys/Src/../Inc/../../Inc/sensing_task.h:
+../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/sensing_task.h:
 
-../Core/CPP/Subsys/Src/../Inc/../../Inc/../Component/Inc/singleton.h:
+../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Component/Inc/singleton.h:
 
-../Core/CPP/Subsys/Src/../Inc/../../Inc/run_task.h:
+../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/run_task.h:
 
-../Core/CPP/Subsys/Src/../Inc/../../Inc/../Pheripheral/Include/typedef.h:
+../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Pheripheral/Include/typedef.h:
 
-../Core/CPP/Subsys/Src/../Inc/../../Inc/../Component/Inc/controll.h:
+../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Component/Inc/controll.h:

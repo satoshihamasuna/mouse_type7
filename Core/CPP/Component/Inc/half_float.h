@@ -11,6 +11,7 @@
 #include <stdint.h>
 
 // 16-bit half-precision floating-point representation
+/*
 typedef union {
     uint16_t u;
     struct {
@@ -18,6 +19,11 @@ typedef union {
         uint16_t exponent : 5;
         uint16_t sign : 1;
     } parts;
+} half_float;
+*/
+
+typedef struct {
+    uint16_t data;
 } half_float;
 
 half_float float_to_half(float f) ;
