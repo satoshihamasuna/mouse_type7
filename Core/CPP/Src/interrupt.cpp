@@ -8,14 +8,13 @@
 
 #include "../Inc/motion.h"
 #include <math.h>
-//#include "../../Module/Include/index.h"
+#include "../Pheripheral/Include/index.h"
 #include "../Inc/interrupt.h"
 #include "../Inc/sensing_task.h"
-#include "../Inc/controll.h"
-//#include "../../Module/Include/macro.h"
 #include "../Inc/log_data.h"
-#include "../Inc/Kalman_filter.h"
-
+#include "../Component/Inc/controll.h"
+#include "../Component/Inc/half_float.h"
+#include "../Component/Inc/Kalman_filter.h"
 float lambda_slip;
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
@@ -107,18 +106,18 @@ void Interrupt::postprocess()
 	if(LogData::getInstance().log_enable == True)
 	{
 
-		LogData::getInstance().data[0][LogData::getInstance().data_count%1000] = controll_task::getInstance().mouse.velo;
-		LogData::getInstance().data[1][LogData::getInstance().data_count%1000] = controll_task::getInstance().target.velo;
-		LogData::getInstance().data[2][LogData::getInstance().data_count%1000] = controll_task::getInstance().mouse.rad_velo;
-		LogData::getInstance().data[3][LogData::getInstance().data_count%1000] = controll_task::getInstance().target.rad_velo;
-		LogData::getInstance().data[4][LogData::getInstance().data_count%1000] = controll_task::getInstance().mouse.length ;
-		LogData::getInstance().data[5][LogData::getInstance().data_count%1000] = (-1.0)*read_accel_y_axis();;//Battery_GetVoltage()  ;
-		LogData::getInstance().data[6][LogData::getInstance().data_count%1000] = controll_task::getInstance().mouse.turn_x;
-		LogData::getInstance().data[7][LogData::getInstance().data_count%1000] = controll_task::getInstance().mouse.turn_y ;
-		LogData::getInstance().data[8][LogData::getInstance().data_count%1000] = SensingTask::getInstance().sen_r.distance;//Rvelo_sum/((float)(ACC_BUFF_SIZE));
-		LogData::getInstance().data[9][LogData::getInstance().data_count%1000] = SensingTask::getInstance().sen_l.distance;//Lvelo_sum/((float)(ACC_BUFF_SIZE));
-		LogData::getInstance().data[10][LogData::getInstance().data_count%1000] = controll_task::getInstance().mouse.x_point;
-		LogData::getInstance().data[11][LogData::getInstance().data_count%1000] = controll_task::getInstance().V_l;
+		LogData::getInstance().data[0][LogData::getInstance().data_count%1000] = float_to_half(controll_task::getInstance().mouse.velo);
+		LogData::getInstance().data[1][LogData::getInstance().data_count%1000] = float_to_half(controll_task::getInstance().target.velo);
+		LogData::getInstance().data[2][LogData::getInstance().data_count%1000] = float_to_half(controll_task::getInstance().mouse.rad_velo);
+		LogData::getInstance().data[3][LogData::getInstance().data_count%1000] = float_to_half(controll_task::getInstance().target.rad_velo);
+		LogData::getInstance().data[4][LogData::getInstance().data_count%1000] = float_to_half(controll_task::getInstance().mouse.length);
+		LogData::getInstance().data[5][LogData::getInstance().data_count%1000] = float_to_half((-1.0)*read_accel_y_axis());//Battery_GetVoltage()  ;
+		LogData::getInstance().data[6][LogData::getInstance().data_count%1000] = float_to_half(controll_task::getInstance().mouse.turn_x);
+		LogData::getInstance().data[7][LogData::getInstance().data_count%1000] = float_to_half(controll_task::getInstance().mouse.turn_y);
+		LogData::getInstance().data[8][LogData::getInstance().data_count%1000] = float_to_half(SensingTask::getInstance().sen_r.distance);//Rvelo_sum/((float)(ACC_BUFF_SIZE));
+		LogData::getInstance().data[9][LogData::getInstance().data_count%1000] = float_to_half(SensingTask::getInstance().sen_l.distance);//Lvelo_sum/((float)(ACC_BUFF_SIZE));
+		LogData::getInstance().data[10][LogData::getInstance().data_count%1000] = float_to_half(controll_task::getInstance().mouse.x_point);
+		LogData::getInstance().data[11][LogData::getInstance().data_count%1000] = float_to_half(controll_task::getInstance().V_l);
 		LogData::getInstance().data_count++;
 		if(LogData::getInstance().data_count >= 1000) LogData::getInstance().data_count = 999;
 	}

@@ -8,7 +8,7 @@
 #ifndef CPP_INC_INTERRUPT_H_
 #define CPP_INC_INTERRUPT_H_
 
-#include "singleton.h"
+#include "../Component/Inc/singleton.h"
 #include "../Pheripheral/Include/macro.h"
 
 

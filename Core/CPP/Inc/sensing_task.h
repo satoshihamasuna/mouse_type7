@@ -8,7 +8,7 @@
 #ifndef CPP_INC_SENSING_TASK_H_
 #define CPP_INC_SENSING_TASK_H_
 
-#include "singleton.h"
+#include "../Component/Inc/singleton.h"
 #include "run_task.h"
 #include "../Pheripheral/Include/typedef.h"
 

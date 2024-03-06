@@ -27,10 +27,11 @@ OBJCOPY_BIN :=
 
 # Every subdirectory with source files must be described here
 SUBDIRS := \
-Core/CPP/Application/Src \
-Core/CPP/Module/Src \
+Core/CPP/Component/Src \
 Core/CPP/Pheripheral/Src \
 Core/CPP/Src \
+Core/CPP/Subsys/Src \
+Core/CPP/System/Src \
 Core/Src \
 Core/Startup \
 Drivers/STM32F4xx_HAL_Driver/Src \

@@ -9,7 +9,7 @@
 #define CPP_INC_PATH_FOLLOW_H_
 
 #include <stdio.h>
-#include "singleton.h"
+#include "../Component/Inc/singleton.h"
 #include "../Pheripheral/Include/typedef.h"
 
 class path_follow_class:public Singleton<path_follow_class>

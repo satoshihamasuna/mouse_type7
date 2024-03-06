@@ -11,9 +11,9 @@
 #include <stdio.h>
 #include "../Pheripheral/Include/typedef.h"
 #include "run_param.h"
-#include "singleton.h"
+#include "../Component/Inc/singleton.h"
 #include "run_task.h"
-#include "controll.h"
+#include "../Component/Inc/controll.h"
 
 
 class controll_task:public Singleton<controll_task>

@@ -1,11 +1,13 @@
 Core/CPP/Src/sensing_task.o: ../Core/CPP/Src/sensing_task.cpp \
- ../Core/CPP/Src/../Inc/sensing_task.h ../Core/CPP/Src/../Inc/singleton.h \
+ ../Core/CPP/Src/../Inc/sensing_task.h \
+ ../Core/CPP/Src/../Inc/../Component/Inc/singleton.h \
  ../Core/CPP/Src/../Inc/run_task.h \
  ../Core/CPP/Src/../Inc/../Pheripheral/Include/typedef.h \
  ../Core/CPP/Src/../Inc/../Pheripheral/Include/macro.h \
  ../Core/CPP/Src/../Inc/../Pheripheral/Include/ir_sensor.h \
- ../Core/CPP/Src/../Inc/../Pheripheral/Include/maze_typedef.h \
- ../Core/CPP/Src/../Inc/controll.h ../Core/CPP/Src/../Inc/sens_table.h \
+ ../Core/CPP/Src/../Inc/../Pheripheral/Include/../../Component/Inc/maze_typedef.h \
+ ../Core/CPP/Src/../Inc/../Component/Inc/controll.h \
+ ../Core/CPP/Src/../Inc/sens_table.h \
  ../Core/CPP/Src/../Pheripheral/Include/typedef.h \
  ../Core/CPP/Src/../Pheripheral/Include/index.h ../Core/Inc/main.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
@@ -48,7 +50,7 @@ Core/CPP/Src/sensing_task.o: ../Core/CPP/Src/sensing_task.cpp \
 
 ../Core/CPP/Src/../Inc/sensing_task.h:
 
-../Core/CPP/Src/../Inc/singleton.h:
+../Core/CPP/Src/../Inc/../Component/Inc/singleton.h:
 
 ../Core/CPP/Src/../Inc/run_task.h:
 
@@ -58,9 +60,9 @@ Core/CPP/Src/sensing_task.o: ../Core/CPP/Src/sensing_task.cpp \
 
 ../Core/CPP/Src/../Inc/../Pheripheral/Include/ir_sensor.h:
 
-../Core/CPP/Src/../Inc/../Pheripheral/Include/maze_typedef.h:
+../Core/CPP/Src/../Inc/../Pheripheral/Include/../../Component/Inc/maze_typedef.h:
 
-../Core/CPP/Src/../Inc/controll.h:
+../Core/CPP/Src/../Inc/../Component/Inc/controll.h:
 
 ../Core/CPP/Src/../Inc/sens_table.h:
 

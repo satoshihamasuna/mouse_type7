@@ -13,7 +13,7 @@ motion.h:19:7:controll_task::controll_task()	16	static
 singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = controll_task]	8	static
 singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = SensingTask]	4	static
 singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = Interrupt]	4	static
-Kalman_filter.h:14:7:KalmanFilter::KalmanFilter()	16	static
+Kalman_filter.h:13:7:KalmanFilter::KalmanFilter()	16	static
 singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = KalmanFilter]	8	static
 log_data.h:14:7:LogData::LogData()	16	static
 singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = LogData]	8	static

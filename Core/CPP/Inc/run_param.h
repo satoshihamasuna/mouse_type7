@@ -8,7 +8,7 @@
 #ifndef CPP_INC_RUN_PARAM_H_
 #define CPP_INC_RUN_PARAM_H_
 
-#include "controll.h"
+#include "../Component/Inc/controll.h"
 #include "run_task.h"
 #include "../Pheripheral/Include/typedef.h"
 

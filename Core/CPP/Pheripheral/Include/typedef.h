@@ -15,7 +15,9 @@ extern "C" {
 #include <stdio.h>
 #include "macro.h"
 #include "ir_sensor.h"
-#include "maze_typedef.h"
+//#include "maze_typedef.h"
+#include "../../Component/Inc/maze_typedef.h"
+
 
 typedef enum{
 	True   = 1,

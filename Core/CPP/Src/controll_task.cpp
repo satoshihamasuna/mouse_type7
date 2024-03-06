@@ -5,14 +5,15 @@
  *      Author: sato1
  */
 
+#include "../Pheripheral/Include/index.h"
+#include "../Pheripheral/Include/typedef.h"
+
+#include "../Component/Inc/controll.h"
 
 #include "../Inc/motion.h"
 #include "../Inc/run_task.h"
-#include "../Pheripheral/Include/index.h"
-#include "../Pheripheral/Include/typedef.h"
 #include "../Inc/sensing_task.h"
 #include "../Inc/path_follow.h"
-#include "../Inc/controll.h"
 
 float battery = 0.0;
 

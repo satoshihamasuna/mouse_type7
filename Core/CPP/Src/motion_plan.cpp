@@ -8,11 +8,11 @@
 
 #include "../Inc/motion.h"
 //#include "../../Module/Include/index.h"
-#include "../Inc/controll.h"
+#include "../Component/Inc/controll.h"
 #include "../Inc/sensing_task.h"
 #include "../Inc/run_task.h"
 #include "../Inc/turn_table.h"
-#include "../Inc/controll.h"
+
 void motion_plan::motion_start()
 {
 	move_task->mouse.length  = 0.0;

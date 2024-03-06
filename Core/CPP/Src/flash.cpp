@@ -10,7 +10,7 @@
 
 #include "../Pheripheral/Include/index.h"
 #include "../Pheripheral/Include/macro.h"
-#include "../Inc/wall_class.h"
+#include "../Application/Inc/wall_class.h"
 
 #include <string.h>
 #include <stdint.h>

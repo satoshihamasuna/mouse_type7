@@ -9,7 +9,7 @@
 #define CPP_INC_RUN_TASK_H_
 
 #include "../Pheripheral/Include/typedef.h"
-#include "controll.h"
+#include "../Component/Inc/controll.h"
 
 typedef enum{
 	Turn_None 	= 0,

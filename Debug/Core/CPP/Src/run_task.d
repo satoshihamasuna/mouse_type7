@@ -36,16 +36,18 @@ Core/CPP/Src/run_task.o: ../Core/CPP/Src/run_task.cpp \
  ../Core/CPP/Src/../Pheripheral/Include/typedef.h \
  ../Core/CPP/Src/../Pheripheral/Include/macro.h \
  ../Core/CPP/Src/../Pheripheral/Include/ir_sensor.h \
- ../Core/CPP/Src/../Pheripheral/Include/maze_typedef.h \
+ ../Core/CPP/Src/../Pheripheral/Include/../../Component/Inc/maze_typedef.h \
  ../Core/CPP/Src/../Pheripheral/Include/lsm6dsr_reg.h \
  ../Core/CPP/Src/../Pheripheral/Include/typedef.h \
  ../Core/CPP/Src/../Inc/run_task.h \
  ../Core/CPP/Src/../Inc/../Pheripheral/Include/typedef.h \
- ../Core/CPP/Src/../Inc/controll.h ../Core/CPP/Src/../Inc/singleton.h \
+ ../Core/CPP/Src/../Inc/../Component/Inc/controll.h \
  ../Core/CPP/Src/../Pheripheral/Include/macro.h \
  ../Core/CPP/Src/../Inc/turn_table.h \
- ../Core/CPP/Src/../Inc/sensing_task.h ../Core/CPP/Src/../Inc/run_task.h \
- ../Core/CPP/Src/../Inc/motion.h ../Core/CPP/Src/../Inc/run_param.h
+ ../Core/CPP/Src/../Inc/sensing_task.h \
+ ../Core/CPP/Src/../Inc/../Component/Inc/singleton.h \
+ ../Core/CPP/Src/../Inc/run_task.h ../Core/CPP/Src/../Inc/motion.h \
+ ../Core/CPP/Src/../Inc/run_param.h
 
 ../Core/CPP/Src/../Pheripheral/Include/index.h:
 
@@ -133,7 +135,7 @@ Core/CPP/Src/run_task.o: ../Core/CPP/Src/run_task.cpp \
 
 ../Core/CPP/Src/../Pheripheral/Include/ir_sensor.h:
 
-../Core/CPP/Src/../Pheripheral/Include/maze_typedef.h:
+../Core/CPP/Src/../Pheripheral/Include/../../Component/Inc/maze_typedef.h:
 
 ../Core/CPP/Src/../Pheripheral/Include/lsm6dsr_reg.h:
 
@@ -143,15 +145,15 @@ Core/CPP/Src/run_task.o: ../Core/CPP/Src/run_task.cpp \
 
 ../Core/CPP/Src/../Inc/../Pheripheral/Include/typedef.h:
 
-../Core/CPP/Src/../Inc/controll.h:
-
-../Core/CPP/Src/../Inc/singleton.h:
+../Core/CPP/Src/../Inc/../Component/Inc/controll.h:
 
 ../Core/CPP/Src/../Pheripheral/Include/macro.h:
 
 ../Core/CPP/Src/../Inc/turn_table.h:
 
 ../Core/CPP/Src/../Inc/sensing_task.h:
+
+../Core/CPP/Src/../Inc/../Component/Inc/singleton.h:
 
 ../Core/CPP/Src/../Inc/run_task.h:
 

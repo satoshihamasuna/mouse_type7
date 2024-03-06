@@ -36,10 +36,13 @@ Core/CPP/Src/log_data.o: ../Core/CPP/Src/log_data.cpp \
  ../Core/CPP/Src/../Pheripheral/Include/typedef.h \
  ../Core/CPP/Src/../Pheripheral/Include/macro.h \
  ../Core/CPP/Src/../Pheripheral/Include/ir_sensor.h \
- ../Core/CPP/Src/../Pheripheral/Include/maze_typedef.h \
+ ../Core/CPP/Src/../Pheripheral/Include/../../Component/Inc/maze_typedef.h \
  ../Core/CPP/Src/../Pheripheral/Include/lsm6dsr_reg.h \
- ../Core/CPP/Src/../Inc/log_data.h ../Core/CPP/Src/../Inc/singleton.h \
- ../Core/CPP/Src/../Inc/../Pheripheral/Include/typedef.h
+ ../Core/CPP/Src/../Inc/log_data.h \
+ ../Core/CPP/Src/../Inc/../Pheripheral/Include/typedef.h \
+ ../Core/CPP/Src/../Inc/../Component/Inc/half_float.h \
+ ../Core/CPP/Src/../Inc/../Component/Inc/singleton.h \
+ ../Core/CPP/Src/../Component/Inc/half_float.h
 
 ../Core/CPP/Src/../Pheripheral/Include/index.h:
 
@@ -127,12 +130,16 @@ Core/CPP/Src/log_data.o: ../Core/CPP/Src/log_data.cpp \
 
 ../Core/CPP/Src/../Pheripheral/Include/ir_sensor.h:
 
-../Core/CPP/Src/../Pheripheral/Include/maze_typedef.h:
+../Core/CPP/Src/../Pheripheral/Include/../../Component/Inc/maze_typedef.h:
 
 ../Core/CPP/Src/../Pheripheral/Include/lsm6dsr_reg.h:
 
 ../Core/CPP/Src/../Inc/log_data.h:
 
-../Core/CPP/Src/../Inc/singleton.h:
-
 ../Core/CPP/Src/../Inc/../Pheripheral/Include/typedef.h:
+
+../Core/CPP/Src/../Inc/../Component/Inc/half_float.h:
+
+../Core/CPP/Src/../Inc/../Component/Inc/singleton.h:
+
+../Core/CPP/Src/../Component/Inc/half_float.h:

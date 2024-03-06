@@ -36,7 +36,7 @@ Core/CPP/Pheripheral/Src/imu.o: ../Core/CPP/Pheripheral/Src/imu.c \
  ../Core/CPP/Pheripheral/Src/../Include/typedef.h \
  ../Core/CPP/Pheripheral/Src/../Include/macro.h \
  ../Core/CPP/Pheripheral/Src/../Include/ir_sensor.h \
- ../Core/CPP/Pheripheral/Src/../Include/maze_typedef.h \
+ ../Core/CPP/Pheripheral/Src/../Include/../../Component/Inc/maze_typedef.h \
  ../Core/CPP/Pheripheral/Src/../Include/lsm6dsr_reg.h \
  ../Core/CPP/Pheripheral/Src/../Include/lsm6dsr_reg.h
 
@@ -126,7 +126,7 @@ Core/CPP/Pheripheral/Src/imu.o: ../Core/CPP/Pheripheral/Src/imu.c \
 
 ../Core/CPP/Pheripheral/Src/../Include/ir_sensor.h:
 
-../Core/CPP/Pheripheral/Src/../Include/maze_typedef.h:
+../Core/CPP/Pheripheral/Src/../Include/../../Component/Inc/maze_typedef.h:
 
 ../Core/CPP/Pheripheral/Src/../Include/lsm6dsr_reg.h:
 

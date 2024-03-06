@@ -1,0 +1,241 @@
+/*
+ * debug.cpp
+ *
+ *  Created on: 2023/12/03
+ *      Author: sato1
+ */
+
+
+
+#include<stdio.h>
+
+#include "../../Pheripheral/Include/index.h"
+#include "../../Pheripheral/Include/macro.h"
+#include "../../Pheripheral/Include/typedef.h"
+
+#include "../../Subsys/Inc/search_class.h"
+#include "../../Subsys/Inc/make_map_class.h"
+#include "../../Subsys/Inc/wall_class.h"
+#include "../../Subsys/Inc/make_path.h"
+
+#include "../../Component/Inc/controll.h"
+#include "../../Component/Inc/Kalman_filter.h"
+#include "../../Component/Inc/queue_class.h"
+#include "../../Component/Inc/priority_queue.h"
+
+#include "../../Inc/sensing_task.h"
+#include "../../Inc/motion.h"
+#include "../../Inc/interrupt.h"
+#include "../../Inc/log_data.h"
+#include "../../Inc/run_param.h"
+#include "../../Inc/flash.h"
+#include "../../Inc/path_follow.h"
+
+#include "../Inc/mode.h"
+
+#define ENABLE (0x01 << 4)
+
+namespace Mode
+{
+	void Debug3()
+	{
+	t_bool debug_end = False;
+	uint8_t mode = Return_LED_Status() & 0x30;
+	uint8_t param = 0x00;
+	uint8_t enable = 0x00;
+
+	ring_queue<1024,t_MapNode> maze_q;
+	motion_plan mp(&controll_task::getInstance());
+	wall_class wall_data(&SensingTask::getInstance());
+	wall_data.init_maze();
+	make_map map_data(&wall_data,&maze_q);
+	Dijkstra run_path(&wall_data);
+	const t_param *const *turn_mode;
+	turn_mode = mode_1400;
+	float acc  = 12.0;
+	float velo = 1.4;
+	uint32_t time = Interrupt::getInstance().return_time_count();
+	path_follow_class::getInstance().set_path_follow_gain(50.0, 0.0);
+	while(debug_end == False)
+	{
+		enable = Mode::Select(enable,0x01,Encoder_GetProperty_Left());
+		param = (enable == 0x00) ? Mode::Select(param,0x0f,Encoder_GetProperty_Right()) : param;
+
+		Battery_LimiterVoltage();
+		if(enable == 0x01)
+		{
+			if((Interrupt::getInstance().return_time_count() - time) > 400)
+			{
+				time = Interrupt::getInstance().return_time_count();
+				Indicate_LED((Return_LED_Status() != (mode|param)) ?  mode|param : 0x00);
+			}
+		}
+		else
+		{
+			Indicate_LED(mode|param);
+		}
+		switch((enable<<4)|param)
+		{
+			case ENABLE|0x00:
+		  	   if(SensingTask::getInstance().IrSensor_Avg() > 2500){
+					  for(int i = 0;i < 11;i++)
+					  {
+						  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
+						  HAL_Delay(50);
+					  }
+					  enable = 0x00;
+					  HAL_Delay(500);
+		  	    }
+		  	    break;
+			case ENABLE|0x01:
+		  	   if(SensingTask::getInstance().IrSensor_Avg() > 2500){
+					  for(int i = 0;i < 11;i++)
+					  {
+						  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
+						  HAL_Delay(50);
+					  }
+		  	    }
+				break;
+			case ENABLE|0x02:
+				if(SensingTask::getInstance().IrSensor_Avg() > 2500){
+					  for(int i = 0;i < 11;i++)
+					  {
+						  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
+						  HAL_Delay(50);
+					  }
+			  		  enable = 0x00;
+			  		  HAL_Delay(500);
+				}
+				break;
+			case ENABLE|0x03:
+				if(SensingTask::getInstance().IrSensor_Avg() > 2500){
+					  for(int i = 0;i < 11;i++)
+					  {
+						  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
+						  HAL_Delay(50);
+					  }
+					  enable = 0x00;
+					  HAL_Delay(500);
+				}
+				break;
+			case ENABLE|0x04:
+				if(SensingTask::getInstance().IrSensor_Avg() > 2500){
+					  for(int i = 0;i < 11;i++)
+					  {
+						  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
+						  HAL_Delay(50);
+					  }
+				}
+				break;
+			case ENABLE|0x05:
+				if(SensingTask::getInstance().IrSensor_Avg() > 2500){
+					  for(int i = 0;i < 11;i++)
+					  {
+						  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
+						  HAL_Delay(50);
+					  }
+				}
+				break;
+			case ENABLE|0x06:
+				if(SensingTask::getInstance().IrSensor_Avg() > 2500){
+					  for(int i = 0;i < 11;i++)
+					  {
+						  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
+						  HAL_Delay(50);
+					  }
+				}
+				break;
+			case ENABLE|0x07:
+				if(SensingTask::getInstance().IrSensor_Avg() > 2500){
+					  for(int i = 0;i < 11;i++)
+					  {
+						  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
+						  HAL_Delay(50);
+					  }
+				}
+				break;
+			case ENABLE|0x08:
+				if(SensingTask::getInstance().IrSensor_Avg() > 2500){
+					  for(int i = 0;i < 11;i++)
+					  {
+						  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
+						  HAL_Delay(50);
+					  }
+				}
+				break;
+			case ENABLE|0x09:
+				if(SensingTask::getInstance().IrSensor_Avg() > 2500){
+					  for(int i = 0;i < 11;i++)
+					  {
+						  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
+						  HAL_Delay(50);
+					  }
+				}
+				break;
+			case ENABLE|0x0A:
+				if(SensingTask::getInstance().IrSensor_Avg() > 2500){
+					  for(int i = 0;i < 11;i++)
+					  {
+						  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
+						  HAL_Delay(50);
+					  }
+				}
+				break;
+				case ENABLE|0x0B:
+				if(SensingTask::getInstance().IrSensor_Avg() > 2500){
+					  for(int i = 0;i < 11;i++)
+					  {
+						  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
+						  HAL_Delay(50);
+					  }
+				}
+				break;
+			case ENABLE|0x0C:
+				if(SensingTask::getInstance().IrSensor_Avg() > 2500){
+					  for(int i = 0;i < 11;i++)
+					  {
+						  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
+						  HAL_Delay(50);
+					  }
+					  HAL_Delay(500);
+				}
+				break;
+			case ENABLE|0x0D:
+				if(SensingTask::getInstance().IrSensor_Avg() > 2500){
+					  for(int i = 0;i < 11;i++)
+					  {
+						  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
+						  HAL_Delay(50);
+					  }
+
+				}
+				break;
+			case ENABLE|0x0E:
+				if(SensingTask::getInstance().IrSensor_Avg() > 2500){
+					for(int i = 0;i < 11;i++)
+				    {
+				    	(i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
+				    	HAL_Delay(50);
+					}
+					LogData::getInstance().indicate_data();
+					enable = 0x00;
+				}
+				break;
+			case ENABLE|0x0F:
+				if(SensingTask::getInstance().IrSensor_Avg() > 2500){
+					for(int i = 0;i < 11;i++)
+					{
+					  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
+					  HAL_Delay(50);
+					}
+					debug_end = True;
+				}
+				break;
+			default:
+				break;
+			}
+		}
+
+	}
+}
+
