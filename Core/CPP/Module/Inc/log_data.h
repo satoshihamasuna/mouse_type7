@@ -19,7 +19,7 @@ class LogData:public Singleton<LogData>
 	    t_bool log_enable = False;
 		const int data_size = 1000;
 		int data_count = 0;
-		float data[12][1000];
+		half_float data[12][1000];
 		void indicate_data();
 		void init_log()
 		{
@@ -27,7 +27,7 @@ class LogData:public Singleton<LogData>
 			{
 				for(int j = 0;j < data_size;j++)
 				{
-					data[i][j] = (0.0f);
+					data[i][j] = float_to_half(0.0f);
 				}
 			}
 		}

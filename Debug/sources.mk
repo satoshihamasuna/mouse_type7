@@ -28,6 +28,7 @@ OBJCOPY_BIN :=
 # Every subdirectory with source files must be described here
 SUBDIRS := \
 Core/CPP/Component/Src \
+Core/CPP/Component/codegen \
 Core/CPP/Module/Src \
 Core/CPP/Pheripheral/Src \
 Core/CPP/Subsys/Src \

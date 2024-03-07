@@ -41,6 +41,8 @@ Core/CPP/Module/Src/log_data.o: ../Core/CPP/Module/Src/log_data.cpp \
  ../Core/CPP/Module/Src/../Inc/log_data.h \
  ../Core/CPP/Module/Src/../Inc/../../Pheripheral/Include/typedef.h \
  ../Core/CPP/Module/Src/../Inc/../../Component/Inc/half_float.h \
+ ../Core/CPP/Module/Src/../Inc/../../Component/Inc/../codegen/rtwhalf.h \
+ ../Core/CPP/Module/Src/../Inc/../../Component/Inc/../codegen/rtwtypes.h \
  ../Core/CPP/Module/Src/../Inc/../../Component/Inc/singleton.h \
  ../Core/CPP/Module/Src/../../Component/Inc/half_float.h
 
@@ -139,6 +141,10 @@ Core/CPP/Module/Src/log_data.o: ../Core/CPP/Module/Src/log_data.cpp \
 ../Core/CPP/Module/Src/../Inc/../../Pheripheral/Include/typedef.h:
 
 ../Core/CPP/Module/Src/../Inc/../../Component/Inc/half_float.h:
+
+../Core/CPP/Module/Src/../Inc/../../Component/Inc/../codegen/rtwhalf.h:
+
+../Core/CPP/Module/Src/../Inc/../../Component/Inc/../codegen/rtwtypes.h:
 
 ../Core/CPP/Module/Src/../Inc/../../Component/Inc/singleton.h:
 

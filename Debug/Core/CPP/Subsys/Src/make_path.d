@@ -54,6 +54,8 @@ Core/CPP/Subsys/Src/make_path.o: ../Core/CPP/Subsys/Src/make_path.cpp \
  ../Core/CPP/Subsys/Src/../../Module/Inc/log_data.h \
  ../Core/CPP/Subsys/Src/../../Module/Inc/../../Pheripheral/Include/typedef.h \
  ../Core/CPP/Subsys/Src/../../Module/Inc/../../Component/Inc/half_float.h \
+ ../Core/CPP/Subsys/Src/../../Module/Inc/../../Component/Inc/../codegen/rtwhalf.h \
+ ../Core/CPP/Subsys/Src/../../Module/Inc/../../Component/Inc/../codegen/rtwtypes.h \
  ../Core/CPP/Subsys/Src/../../Module/Inc/../../Component/Inc/singleton.h \
  ../Core/CPP/Subsys/Src/../Inc/make_path.h \
  ../Core/CPP/Subsys/Src/../Inc/../../Pheripheral/Include/typedef.h \
@@ -190,6 +192,10 @@ Core/CPP/Subsys/Src/make_path.o: ../Core/CPP/Subsys/Src/make_path.cpp \
 ../Core/CPP/Subsys/Src/../../Module/Inc/../../Pheripheral/Include/typedef.h:
 
 ../Core/CPP/Subsys/Src/../../Module/Inc/../../Component/Inc/half_float.h:
+
+../Core/CPP/Subsys/Src/../../Module/Inc/../../Component/Inc/../codegen/rtwhalf.h:
+
+../Core/CPP/Subsys/Src/../../Module/Inc/../../Component/Inc/../codegen/rtwtypes.h:
 
 ../Core/CPP/Subsys/Src/../../Module/Inc/../../Component/Inc/singleton.h:
 
