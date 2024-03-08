@@ -3,6 +3,7 @@
 "Core/CPP/Component/Src/kalman_filter.o"
 "Core/CPP/Component/Src/path_follow.o"
 "Core/CPP/Component/codegen/rtwhalf.o"
+"Core/CPP/Module/Src/communicate.o"
 "Core/CPP/Module/Src/flash.o"
 "Core/CPP/Module/Src/interrupt.o"
 "Core/CPP/Module/Src/log_data.o"
