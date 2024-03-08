@@ -18,7 +18,7 @@ singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = path_follow_cl
 singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = Interrupt]	4	static
 Kalman_filter.h:13:7:KalmanFilter::KalmanFilter()	16	static
 singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = KalmanFilter]	8	static
-log_data.h:15:7:LogData::LogData()	16	static
+log_data.h:18:7:LogData::LogData()	16	static
 singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = LogData]	8	static
 debug.cpp:540:1:void __static_initialization_and_destruction_0(int, int)	16	static
 debug.cpp:540:1:cpp)	8	static

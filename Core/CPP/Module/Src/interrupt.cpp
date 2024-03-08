@@ -119,7 +119,7 @@ void Interrupt::postprocess()
 		LogData::getInstance().data[10][LogData::getInstance().data_count%1000] =  float_to_half(controll_task::getInstance().mouse.x_point);
 		LogData::getInstance().data[11][LogData::getInstance().data_count%1000] =  float_to_half(controll_task::getInstance().V_l);
 		LogData::getInstance().data_count++;
-		if(LogData::getInstance().data_count >= 1000) LogData::getInstance().data_count = 999;
+		if(LogData::getInstance().data_count >= LogData::getInstance().data_size) LogData::getInstance().data_count = LogData::getInstance().data_size - 1;
 	}
 	controll_task::getInstance().motionPostControll();
 	time_count = time_count + 1;
