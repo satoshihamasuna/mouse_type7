@@ -14,7 +14,7 @@
 extern "C" {
 #endif
 
-#include <stdio.h>
+//#include <stdio.h>
 #include "main.h"
 #include "stm32f4xx_hal.h"
 #include "adc.h"
@@ -26,6 +26,7 @@ extern "C" {
 #include "typedef.h"
 #include "lsm6dsr_reg.h"
 #include "macro.h"
+
 //#include "../CPP/machine_var.h"
 
 void CPP_Main();

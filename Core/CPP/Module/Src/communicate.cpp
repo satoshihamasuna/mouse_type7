@@ -6,22 +6,21 @@
  */
 
 
-
-
-#include "../../Pheripheral/Include/index.h"
+#include "../Inc/communicate.h"
+#include <stdio.h>
 #include "../../Component/Inc/queue_class.h"
 
 #define _BS				0x08	// バックスペース
 #define _ESC			0x1b	// エスケープシーケンス
 #define TRX_BUFFER_SIZE 128		// 送受信バッファサイズ
-/*
-struct {
-    volatile uint16_t 	head;
-    volatile uint16_t	tail;
-    volatile uint16_t	remain;
-    volatile uint8_t	data[TRX_BUFFER_SIZE];
-} tx_buffer, rx_buffer; // FIFOバッファ
-*/
+
+//struct {
+//    volatile uint16_t 	head;
+//    volatile uint16_t	tail;
+//    volatile uint16_t	remain;
+//    volatile uint8_t	data[TRX_BUFFER_SIZE];
+//} tx_buffer, rx_buffer; // FIFOバッファ
+
 
 ring_queue<TRX_BUFFER_SIZE,volatile uint8_t> tx_buffer;
 ring_queue<TRX_BUFFER_SIZE,volatile uint8_t> rx_buffer;
@@ -39,53 +38,46 @@ uint8_t Communicate_TerminalRecv( void )
 	return (*data);
 }
 
-void Communicate_RxPushData( void )
-{
-// head（DMACが受信データを書き込む位置）に新しく受信データが蓄積される．
-// tailから読み出せばいい
-// headがtailに追いつくとバッファオーバーフローとなり正しく読み出せない
-
-	// これ以上格納できない場合はそのまま戻る
-	//if(rx_buffer.remain >= TRX_BUFFER_SIZE){
-	if(rx_buffer.queue_length() >= TRX_BUFFER_SIZE)
-	{
-		return;
-	}
-
-	rx_buffer.push(rx_data);
+//void Communicate_RxPushData( void )
+//{
+//// head（DMACが受信データを書き込む位置）に新しく受信データが蓄積される．
+//// tailから読み出せばいい
+//// headがtailに追いつくとバッファオーバーフローとなり正しく読み出せない
+//
+//	// これ以上格納できない場合はそのまま戻る
+//	if(rx_buffer.remain >= TRX_BUFFER_SIZE){
+//		return;
+//	}
+//
 //	rx_buffer.data[rx_buffer.head++] = rx_data;	// 書き込みポインタにデータを格納
 //	rx_buffer.remain++;
 //	// 終端に来たら、先頭に戻る
 //	if( rx_buffer.head >= TRX_BUFFER_SIZE ) {
 //		rx_buffer.head = 0;
 //	} else;
-}
-
-uint8_t Communicate_RxPopData( void )
-{
-	uint8_t ch;
+//}
+//
+//uint8_t Communicate_RxPopData( void )
+//{
+//	uint8_t ch;
 //
 //	// この関数は多重に実行されるとまずいので割り込みを禁止する
-	__disable_irq();
-
-	// データがない場合
-	//if( rx_buffer.remain == 0 ) {
-	if(rx_buffer.queue_length() == 0){
-		// 割り込み許可
-		__enable_irq();
-
-		// データを受信するまで待機
-		//while( rx_buffer.remain == 0 ) {
-		while(rx_buffer.queue_length() == 0)
-		{
-			HAL_UART_Receive_DMA( &huart1, (uint8_t*)(&rx_data), 1 );
-		}
-	} else;
-
-	ch = rx_buffer.pop();
+//	__disable_irq();
+//
+//	// データがない場合
+//	if( rx_buffer.remain == 0 ) {
+//		// 割り込み許可
+//		__enable_irq();
+//
+//		// データを受信するまで待機
+//		while( rx_buffer.remain == 0 ) {
+//			HAL_UART_Receive_DMA( &huart1, (uint8_t*)(&rx_data), 1 );
+//		}
+//	} else;
+//
 //	// 読み出しデータの取り出し
 //	ch = rx_buffer.data[rx_buffer.tail++];
-	//	rx_buffer.remain--;
+//	rx_buffer.remain--;
 //
 //	// 終端に来たら先頭に戻る
 //	if( rx_buffer.tail >= TRX_BUFFER_SIZE ) {
@@ -93,8 +85,119 @@ uint8_t Communicate_RxPopData( void )
 //	} else;
 //
 //	// 割り込み許可
-	__enable_irq();
+//	__enable_irq();
 //
+//	return ch;
+//}
+//
+///* ---------------------------------------------------------------
+//	UART1で1文字送信する関数
+//--------------------------------------------------------------- */
+//void Communicate_TxPushData( int8_t data )
+//{
+//// headに新しく追加する
+//// tailは次に送信されるデータを指す
+//// バッファに空きが無い（headがtailに追いついた）場合は待機する
+//
+//	// バッファ内データ数をカウントし，空きがない場合待機する
+//	// バッファフルで待機しているときには割り込みを許可するためにwhileループになっている
+//	while(1) {
+//		// この関数は多重に実行されるとまずいので割り込みを禁止する
+//		__disable_irq();
+//
+//		// DMAを一時的に停止
+//		HAL_DMA_Abort(huart1.hdmatx);
+//
+//		// バッファに空きがあればループから抜ける
+//		if( tx_buffer.remain < TRX_BUFFER_SIZE ) {
+//			break;
+//		} else;
+//
+//		// DMA動作再開
+//		HAL_UART_Transmit_DMA(&huart1, (uint8_t*)(&tx_data), 1);
+//
+//		// 割り込み許可
+//		__enable_irq();
+//
+//		// バッファに空きができるまで待機（この間割り込みが発生してもよい）
+//		while(tx_buffer.remain == TRX_BUFFER_SIZE);
+//	}
+//	// ここの時点でDMACは停止，割り込みは禁止されている
+//
+//	// 書き込みポインタにデータを格納
+//	tx_buffer.data[tx_buffer.head++] = data;
+//	tx_buffer.remain++;
+//	// 終端に来たら、先頭に戻る
+//	if(tx_buffer.head >= TRX_BUFFER_SIZE){
+//		tx_buffer.head = 0;
+//	} else;
+//
+//	// DMA動作再開
+//	HAL_UART_Transmit_DMA(&huart1, (uint8_t*)(&tx_data), 1);
+//
+//	// 割り込み許可
+//	__enable_irq();
+//}
+//
+//void Communicate_TxPopData( void )
+//{
+//	// データがない場合
+//	if( tx_buffer.remain == 0 ) {
+//		// DMAを停止
+//		HAL_UART_DMAStop(&huart1);
+//	} else {
+//		// 読み出しデータの取り出し
+//		tx_data = tx_buffer.data[tx_buffer.tail++];
+//		tx_buffer.remain--;
+//
+//		// 終端に来たら先頭に戻る
+//		if(tx_buffer.tail >= TRX_BUFFER_SIZE){
+//			tx_buffer.tail = 0;
+//		} else;
+//
+//		// DMA動作再開
+//		HAL_UART_Transmit_DMA(&huart1, (uint8_t*)(&tx_data), 1);
+//	}
+//}
+
+void Communicate_RxPushData( void )
+{
+// head（DMACが受信データを書き込む位置）に新しく受信データが蓄積される．
+// tailから読み出せばいい
+// headがtailに追いつくとバッファオーバーフローとなり正しく読み出せない
+
+	if(rx_buffer.queue_length() >= TRX_BUFFER_SIZE)
+	{
+		return;
+	}
+
+	rx_buffer.push(rx_data);					// 書き込みポインタにデータを格納
+}
+
+uint8_t Communicate_RxPopData( void )
+{
+	uint8_t ch;
+
+	// この関数は多重に実行されるとまずいので割り込みを禁止する
+	__disable_irq();
+
+	// データがない場合
+	if(rx_buffer.queue_length() == 0){
+		// 割り込み許可
+		__enable_irq();
+
+		// データを受信するまで待機
+		while(rx_buffer.queue_length() == 0)
+		{
+			HAL_UART_Receive_DMA( &huart1, (uint8_t*)(&rx_data), 1 );
+		}
+	} else;
+
+	ch = rx_buffer.pop();	// 読み出しデータの取り出し
+
+
+	// 割り込み許可
+	__enable_irq();
 	return ch;
 }
 
@@ -117,7 +220,6 @@ void Communicate_TxPushData( int8_t data )
 		HAL_DMA_Abort(huart1.hdmatx);
 
 		// バッファに空きがあればループから抜ける
-		//if( tx_buffer.remain < TRX_BUFFER_SIZE ) {
 		if( tx_buffer.queue_length() < TRX_BUFFER_SIZE ) {
 				break;
 		} else;
@@ -129,19 +231,12 @@ void Communicate_TxPushData( int8_t data )
 		__enable_irq();
 
 		// バッファに空きができるまで待機（この間割り込みが発生してもよい）
-		//while(tx_buffer.remain == TRX_BUFFER_SIZE);
 		while(tx_buffer.queue_length() == TRX_BUFFER_SIZE);
 	}
 	// ここの時点でDMACは停止，割り込みは禁止されている
 
 	// 書き込みポインタにデータを格納
 	tx_buffer.push(data);
-//	tx_buffer.data[tx_buffer.head++] = data;
-//	tx_buffer.remain++;
-//	// 終端に来たら、先頭に戻る
-//	if(tx_buffer.head >= TRX_BUFFER_SIZE){
-//		tx_buffer.head = 0;
-//	} else;
 
 	// DMA動作再開
 	HAL_UART_Transmit_DMA(&huart1, (uint8_t*)(&tx_data), 1);
@@ -153,7 +248,6 @@ void Communicate_TxPushData( int8_t data )
 void Communicate_TxPopData( void )
 {
 	// データがない場合
-	//if( tx_buffer.remain == 0 ) {
 	if(tx_buffer.queue_length() == 0)
 	{
 		// DMAを停止
@@ -161,24 +255,17 @@ void Communicate_TxPopData( void )
 	}
 	else
 	{
-		tx_data = tx_buffer.pop();
 		// 読み出しデータの取り出し
-		//tx_data = tx_buffer.data[tx_buffer.tail++];
-//		tx_buffer.remain--;
-//
-//		// 終端に来たら先頭に戻る
-//		if(tx_buffer.tail >= TRX_BUFFER_SIZE){
-//			tx_buffer.tail = 0;
-//		} else;
-
+		tx_data = tx_buffer.pop();
 		// DMA動作再開
 		HAL_UART_Transmit_DMA(&huart1, (uint8_t*)(&tx_data), 1);
 	}
 }
 
-///* ---------------------------------------------------------------
-//	受信・送信完了時のコールバック関数
-//--------------------------------------------------------------- */
+
+/* ---------------------------------------------------------------
+	受信・送信完了時のコールバック関数
+--------------------------------------------------------------- */
 void HAL_UART_RxCpltCallback( UART_HandleTypeDef *huart )
 {
     if( huart->Instance == USART1 ) {
@@ -192,24 +279,24 @@ void HAL_UART_TxCpltCallback( UART_HandleTypeDef *huart )
         Communicate_TxPopData();
     } else;
 }
-//
-///* ---------------------------------------------------------------
-//	printfとscanfを使用するための設定
-//--------------------------------------------------------------- */
+
+/* ---------------------------------------------------------------
+	printfとscanfを使用するための設定
+--------------------------------------------------------------- */
 void Communicate_Initialize( void )
 {
 	setbuf(stdout, NULL);
 }
-//
-///* ---------------------------------------------------------------
-//	printfを使用するための設定
-//--------------------------------------------------------------- */
+
+/* ---------------------------------------------------------------
+	printfを使用するための設定
+--------------------------------------------------------------- */
 #ifdef __GNUC__
 #define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
 #else
 #define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
 #endif /* __GNUC__ */
-PUTCHAR_PROTOTYPE
+extern "C" PUTCHAR_PROTOTYPE
 {
 	Communicate_TxPushData(ch);
 	return 1;
@@ -223,7 +310,7 @@ PUTCHAR_PROTOTYPE
 #else
 #define GETCHAR_PROTOTYPE int fgetc(FILE *f)
 #endif /* __GNUC__ */
-GETCHAR_PROTOTYPE
+extern "C" GETCHAR_PROTOTYPE
 {
 	//return Communicate_TerminalRecv();
 	return Communicate_RxPopData();

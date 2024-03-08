@@ -31,6 +31,7 @@
 #include "../../Module/Inc/interrupt.h"
 #include "../../Module/Inc/log_data.h"
 #include "../../Module/Inc/flash.h"
+#include "../../Module/Inc/communicate.h"
 
 #include "../../Params/run_param.h"
 

@@ -47,6 +47,7 @@ void Module_Initialize()
 	  Encoder_Initialize();
 	  Interrupt_Initialize();
 	  IMU_read_DMA_Start();
+	  Communicate_Initialize();
 }
 
 void CPP_Main()

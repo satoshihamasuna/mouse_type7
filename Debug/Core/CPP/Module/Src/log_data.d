@@ -44,6 +44,7 @@ Core/CPP/Module/Src/log_data.o: ../Core/CPP/Module/Src/log_data.cpp \
  ../Core/CPP/Module/Src/../Inc/../../Component/Inc/../codegen/rtwhalf.h \
  ../Core/CPP/Module/Src/../Inc/../../Component/Inc/../codegen/rtwtypes.h \
  ../Core/CPP/Module/Src/../Inc/../../Component/Inc/singleton.h \
+ ../Core/CPP/Module/Src/../Inc/communicate.h \
  ../Core/CPP/Module/Src/../../Component/Inc/half_float.h
 
 ../Core/CPP/Module/Src/../../Pheripheral/Include/index.h:
@@ -147,5 +148,7 @@ Core/CPP/Module/Src/log_data.o: ../Core/CPP/Module/Src/log_data.cpp \
 ../Core/CPP/Module/Src/../Inc/../../Component/Inc/../codegen/rtwtypes.h:
 
 ../Core/CPP/Module/Src/../Inc/../../Component/Inc/singleton.h:
+
+../Core/CPP/Module/Src/../Inc/communicate.h:
 
 ../Core/CPP/Module/Src/../../Component/Inc/half_float.h:

@@ -12,7 +12,6 @@
 extern "C" {
 #endif
 
-#include<stdio.h>
 
 #define MASK_SEARCH	0x01
 #define MASK_SECOND	0x03

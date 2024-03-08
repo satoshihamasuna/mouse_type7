@@ -9,8 +9,11 @@
 
 #include "../../Pheripheral/Include/index.h"
 #include "../Inc/log_data.h"
+#include "../Inc/communicate.h"
 #include "stdio.h"
 #include "../../Component/Inc/half_float.h"
+
+
 void LogData::indicate_data()
 {
 	for(int i = 0; i< 1000;i++)

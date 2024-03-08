@@ -29,6 +29,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "../CPP/Module/Inc/communicate.h"
 #include "../CPP/Pheripheral/Include/index.h"
 #include <stdio.h>
 /* USER CODE END Includes */
@@ -71,7 +72,7 @@ void SystemClock_Config(void);
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-	setbuf(stdout, NULL);
+	//setbuf(stdout, NULL);
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -103,7 +104,7 @@ int main(void)
   MX_USART1_UART_Init();
   MX_TIM5_Init();
   /* USER CODE BEGIN 2 */
-
+  CPP_Main();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -113,7 +114,7 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	 CPP_Main();
+	 //CPP_Main();
 
 	  }
 
@@ -164,11 +165,13 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
+/*
 int _write(int file, char *ptr, int len)
 {
   HAL_UART_Transmit(&huart1,(uint8_t *)ptr,len,10);
   return len;
 }
+*/
 /* USER CODE END 4 */
 
 /**

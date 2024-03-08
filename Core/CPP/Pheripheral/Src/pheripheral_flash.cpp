@@ -11,7 +11,6 @@
 #include "../Include/index.h"
 #include "../Include/macro.h"
 #include "../Include/pheripheral_flash.h"
-#include "../../Subsys/Inc/wall_class.h"
 
 #include <string.h>
 #include <stdint.h>

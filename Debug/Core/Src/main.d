@@ -32,6 +32,7 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
  ../Core/Inc/adc.h ../Core/Inc/main.h ../Core/Inc/dma.h ../Core/Inc/spi.h \
  ../Core/Inc/tim.h ../Core/Inc/usart.h ../Core/Inc/gpio.h \
+ ../Core/Src/../CPP/Module/Inc/communicate.h \
  ../Core/Src/../CPP/Pheripheral/Include/index.h \
  ../Core/Src/../CPP/Pheripheral/Include/typedef.h \
  ../Core/Src/../CPP/Pheripheral/Include/macro.h \
@@ -116,6 +117,8 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Core/Inc/usart.h:
 
 ../Core/Inc/gpio.h:
+
+../Core/Src/../CPP/Module/Inc/communicate.h:
 
 ../Core/Src/../CPP/Pheripheral/Include/index.h:
 
