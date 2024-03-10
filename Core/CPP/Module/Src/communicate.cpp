@@ -156,6 +156,7 @@ void Communicate_TxPopData( void )
 	// データがない場合
 	if(tx_buffer.queue_length() == 0)
 	{
+		tx_data = '\0';
 		// DMAを停止
 		HAL_UART_DMAStop(&huart1);
 	}
