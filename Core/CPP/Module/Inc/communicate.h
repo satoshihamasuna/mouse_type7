@@ -22,7 +22,7 @@ extern "C" {
 	void Communicate_TxPushData( int8_t data );
 	uint8_t Communicate_RxPopData( void );
 	void Communicate_RxPushData( void );
-
+	uint8_t Communicate_RecieveDMA( void );
 
 
 #ifdef __cplusplus

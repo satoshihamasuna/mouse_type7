@@ -51,6 +51,7 @@ void Communicate_RxPushData( void )
 	}
 
 	rx_buffer.push(rx_data);					// 書き込みポインタにデータを格納
+
 }
 
 uint8_t Communicate_RxPopData( void )
@@ -70,6 +71,7 @@ uint8_t Communicate_RxPopData( void )
 		{
 			HAL_UART_Receive_DMA( &huart1, (uint8_t*)(&rx_data), 1 );
 		}
+		__disable_irq();
 	} else;
 
 	ch = rx_buffer.pop();	// 読み出しデータの取り出し
@@ -79,6 +81,31 @@ uint8_t Communicate_RxPopData( void )
 	__enable_irq();
 	return ch;
 }
+
+//uint8_t Communicate_RecieveDMA( void )
+//{
+//	uint8_t ch;
+//
+//	// この関数は多重に実行されるとまずいので割り込みを禁止する
+//	__disable_irq();
+//
+//	// データがない場合
+//	if(rx_buffer.queue_length() == 0){
+//		// 割り込み許可
+//		__enable_irq();
+//
+//		HAL_UART_Receive_DMA( &huart1, (uint8_t*)(&rx_data), 1 );
+//		// データを受信するまで待機
+//		return '\0';
+//	} else;
+//
+//	ch = rx_buffer.pop();	// 読み出しデータの取り出し
+//
+//
+//	// 割り込み許可
+//	__enable_irq();
+//	return ch;
+//}
 
 /* ---------------------------------------------------------------
 	UART1で1文字送信する関数
@@ -115,7 +142,7 @@ void Communicate_TxPushData( int8_t data )
 	// ここの時点でDMACは停止，割り込みは禁止されている
 
 	// 書き込みポインタにデータを格納
-	tx_buffer.push(data);
+	tx_buffer.push((uint8_t)data);
 
 	// DMA動作再開
 	HAL_UART_Transmit_DMA(&huart1, (uint8_t*)(&tx_data), 1);
@@ -165,6 +192,7 @@ void HAL_UART_TxCpltCallback( UART_HandleTypeDef *huart )
 void Communicate_Initialize( void )
 {
 	setbuf(stdout, NULL);
+	setbuf(stdin, NULL);
 }
 
 /* ---------------------------------------------------------------
@@ -193,5 +221,6 @@ extern "C" GETCHAR_PROTOTYPE
 {
 	//return Communicate_TerminalRecv();
 	return Communicate_RxPopData();
+
 }
 

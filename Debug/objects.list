@@ -7,6 +7,7 @@
 "Core/CPP/Module/Src/flash.o"
 "Core/CPP/Module/Src/interrupt.o"
 "Core/CPP/Module/Src/log_data.o"
+"Core/CPP/Module/Src/myshell.o"
 "Core/CPP/Pheripheral/Src/battery.o"
 "Core/CPP/Pheripheral/Src/encoder.o"
 "Core/CPP/Pheripheral/Src/imu.o"

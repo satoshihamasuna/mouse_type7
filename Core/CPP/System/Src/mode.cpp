@@ -27,6 +27,8 @@
 #include "../../Module/Inc/interrupt.h"
 #include "../../Module/Inc/log_data.h"
 #include "../../Module/Inc/flash.h"
+#include "../../Module/Inc/communicate.h"
+#include "../../Module/Inc/myshell.h"
 
 #include "../../Params/run_param.h"
 
@@ -387,10 +389,16 @@ namespace Mode
 					enable = 0;
 					break;
 				case ENABLE|0x03:
-				    Mode::Debug2(&st_param_1200,mode_1200,500);
-				    Mode::Debug2(&st_param_1400_acc2G,mode_1400,500);
-					Mode::Debug2(&st_param_1500_acc2G,mode_1500,500);
+				    //Mode::Debug2(&st_param_1200,mode_1200,500);
+				    //Mode::Debug2(&st_param_1400_acc2G,mode_1400,500);
+					//Mode::Debug2(&st_param_1500_acc2G,mode_1500,500);
 					//Mode::Debug2(&st_param_700,mode_700,0);
+					Myshell_Initialize();
+					while(1)
+					{
+						Myshell_Execute();
+
+					}
 					enable = 0;
 					break;
 				default:
