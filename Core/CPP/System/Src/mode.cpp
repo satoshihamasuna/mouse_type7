@@ -14,6 +14,7 @@
 #include "../../Subsys/Inc/make_map_class.h"
 #include "../../Subsys/Inc/wall_class.h"
 #include "../../Subsys/Inc/make_path.h"
+#include "../../Subsys/Inc/myshell.h"
 
 #include "../../Component/Inc/controll.h"
 #include "../../Component/Inc/Kalman_filter.h"
@@ -28,7 +29,6 @@
 #include "../../Module/Inc/log_data.h"
 #include "../../Module/Inc/flash.h"
 #include "../../Module/Inc/communicate.h"
-#include "../../Module/Inc/myshell.h"
 
 #include "../../Params/run_param.h"
 

@@ -34,23 +34,35 @@ _Min_Heap_Size = 0x200 ;	/* required amount of heap  */
 _Min_Stack_Size = 0x400 ;	/* required amount of stack */
 
 /* Memories definition */
+/*
 MEMORY
 {
   RAM    (xrw)    	: ORIGIN = 0x20000000,   LENGTH = 128K
   FLASH    (rx)    	: ORIGIN = 0x8000000,   LENGTH = 384K
   DATA	(rx)		: ORIGIN = 0x8060000,   LENGTH = 128K
 }
+*/
+
+MEMORY
+{
+  RAM    (xrw)    	: ORIGIN = 0x20000000,   LENGTH = 128K
+  FLASH_SECTOR0 (rx)    : ORIGIN = 0x08000000,   LENGTH = 16K
+  FLASH_SECTOR1 (r)     : ORIGIN = 0x08004000,   LENGTH = 16K
+  FLASH         (rx)    : ORIGIN = 0x08008000,   LENGTH = 480K
+}
+
 
 /* Sections */
 SECTIONS
 {
   /* The startup code into "FLASH" Rom type memory */
+  
   .isr_vector :
   {
     . = ALIGN(4);
     KEEP(*(.isr_vector)) /* Startup code */
     . = ALIGN(4);
-  } >FLASH
+  } >FLASH_SECTOR0
 
   /* The program code and other data into "FLASH" Rom type memory */
   .text :
