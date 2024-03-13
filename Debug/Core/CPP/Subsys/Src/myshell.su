@@ -1,9 +1,12 @@
-myshell.cpp:44:12:int usrcmd_help(int, char**)	24	static
-myshell.cpp:57:12:int usrcmd_info(int, char**)	16	static
-myshell.cpp:80:12:int func_read(char*, int, void*)	40	static
-myshell.cpp:89:12:int func_write(const char*, int, void*)	32	static
-myshell.cpp:102:12:int user_callback(const char*, void*)	16	static
-myshell.cpp:109:12:int usrcmd_execute(const char*)	16	static
-myshell.cpp:114:12:int usrcmd_ntopt_callback(int, char**, void*)	32	static
-myshell.cpp:134:6:void Myshell_Initialize()	24	static
-myshell.cpp:141:6:void Myshell_Execute()	16	static
+myshell.cpp:46:12:int usrcmd_help(int, char**)	24	static
+myshell.cpp:59:12:int usrcmd_info(int, char**)	16	static
+myshell.cpp:79:12:int usrcmd_disp(int, char**)	16	static
+myshell.cpp:101:12:int func_read(char*, int, void*)	40	static
+myshell.cpp:110:12:int func_write(const char*, int, void*)	32	static
+myshell.cpp:123:12:int user_callback(const char*, void*)	16	static
+myshell.cpp:130:12:int usrcmd_execute(const char*)	16	static
+myshell.cpp:135:12:int usrcmd_ntopt_callback(int, char**, void*)	32	static
+myshell.cpp:155:6:void Myshell_Initialize()	24	static
+myshell.cpp:162:6:void Myshell_Execute()	16	static
+log_data.h:18:7:LogData::LogData()	16	static
+singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = LogData]	8	static

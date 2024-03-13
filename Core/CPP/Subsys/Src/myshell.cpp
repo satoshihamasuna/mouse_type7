@@ -9,6 +9,7 @@
 #include "core/ntlibc.h"
 #include "util/ntopt.h"
 #include "../../Module/Inc/communicate.h"
+#include "../../Module/Inc/log_data.h"
 #include "../Inc/myshell.h"
 #include <stdio.h>
 
@@ -22,7 +23,7 @@ static int usrcmd_ntopt_callback(int argc, char **argv, void *extobj);
 //コマンド一覧
 static int usrcmd_help(int argc, char **argv);
 static int usrcmd_info(int argc, char **argv);
-
+static int usrcmd_disp(int argc, char **argv);
 
 typedef struct {
 	const char *cmd;
@@ -33,6 +34,7 @@ typedef struct {
 static const cmd_table_t cmdlist[] = {
     { "help", "This is a description text string for help command.", usrcmd_help },
     { "info", "This is a description text string for info command.", usrcmd_info },
+	{ "disp", "This is a description text string for disp command.", usrcmd_disp },
 };
 
 static ntshell_t nts;
@@ -73,6 +75,25 @@ static int usrcmd_info(int argc, char **argv)
     return -1;
 }
 
+
+static int usrcmd_disp(int argc, char **argv)
+{
+    if (argc != 2) {
+    	printf("info maze\r\n");
+    	printf("info log\r\n");
+    	return 0;
+    }
+    if (ntlibc_strcmp(argv[1], "maze") == 0) {
+    	printf("prototype7\r\n");
+        return 0;
+    }
+    if (ntlibc_strcmp(argv[1], "log") == 0) {
+    	LogData::getInstance().indicate_data();
+        return 0;
+    }
+    printf("Unknown sub command found\r\n");
+    return -1;
+}
 
 /* ---------------------------------------------------------------
 	送受信用ローカル関数
