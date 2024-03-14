@@ -28,6 +28,28 @@ typedef struct{
 	float turn_slip_dot;
 }t_machine_param;
 
+typedef enum{
+	Turn_None 	= 0,
+	Turn_R 		= 1,
+	Turn_L		= 2,
+	Prev_Turn	= 3,
+	Post_Turn	= 4,
+}t_turn_dir;
+
+typedef struct{
+	float velo;
+	float max_velo;
+	float end_velo;
+	float accel;
+	float deccel;
+	float length;
+	float rad_accel;
+	float rad_deccel;
+	float rad_max_velo;
+	float radian;
+	t_turn_dir turn_d;
+}t_motion_param;
+
 class param_element
 {
 	private:
@@ -36,6 +58,16 @@ class param_element
 		void set(float value) 	{	param = value;	};
 		void init()				{	param = 0.0f;	};
 		float get()				{   return param;	};
+};
+
+class turn_dir_element
+{
+	private:
+		t_turn_dir param;
+	public:
+		void set(t_turn_dir dir)	{	param = dir;	};
+		void init()					{	param = Turn_None;	};
+		t_turn_dir get()			{   return param;	};
 };
 
 class machine_params
@@ -57,7 +89,23 @@ class machine_params
 		param_element turn_slip_dot;
 };
 
-class Vehicle:public Singleton<Vehicle>
+class motion_set_params
+{
+	public:
+		param_element velo;
+		param_element max_velo;
+		param_element end_velo;
+		param_element accel;
+		param_element deccel;
+		param_element length;
+		param_element rad_accel;
+		param_element rad_deccel;
+		param_element rad_max_velo;
+		param_element radian;
+		turn_dir_element turn_d;
+};
+
+class Vehicle
 {
 	public:
 		machine_params ego;
@@ -97,6 +145,24 @@ class Vehicle:public Singleton<Vehicle>
 			ideal.turn_slip_theta.init();
 			ideal.turn_slip_dot.init();
 		}
+
+		motion_set_params motion_set;
+		void motion_set_initialize()
+		{
+			motion_set.velo.init();
+			motion_set.max_velo.init();
+			motion_set.end_velo.init();
+			motion_set.accel.init();
+			motion_set.deccel.init();
+			motion_set.length.init();
+			motion_set.rad_accel.init();
+			motion_set.rad_deccel.init();
+			motion_set.rad_max_velo.init();
+			motion_set.radian.init();
+			motion_set.turn_d.init();
+		}
 };
+
+class Vehicle_type7:public Vehicle,public Singleton<Vehicle_type7>{};
 
 #endif /* CPP_MODULE_INC_VEHICLE_H_ */

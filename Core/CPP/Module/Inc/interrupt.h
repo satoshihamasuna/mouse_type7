@@ -10,6 +10,7 @@
 
 #include "../../Component/Inc/singleton.h"
 #include "../../Pheripheral/Include/macro.h"
+#include "../../Pheripheral/Include/index.h"
 //#include "../Include/macro.h"
 
 class Interrupt:public Singleton<Interrupt>
@@ -19,13 +20,6 @@ class Interrupt:public Singleton<Interrupt>
 		uint32_t acc_time_cnt;
 		float acc_buff[ACC_BUFF_SIZE];
 		float acc_sum;
-		float velo_buff[ACC_BUFF_SIZE];
-		float velo_sum;
-		float Rvelo_buff[ACC_BUFF_SIZE];
-		float Rvelo_sum;
-		float Lvelo_buff[ACC_BUFF_SIZE];
-		float Lvelo_sum;
-
 
 	public:
 		void setTask();

@@ -12,30 +12,6 @@
 #include "../../Module/Inc/vehicle.h"
 #include "../../Component/Inc/controll.h"
 
-typedef enum{
-	Turn_None 	= 0,
-	Turn_R 		= 1,
-	Turn_L		= 2,
-	Prev_Turn	= 3,
-	Post_Turn	= 4,
-}t_turn_dir;
-
-
-typedef struct{
-	float velo;
-	float max_velo;
-	float end_velo;
-	float accel;
-	float deccel;
-	float length;
-	float rad_accel;
-	float rad_deccel;
-	float rad_max_velo;
-	float radian;
-	t_turn_dir turn_d;
-}t_motion_param;
-
-
 
 typedef enum{
 	No_run				= 0,
