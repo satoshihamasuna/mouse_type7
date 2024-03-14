@@ -6,6 +6,9 @@ Core/CPP/Task/Src/sensing_task.o: ../Core/CPP/Task/Src/sensing_task.cpp \
  ../Core/CPP/Task/Src/../Inc/../../Pheripheral/Include/macro.h \
  ../Core/CPP/Task/Src/../Inc/../../Pheripheral/Include/ir_sensor.h \
  ../Core/CPP/Task/Src/../Inc/../../Pheripheral/Include/../../Component/Inc/maze_typedef.h \
+ ../Core/CPP/Task/Src/../Inc/../../Module/Inc/vehicle.h \
+ ../Core/CPP/Task/Src/../Inc/../../Module/Inc/../../Pheripheral/Include/typedef.h \
+ ../Core/CPP/Task/Src/../Inc/../../Module/Inc/../../Component/Inc/singleton.h \
  ../Core/CPP/Task/Src/../Inc/../../Component/Inc/controll.h \
  ../Core/CPP/Task/Src/../../Params/sens_table.h \
  ../Core/CPP/Task/Src/../../Pheripheral/Include/typedef.h \
@@ -65,6 +68,12 @@ Core/CPP/Task/Src/sensing_task.o: ../Core/CPP/Task/Src/sensing_task.cpp \
 ../Core/CPP/Task/Src/../Inc/../../Pheripheral/Include/ir_sensor.h:
 
 ../Core/CPP/Task/Src/../Inc/../../Pheripheral/Include/../../Component/Inc/maze_typedef.h:
+
+../Core/CPP/Task/Src/../Inc/../../Module/Inc/vehicle.h:
+
+../Core/CPP/Task/Src/../Inc/../../Module/Inc/../../Pheripheral/Include/typedef.h:
+
+../Core/CPP/Task/Src/../Inc/../../Module/Inc/../../Component/Inc/singleton.h:
 
 ../Core/CPP/Task/Src/../Inc/../../Component/Inc/controll.h:
 

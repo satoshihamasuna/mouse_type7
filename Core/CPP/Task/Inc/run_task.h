@@ -9,6 +9,7 @@
 #define CPP_INC_RUN_TASK_H_
 
 #include "../../Pheripheral/Include/typedef.h"
+#include "../../Module/Inc/vehicle.h"
 #include "../../Component/Inc/controll.h"
 
 typedef enum{
@@ -19,21 +20,6 @@ typedef enum{
 	Post_Turn	= 4,
 }t_turn_dir;
 
-typedef struct{
-	float velo;
-	float accel;
-	float length;
-	float rad_accel;
-	float rad_velo;
-	float radian;
-	float x_point;
-	float turn_x;
-	float turn_x_dash;
-	float turn_y;
-	float turn_y_dash;
-	float turn_slip_theta;
-	float turn_slip_dot;
-}t_machine_param;
 
 typedef struct{
 	float velo;

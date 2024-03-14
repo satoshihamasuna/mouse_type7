@@ -41,6 +41,9 @@ Core/CPP/Task/Src/run_task.o: ../Core/CPP/Task/Src/run_task.cpp \
  ../Core/CPP/Task/Src/../../Pheripheral/Include/typedef.h \
  ../Core/CPP/Task/Src/../Inc/run_task.h \
  ../Core/CPP/Task/Src/../Inc/../../Pheripheral/Include/typedef.h \
+ ../Core/CPP/Task/Src/../Inc/../../Module/Inc/vehicle.h \
+ ../Core/CPP/Task/Src/../Inc/../../Module/Inc/../../Pheripheral/Include/typedef.h \
+ ../Core/CPP/Task/Src/../Inc/../../Module/Inc/../../Component/Inc/singleton.h \
  ../Core/CPP/Task/Src/../Inc/../../Component/Inc/controll.h \
  ../Core/CPP/Task/Src/../../Pheripheral/Include/macro.h \
  ../Core/CPP/Task/Src/../../Params/turn_table.h \
@@ -148,6 +151,12 @@ Core/CPP/Task/Src/run_task.o: ../Core/CPP/Task/Src/run_task.cpp \
 ../Core/CPP/Task/Src/../Inc/run_task.h:
 
 ../Core/CPP/Task/Src/../Inc/../../Pheripheral/Include/typedef.h:
+
+../Core/CPP/Task/Src/../Inc/../../Module/Inc/vehicle.h:
+
+../Core/CPP/Task/Src/../Inc/../../Module/Inc/../../Pheripheral/Include/typedef.h:
+
+../Core/CPP/Task/Src/../Inc/../../Module/Inc/../../Component/Inc/singleton.h:
 
 ../Core/CPP/Task/Src/../Inc/../../Component/Inc/controll.h:
 

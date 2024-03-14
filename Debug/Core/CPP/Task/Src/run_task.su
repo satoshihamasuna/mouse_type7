@@ -1,4 +1,4 @@
-run_task.h:187:8:void RunTask::set_run_mode_state(t_run_mode)	16	static
+run_task.h:173:8:void RunTask::set_run_mode_state(t_run_mode)	16	static
 sensing_task.h:52:10:t_bool SensingTask::Division_Wall_Correction()	24	static
 sensing_task.h:69:8:void SensingTask::Division_Wall_Correction_Reset()	16	static
 run_task.cpp:17:6:void RunTask::MotionFree(float*, float)	24	static
@@ -14,7 +14,7 @@ run_task.cpp:831:6:void RunTask::turn_v90(t_motion_param*, const t_param*, t_mac
 run_task.cpp:946:6:void RunTask::fix_wall(t_machine_param*, float*, float, float)	72	static
 run_task.cpp:1050:8:t_bool RunTask::is_exe_runTask()	16	static
 singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = SensingTask]	4	static
-run_task.h:155:7:RunTask::RunTask()	16	static
+run_task.h:141:7:RunTask::RunTask()	16	static
 controll.h:19:7:constexpr PID_Controller::PID_Controller()	16	static
 controll.h:36:7:constexpr mouse_Controll::mouse_Controll()	16	static
 motion.h:19:7:controll_task::controll_task()	16	static
