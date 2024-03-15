@@ -52,6 +52,7 @@ Core/CPP/Pheripheral/Src/pheripheral_flash.o: \
  c:\users\sato1\documents\git\mouse_type7_program\mouse_type7\core\cpp\module\inc\vehicle.h \
  c:\users\sato1\documents\git\mouse_type7_program\mouse_type7\core\cpp\pheripheral\include\typedef.h \
  c:\users\sato1\documents\git\mouse_type7_program\mouse_type7\core\cpp\component\inc\singleton.h \
+ c:\users\sato1\documents\git\mouse_type7_program\mouse_type7\core\cpp\component\inc\controll.h \
  c:\users\sato1\documents\git\mouse_type7_program\mouse_type7\core\cpp\component\inc\controll.h
 
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
@@ -169,5 +170,7 @@ c:\users\sato1\documents\git\mouse_type7_program\mouse_type7\core\cpp\module\inc
 c:\users\sato1\documents\git\mouse_type7_program\mouse_type7\core\cpp\pheripheral\include\typedef.h:
 
 c:\users\sato1\documents\git\mouse_type7_program\mouse_type7\core\cpp\component\inc\singleton.h:
+
+c:\users\sato1\documents\git\mouse_type7_program\mouse_type7\core\cpp\component\inc\controll.h:
 
 c:\users\sato1\documents\git\mouse_type7_program\mouse_type7\core\cpp\component\inc\controll.h:

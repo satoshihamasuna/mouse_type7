@@ -144,6 +144,8 @@ void Interrupt::preprocess()
 	Vehicle_type7::getInstance().ego.turn_x.set(turn_x);
 	Vehicle_type7::getInstance().ego.turn_y.set(turn_y);
 
+	float battery_voltage = 0.95 * Vehicle_type7::getInstance().battery.get() + (0.05)*Battery_GetVoltage();
+	Vehicle_type7::getInstance().battery.set(battery_voltage);
 }
 
 void Interrupt::main()

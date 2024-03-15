@@ -164,9 +164,13 @@ class Vehicle
 			motion_set.turn_d.init();
 		}
 
-		mouse_Controll Vehicle_ctrl_Gain;
+		param_element battery;
+
+		mouse_Controll Vehicle_controller;
 		float V_r,V_l;
 		int motor_out_r,motor_out_l;
+		param_element sp_feedforward,sp_feedback;
+		param_element om_feedforward,om_feedback;
 
 };
 

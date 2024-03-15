@@ -39,11 +39,16 @@ public:
 
 	const t_param *turn_param = nullptr;
 
-	void motionPrevControll();
-	void motionControll();
-	void motionPostControll();
-	t_bool isControllEnable();
+	void motion_prev_controll();
+	void motion_controll();
+	void motion_post_controll();
+	t_bool is_controll_enable();
 
+	inline t_run_pattern run_pattern_get() 							 {	return run_pattern;				}
+	inline void			 run_pattern_set(t_run_pattern _run_pattern) {	run_pattern	= _run_pattern;		}
+
+	inline t_run_mode 	 run_state_get() 							 {	return run_state;				}
+	inline void			 run_state_set(t_run_mode _run_state)   	 {	run_state	= _run_state;		}
 };
 
 
