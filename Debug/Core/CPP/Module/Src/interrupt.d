@@ -54,6 +54,7 @@ Core/CPP/Module/Src/interrupt.o: ../Core/CPP/Module/Src/interrupt.cpp \
  ../Core/CPP/Module/Src/../../Task/Inc/../../Module/Inc/vehicle.h \
  ../Core/CPP/Module/Src/../../Task/Inc/../../Module/Inc/../../Pheripheral/Include/typedef.h \
  ../Core/CPP/Module/Src/../../Task/Inc/../../Module/Inc/../../Component/Inc/singleton.h \
+ ../Core/CPP/Module/Src/../../Task/Inc/../../Module/Inc/../../Component/Inc/controll.h \
  ../Core/CPP/Module/Src/../../Task/Inc/../../Component/Inc/controll.h \
  ../Core/CPP/Module/Src/../../Task/Inc/motion.h \
  ../Core/CPP/Module/Src/../../Task/Inc/../../Params/run_param.h \
@@ -186,6 +187,8 @@ Core/CPP/Module/Src/interrupt.o: ../Core/CPP/Module/Src/interrupt.cpp \
 ../Core/CPP/Module/Src/../../Task/Inc/../../Module/Inc/../../Pheripheral/Include/typedef.h:
 
 ../Core/CPP/Module/Src/../../Task/Inc/../../Module/Inc/../../Component/Inc/singleton.h:
+
+../Core/CPP/Module/Src/../../Task/Inc/../../Module/Inc/../../Component/Inc/controll.h:
 
 ../Core/CPP/Module/Src/../../Task/Inc/../../Component/Inc/controll.h:
 

@@ -1,6 +1,6 @@
 wall_class.h:20:3:wall_class::wall_class(SensingTask*)	16	static
 gthr-default.h:229:1:int __gthread_key_delete(__gthread_key_t)	16	static
-motion.h:54:3:motion_plan::motion_plan(controll_task*)	16	static
+motion.h:56:3:motion_plan::motion_plan(controll_task*)	16	static
 make_path.h:90:3:calcRunTime::calcRunTime()	16	static
 make_path.h:141:3:Dijkstra::Dijkstra(wall_class*)	16	static
 path_follow.h:34:8:void path_follow_class::set_path_follow_gain(float, float)	24	static

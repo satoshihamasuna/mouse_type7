@@ -15,6 +15,7 @@ Core/CPP/Subsys/Src/make_map.o: ../Core/CPP/Subsys/Src/make_map.cpp \
  ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Module/Inc/vehicle.h \
  ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Module/Inc/../../Pheripheral/Include/typedef.h \
  ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Module/Inc/../../Component/Inc/singleton.h \
+ ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Module/Inc/../../Component/Inc/controll.h \
  ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Component/Inc/controll.h \
  ../Core/CPP/Subsys/Src/../../Pheripheral/Include/typedef.h \
  ../Core/CPP/Subsys/Src/../../Pheripheral/Include/index.h \
@@ -86,6 +87,8 @@ Core/CPP/Subsys/Src/make_map.o: ../Core/CPP/Subsys/Src/make_map.cpp \
 ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Module/Inc/../../Pheripheral/Include/typedef.h:
 
 ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Module/Inc/../../Component/Inc/singleton.h:
+
+../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Module/Inc/../../Component/Inc/controll.h:
 
 ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Component/Inc/controll.h:
 

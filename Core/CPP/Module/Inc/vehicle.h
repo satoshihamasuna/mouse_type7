@@ -11,6 +11,7 @@
 #include "../../Pheripheral/Include/typedef.h"
 //#include "../../Component/Inc/half_float.h"
 #include "../../Component/Inc/singleton.h"
+#include "../../Component/Inc/controll.h"
 
 typedef struct{
 	float velo;
@@ -55,9 +56,9 @@ class param_element
 	private:
 		float param;
 	public:
-		void set(float value) 	{	param = value;	};
-		void init()				{	param = 0.0f;	};
-		float get()				{   return param;	};
+		inline void set(float value) 	{	param = value;	};
+		inline void init()				{	param = 0.0f;	};
+		inline float get()				{   return param;	};
 };
 
 class turn_dir_element
@@ -65,17 +66,17 @@ class turn_dir_element
 	private:
 		t_turn_dir param;
 	public:
-		void set(t_turn_dir dir)	{	param = dir;	};
-		void init()					{	param = Turn_None;	};
-		t_turn_dir get()			{   return param;	};
+		inline void set(t_turn_dir dir)	{	param = dir;	};
+		inline void init()				{	param = Turn_None;	};
+		inline t_turn_dir get()			{   return param;	};
 };
 
-class machine_params
+struct machine_params
 {
-	public:
 		param_element velo;
 		param_element accel;
 		param_element horizon_accel;
+		param_element z_accel;
 		param_element length;
 		param_element rad_accel;
 		param_element rad_velo;
@@ -89,9 +90,8 @@ class machine_params
 		param_element turn_slip_dot;
 };
 
-class motion_set_params
+struct motion_set_params
 {
-	public:
 		param_element velo;
 		param_element max_velo;
 		param_element end_velo;
@@ -114,6 +114,7 @@ class Vehicle
 			ego.velo.init();
 			ego.accel.init();
 			ego.horizon_accel.init();
+			ego.z_accel.init();
 			ego.length.init();
 			ego.rad_accel.init();
 			ego.rad_velo.init();
@@ -133,6 +134,7 @@ class Vehicle
 			ideal.velo.init();
 			ideal.accel.init();
 			ideal.horizon_accel.init();
+			ideal.z_accel.init();
 			ideal.length.init();
 			ideal.rad_accel.init();
 			ideal.rad_velo.init();
@@ -161,6 +163,11 @@ class Vehicle
 			motion_set.radian.init();
 			motion_set.turn_d.init();
 		}
+
+		mouse_Controll Vehicle_ctrl_Gain;
+		float V_r,V_l;
+		int motor_out_r,motor_out_l;
+
 };
 
 class Vehicle_type7:public Vehicle,public Singleton<Vehicle_type7>{};

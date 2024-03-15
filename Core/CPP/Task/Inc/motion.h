@@ -44,6 +44,8 @@ class controll_task:public Singleton<controll_task>
 
 };
 
+
+
 class motion_plan
 {
 	private:
