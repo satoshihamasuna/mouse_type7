@@ -24,14 +24,23 @@
 #include "../Inc/run_task.h"
 #include "../Inc/sensing_task.h"
 
-void ctrl_task::ideal_param_set()
+void CtrlTask::motion_ideal_param_set()
 {
+	//		if(rT.get_run_mode_state() == TURN_MODE)
+	//		{
+	//			//omega_controll_input = path_follow_class::getInstance().calc_control_yaw_rate(target.velo, mouse.velo, target.rad_velo, mouse.rad_velo);
+	//		}
+	//		else
+	//		{
+	//			//path_follow_class::getInstance().reset_position_error();
+	//			//path_follow_class::getInstance().reset_yaw_theta_error();
+	//		}
 
 }
 
-void ctrl_task::motion_prev_controll()
+void CtrlTask::motion_prev_controll()
 {
-	ideal_param_set();
+	motion_ideal_param_set();
 /*
 	switch(rT.get_run_mode_state())
 	{
@@ -61,7 +70,7 @@ void ctrl_task::motion_prev_controll()
 */
 }
 
-void ctrl_task::motion_controll()
+void CtrlTask::motion_controll()
 {
 	vehicle->V_r = 0.0f;			vehicle->V_l = 0.0f;
 	vehicle->motor_out_r = 0;		vehicle->motor_out_l = 0;
@@ -88,16 +97,6 @@ void ctrl_task::motion_controll()
 		float sp_FF_controll_l =  MOTOR_R*motor_l_ampere + MOTOR_K_ER*motor_l_rpm/1000;
 
 
-//		if(rT.get_run_mode_state() == TURN_MODE)
-//		{
-//			//omega_controll_input = path_follow_class::getInstance().calc_control_yaw_rate(target.velo, mouse.velo, target.rad_velo, mouse.rad_velo);
-//		}
-//		else
-//		{
-//			//path_follow_class::getInstance().reset_position_error();
-//			//path_follow_class::getInstance().reset_yaw_theta_error();
-//		}
-
 		//feedback controll
 		vehicle->sp_feedback.set(vehicle->Vehicle_controller.speed_ctrl.Controll(vehicle->ideal.velo.get()		,vehicle->ego.velo.get()	, 1.0));
 		vehicle->om_feedback.set(vehicle->Vehicle_controller.omega_ctrl.Controll(vehicle->ideal.rad_velo.get()	,vehicle->ego.rad_velo.get(), 1.0));
@@ -113,23 +112,23 @@ void ctrl_task::motion_controll()
 		float ctrl_limit = MAX( ABS( vehicle->sp_feedforward.get() + vehicle->om_feedforward.get()),
 								ABS(-vehicle->sp_feedforward.get() + vehicle->om_feedforward.get()));
 
+		float sp_antiwindup = vehicle->sp_feedback.get();
+		float om_antiwindup = vehicle->om_feedback.get();
+
 		if( ctrl_limit < ctrl_battery )
 		{
-			vehicle->sp_feedback.set(vehicle->Vehicle_controller.speed_ctrl.Anti_windup_1( vehicle->sp_feedforward.get(),ctrl_battery - ctrl_limit));
-			vehicle->om_feedback.set(vehicle->Vehicle_controller.omega_ctrl.Anti_windup_2( vehicle->om_feedforward.get(),ctrl_battery - ctrl_limit));
+			sp_antiwindup = vehicle->Vehicle_controller.speed_ctrl.Anti_windup_1( vehicle->sp_feedforward.get(),ctrl_battery - ctrl_limit);
+			om_antiwindup = vehicle->Vehicle_controller.omega_ctrl.Anti_windup_2( vehicle->om_feedforward.get(),ctrl_battery - ctrl_limit);
 		}
 		else
 		{
-			vehicle->sp_feedback.set(vehicle->Vehicle_controller.speed_ctrl.Anti_windup_1( 	 vehicle->sp_feedback.get() + vehicle->sp_feedforward.get()
-																							,ctrl_battery - vehicle->sp_feedforward.get()
-																						  ));
-			vehicle->om_feedback.set(vehicle->Vehicle_controller.omega_ctrl.Anti_windup_2( 	 vehicle->om_feedback.get() + vehicle->om_feedforward.get()
-																							,ctrl_battery - vehicle->om_feedforward.get()
-																						  ));
+			sp_antiwindup = vehicle->Vehicle_controller.speed_ctrl.Anti_windup_1(vehicle->sp_feedback.get() + vehicle->sp_feedforward.get(),ctrl_battery - vehicle->sp_feedforward.get());
+			om_antiwindup = vehicle->Vehicle_controller.omega_ctrl.Anti_windup_2(vehicle->om_feedback.get() + vehicle->om_feedforward.get(),ctrl_battery - vehicle->om_feedforward.get());
 		}
+		vehicle->sp_feedback.set( sp_antiwindup );
+		vehicle->om_feedback.set( om_antiwindup );
 
-
-		//
+		//set & supply voltage
 		vehicle->V_r =  vehicle->sp_feedforward.get() + vehicle->om_feedforward.get() + vehicle->sp_feedback.get() + vehicle->om_feedback.get();
 		vehicle->V_l = -vehicle->sp_feedforward.get() + vehicle->om_feedforward.get() - vehicle->sp_feedback.get() + vehicle->om_feedback.get();
 
@@ -148,19 +147,18 @@ void ctrl_task::motion_controll()
 		}else{
 			vehicle->motor_out_l = (int)(duty_l * 1000.0f);
 		}
-
 		Motor_SetDuty_Left(vehicle->motor_out_l);
 
 	}
 
 }
 
-void ctrl_task::motion_post_controll()
+void CtrlTask::motion_post_controll()
 {
 
 }
 
-t_bool ctrl_task::is_controll_enable()
+t_bool CtrlTask::is_controll_enable()
 {
 
 }

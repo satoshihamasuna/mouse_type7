@@ -59,8 +59,9 @@ Core/CPP/Task/Src/ctrl_task.o: ../Core/CPP/Task/Src/ctrl_task.cpp \
  ../Core/CPP/Task/Src/../../Params/../Pheripheral/Include/typedef.h \
  ../Core/CPP/Task/Src/../Inc/ctrl_task.h \
  ../Core/CPP/Task/Src/../Inc/run_task.h \
- ../Core/CPP/Task/Src/../Inc/../../Params/run_param.h \
+ ../Core/CPP/Task/Src/../Inc/sensing_task.h \
  ../Core/CPP/Task/Src/../Inc/../../Component/Inc/singleton.h \
+ ../Core/CPP/Task/Src/../Inc/../../Params/run_param.h \
  ../Core/CPP/Task/Src/../Inc/motion.h \
  ../Core/CPP/Task/Src/../Inc/sensing_task.h
 
@@ -196,9 +197,11 @@ Core/CPP/Task/Src/ctrl_task.o: ../Core/CPP/Task/Src/ctrl_task.cpp \
 
 ../Core/CPP/Task/Src/../Inc/run_task.h:
 
-../Core/CPP/Task/Src/../Inc/../../Params/run_param.h:
+../Core/CPP/Task/Src/../Inc/sensing_task.h:
 
 ../Core/CPP/Task/Src/../Inc/../../Component/Inc/singleton.h:
+
+../Core/CPP/Task/Src/../Inc/../../Params/run_param.h:
 
 ../Core/CPP/Task/Src/../Inc/motion.h:
 
