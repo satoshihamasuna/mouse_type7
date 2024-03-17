@@ -90,21 +90,6 @@ struct machine_params
 		param_element turn_slip_dot;
 };
 
-struct motion_set_params
-{
-		param_element velo;
-		param_element max_velo;
-		param_element end_velo;
-		param_element accel;
-		param_element deccel;
-		param_element length;
-		param_element rad_accel;
-		param_element rad_deccel;
-		param_element rad_max_velo;
-		param_element radian;
-		turn_dir_element turn_d;
-};
-
 class Vehicle
 {
 	public:
@@ -148,6 +133,7 @@ class Vehicle
 			ideal.turn_slip_dot.init();
 		}
 
+		/*
 		motion_set_params motion_set;
 		void motion_set_initialize()
 		{
@@ -163,6 +149,7 @@ class Vehicle
 			motion_set.radian.init();
 			motion_set.turn_d.init();
 		}
+		*/
 
 		param_element battery;
 

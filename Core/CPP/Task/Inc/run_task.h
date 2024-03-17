@@ -91,6 +91,11 @@ class PID_Setting
 		t_pid_gain sp_gain;
 		t_pid_gain om_gain;
 	public:
+		void set_gain(t_pid_gain _sp_gain,t_pid_gain _om_gain)
+		{
+			sp_gain = _sp_gain;
+			om_gain = _om_gain;
+		}
 		void set_sp_gain(float _kp,float _ki,float _kd)
 		{
 			sp_gain.Kp = _kp;

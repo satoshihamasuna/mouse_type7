@@ -11,10 +11,10 @@ singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = Interrupt]	4	s
 singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = SensingTask]	4	static
 controll.h:19:7:constexpr PID_Controller::PID_Controller()	16	static
 controll.h:36:7:constexpr mouse_Controll::mouse_Controll()	16	static
-vehicle.h:108:7:Vehicle::Vehicle()	16	static
-vehicle.h:177:7:Vehicle_type7::Vehicle_type7()	16	static
+vehicle.h:93:7:Vehicle::Vehicle()	16	static
+vehicle.h:164:7:Vehicle_type7::Vehicle_type7()	16	static
 singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = Vehicle_type7]	8	static
-run_task.h:117:7:RunTask::RunTask()	16	static
+run_task.h:122:7:RunTask::RunTask()	16	static
 motion.h:19:7:controll_task::controll_task()	16	static
 singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = controll_task]	8	static
 log_data.h:18:7:LogData::LogData()	16	static

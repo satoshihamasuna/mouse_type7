@@ -24,6 +24,10 @@
 #include "../Inc/run_task.h"
 #include "../Inc/sensing_task.h"
 
+
+
+
+
 void CtrlTask::motion_ideal_param_set()
 {
 	//		if(rT.get_run_mode_state() == TURN_MODE)
@@ -75,7 +79,7 @@ void CtrlTask::motion_controll()
 	vehicle->V_r = 0.0f;			vehicle->V_l = 0.0f;
 	vehicle->motor_out_r = 0;		vehicle->motor_out_l = 0;
 
-	if(is_controll_enable() == True && run_pattern_get() != motor_free)
+	if(is_controll_enable() == True && motion_pattern_get() != motor_free)
 	{
 		//calc motor speed(rpm)
 		float motor_r_rpm = (1.0f)*RAD_2_RPM*GEAR_N*(vehicle->ideal.velo.get()*1000/TIRE_RADIUS
@@ -85,12 +89,16 @@ void CtrlTask::motion_controll()
 													- 1.0f*TREAD_WIDTH*vehicle->ideal.rad_velo.get()/(2*TIRE_RADIUS));
 		//calc friction()
 		float friction = 0.0f;
-		if(run_pattern_get() != Fix_wall || run_pattern_get() != run_brake)
+		if(motion_pattern_get() != Fix_wall || motion_pattern_get() != run_brake)
 			friction = (ABS(vehicle->ideal.velo.get()) > 0.15) ? (float)(SIGN(vehicle->ideal.velo.get()))*0.05*9.8/(1+0.0*ABS(vehicle->ideal.accel.get())):0.0f;
 
 		//calc motor induce ampere
-		float motor_r_ampere = 1/(MOTOR_K_TR*GEAR_N)*(WEIGHT*(vehicle->ideal.accel.get()+friction)/1000*(TIRE_RADIUS)/2 + MOUSE_INERTIA*vehicle->ideal.rad_accel.get() *TIRE_RADIUS/(TREAD_WIDTH/2.0f)) +  MOTOR_BR*motor_r_rpm/MOTOR_K_TR*0.0;
-		float motor_l_ampere = 1/(MOTOR_K_TR*GEAR_N)*(WEIGHT*(vehicle->ideal.accel.get()+friction)/1000*(TIRE_RADIUS)/2 - MOUSE_INERTIA*vehicle->ideal.rad_accel.get() *TIRE_RADIUS/(TREAD_WIDTH/2.0f)) +  MOTOR_BR*motor_l_rpm/MOTOR_K_TR*0.0;
+		float motor_r_ampere = 1/(MOTOR_K_TR*GEAR_N)*(WEIGHT*(vehicle->ideal.accel.get()+friction)/1000*(TIRE_RADIUS)/2)
+							 + 1/(MOTOR_K_TR*GEAR_N)*(MOUSE_INERTIA*vehicle->ideal.rad_accel.get() *TIRE_RADIUS/(TREAD_WIDTH/2.0f))
+							 + MOTOR_BR*motor_r_rpm/MOTOR_K_TR*0.0;
+		float motor_l_ampere = 1/(MOTOR_K_TR*GEAR_N)*(WEIGHT*(vehicle->ideal.accel.get()+friction)/1000*(TIRE_RADIUS)/2)
+							 - 1/(MOTOR_K_TR*GEAR_N)*(MOUSE_INERTIA*vehicle->ideal.rad_accel.get() *TIRE_RADIUS/(TREAD_WIDTH/2.0f))
+							 + MOTOR_BR*motor_l_rpm/MOTOR_K_TR*0.0;
 
 		//calc motor induce voltage
 		float sp_FF_controll_r =  MOTOR_R*motor_r_ampere + MOTOR_K_ER*motor_r_rpm/1000;
