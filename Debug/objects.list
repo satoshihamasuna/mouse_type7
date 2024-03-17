@@ -31,6 +31,8 @@
 "Core/CPP/System/Src/mode.o"
 "Core/CPP/Task/Src/controll_task.o"
 "Core/CPP/Task/Src/ctrl_task.o"
+"Core/CPP/Task/Src/init_motion.o"
+"Core/CPP/Task/Src/motion.o"
 "Core/CPP/Task/Src/motion_plan.o"
 "Core/CPP/Task/Src/run_task.o"
 "Core/CPP/Task/Src/sensing_task.o"

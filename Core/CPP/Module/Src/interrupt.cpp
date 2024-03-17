@@ -15,6 +15,7 @@
 
 #include "../../Task/Inc/sensing_task.h"
 #include "../../Task/Inc/motion.h"
+#include "../../Task/Inc/ctrl_task.h"
 
 #include "../../Component/Inc/controll.h"
 #include "../../Component/Inc/half_float.h"
@@ -150,8 +151,14 @@ void Interrupt::preprocess()
 
 void Interrupt::main()
 {
+	/*
 	controll_task::getInstance().motion_inInterrupt();
 	controll_task::getInstance().motionControll();
+	 */
+
+	CtrlTask_type7::getInstance().motion_prev_controll();
+	CtrlTask_type7::getInstance().motion_controll();
+	CtrlTask_type7::getInstance().motion_post_controll();
 }
 
 void Interrupt::postprocess()

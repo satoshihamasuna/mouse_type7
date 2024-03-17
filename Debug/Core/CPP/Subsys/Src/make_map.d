@@ -14,11 +14,7 @@ Core/CPP/Subsys/Src/make_map.o: ../Core/CPP/Subsys/Src/make_map.cpp \
  ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Pheripheral/Include/typedef.h \
  ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Module/Inc/vehicle.h \
  ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Module/Inc/../../Pheripheral/Include/typedef.h \
- ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Module/Inc/../../Component/Inc/singleton.h \
- ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Module/Inc/../../Component/Inc/controll.h \
- ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Component/Inc/controll.h \
- ../Core/CPP/Subsys/Src/../../Pheripheral/Include/typedef.h \
- ../Core/CPP/Subsys/Src/../../Pheripheral/Include/index.h \
+ ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Module/Inc/../../Pheripheral/Include/index.h \
  ../Core/Inc/main.h ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
  ../Core/Inc/stm32f4xx_hal_conf.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
@@ -52,9 +48,14 @@ Core/CPP/Subsys/Src/make_map.o: ../Core/CPP/Subsys/Src/make_map.cpp \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
  ../Core/Inc/adc.h ../Core/Inc/main.h ../Core/Inc/dma.h ../Core/Inc/spi.h \
  ../Core/Inc/tim.h ../Core/Inc/usart.h ../Core/Inc/gpio.h \
+ ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Module/Inc/../../Pheripheral/Include/typedef.h \
+ ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Module/Inc/../../Pheripheral/Include/lsm6dsr_reg.h \
+ ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Module/Inc/../../Pheripheral/Include/macro.h \
+ ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Module/Inc/../../Component/Inc/singleton.h \
+ ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Module/Inc/../../Component/Inc/controll.h \
+ ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Component/Inc/controll.h \
  ../Core/CPP/Subsys/Src/../../Pheripheral/Include/typedef.h \
- ../Core/CPP/Subsys/Src/../../Pheripheral/Include/lsm6dsr_reg.h \
- ../Core/CPP/Subsys/Src/../../Pheripheral/Include/macro.h
+ ../Core/CPP/Subsys/Src/../../Pheripheral/Include/index.h
 
 ../Core/CPP/Subsys/Src/../../Component/Inc/queue_class.h:
 
@@ -86,15 +87,7 @@ Core/CPP/Subsys/Src/make_map.o: ../Core/CPP/Subsys/Src/make_map.cpp \
 
 ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Module/Inc/../../Pheripheral/Include/typedef.h:
 
-../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Module/Inc/../../Component/Inc/singleton.h:
-
-../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Module/Inc/../../Component/Inc/controll.h:
-
-../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Component/Inc/controll.h:
-
-../Core/CPP/Subsys/Src/../../Pheripheral/Include/typedef.h:
-
-../Core/CPP/Subsys/Src/../../Pheripheral/Include/index.h:
+../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Module/Inc/../../Pheripheral/Include/index.h:
 
 ../Core/Inc/main.h:
 
@@ -174,8 +167,18 @@ Core/CPP/Subsys/Src/make_map.o: ../Core/CPP/Subsys/Src/make_map.cpp \
 
 ../Core/Inc/gpio.h:
 
+../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Module/Inc/../../Pheripheral/Include/typedef.h:
+
+../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Module/Inc/../../Pheripheral/Include/lsm6dsr_reg.h:
+
+../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Module/Inc/../../Pheripheral/Include/macro.h:
+
+../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Module/Inc/../../Component/Inc/singleton.h:
+
+../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Module/Inc/../../Component/Inc/controll.h:
+
+../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Component/Inc/controll.h:
+
 ../Core/CPP/Subsys/Src/../../Pheripheral/Include/typedef.h:
 
-../Core/CPP/Subsys/Src/../../Pheripheral/Include/lsm6dsr_reg.h:
-
-../Core/CPP/Subsys/Src/../../Pheripheral/Include/macro.h:
+../Core/CPP/Subsys/Src/../../Pheripheral/Include/index.h:

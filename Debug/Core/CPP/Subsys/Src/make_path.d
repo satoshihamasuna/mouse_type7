@@ -45,6 +45,7 @@ Core/CPP/Subsys/Src/make_path.o: ../Core/CPP/Subsys/Src/make_path.cpp \
  ../Core/CPP/Subsys/Src/../../Task/Inc/../../Pheripheral/Include/typedef.h \
  ../Core/CPP/Subsys/Src/../../Task/Inc/../../Module/Inc/vehicle.h \
  ../Core/CPP/Subsys/Src/../../Task/Inc/../../Module/Inc/../../Pheripheral/Include/typedef.h \
+ ../Core/CPP/Subsys/Src/../../Task/Inc/../../Module/Inc/../../Pheripheral/Include/index.h \
  ../Core/CPP/Subsys/Src/../../Task/Inc/../../Module/Inc/../../Component/Inc/singleton.h \
  ../Core/CPP/Subsys/Src/../../Task/Inc/../../Module/Inc/../../Component/Inc/controll.h \
  ../Core/CPP/Subsys/Src/../../Task/Inc/../../Component/Inc/controll.h \
@@ -178,6 +179,8 @@ Core/CPP/Subsys/Src/make_path.o: ../Core/CPP/Subsys/Src/make_path.cpp \
 ../Core/CPP/Subsys/Src/../../Task/Inc/../../Module/Inc/vehicle.h:
 
 ../Core/CPP/Subsys/Src/../../Task/Inc/../../Module/Inc/../../Pheripheral/Include/typedef.h:
+
+../Core/CPP/Subsys/Src/../../Task/Inc/../../Module/Inc/../../Pheripheral/Include/index.h:
 
 ../Core/CPP/Subsys/Src/../../Task/Inc/../../Module/Inc/../../Component/Inc/singleton.h:
 

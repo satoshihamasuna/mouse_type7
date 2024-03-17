@@ -9,6 +9,7 @@
 #define CPP_MODULE_INC_VEHICLE_H_
 
 #include "../../Pheripheral/Include/typedef.h"
+#include "../../Pheripheral/Include/index.h"
 //#include "../../Component/Inc/half_float.h"
 #include "../../Component/Inc/singleton.h"
 #include "../../Component/Inc/controll.h"
@@ -88,10 +89,13 @@ struct machine_params
 		param_element turn_y_dash;
 		param_element turn_slip_theta;
 		param_element turn_slip_dot;
+		turn_dir_element 	  turn_dir_state;
 };
 
 class Vehicle
 {
+	protected:
+		int r_duty,l_duty;
 	public:
 		machine_params ego;
 		void ego_initialize()
@@ -111,6 +115,7 @@ class Vehicle
 			ego.turn_y_dash.init();
 			ego.turn_slip_theta.init();
 			ego.turn_slip_dot.init();
+			ego.turn_dir_state.init();
 		}
 
 		machine_params ideal;
@@ -131,36 +136,43 @@ class Vehicle
 			ideal.turn_y_dash.init();
 			ideal.turn_slip_theta.init();
 			ideal.turn_slip_dot.init();
+			ideal.turn_dir_state.init();
 		}
 
-		/*
-		motion_set_params motion_set;
-		void motion_set_initialize()
-		{
-			motion_set.velo.init();
-			motion_set.max_velo.init();
-			motion_set.end_velo.init();
-			motion_set.accel.init();
-			motion_set.deccel.init();
-			motion_set.length.init();
-			motion_set.rad_accel.init();
-			motion_set.rad_deccel.init();
-			motion_set.rad_max_velo.init();
-			motion_set.radian.init();
-			motion_set.turn_d.init();
-		}
-		*/
 
 		param_element battery;
 
 		mouse_Controll Vehicle_controller;
 		float V_r,V_l;
 		int motor_out_r,motor_out_l;
+
 		param_element sp_feedforward,sp_feedback;
 		param_element om_feedforward,om_feedback;
+		virtual void motorSetDuty_l(int out_l)
+		{
+			l_duty = out_l;
+		}
+		virtual void motorSetDuty_r(int out_r)
+		{
+			r_duty = out_r;
+		}
 
 };
 
-class Vehicle_type7:public Vehicle,public Singleton<Vehicle_type7>{};
+class Vehicle_type7:public Vehicle,public Singleton<Vehicle_type7>{
+
+	void motorSetDuty_l(int out_l) override
+	{
+		l_duty = out_l;
+		Motor_SetDuty_Left(out_l);
+	}
+
+	void motorSetDuty_r(int out_r) override
+	{
+		r_duty = out_r;
+		Motor_SetDuty_Left(out_r);
+	}
+
+};
 
 #endif /* CPP_MODULE_INC_VEHICLE_H_ */

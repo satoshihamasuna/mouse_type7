@@ -8,12 +8,7 @@ Core/CPP/Task/Src/sensing_task.o: ../Core/CPP/Task/Src/sensing_task.cpp \
  ../Core/CPP/Task/Src/../Inc/../../Pheripheral/Include/../../Component/Inc/maze_typedef.h \
  ../Core/CPP/Task/Src/../Inc/../../Module/Inc/vehicle.h \
  ../Core/CPP/Task/Src/../Inc/../../Module/Inc/../../Pheripheral/Include/typedef.h \
- ../Core/CPP/Task/Src/../Inc/../../Module/Inc/../../Component/Inc/singleton.h \
- ../Core/CPP/Task/Src/../Inc/../../Module/Inc/../../Component/Inc/controll.h \
- ../Core/CPP/Task/Src/../Inc/../../Component/Inc/controll.h \
- ../Core/CPP/Task/Src/../../Params/sens_table.h \
- ../Core/CPP/Task/Src/../../Pheripheral/Include/typedef.h \
- ../Core/CPP/Task/Src/../../Pheripheral/Include/index.h \
+ ../Core/CPP/Task/Src/../Inc/../../Module/Inc/../../Pheripheral/Include/index.h \
  ../Core/Inc/main.h ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
  ../Core/Inc/stm32f4xx_hal_conf.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
@@ -47,9 +42,15 @@ Core/CPP/Task/Src/sensing_task.o: ../Core/CPP/Task/Src/sensing_task.cpp \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
  ../Core/Inc/adc.h ../Core/Inc/main.h ../Core/Inc/dma.h ../Core/Inc/spi.h \
  ../Core/Inc/tim.h ../Core/Inc/usart.h ../Core/Inc/gpio.h \
+ ../Core/CPP/Task/Src/../Inc/../../Module/Inc/../../Pheripheral/Include/typedef.h \
+ ../Core/CPP/Task/Src/../Inc/../../Module/Inc/../../Pheripheral/Include/lsm6dsr_reg.h \
+ ../Core/CPP/Task/Src/../Inc/../../Module/Inc/../../Pheripheral/Include/macro.h \
+ ../Core/CPP/Task/Src/../Inc/../../Module/Inc/../../Component/Inc/singleton.h \
+ ../Core/CPP/Task/Src/../Inc/../../Module/Inc/../../Component/Inc/controll.h \
+ ../Core/CPP/Task/Src/../Inc/../../Component/Inc/controll.h \
+ ../Core/CPP/Task/Src/../../Params/sens_table.h \
  ../Core/CPP/Task/Src/../../Pheripheral/Include/typedef.h \
- ../Core/CPP/Task/Src/../../Pheripheral/Include/lsm6dsr_reg.h \
- ../Core/CPP/Task/Src/../../Pheripheral/Include/macro.h \
+ ../Core/CPP/Task/Src/../../Pheripheral/Include/index.h \
  ../Core/CPP/Task/Src/../Inc/motion.h \
  ../Core/CPP/Task/Src/../Inc/../../Params/run_param.h \
  ../Core/CPP/Task/Src/../Inc/../../Params/../Component/Inc/controll.h \
@@ -74,17 +75,7 @@ Core/CPP/Task/Src/sensing_task.o: ../Core/CPP/Task/Src/sensing_task.cpp \
 
 ../Core/CPP/Task/Src/../Inc/../../Module/Inc/../../Pheripheral/Include/typedef.h:
 
-../Core/CPP/Task/Src/../Inc/../../Module/Inc/../../Component/Inc/singleton.h:
-
-../Core/CPP/Task/Src/../Inc/../../Module/Inc/../../Component/Inc/controll.h:
-
-../Core/CPP/Task/Src/../Inc/../../Component/Inc/controll.h:
-
-../Core/CPP/Task/Src/../../Params/sens_table.h:
-
-../Core/CPP/Task/Src/../../Pheripheral/Include/typedef.h:
-
-../Core/CPP/Task/Src/../../Pheripheral/Include/index.h:
+../Core/CPP/Task/Src/../Inc/../../Module/Inc/../../Pheripheral/Include/index.h:
 
 ../Core/Inc/main.h:
 
@@ -164,11 +155,23 @@ Core/CPP/Task/Src/sensing_task.o: ../Core/CPP/Task/Src/sensing_task.cpp \
 
 ../Core/Inc/gpio.h:
 
+../Core/CPP/Task/Src/../Inc/../../Module/Inc/../../Pheripheral/Include/typedef.h:
+
+../Core/CPP/Task/Src/../Inc/../../Module/Inc/../../Pheripheral/Include/lsm6dsr_reg.h:
+
+../Core/CPP/Task/Src/../Inc/../../Module/Inc/../../Pheripheral/Include/macro.h:
+
+../Core/CPP/Task/Src/../Inc/../../Module/Inc/../../Component/Inc/singleton.h:
+
+../Core/CPP/Task/Src/../Inc/../../Module/Inc/../../Component/Inc/controll.h:
+
+../Core/CPP/Task/Src/../Inc/../../Component/Inc/controll.h:
+
+../Core/CPP/Task/Src/../../Params/sens_table.h:
+
 ../Core/CPP/Task/Src/../../Pheripheral/Include/typedef.h:
 
-../Core/CPP/Task/Src/../../Pheripheral/Include/lsm6dsr_reg.h:
-
-../Core/CPP/Task/Src/../../Pheripheral/Include/macro.h:
+../Core/CPP/Task/Src/../../Pheripheral/Include/index.h:
 
 ../Core/CPP/Task/Src/../Inc/motion.h:
 

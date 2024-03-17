@@ -53,6 +53,7 @@ Core/CPP/Module/Src/interrupt.o: ../Core/CPP/Module/Src/interrupt.cpp \
  ../Core/CPP/Module/Src/../../Task/Inc/../../Pheripheral/Include/typedef.h \
  ../Core/CPP/Module/Src/../../Task/Inc/../../Module/Inc/vehicle.h \
  ../Core/CPP/Module/Src/../../Task/Inc/../../Module/Inc/../../Pheripheral/Include/typedef.h \
+ ../Core/CPP/Module/Src/../../Task/Inc/../../Module/Inc/../../Pheripheral/Include/index.h \
  ../Core/CPP/Module/Src/../../Task/Inc/../../Module/Inc/../../Component/Inc/singleton.h \
  ../Core/CPP/Module/Src/../../Task/Inc/../../Module/Inc/../../Component/Inc/controll.h \
  ../Core/CPP/Module/Src/../../Task/Inc/../../Component/Inc/controll.h \
@@ -61,6 +62,8 @@ Core/CPP/Module/Src/interrupt.o: ../Core/CPP/Module/Src/interrupt.cpp \
  ../Core/CPP/Module/Src/../../Task/Inc/../../Params/../Component/Inc/controll.h \
  ../Core/CPP/Module/Src/../../Task/Inc/../../Params/../Task/Inc/run_task.h \
  ../Core/CPP/Module/Src/../../Task/Inc/../../Params/../Pheripheral/Include/typedef.h \
+ ../Core/CPP/Module/Src/../../Task/Inc/ctrl_task.h \
+ ../Core/CPP/Module/Src/../../Task/Inc/sensing_task.h \
  ../Core/CPP/Module/Src/../../Component/Inc/controll.h \
  ../Core/CPP/Module/Src/../../Component/Inc/half_float.h \
  ../Core/CPP/Module/Src/../../Component/Inc/Kalman_filter.h \
@@ -186,6 +189,8 @@ Core/CPP/Module/Src/interrupt.o: ../Core/CPP/Module/Src/interrupt.cpp \
 
 ../Core/CPP/Module/Src/../../Task/Inc/../../Module/Inc/../../Pheripheral/Include/typedef.h:
 
+../Core/CPP/Module/Src/../../Task/Inc/../../Module/Inc/../../Pheripheral/Include/index.h:
+
 ../Core/CPP/Module/Src/../../Task/Inc/../../Module/Inc/../../Component/Inc/singleton.h:
 
 ../Core/CPP/Module/Src/../../Task/Inc/../../Module/Inc/../../Component/Inc/controll.h:
@@ -201,6 +206,10 @@ Core/CPP/Module/Src/interrupt.o: ../Core/CPP/Module/Src/interrupt.cpp \
 ../Core/CPP/Module/Src/../../Task/Inc/../../Params/../Task/Inc/run_task.h:
 
 ../Core/CPP/Module/Src/../../Task/Inc/../../Params/../Pheripheral/Include/typedef.h:
+
+../Core/CPP/Module/Src/../../Task/Inc/ctrl_task.h:
+
+../Core/CPP/Module/Src/../../Task/Inc/sensing_task.h:
 
 ../Core/CPP/Module/Src/../../Component/Inc/controll.h:
 

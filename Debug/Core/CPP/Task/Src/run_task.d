@@ -43,6 +43,7 @@ Core/CPP/Task/Src/run_task.o: ../Core/CPP/Task/Src/run_task.cpp \
  ../Core/CPP/Task/Src/../Inc/../../Pheripheral/Include/typedef.h \
  ../Core/CPP/Task/Src/../Inc/../../Module/Inc/vehicle.h \
  ../Core/CPP/Task/Src/../Inc/../../Module/Inc/../../Pheripheral/Include/typedef.h \
+ ../Core/CPP/Task/Src/../Inc/../../Module/Inc/../../Pheripheral/Include/index.h \
  ../Core/CPP/Task/Src/../Inc/../../Module/Inc/../../Component/Inc/singleton.h \
  ../Core/CPP/Task/Src/../Inc/../../Module/Inc/../../Component/Inc/controll.h \
  ../Core/CPP/Task/Src/../Inc/../../Component/Inc/controll.h \
@@ -156,6 +157,8 @@ Core/CPP/Task/Src/run_task.o: ../Core/CPP/Task/Src/run_task.cpp \
 ../Core/CPP/Task/Src/../Inc/../../Module/Inc/vehicle.h:
 
 ../Core/CPP/Task/Src/../Inc/../../Module/Inc/../../Pheripheral/Include/typedef.h:
+
+../Core/CPP/Task/Src/../Inc/../../Module/Inc/../../Pheripheral/Include/index.h:
 
 ../Core/CPP/Task/Src/../Inc/../../Module/Inc/../../Component/Inc/singleton.h:
 
