@@ -118,6 +118,18 @@ class Vehicle
 			ego.turn_dir_state.init();
 		}
 
+		inline void ego_integral_init()
+		{
+			ego.length.init();
+			ego.radian.init();
+			ego.x_point.init();
+			ego.turn_x.init();
+			ego.turn_y.init();
+			ego.turn_slip_theta.init();
+		}
+
+
+
 		machine_params ideal;
 		void ideal_initialize()
 		{
@@ -137,6 +149,16 @@ class Vehicle
 			ideal.turn_slip_theta.init();
 			ideal.turn_slip_dot.init();
 			ideal.turn_dir_state.init();
+		}
+
+		inline void ideal_integral_init()
+		{
+			ideal.length.init();
+			ideal.radian.init();
+			ideal.x_point.init();
+			ideal.turn_x.init();
+			ideal.turn_y.init();
+			ideal.turn_slip_theta.init();
 		}
 
 

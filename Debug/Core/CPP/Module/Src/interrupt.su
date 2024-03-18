@@ -1,13 +1,13 @@
 cmath:184:3:constexpr float std::cos(float)	16	static
 vehicle.h:60:15:void param_element::set(float)	16	static
 vehicle.h:62:16:float param_element::get()	16	static
-vehicle.h:151:16:virtual void Vehicle::motorSetDuty_l(int)	16	static
-vehicle.h:155:16:virtual void Vehicle::motorSetDuty_r(int)	16	static
-vehicle.h:164:7:virtual void Vehicle_type7::motorSetDuty_l(int)	16	static
-vehicle.h:170:7:virtual void Vehicle_type7::motorSetDuty_r(int)	16	static
-ctrl_task.h:104:3:Motion::Motion(Vehicle*, SensingTask*, int)	24	static
-ctrl_task.h:158:3:CtrlTask::CtrlTask(Vehicle*, SensingTask*, int)	24	static
-ctrl_task.h:176:3:CtrlTask_type7::CtrlTask_type7(Vehicle*, SensingTask*)	24	static
+vehicle.h:173:16:virtual void Vehicle::motorSetDuty_l(int)	16	static
+vehicle.h:177:16:virtual void Vehicle::motorSetDuty_r(int)	16	static
+vehicle.h:186:7:virtual void Vehicle_type7::motorSetDuty_l(int)	16	static
+vehicle.h:192:7:virtual void Vehicle_type7::motorSetDuty_r(int)	16	static
+ctrl_task.h:128:3:Motion::Motion(Vehicle*, SensingTask*, int)	24	static
+ctrl_task.h:166:3:CtrlTask::CtrlTask(Vehicle*, SensingTask*, int)	24	static
+ctrl_task.h:184:3:CtrlTask_type7::CtrlTask_type7(Vehicle*, SensingTask*)	24	static
 interrupt.cpp:26:6:void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef*)	16	static
 interrupt.cpp:35:6:void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef*)	16	static
 interrupt.cpp:43:6:void Interrupt_Initialize()	4	static
@@ -17,7 +17,7 @@ interrupt.cpp:164:6:void Interrupt::postprocess()	32	static
 controll.h:19:7:constexpr PID_Controller::PID_Controller()	16	static
 controll.h:36:7:constexpr mouse_Controll::mouse_Controll()	16	static
 vehicle.h:95:7:Vehicle::Vehicle()	16	static
-vehicle.h:162:7:Vehicle_type7::Vehicle_type7()	16	static
+vehicle.h:184:7:Vehicle_type7::Vehicle_type7()	16	static
 singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = Vehicle_type7]	8	static
 singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = SensingTask]	4	static
 singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = Interrupt]	4	static

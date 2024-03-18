@@ -33,6 +33,8 @@ void Motion::Init_Motion_free_rotation_set( )
 	motion_pattern_set(No_run);
 	motion_exeStatus_set(execute);
 	motion_state_set(NOP_STATE);
+	run_time_ms_reset();
+
 }
 
 void Motion::Init_Motion_search_straight(float len_target,float acc,float max_sp,float end_sp,const t_pid_gain *sp_gain  ,const t_pid_gain *om_gain  )
@@ -65,6 +67,8 @@ void Motion::Init_Motion_search_straight(float len_target,float acc,float max_sp
 	motion_pattern_set(Search_st_section);
 	motion_exeStatus_set(execute);
 	motion_state_set(STRAIGHT_STATE);
+	run_time_ms_reset();
+
 }
 
 void Motion::Init_Motion_search_turn	(const t_param *turn_param,const t_pid_gain *sp_gain  ,const t_pid_gain *om_gain  )
@@ -96,6 +100,8 @@ void Motion::Init_Motion_search_turn	(const t_param *turn_param,const t_pid_gain
 	(motion_set.end_radian.get() > 0) ? motion_pattern_set(Search_slalom_L): motion_pattern_set(Search_slalom_R);
 	motion_exeStatus_set(execute);
 	motion_state_set(STRAIGHT_STATE);
+	run_time_ms_reset();
+
 }
 
 void Motion::Init_Motion_straight		(float len_target,float acc,float max_sp,float end_sp,const t_pid_gain *sp_gain  ,const t_pid_gain *om_gain  )
@@ -128,6 +134,8 @@ void Motion::Init_Motion_straight		(float len_target,float acc,float max_sp,floa
 	motion_pattern_set(Straight);
 	motion_exeStatus_set(execute);
 	motion_state_set(STRAIGHT_STATE);
+	run_time_ms_reset();
+
 }
 
 void Motion::Init_Motion_diagonal		(float len_target,float acc,float max_sp,float end_sp,const t_pid_gain *sp_gain  ,const t_pid_gain *om_gain  )
@@ -160,6 +168,8 @@ void Motion::Init_Motion_diagonal		(float len_target,float acc,float max_sp,floa
 	motion_pattern_set(Diagonal);
 	motion_exeStatus_set(execute);
 	motion_state_set(DIAGONAL_STATE);
+	run_time_ms_reset();
+
 
 }
 
@@ -193,6 +203,7 @@ void Motion::Init_Motion_pivot_turn	(float rad_target,float rad_acc,float rad_ve
 	(motion_set.end_radian.get() > 0) ? motion_pattern_set(Pivot_turn_L) : motion_pattern_set(Pivot_turn_R);
 	motion_exeStatus_set(execute);
 	motion_state_set(PIVTURN_STATE);
+	run_time_ms_reset();
 
 }
 
@@ -225,6 +236,7 @@ void Motion::Init_Motion_turn_in		(const t_param *turn_param,t_run_pattern run_p
 	motion_pattern_set(run_pt);
 	motion_exeStatus_set(execute);
 	motion_state_set(STRAIGHT_STATE);
+	run_time_ms_reset();
 }
 
 void Motion::Init_Motion_turn_out		(const t_param *turn_param,t_run_pattern run_pt,const t_pid_gain *sp_gain  ,const t_pid_gain *om_gain  )
@@ -256,6 +268,7 @@ void Motion::Init_Motion_turn_out		(const t_param *turn_param,t_run_pattern run_
 	motion_pattern_set(run_pt);
 	motion_exeStatus_set(execute);
 	motion_state_set(DIAGONAL_STATE);
+	run_time_ms_reset();
 }
 
 void Motion::Init_Motion_long_turn	(const t_param *turn_param,t_run_pattern run_pt,const t_pid_gain *sp_gain  ,const t_pid_gain *om_gain  )
@@ -286,6 +299,7 @@ void Motion::Init_Motion_long_turn	(const t_param *turn_param,t_run_pattern run_
 	motion_pattern_set(run_pt);
 	motion_exeStatus_set(execute);
 	motion_state_set(STRAIGHT_STATE);
+	run_time_ms_reset();
 }
 
 void Motion::Init_Motion_turn_v90		(const t_param *turn_param,t_run_pattern run_pt,const t_pid_gain *sp_gain  ,const t_pid_gain *om_gain  )
@@ -316,6 +330,7 @@ void Motion::Init_Motion_turn_v90		(const t_param *turn_param,t_run_pattern run_
 	motion_pattern_set(run_pt);
 	motion_exeStatus_set(execute);
 	motion_state_set(DIAGONAL_STATE);
+	run_time_ms_reset();
 }
 
 void Motion::Init_Motion_fix_wall		(float set_time,const t_pid_gain *sp_gain  ,const t_pid_gain *om_gain  )
@@ -347,6 +362,7 @@ void Motion::Init_Motion_fix_wall		(float set_time,const t_pid_gain *sp_gain  ,c
 	motion_pattern_set(Fix_wall);
 	motion_exeStatus_set(execute);
 	motion_state_set(BRAKE_STATE);
+	run_time_ms_reset();
 }
 void Motion::Init_Motion_stop_brake	(float set_time,const t_pid_gain *sp_gain  ,const t_pid_gain *om_gain  )
 {
@@ -377,4 +393,5 @@ void Motion::Init_Motion_stop_brake	(float set_time,const t_pid_gain *sp_gain  ,
 	motion_pattern_set(run_brake);
 	motion_exeStatus_set(execute);
 	motion_state_set(BRAKE_STATE);
+	run_time_ms_reset();
 }

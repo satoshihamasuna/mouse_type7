@@ -36,6 +36,7 @@ struct motion_set_params
 		param_element radian_deccel;
 		param_element turn_r_min;
 		turn_dir_element turn_state;
+		param_element turn_time_ms;
 };
 
 typedef enum{
@@ -57,23 +58,25 @@ typedef enum
 class Motion
 {
 	private:
+		//define motion status
 		t_run_pattern		motion_pattern  = No_run;
 		t_runStatus			motion_state	= NOP_STATE;
+		t_exeStatus		    motion_exeStatus;
 		t_bool				is_motion_enable	= False;
 
+		//define motion parameter
 		t_param 			turn_motion_param;
 		t_straight_param 	straight_motion_param;
+		motion_set_params    motion_set;
 
-		int deltaT_ms;
+
 		Vehicle *vehicle;
 		SensingTask *ir_sens;
 
-		t_exeStatus		  motion_exeStatus;
 
-		motion_set_params motion_set;
-
-		float delta_t;
-		float run_time;
+		//float delta_t;
+		int deltaT_ms;
+		float run_time_ms;
 		float run_time_limit;
 
 		void Motion_EndSetting_turn();
@@ -99,6 +102,27 @@ class Motion
 
 		void SetIdeal_free_rotation_set	( );
 
+
+		//set & get status
+		inline void run_time_ms_reset()											{	run_time_ms = 0.0f;					}
+		inline void run_time_ms_update()										{	run_time_ms = run_time_ms + (float) deltaT_ms;	}
+		inline float run_time_ms_get()											{	return run_time_ms;					}
+
+		inline t_run_pattern motion_pattern_get() 							 	{	return motion_pattern;				}
+		inline void			 motion_pattern_set(t_run_pattern _motion_pattern)  {	motion_pattern	= _motion_pattern;	}
+
+		inline t_runStatus 	 motion_state_get() 							 	{	return motion_state;				}
+		inline void			 motion_state_set(t_runStatus _motion_state)   	 	{	motion_state	= _motion_state;	}
+
+		inline t_exeStatus 	 motion_exeStatus_get() 							 	{	return motion_exeStatus;				}
+		inline void			 motion_exeStatus_set(t_exeStatus _motion_exeStatus)   	{	motion_exeStatus	= _motion_exeStatus;	}
+		t_exeStatus 		 motion_execute();
+
+		inline	void 		motion_enable_set()										{ 	is_motion_enable		= True;		}
+		inline	void 		motion_disable_set()									{ 	is_motion_enable		= False;	}
+		inline  t_bool 		motion_is_enable_get()									{	return	is_motion_enable;			}
+
+
 	public:
 
 		Motion(Vehicle *_vehicle,SensingTask *_ir_sens,int _deltaT_ms)
@@ -107,13 +131,6 @@ class Motion
 			ir_sens = _ir_sens;
 			deltaT_ms = _deltaT_ms;
 		}
-
-
-		inline t_run_pattern motion_pattern_get() 							 	{	return motion_pattern;				}
-		inline void			 motion_pattern_set(t_run_pattern _motion_pattern)  {	motion_pattern	= _motion_pattern;	}
-
-		inline t_runStatus 	 motion_state_get() 							 	{	return motion_state;				}
-		inline void			 motion_state_set(t_runStatus _motion_state)   	 	{	motion_state	= _motion_state;	}
 
 
 		//Initialize motion parameters
@@ -133,15 +150,6 @@ class Motion
 
 		void Init_Motion_fix_wall		(float set_time,const t_pid_gain *sp_gain = &basic_sp_gain,const t_pid_gain *om_gain = &basic_om_gain);
 		void Init_Motion_stop_brake		(float set_time,const t_pid_gain *sp_gain = &basic_sp_gain,const t_pid_gain *om_gain = &basic_om_gain);
-
-		inline t_exeStatus 	 motion_exeStatus_get() 							 	{	return motion_exeStatus;				}
-		inline void			 motion_exeStatus_set(t_exeStatus _motion_exeStatus)   	{	motion_exeStatus	= _motion_exeStatus;	}
-		t_exeStatus 		 motion_execute();
-
-		inline	void 		motion_enable_set()										{ 	is_motion_enable		= True;		}
-		inline	void 		motion_disable_set()									{ 	is_motion_enable		= False;	}
-		inline  t_bool 		motion_is_enable_get()									{	return	is_motion_enable;			}
-
 
 };
 
