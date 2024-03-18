@@ -18,11 +18,47 @@
 #include "../../Component/Inc/controll.h"
 #include "../../Module/Inc/vehicle.h"
 
+struct motion_set_params
+{
+		param_element velo;
+		param_element max_velo;
+		param_element end_velo;
+		param_element accel;
+		param_element deccel;
+		param_element end_length;
+		param_element length_accel;
+		param_element length_deccel;
+		param_element rad_accel;
+		param_element rad_deccel;
+		param_element rad_max_velo;
+		param_element end_radian;
+		param_element radian_accel;
+		param_element radian_deccel;
+		param_element turn_r_min;
+		turn_dir_element turn_state;
+};
+
+typedef enum{
+	execute	    = 2,
+	complete    = 1,
+	error 		= 0,
+}t_exeStatus;
+
+typedef enum
+{
+	NOP_STATE = 0,
+	STRAIGHT_STATE  = 1,
+	DIAGONAL_STATE  = 2,
+	SLATURN_STATE	= 3,
+	PIVTURN_STATE	= 4,
+	BRAKE_STATE		= 5,
+}t_runStatus;
+
 class Motion
 {
 	private:
 		t_run_pattern		motion_pattern  = No_run;
-		t_run_mode			motion_state	= NOP_MODE;
+		t_runStatus			motion_state	= NOP_STATE;
 		t_bool				is_motion_enable	= False;
 
 		t_param 			turn_motion_param;
@@ -31,32 +67,6 @@ class Motion
 		int deltaT_ms;
 		Vehicle *vehicle;
 		SensingTask *ir_sens;
-
-		struct motion_set_params
-		{
-				param_element velo;
-				param_element max_velo;
-				param_element end_velo;
-				param_element accel;
-				param_element deccel;
-				param_element end_length;
-				param_element length_accel;
-				param_element length_deccel;
-				param_element rad_accel;
-				param_element rad_deccel;
-				param_element rad_max_velo;
-				param_element end_radian;
-				param_element radian_accel;
-				param_element radian_deccel;
-				param_element turn_r_min;
-				turn_dir_element turn_state;
-		};
-
-		typedef enum{
-			execute	    = 2,
-			complete    = 1,
-			error 		= 0,
-		}t_exeStatus;
 
 		t_exeStatus		  motion_exeStatus;
 
@@ -102,8 +112,8 @@ class Motion
 		inline t_run_pattern motion_pattern_get() 							 	{	return motion_pattern;				}
 		inline void			 motion_pattern_set(t_run_pattern _motion_pattern)  {	motion_pattern	= _motion_pattern;	}
 
-		inline t_run_mode 	 motion_state_get() 							 	{	return motion_state;				}
-		inline void			 motion_state_set(t_run_mode _motion_state)   	 	{	motion_state	= _motion_state;	}
+		inline t_runStatus 	 motion_state_get() 							 	{	return motion_state;				}
+		inline void			 motion_state_set(t_runStatus _motion_state)   	 	{	motion_state	= _motion_state;	}
 
 
 		//Initialize motion parameters
@@ -114,15 +124,15 @@ class Motion
 		void Init_Motion_straight		(float len_target,float acc,float max_sp,float end_sp,const t_pid_gain *sp_gain = &basic_sp_gain,const t_pid_gain *om_gain = &basic_om_gain);
 		void Init_Motion_diagonal		(float len_target,float acc,float max_sp,float end_sp,const t_pid_gain *sp_gain = &basic_sp_gain,const t_pid_gain *om_gain = &basic_om_gain);
 
-		void Init_Motion_pivot_turn	(float rad_target,float rad_acc,float rad_velo,const t_pid_gain *sp_gain = &basic_sp_gain,const t_pid_gain *om_gain = &basic_om_gain);
+		void Init_Motion_pivot_turn		(float rad_target,float rad_acc,float rad_velo,const t_pid_gain *sp_gain = &basic_sp_gain,const t_pid_gain *om_gain = &basic_om_gain);
 
 		void Init_Motion_turn_in		(const t_param *turn_param,t_run_pattern run_pt,const t_pid_gain *sp_gain = &basic_sp_gain,const t_pid_gain *om_gain = &basic_om_gain);
 		void Init_Motion_turn_out		(const t_param *turn_param,t_run_pattern run_pt,const t_pid_gain *sp_gain = &basic_sp_gain,const t_pid_gain *om_gain = &basic_om_gain);
-		void Init_Motion_long_turn	(const t_param *turn_param,t_run_pattern run_pt,const t_pid_gain *sp_gain = &basic_sp_gain,const t_pid_gain *om_gain = &basic_om_gain);
+		void Init_Motion_long_turn		(const t_param *turn_param,t_run_pattern run_pt,const t_pid_gain *sp_gain = &basic_sp_gain,const t_pid_gain *om_gain = &basic_om_gain);
 		void Init_Motion_turn_v90		(const t_param *turn_param,t_run_pattern run_pt,const t_pid_gain *sp_gain = &basic_sp_gain,const t_pid_gain *om_gain = &basic_om_gain);
 
 		void Init_Motion_fix_wall		(float set_time,const t_pid_gain *sp_gain = &basic_sp_gain,const t_pid_gain *om_gain = &basic_om_gain);
-		void Init_Motion_stop_brake	(float set_time,const t_pid_gain *sp_gain = &basic_sp_gain,const t_pid_gain *om_gain = &basic_om_gain);
+		void Init_Motion_stop_brake		(float set_time,const t_pid_gain *sp_gain = &basic_sp_gain,const t_pid_gain *om_gain = &basic_om_gain);
 
 		inline t_exeStatus 	 motion_exeStatus_get() 							 	{	return motion_exeStatus;				}
 		inline void			 motion_exeStatus_set(t_exeStatus _motion_exeStatus)   	{	motion_exeStatus	= _motion_exeStatus;	}
@@ -131,6 +141,8 @@ class Motion
 		inline	void 		motion_enable_set()										{ 	is_motion_enable		= True;		}
 		inline	void 		motion_disable_set()									{ 	is_motion_enable		= False;	}
 		inline  t_bool 		motion_is_enable_get()									{	return	is_motion_enable;			}
+
+
 };
 
 

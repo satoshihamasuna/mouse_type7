@@ -52,7 +52,8 @@ Core/CPP/Task/Src/motion.o: ../Core/CPP/Task/Src/motion.cpp \
  ../Core/CPP/Task/Src/../Inc/../../Params/run_param.h \
  ../Core/CPP/Task/Src/../Inc/../../Params/../Component/Inc/controll.h \
  ../Core/CPP/Task/Src/../Inc/../../Params/../Task/Inc/run_task.h \
- ../Core/CPP/Task/Src/../Inc/../../Params/../Pheripheral/Include/typedef.h
+ ../Core/CPP/Task/Src/../Inc/../../Params/../Pheripheral/Include/typedef.h \
+ ../Core/CPP/Task/Src/../../Params/turn_table.h
 
 ../Core/CPP/Task/Src/../Inc/ctrl_task.h:
 
@@ -173,3 +174,5 @@ Core/CPP/Task/Src/motion.o: ../Core/CPP/Task/Src/motion.cpp \
 ../Core/CPP/Task/Src/../Inc/../../Params/../Task/Inc/run_task.h:
 
 ../Core/CPP/Task/Src/../Inc/../../Params/../Pheripheral/Include/typedef.h:
+
+../Core/CPP/Task/Src/../../Params/turn_table.h:
