@@ -77,7 +77,7 @@ class Motion
 		//float delta_t;
 		int deltaT_ms;
 		float run_time_ms;
-		float run_time_limit;
+		float run_time_ms_limit;
 
 		void Motion_EndSetting_turn();
 		void Motion_EndSetting_straight();
@@ -107,6 +107,10 @@ class Motion
 		inline void run_time_ms_reset()											{	run_time_ms = 0.0f;					}
 		inline void run_time_ms_update()										{	run_time_ms = run_time_ms + (float) deltaT_ms;	}
 		inline float run_time_ms_get()											{	return run_time_ms;					}
+
+		inline void run_time_limit_ms_reset()									{	run_time_ms_limit = 0.0f;					}
+		inline void run_time_limit_ms_set(float run_time_ms_limit_)				{	run_time_ms_limit = run_time_ms_limit_;		}
+		inline float run_time_limit_ms_get()									{	return run_time_ms_limit;					}
 
 		inline t_run_pattern motion_pattern_get() 							 	{	return motion_pattern;				}
 		inline void			 motion_pattern_set(t_run_pattern _motion_pattern)  {	motion_pattern	= _motion_pattern;	}

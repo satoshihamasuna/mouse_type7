@@ -4,8 +4,8 @@ vehicle.h:70:15:void turn_dir_element::set(t_turn_dir)	16	static
 vehicle.h:72:21:t_turn_dir turn_dir_element::get()	16	static
 ctrl_task.h:108:15:void Motion::run_time_ms_update()	16	static
 ctrl_task.h:109:16:float Motion::run_time_ms_get()	16	static
-ctrl_task.h:115:18:void Motion::motion_state_set(t_runStatus)	16	static
-ctrl_task.h:118:18:void Motion::motion_exeStatus_set(t_exeStatus)	16	static
+ctrl_task.h:119:18:void Motion::motion_state_set(t_runStatus)	16	static
+ctrl_task.h:122:18:void Motion::motion_exeStatus_set(t_exeStatus)	16	static
 motion.cpp:11:7:float get_turn_table_value(float, float)	40	static
 motion.cpp:31:7:void Motion::SetIdeal_search_straight()	32	static
 motion.cpp:96:7:void Motion::SetIdeal_search_turn()	48	static
