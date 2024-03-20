@@ -7,7 +7,7 @@
 
 
 #include "../Inc/ctrl_task.h"
-
+#include "../../Params/turn_table.h"
 
 
 void Motion::Init_Motion_free_rotation_set( )
@@ -29,6 +29,7 @@ void Motion::Init_Motion_free_rotation_set( )
 	motion_set.radian_deccel.init();
 	motion_set.turn_r_min.init();
 	motion_set.turn_state.init();
+	motion_set.turn_time_ms.init		();
 
 	motion_pattern_set(No_run);
 	motion_exeStatus_set(execute);
@@ -58,6 +59,7 @@ void Motion::Init_Motion_search_straight(float len_target,float acc,float max_sp
 	motion_set.radian_deccel.init	();
 	motion_set.turn_r_min.init		();
 	motion_set.turn_state.init		();
+	motion_set.turn_time_ms.init		();
 
 	//Set control gain & turn_param
 	straight_motion_param.sp_gain = sp_gain;
@@ -93,6 +95,7 @@ void Motion::Init_Motion_search_turn	(const t_param *turn_param,const t_pid_gain
 	motion_set.radian_deccel.set	(0.0f);//計算できないわけではない
 	motion_set.turn_r_min.set		(turn_param->param->r_min);
 	motion_set.turn_state.set			(Prev_Turn);
+	motion_set.turn_time_ms.set		( ABS(DEG2RAD(turn_param->param->degree)/(accel_Integral*motion_set.rad_max_velo.get()))*1000.0f);
 
 	//Set control gain & turn_param
 	straight_motion_param.sp_gain = sp_gain;
@@ -127,6 +130,7 @@ void Motion::Init_Motion_straight		(float len_target,float acc,float max_sp,floa
 	motion_set.radian_deccel.init	();
 	motion_set.turn_r_min.init		();
 	motion_set.turn_state.init		();
+	motion_set.turn_time_ms.init		();
 
 	//Set control gain
 	straight_motion_param.sp_gain = sp_gain;
@@ -162,6 +166,7 @@ void Motion::Init_Motion_diagonal		(float len_target,float acc,float max_sp,floa
 	motion_set.radian_deccel.init	();
 	motion_set.turn_r_min.init		();
 	motion_set.turn_state.init		();
+	motion_set.turn_time_ms.init		();
 
 	//Set control gain & turn_param
 	straight_motion_param.sp_gain = sp_gain;
@@ -197,6 +202,7 @@ void Motion::Init_Motion_pivot_turn	(float rad_target,float rad_acc,float rad_ve
 	motion_set.radian_deccel.init	();//check
 	motion_set.turn_r_min.set		(0.0f);
 	motion_set.turn_state.init			();//check
+	motion_set.turn_time_ms.init		();
 
 	//Set control gain
 	straight_motion_param.sp_gain = sp_gain;
@@ -232,6 +238,7 @@ void Motion::Init_Motion_turn_in		(const t_param *turn_param,t_run_pattern run_p
 	motion_set.radian_deccel.set	(0.0f);//計算できないわけではない
 	motion_set.turn_r_min.set		(turn_param->param->r_min);
 	motion_set.turn_state.set			(Prev_Turn);
+	motion_set.turn_time_ms.set		( ABS(DEG2RAD(turn_param->param->degree)/(accel_Integral*motion_set.rad_max_velo.get()))*1000.0f);
 
 	//Set control gain & turn_param
 	turn_motion_param = *turn_param;
@@ -265,6 +272,7 @@ void Motion::Init_Motion_turn_out		(const t_param *turn_param,t_run_pattern run_
 	motion_set.radian_deccel.set	(0.0f);//計算できないわけではない
 	motion_set.turn_r_min.set		(turn_param->param->r_min);
 	motion_set.turn_state.set		(Prev_Turn);
+	motion_set.turn_time_ms.set		( ABS(DEG2RAD(turn_param->param->degree)/(accel_Integral*motion_set.rad_max_velo.get()))*1000.0f);
 
 	//Set control gain & turn_param
 	turn_motion_param = *turn_param;
@@ -297,6 +305,7 @@ void Motion::Init_Motion_long_turn	(const t_param *turn_param,t_run_pattern run_
 	motion_set.radian_deccel.set	(0.0f);//計算できないわけではない
 	motion_set.turn_r_min.set		(turn_param->param->r_min);
 	motion_set.turn_state.set		(Prev_Turn);
+	motion_set.turn_time_ms.set		( ABS(DEG2RAD(turn_param->param->degree)/(accel_Integral*motion_set.rad_max_velo.get()))*1000.0f);
 
 	//Set control gain & turn_param
 	turn_motion_param = *turn_param;
@@ -329,6 +338,7 @@ void Motion::Init_Motion_turn_v90		(const t_param *turn_param,t_run_pattern run_
 	motion_set.radian_deccel.set	(0.0f);//計算できないわけではない
 	motion_set.turn_r_min.set		(turn_param->param->r_min);
 	motion_set.turn_state.set		(Prev_Turn);
+	motion_set.turn_time_ms.set		( ABS(DEG2RAD(turn_param->param->degree)/(accel_Integral*motion_set.rad_max_velo.get()))*1000.0f);
 
 	//Set control gain & turn_param
 	turn_motion_param = *turn_param;
@@ -361,6 +371,7 @@ void Motion::Init_Motion_fix_wall		(float set_time,const t_pid_gain *sp_gain  ,c
 	motion_set.radian_deccel.init();
 	motion_set.turn_r_min.init();
 	motion_set.turn_state.init();
+	motion_set.turn_time_ms.init		();
 
 	//Set control gain & turn_param
 	straight_motion_param.sp_gain = sp_gain;
@@ -372,7 +383,7 @@ void Motion::Init_Motion_fix_wall		(float set_time,const t_pid_gain *sp_gain  ,c
 	motion_exeStatus_set(execute);
 	motion_state_set(BRAKE_STATE);
 	run_time_ms_reset();
-	run_time_limit_ms_reset();
+	run_time_limit_ms_set(set_time);
 }
 void Motion::Init_Motion_stop_brake	(float set_time,const t_pid_gain *sp_gain  ,const t_pid_gain *om_gain  )
 {
@@ -393,6 +404,7 @@ void Motion::Init_Motion_stop_brake	(float set_time,const t_pid_gain *sp_gain  ,
 	motion_set.radian_deccel.init();
 	motion_set.turn_r_min.init();
 	motion_set.turn_state.init();
+	motion_set.turn_time_ms.init		();
 
 	//Set control gain & turn_param
 	straight_motion_param.sp_gain = sp_gain;

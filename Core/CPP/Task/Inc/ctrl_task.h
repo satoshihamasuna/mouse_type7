@@ -61,7 +61,7 @@ class Motion
 		//define motion status
 		t_run_pattern		motion_pattern  = No_run;
 		t_runStatus			motion_state	= NOP_STATE;
-		t_exeStatus		    motion_exeStatus;
+		t_exeStatus		    motion_exeStatus= complete;
 		t_bool				is_motion_enable	= False;
 
 		//define motion parameter
@@ -71,7 +71,7 @@ class Motion
 
 
 		Vehicle *vehicle;
-		SensingTask *ir_sens;
+		IrSensTask *ir_sens;
 
 
 		//float delta_t;
@@ -129,7 +129,7 @@ class Motion
 
 	public:
 
-		Motion(Vehicle *_vehicle,SensingTask *_ir_sens,int _deltaT_ms)
+		Motion(Vehicle *_vehicle,IrSensTask *_ir_sens,int _deltaT_ms)
 		{
 			vehicle = _vehicle;
 			ir_sens = _ir_sens;
@@ -155,6 +155,51 @@ class Motion
 		void Init_Motion_fix_wall		(float set_time,const t_pid_gain *sp_gain = &basic_sp_gain,const t_pid_gain *om_gain = &basic_om_gain);
 		void Init_Motion_stop_brake		(float set_time,const t_pid_gain *sp_gain = &basic_sp_gain,const t_pid_gain *om_gain = &basic_om_gain);
 
+		inline t_exeStatus execute_Motion()
+		{
+			while(motion_exeStatus_get() == execute);
+			return motion_exeStatus_get();
+		}
+
+		inline t_exeStatus exe_Motion_straight		(float len_target,float acc,float max_sp,float end_sp,const t_pid_gain *sp_gain = &basic_sp_gain,const t_pid_gain *om_gain = &basic_om_gain)
+		{
+			Init_Motion_straight(len_target,acc,max_sp,end_sp,sp_gain,om_gain);
+			return execute_Motion();
+		}
+
+		inline t_exeStatus exe_Motion_diagonal		(float len_target,float acc,float max_sp,float end_sp,const t_pid_gain *sp_gain = &basic_sp_gain,const t_pid_gain *om_gain = &basic_om_gain)
+		{
+			Init_Motion_diagonal(len_target,acc,max_sp,end_sp,sp_gain,om_gain);
+			return execute_Motion();
+		}
+
+		inline t_exeStatus exe_pivot_turn		(float rad_target,float rad_acc,float rad_velo,const t_pid_gain *sp_gain = &basic_sp_gain,const t_pid_gain *om_gain = &basic_om_gain)
+		{
+			Init_Motion_pivot_turn		(rad_target,rad_acc,rad_velo,sp_gain,om_gain);
+			return execute_Motion();
+		}
+
+		inline t_exeStatus exe_turn_in		(const t_param *turn_param,t_run_pattern run_pt,const t_pid_gain *sp_gain = &basic_sp_gain,const t_pid_gain *om_gain = &basic_om_gain)
+		{
+			Init_Motion_turn_in			(turn_param,run_pt,sp_gain,om_gain);
+			return execute_Motion();
+		}
+		inline t_exeStatus exe_turn_out		(const t_param *turn_param,t_run_pattern run_pt,const t_pid_gain *sp_gain = &basic_sp_gain,const t_pid_gain *om_gain = &basic_om_gain)
+		{
+			Init_Motion_turn_out		(turn_param,run_pt,sp_gain,om_gain);
+			return execute_Motion();
+		}
+		inline t_exeStatus exe_long_turn		(const t_param *turn_param,t_run_pattern run_pt,const t_pid_gain *sp_gain = &basic_sp_gain,const t_pid_gain *om_gain = &basic_om_gain)
+		{
+			Init_Motion_long_turn		(turn_param,run_pt,sp_gain,om_gain);
+			return execute_Motion();
+		}
+		inline t_exeStatus exe_turn_v90		(const t_param *turn_param,t_run_pattern run_pt,const t_pid_gain *sp_gain = &basic_sp_gain,const t_pid_gain *om_gain = &basic_om_gain)
+		{
+			Init_Motion_turn_v90		(turn_param,run_pt,sp_gain,om_gain);
+			return execute_Motion();
+		}
+
 };
 
 
@@ -164,10 +209,10 @@ class CtrlTask:public Motion
 		int error_cnt;
 		void motion_ideal_param_set();
 		Vehicle *vehicle;
-		SensingTask *ir_sens;
+		IrSensTask *ir_sens;
 		int ctr_deltaT_ms;
 	public:
-		CtrlTask(Vehicle *_vehicle,SensingTask *_ir_sens,int _ctr_deltaT_ms):Motion(_vehicle,_ir_sens,_ctr_deltaT_ms)
+		CtrlTask(Vehicle *_vehicle,IrSensTask *_ir_sens,int _ctr_deltaT_ms):Motion(_vehicle,_ir_sens,_ctr_deltaT_ms)
 		{
 			vehicle = _vehicle;
 			ir_sens = _ir_sens;
@@ -185,7 +230,7 @@ class CtrlTask:public Motion
 
 class CtrlTask_type7:public CtrlTask,public Singleton<CtrlTask_type7>{
 	public:
-		CtrlTask_type7(Vehicle *v = &Vehicle_type7::getInstance(),SensingTask *ir = &SensingTask::getInstance()):CtrlTask(v,ir,1){}
+		CtrlTask_type7(Vehicle *v = &Vehicle_type7::getInstance(),IrSensTask *ir = &IrSensTask_type7::getInstance()):CtrlTask(v,ir,1){}
 };
 
 #endif /* CPP_TASK_INC_CTRL_TASK_H_ */

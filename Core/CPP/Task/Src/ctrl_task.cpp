@@ -88,14 +88,17 @@ void CtrlTask::motion_ideal_param_set()
 
 void CtrlTask::motion_prev_controll()
 {
-	motion_ideal_param_set();
+	if(is_controll_enable() == True)
+	{
+		motion_ideal_param_set();
+	}
 }
 
 void CtrlTask::motion_controll()
 {
 	if(is_controll_enable() == True)
 	{
-		if(motion_pattern_get() != motor_free)
+		if(motion_pattern_get() != motor_free )
 		{
 			//
 			vehicle->V_r = 0.0f;			vehicle->V_l = 0.0f;
@@ -180,9 +183,13 @@ void CtrlTask::motion_controll()
 		}
 		else if(motion_pattern_get() == motor_free)
 		{
-
+			//vehicle->V_r = 0.0f;			vehicle->V_l = 0.0f;
+			//vehicle->motor_out_r = 0;		vehicle->motor_out_l = 0;
+			vehicle->motorSetDuty_r(vehicle->motor_out_r);
+			vehicle->motorSetDuty_l(vehicle->motor_out_l);
 		}
 	}
+
 	else
 	{
 		vehicle->V_r = 0.0f;			vehicle->V_l = 0.0f;
@@ -196,6 +203,12 @@ void CtrlTask::motion_controll()
 void CtrlTask::motion_post_controll()
 {
 
+	if(motion_exeStatus_get() == error)
+	{
+		motion_disable_set();
+		motion_state_set(NOP_STATE);
+		motion_pattern_set(No_run);
+	}
 }
 
 
