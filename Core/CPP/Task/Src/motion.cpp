@@ -709,6 +709,17 @@ void Motion::SetIdeal_turn_v90		( )
 }
 
 void Motion::SetIdeal_fix_wall		( ){}
-void Motion::SetIdeal_stop_brake	( ){}
+void Motion::SetIdeal_stop_brake	( )
+{
+	if()
+	{
+
+	}
+	else
+	{
+		motion_exeStatus_set(complete);
+	}
+	run_time_ms_update();
+}
 
 void Motion::SetIdeal_free_rotation_set	(){}
