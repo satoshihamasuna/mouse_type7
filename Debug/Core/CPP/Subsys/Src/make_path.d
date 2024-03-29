@@ -67,8 +67,8 @@ Core/CPP/Subsys/Src/make_path.o: ../Core/CPP/Subsys/Src/make_path.cpp \
  ../Core/CPP/Subsys/Src/../Inc/wall_class.h \
  ../Core/CPP/Subsys/Src/../Inc/../../Pheripheral/Include/macro.h \
  ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/sensing_task.h \
- ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Component/Inc/singleton.h \
  ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/run_task.h \
+ ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Component/Inc/singleton.h \
  ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Pheripheral/Include/typedef.h \
  ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/run_task.h \
  ../Core/CPP/Subsys/Src/../Inc/../../Component/Inc/singleton.h \
@@ -224,9 +224,9 @@ Core/CPP/Subsys/Src/make_path.o: ../Core/CPP/Subsys/Src/make_path.cpp \
 
 ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/sensing_task.h:
 
-../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Component/Inc/singleton.h:
-
 ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/run_task.h:
+
+../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Component/Inc/singleton.h:
 
 ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Pheripheral/Include/typedef.h:
 

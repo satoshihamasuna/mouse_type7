@@ -201,34 +201,51 @@ void IrSensTask::IrSensorWallSet()
 	//need to update
 	if(controll_task::getInstance().rT.is_wallControl_Enable== Enable_st)
 	{
-		sen_r.controll_th = (sen_r.controll_cnt > 10) ? SIDE_THRESHOLD: 45.0;
-		sen_l.controll_th = (sen_l.controll_cnt > 10) ? SIDE_THRESHOLD: 45.0;
+		if(wall_ref >= STRAIGHT_REF)
+		{
+			sen_r.controll_th = (sen_r.controll_cnt > 10) ? SIDE_THRESHOLD: wall_ref;
+			sen_l.controll_th = (sen_l.controll_cnt > 10) ? SIDE_THRESHOLD: wall_ref;
+		}
+		else
+		{
+			sen_r.controll_th = (sen_r.controll_cnt > 10) ? wall_ref: wall_ref;
+			sen_l.controll_th = (sen_l.controll_cnt > 10) ? wall_ref: wall_ref;
+		}
 
 		sen_r.is_controll 	= (sen_r.is_wall == True && sen_r.distance <= sen_r.controll_th)? True:False;
 		sen_l.is_controll 	= (sen_l.is_wall == True && sen_l.distance <= sen_l.controll_th)? True:False;
 
-		sen_r.is_controll 	= (sen_fr.distance > SIDE_THRESHOLD+10.0)? sen_r.is_controll:False;
-		sen_l.is_controll 	= (sen_fl.distance > SIDE_THRESHOLD+10.0)? sen_l.is_controll:False;
+		if(wall_ref >= STRAIGHT_REF)
+		{
+			sen_r.is_controll 	= (sen_fr.distance > SIDE_THRESHOLD+10.0)? sen_r.is_controll:False;
+			sen_l.is_controll 	= (sen_fl.distance > SIDE_THRESHOLD+10.0)? sen_l.is_controll:False;
+		}
+		else
+		{
+			sen_r.is_controll 	= (sen_fr.distance <= 80.0)? False:sen_r.is_controll;
+			sen_l.is_controll 	= (sen_fl.distance <= 80.0)? False:sen_l.is_controll;
+		}
 
-		sen_r.error	= (sen_r.is_controll == True) ? sen_r.distance - 45.0 : 0.0;
-		sen_l.error	= (sen_l.is_controll == True) ? sen_l.distance - 45.0 : 0.0;
+		sen_r.error	= (sen_r.is_controll == True) ? sen_r.distance - wall_ref : 0.0;
+		sen_l.error	= (sen_l.is_controll == True) ? sen_l.distance - wall_ref : 0.0;
 	}
-	else if(controll_task::getInstance().rT.is_wallControl_Enable == Enable_di)
+	else
 	{
-		sen_r.controll_th = (sen_r.controll_cnt > 10) ? 32.0: 32.0;
-		sen_l.controll_th = (sen_l.controll_cnt > 10) ? 32.0: 32.0;
 
-		sen_r.is_controll 	= (sen_r.is_wall == True && sen_r.distance <= sen_r.controll_th)? True:False;
-		sen_l.is_controll 	= (sen_l.is_wall == True && sen_l.distance <= sen_l.controll_th)? True:False;
+		sen_r.controll_th = DIAGONAL_REF;
+		sen_l.controll_th = DIAGONAL_REF;
 
-		sen_r.is_controll 	= (sen_fr.distance <= 80.0)? False:sen_r.is_controll;
-		sen_l.is_controll 	= (sen_fl.distance <= 80.0)? False:sen_l.is_controll;
+		sen_r.is_controll 	= False;
+		sen_l.is_controll 	= False;
 
-		sen_r.error	= (sen_r.is_controll == True) ? sen_r.distance - 32.0 : 0.0;
-		sen_l.error	= (sen_l.is_controll == True) ? sen_l.distance - 32.0 : 0.0;
-
+		sen_r.error	=  0.0;
+		sen_l.error	=  0.0;
 	}
+}
 
+void IrSensTask::IrSensorReferenceSet(float ref_value)
+{
+	 wall_ref = ref_value;
 }
 
 void IrSensTask::SetWallControll_RadVelo(Vehicle *vehicle,float delta_tms)

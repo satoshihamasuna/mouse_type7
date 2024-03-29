@@ -10,7 +10,6 @@ Core/CPP/Subsys/Src/make_path_expand.o: \
  ../Core/CPP/Subsys/Src/../Inc/../../Component/Inc/queue_class.h \
  ../Core/CPP/Subsys/Src/../Inc/wall_class.h \
  ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/sensing_task.h \
- ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Component/Inc/singleton.h \
  ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/run_task.h \
  ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Pheripheral/Include/typedef.h \
  ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Module/Inc/vehicle.h \
@@ -55,6 +54,7 @@ Core/CPP/Subsys/Src/make_path_expand.o: \
  ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Module/Inc/../../Component/Inc/singleton.h \
  ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Module/Inc/../../Component/Inc/controll.h \
  ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Component/Inc/controll.h \
+ ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Component/Inc/singleton.h \
  ../Core/CPP/Subsys/Src/../Inc/make_path.h \
  ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/run_task.h \
  ../Core/CPP/Subsys/Src/../Inc/../../Component/Inc/singleton.h \
@@ -85,8 +85,6 @@ Core/CPP/Subsys/Src/make_path_expand.o: \
 ../Core/CPP/Subsys/Src/../Inc/wall_class.h:
 
 ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/sensing_task.h:
-
-../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Component/Inc/singleton.h:
 
 ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/run_task.h:
 
@@ -187,6 +185,8 @@ Core/CPP/Subsys/Src/make_path_expand.o: \
 ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Module/Inc/../../Component/Inc/controll.h:
 
 ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Component/Inc/controll.h:
+
+../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Component/Inc/singleton.h:
 
 ../Core/CPP/Subsys/Src/../Inc/make_path.h:
 

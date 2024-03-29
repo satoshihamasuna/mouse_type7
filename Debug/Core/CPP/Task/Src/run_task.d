@@ -50,8 +50,8 @@ Core/CPP/Task/Src/run_task.o: ../Core/CPP/Task/Src/run_task.cpp \
  ../Core/CPP/Task/Src/../../Pheripheral/Include/macro.h \
  ../Core/CPP/Task/Src/../../Params/turn_table.h \
  ../Core/CPP/Task/Src/../Inc/sensing_task.h \
- ../Core/CPP/Task/Src/../Inc/../../Component/Inc/singleton.h \
  ../Core/CPP/Task/Src/../Inc/run_task.h \
+ ../Core/CPP/Task/Src/../Inc/../../Component/Inc/singleton.h \
  ../Core/CPP/Task/Src/../Inc/motion.h \
  ../Core/CPP/Task/Src/../Inc/../../Params/run_param.h \
  ../Core/CPP/Task/Src/../Inc/../../Params/../Component/Inc/controll.h \
@@ -172,9 +172,9 @@ Core/CPP/Task/Src/run_task.o: ../Core/CPP/Task/Src/run_task.cpp \
 
 ../Core/CPP/Task/Src/../Inc/sensing_task.h:
 
-../Core/CPP/Task/Src/../Inc/../../Component/Inc/singleton.h:
-
 ../Core/CPP/Task/Src/../Inc/run_task.h:
+
+../Core/CPP/Task/Src/../Inc/../../Component/Inc/singleton.h:
 
 ../Core/CPP/Task/Src/../Inc/motion.h:
 

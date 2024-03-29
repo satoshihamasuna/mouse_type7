@@ -139,8 +139,8 @@ void Interrupt::preprocess()
 	Vehicle_type7::getInstance().ego.turn_x_dash.set(turn_x_dot);
 	Vehicle_type7::getInstance().ego.turn_y_dash.set(turn_y_dot);
 
-	float turn_x = Vehicle_type7::getInstance().ego.turn_x_dash.get() + turn_x_dot;
-	float turn_y = Vehicle_type7::getInstance().ego.turn_y_dash.get() + turn_y_dot;
+	float turn_x = Vehicle_type7::getInstance().ego.turn_x.get() + turn_x_dot;
+	float turn_y = Vehicle_type7::getInstance().ego.turn_y.get() + turn_y_dot;
 
 	Vehicle_type7::getInstance().ego.turn_x.set(turn_x);
 	Vehicle_type7::getInstance().ego.turn_y.set(turn_y);

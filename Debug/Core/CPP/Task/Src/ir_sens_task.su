@@ -9,9 +9,10 @@ ir_sens_task.cpp:64:7:float IrSensTask::IrSensor_RelativeCurrent(int16_t)	24	sta
 ir_sens_task.cpp:69:7:float IrSensTask::IrSensor_Irradiance(int16_t)	24	static
 ir_sens_task.cpp:79:7:float IrSensTask::Sensor_CalcDistance(t_sensor_dir, int16_t)	40	static
 ir_sens_task.cpp:151:6:void IrSensTask::IrSensorDistanceSet()	16	static
-ir_sens_task.cpp:182:6:void IrSensTask::IrSensorWallSet()	24	static
-ir_sens_task.cpp:234:6:void IrSensTask::SetWallControll_RadVelo(Vehicle*, float)	80	static
-ir_sens_task.cpp:279:9:int16_t IrSensTask::IrSensor_Avg()	16	static
+ir_sens_task.cpp:182:6:void IrSensTask::IrSensorWallSet()	16	static
+ir_sens_task.cpp:246:6:void IrSensTask::IrSensorReferenceSet(float)	16	static
+ir_sens_task.cpp:251:6:void IrSensTask::SetWallControll_RadVelo(Vehicle*, float)	80	static
+ir_sens_task.cpp:296:9:int16_t IrSensTask::IrSensor_Avg()	16	static
 run_task.h:122:7:RunTask::RunTask()	16	static
 controll.h:19:7:constexpr PID_Controller::PID_Controller()	16	static
 controll.h:36:7:constexpr mouse_Controll::mouse_Controll()	16	static
