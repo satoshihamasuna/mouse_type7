@@ -102,6 +102,8 @@ class Motion
 
 		void SetIdeal_free_rotation_set	( );
 
+		void SetIdeal_wall_control();
+
 
 		//set & get status
 		inline void run_time_ms_reset()											{	run_time_ms = 0.0f;					}

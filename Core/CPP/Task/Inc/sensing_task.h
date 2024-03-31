@@ -86,7 +86,7 @@ class IrSensTask
 		float IrSensor_RelativeCurrent(int16_t value);
 		float IrSensor_Irradiance(int16_t value);
 		float	 wall_ref = STRAIGHT_REF;
-		//t_runStatus ir_runStatus;
+		t_bool	 isEnableIrSens = False;
 	public:
 		t_sensor sen_fr,sen_fl,sen_r,sen_l;
 		t_bool 	 r_check,l_check,wall_correction;
@@ -96,6 +96,10 @@ class IrSensTask
 		void IrSensorDistanceSet();
 		void IrSensorWallSet();
 		void SetWallControll_RadVelo(Vehicle *vehicle,float delta_tms);
+		inline void EnableIrSens()		{isEnableIrSens = True;}
+		inline void DisableIrSens()			{isEnableIrSens = False;}
+		void EnableIrSensStraight()		{	EnableIrSens();		IrSensorReferenceSet(STRAIGHT_REF);	}
+		void EnableIrSensDiagonal()		{	EnableIrSens();		IrSensorReferenceSet(DIAGONAL_REF);	}
 		int16_t IrSensor_Avg();
 };
 

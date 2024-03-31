@@ -3,12 +3,12 @@ vehicle.h:61:15:void param_element::init()	16	static
 vehicle.h:62:16:float param_element::get()	16	static
 vehicle.h:70:15:void turn_dir_element::set(t_turn_dir)	16	static
 vehicle.h:71:15:void turn_dir_element::init()	16	static
-ctrl_task.h:107:15:void Motion::run_time_ms_reset()	16	static
-ctrl_task.h:111:15:void Motion::run_time_limit_ms_reset()	16	static
-ctrl_task.h:112:15:void Motion::run_time_limit_ms_set(float)	16	static
-ctrl_task.h:116:18:void Motion::motion_pattern_set(t_run_pattern)	16	static
-ctrl_task.h:119:18:void Motion::motion_state_set(t_runStatus)	16	static
-ctrl_task.h:122:18:void Motion::motion_exeStatus_set(t_exeStatus)	16	static
+ctrl_task.h:109:15:void Motion::run_time_ms_reset()	16	static
+ctrl_task.h:113:15:void Motion::run_time_limit_ms_reset()	16	static
+ctrl_task.h:114:15:void Motion::run_time_limit_ms_set(float)	16	static
+ctrl_task.h:118:18:void Motion::motion_pattern_set(t_run_pattern)	16	static
+ctrl_task.h:121:18:void Motion::motion_state_set(t_runStatus)	16	static
+ctrl_task.h:124:18:void Motion::motion_exeStatus_set(t_exeStatus)	16	static
 init_motion.cpp:13:6:void Motion::Init_Motion_free_rotation_set()	16	static
 init_motion.cpp:42:6:void Motion::Init_Motion_search_straight(float, float, float, float, const t_pid_gain*, const t_pid_gain*)	64	static
 init_motion.cpp:78:6:void Motion::Init_Motion_search_turn(const t_param*, const t_pid_gain*, const t_pid_gain*)	40	static

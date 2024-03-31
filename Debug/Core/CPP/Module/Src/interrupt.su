@@ -5,10 +5,10 @@ vehicle.h:173:16:virtual void Vehicle::motorSetDuty_l(int)	16	static
 vehicle.h:177:16:virtual void Vehicle::motorSetDuty_r(int)	16	static
 vehicle.h:186:7:virtual void Vehicle_type7::motorSetDuty_l(int)	16	static
 vehicle.h:192:7:virtual void Vehicle_type7::motorSetDuty_r(int)	16	static
-sensing_task.h:105:8:virtual void IrSensTask_type7::IrSensorSet()	16	static
-ctrl_task.h:132:3:Motion::Motion(Vehicle*, IrSensTask*, int)	24	static
-ctrl_task.h:215:3:CtrlTask::CtrlTask(Vehicle*, IrSensTask*, int)	24	static
-ctrl_task.h:233:3:CtrlTask_type7::CtrlTask_type7(Vehicle*, IrSensTask*)	24	static
+sensing_task.h:109:8:virtual void IrSensTask_type7::IrSensorSet()	16	static
+ctrl_task.h:134:3:Motion::Motion(Vehicle*, IrSensTask*, int)	24	static
+ctrl_task.h:217:3:CtrlTask::CtrlTask(Vehicle*, IrSensTask*, int)	24	static
+ctrl_task.h:235:3:CtrlTask_type7::CtrlTask_type7(Vehicle*, IrSensTask*)	24	static
 interrupt.cpp:26:6:void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef*)	16	static
 interrupt.cpp:35:6:void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef*)	16	static
 interrupt.cpp:43:6:void Interrupt_Initialize()	4	static
@@ -21,7 +21,7 @@ vehicle.h:95:7:Vehicle::Vehicle()	16	static
 vehicle.h:184:7:Vehicle_type7::Vehicle_type7()	16	static
 singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = Vehicle_type7]	8	static
 sensing_task.h:79:7:IrSensTask::IrSensTask()	16	static
-sensing_task.h:102:7:IrSensTask_type7::IrSensTask_type7()	16	static
+sensing_task.h:106:7:IrSensTask_type7::IrSensTask_type7()	16	static
 singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = IrSensTask_type7]	8	static
 singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = Interrupt]	4	static
 singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = SensingTask]	4	static

@@ -27,8 +27,30 @@ float get_turn_table_value(float time_period_ms,float time_ms)
 	return turn_table_value;
 }
 
+void Motion::SetIdeal_wall_control()
+{
+	if(motion_state_get() == STRAIGHT_STATE || motion_state_get() == DIAGONAL_STATE)
+	{
+		if(motion_state_get() == STRAIGHT_STATE) ir_sens->EnableIrSensStraight();
+		if(motion_state_get() == DIAGONAL_STATE) ir_sens->EnableIrSensDiagonal();
+
+		if(vehicle->ideal.velo.get() >= 0.150)
+		{
+			ir_sens->DisableIrSens();
+		}
+		else
+		{
+			ir_sens->SetWallControll_RadVelo(vehicle, deltaT_ms);
+		}
+	}
+	else
+	{
+		ir_sens->DisableIrSens();
+	}
+}
 
 void  Motion::SetIdeal_search_straight(){
+
 	if(motion_set.length_deccel.get() < ( motion_set.end_length.get() - vehicle->ego.length.get()))
 	{
 		//
@@ -48,6 +70,7 @@ void  Motion::SetIdeal_search_straight(){
 		{
 			if(vehicle->ideal.velo.get()< 0.15)
 			{
+
 				vehicle->ideal.velo.set( 0.150f);		vehicle->ideal.accel.set(0.0f);
 				vehicle->ideal.rad_velo.set( 0.0f);	vehicle->ideal.rad_accel.set(0.0f);
 			}
@@ -62,6 +85,7 @@ void  Motion::SetIdeal_search_straight(){
 	{
 		if(motion_set.end_velo.get() == 0.0f)
 		{
+
 			vehicle->ideal.accel.set(0.0f);
 			vehicle->ideal.velo.set(0.0f);
 			vehicle->ideal.length.set(0.0f);
@@ -99,6 +123,7 @@ void  Motion::SetIdeal_search_straight(){
 		}
 	}
 
+	SetIdeal_wall_control();
 	run_time_ms_update();
 	vehicle->ideal.length.set(vehicle->ideal.length.get() + vehicle->ideal.velo.get()*(float)deltaT_ms);
 	vehicle->ideal.radian.set(vehicle->ideal.radian.get() + vehicle->ideal.rad_velo.get()*(float)deltaT_ms/1000.0f);
@@ -182,7 +207,7 @@ void  Motion::SetIdeal_search_turn()
 			motion_exeStatus_set(complete);
 		}
 	}
-
+	SetIdeal_wall_control();
 	run_time_ms_update();
 	vehicle->ideal.length.set(vehicle->ideal.length.get() + vehicle->ideal.velo.get()*(float)deltaT_ms);
 	vehicle->ideal.radian.set(vehicle->ideal.radian.get() + vehicle->ideal.rad_velo.get()*(float)deltaT_ms/1000.0f);
@@ -262,7 +287,7 @@ void Motion::SetIdeal_straight()
 			motion_exeStatus_set(complete);
 		}
 	}
-
+	SetIdeal_wall_control();
 	run_time_ms_update();
 	vehicle->ideal.length.set(vehicle->ideal.length.get() + vehicle->ideal.velo.get()*(float)deltaT_ms);
 	vehicle->ideal.radian.set(vehicle->ideal.radian.get() + vehicle->ideal.rad_velo.get()*(float)deltaT_ms/1000.0f);
@@ -342,7 +367,7 @@ void Motion::SetIdeal_diagonal		( )
 			motion_exeStatus_set(complete);
 		}
 	}
-
+	SetIdeal_wall_control();
 	run_time_ms_update();
 	vehicle->ideal.length.set(vehicle->ideal.length.get() + vehicle->ideal.velo.get()*(float)deltaT_ms);
 	vehicle->ideal.radian.set(vehicle->ideal.radian.get() + vehicle->ideal.rad_velo.get()*(float)deltaT_ms/1000.0f);
@@ -486,7 +511,7 @@ void Motion::SetIdeal_turn_in		( )
 			motion_exeStatus_set(complete);
 		}
 	}
-
+	SetIdeal_wall_control();
 	run_time_ms_update();
 	vehicle->ideal.length.set(vehicle->ideal.length.get() + vehicle->ideal.velo.get()*(float)deltaT_ms);
 	vehicle->ideal.radian.set(vehicle->ideal.radian.get() + vehicle->ideal.rad_velo.get()*(float)deltaT_ms/1000.0f);
@@ -569,7 +594,7 @@ void Motion::SetIdeal_turn_out		( ){
 			motion_exeStatus_set(complete);
 		}
 	}
-
+	SetIdeal_wall_control();
 	run_time_ms_update();
 	vehicle->ideal.length.set(vehicle->ideal.length.get() + vehicle->ideal.velo.get()*(float)deltaT_ms);
 	vehicle->ideal.radian.set(vehicle->ideal.radian.get() + vehicle->ideal.rad_velo.get()*(float)deltaT_ms/1000.0f);
@@ -653,7 +678,7 @@ void Motion::SetIdeal_long_turn		( )
 			motion_exeStatus_set(complete);
 		}
 	}
-
+	SetIdeal_wall_control();
 	run_time_ms_update();
 	vehicle->ideal.length.set(vehicle->ideal.length.get() + vehicle->ideal.velo.get()*(float)deltaT_ms);
 	vehicle->ideal.radian.set(vehicle->ideal.radian.get() + vehicle->ideal.rad_velo.get()*(float)deltaT_ms/1000.0f);
@@ -776,7 +801,7 @@ void Motion::SetIdeal_fix_wall		( )
 		vehicle->ideal.turn_y.set(0.0f);
 		motion_exeStatus_set(complete);
 	}
-
+	SetIdeal_wall_control();
 	run_time_ms_update();
 	vehicle->ideal.length.set(vehicle->ideal.length.get() + vehicle->ideal.velo.get()*(float)deltaT_ms);
 	vehicle->ideal.radian.set(vehicle->ideal.radian.get() + vehicle->ideal.rad_velo.get()*(float)deltaT_ms/1000.0f);
