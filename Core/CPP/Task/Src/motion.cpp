@@ -772,13 +772,47 @@ void Motion::SetIdeal_fix_wall		( )
 {
 	if(run_time_ms_get() <= run_time_limit_ms_get())
 	{
-		vehicle->ideal.accel.set(0.0f);
-		vehicle->ideal.velo.set(0.0f);
-		//vehicle->ideal.length.set(0.0f);
+		if(ir_sens->sen_fr.distance < 70.0 && ir_sens->sen_fl.distance < 70.0 )
+		{
+			float sp_err = 0.0f;		float om_err = 0.0f;
+			float r_err = 0.0;			float l_err = 0.0;
+			if(ir_sens->sen_fr.distance > 50.0 && ir_sens->sen_fl.distance > 50.0 )
+			{
+				r_err = (ir_sens->sen_fr.distance - 45.0);
+				l_err = (ir_sens->sen_fl.distance - 45.0);
+			}
+			else
+			{
+				int r_check = 0;
+				int l_check = 0;
+				if((ir_sens->sen_fr.distance > 43.0)
+				&&(ir_sens->sen_r.distance > 36.0 && ir_sens->sen_l.distance > 39.0))
+				{
+					//r_err = (SensingTask::getInstance().sen_fr.distance - 45.0);
+					r_check = 1;
+				}
+				if((ir_sens->sen_fl.distance > 43.0)
+				&&(ir_sens->sen_r.distance > 36.0 && ir_sens->sen_l.distance > 39.0))
+				{
+					//l_err = (SensingTask::getInstance().sen_fl.distance - 45.0);
+					l_check = 1;
+				}
+				if(r_check == 1 || r_check == 1)
+				{
+					if(r_check == 1) r_err = (ir_sens->sen_fr.distance - 45.0);
+					if(l_check == 1) l_err = (ir_sens->sen_fl.distance - 45.0);
+					if(r_check == 1 && l_check == 0) r_err = r_err * 2;
+					if(r_check == 0 && l_check == 1) l_err = l_err * 2;
+				}
+				else
+				{
+					r_err = -10.0f;
+					l_err = -10.0f;
+					//*run_time = *run_time-0.5f;
+				}
+			}
+		}
 
-		vehicle->ideal.rad_accel.set(0.0f);
-		vehicle->ideal.rad_velo.set(0.0f);
-		//vehicle->ideal.radian.set(0.0f);
 	}
 	else
 	{
