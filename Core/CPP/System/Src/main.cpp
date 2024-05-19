@@ -32,7 +32,7 @@
 
 #include "../../Params/run_param.h"
 
-#include "../../Task/Inc/motion.h"
+#include "../../Task/Inc/ctrl_task.h"
 #include "../../Task/Inc/sensing_task.h"
 
 #include "../Inc/mode.h"

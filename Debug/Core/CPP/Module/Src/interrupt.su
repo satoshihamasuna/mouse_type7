@@ -5,29 +5,25 @@ vehicle.h:173:16:virtual void Vehicle::motorSetDuty_l(int)	16	static
 vehicle.h:177:16:virtual void Vehicle::motorSetDuty_r(int)	16	static
 vehicle.h:186:7:virtual void Vehicle_type7::motorSetDuty_l(int)	16	static
 vehicle.h:192:7:virtual void Vehicle_type7::motorSetDuty_r(int)	16	static
-sensing_task.h:109:8:virtual void IrSensTask_type7::IrSensorSet()	16	static
+sensing_task.h:67:8:virtual void IrSensTask_type7::IrSensorSet()	16	static
 ctrl_task.h:134:3:Motion::Motion(Vehicle*, IrSensTask*, int)	24	static
-ctrl_task.h:217:3:CtrlTask::CtrlTask(Vehicle*, IrSensTask*, int)	24	static
-ctrl_task.h:235:3:CtrlTask_type7::CtrlTask_type7(Vehicle*, IrSensTask*)	24	static
-interrupt.cpp:26:6:void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef*)	16	static
-interrupt.cpp:35:6:void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef*)	16	static
-interrupt.cpp:43:6:void Interrupt_Initialize()	4	static
-interrupt.cpp:95:6:void Interrupt::preprocess()	400	static
-interrupt.cpp:152:6:void Interrupt::main()	16	static
-interrupt.cpp:164:6:void Interrupt::postprocess()	32	static
+ctrl_task.h:223:3:CtrlTask::CtrlTask(Vehicle*, IrSensTask*, int)	24	static
+ctrl_task.h:241:3:CtrlTask_type7::CtrlTask_type7(Vehicle*, IrSensTask*)	24	static
+interrupt.cpp:25:6:void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef*)	16	static
+interrupt.cpp:34:6:void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef*)	16	static
+interrupt.cpp:42:6:void Interrupt_Initialize()	4	static
+interrupt.cpp:94:6:void Interrupt::preprocess()	400	static
+interrupt.cpp:151:6:void Interrupt::main()	16	static
+interrupt.cpp:163:6:void Interrupt::postprocess()	24	static
 controll.h:19:7:constexpr PID_Controller::PID_Controller()	16	static
 controll.h:36:7:constexpr mouse_Controll::mouse_Controll()	16	static
 vehicle.h:95:7:Vehicle::Vehicle()	16	static
 vehicle.h:184:7:Vehicle_type7::Vehicle_type7()	16	static
 singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = Vehicle_type7]	8	static
-sensing_task.h:79:7:IrSensTask::IrSensTask()	16	static
-sensing_task.h:106:7:IrSensTask_type7::IrSensTask_type7()	16	static
+sensing_task.h:37:7:IrSensTask::IrSensTask()	16	static
+sensing_task.h:64:7:IrSensTask_type7::IrSensTask_type7()	16	static
 singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = IrSensTask_type7]	8	static
 singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = Interrupt]	4	static
-singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = SensingTask]	4	static
 singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = CtrlTask_type7]	16	static
 log_data.h:18:7:LogData::LogData()	16	static
 singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = LogData]	8	static
-run_task.h:122:7:RunTask::RunTask()	16	static
-motion.h:19:7:controll_task::controll_task()	16	static
-singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = controll_task]	8	static

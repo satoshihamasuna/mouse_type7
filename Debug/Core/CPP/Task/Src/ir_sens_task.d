@@ -50,12 +50,7 @@ Core/CPP/Task/Src/ir_sens_task.o: ../Core/CPP/Task/Src/ir_sens_task.cpp \
  ../Core/CPP/Task/Src/../Inc/../../Component/Inc/singleton.h \
  ../Core/CPP/Task/Src/../../Params/sens_table.h \
  ../Core/CPP/Task/Src/../../Pheripheral/Include/typedef.h \
- ../Core/CPP/Task/Src/../../Pheripheral/Include/index.h \
- ../Core/CPP/Task/Src/../Inc/motion.h \
- ../Core/CPP/Task/Src/../Inc/../../Params/run_param.h \
- ../Core/CPP/Task/Src/../Inc/../../Params/../Component/Inc/controll.h \
- ../Core/CPP/Task/Src/../Inc/../../Params/../Task/Inc/run_task.h \
- ../Core/CPP/Task/Src/../Inc/../../Params/../Pheripheral/Include/typedef.h
+ ../Core/CPP/Task/Src/../../Pheripheral/Include/index.h
 
 ../Core/CPP/Task/Src/../Inc/sensing_task.h:
 
@@ -172,13 +167,3 @@ Core/CPP/Task/Src/ir_sens_task.o: ../Core/CPP/Task/Src/ir_sens_task.cpp \
 ../Core/CPP/Task/Src/../../Pheripheral/Include/typedef.h:
 
 ../Core/CPP/Task/Src/../../Pheripheral/Include/index.h:
-
-../Core/CPP/Task/Src/../Inc/motion.h:
-
-../Core/CPP/Task/Src/../Inc/../../Params/run_param.h:
-
-../Core/CPP/Task/Src/../Inc/../../Params/../Component/Inc/controll.h:
-
-../Core/CPP/Task/Src/../Inc/../../Params/../Task/Inc/run_task.h:
-
-../Core/CPP/Task/Src/../Inc/../../Params/../Pheripheral/Include/typedef.h:

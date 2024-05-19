@@ -49,13 +49,14 @@ Core/CPP/Subsys/Src/make_path.o: ../Core/CPP/Subsys/Src/make_path.cpp \
  ../Core/CPP/Subsys/Src/../../Task/Inc/../../Module/Inc/../../Component/Inc/singleton.h \
  ../Core/CPP/Subsys/Src/../../Task/Inc/../../Module/Inc/../../Component/Inc/controll.h \
  ../Core/CPP/Subsys/Src/../../Task/Inc/../../Component/Inc/controll.h \
- ../Core/CPP/Subsys/Src/../../Task/Inc/motion.h \
+ ../Core/CPP/Subsys/Src/../../Task/Inc/ctrl_task.h \
+ ../Core/CPP/Subsys/Src/../../Task/Inc/run_task.h \
+ ../Core/CPP/Subsys/Src/../../Task/Inc/sensing_task.h \
+ ../Core/CPP/Subsys/Src/../../Task/Inc/../../Component/Inc/singleton.h \
  ../Core/CPP/Subsys/Src/../../Task/Inc/../../Params/run_param.h \
  ../Core/CPP/Subsys/Src/../../Task/Inc/../../Params/../Component/Inc/controll.h \
  ../Core/CPP/Subsys/Src/../../Task/Inc/../../Params/../Task/Inc/run_task.h \
  ../Core/CPP/Subsys/Src/../../Task/Inc/../../Params/../Pheripheral/Include/typedef.h \
- ../Core/CPP/Subsys/Src/../../Task/Inc/../../Component/Inc/singleton.h \
- ../Core/CPP/Subsys/Src/../../Task/Inc/run_task.h \
  ../Core/CPP/Subsys/Src/../../Module/Inc/log_data.h \
  ../Core/CPP/Subsys/Src/../../Module/Inc/../../Pheripheral/Include/typedef.h \
  ../Core/CPP/Subsys/Src/../../Module/Inc/../../Component/Inc/half_float.h \
@@ -63,18 +64,15 @@ Core/CPP/Subsys/Src/make_path.o: ../Core/CPP/Subsys/Src/make_path.cpp \
  ../Core/CPP/Subsys/Src/../../Module/Inc/../../Component/Inc/../codegen/rtwtypes.h \
  ../Core/CPP/Subsys/Src/../../Module/Inc/../../Component/Inc/singleton.h \
  ../Core/CPP/Subsys/Src/../Inc/make_path.h \
- ../Core/CPP/Subsys/Src/../Inc/../../Pheripheral/Include/typedef.h \
  ../Core/CPP/Subsys/Src/../Inc/wall_class.h \
+ ../Core/CPP/Subsys/Src/../Inc/../../Pheripheral/Include/typedef.h \
  ../Core/CPP/Subsys/Src/../Inc/../../Pheripheral/Include/macro.h \
  ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/sensing_task.h \
- ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/run_task.h \
- ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Component/Inc/singleton.h \
- ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Pheripheral/Include/typedef.h \
- ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/run_task.h \
  ../Core/CPP/Subsys/Src/../Inc/../../Component/Inc/singleton.h \
+ ../Core/CPP/Subsys/Src/../Inc/../../Component/Inc/controll.h \
  ../Core/CPP/Subsys/Src/../Inc/../../Params/run_param.h \
- ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/motion.h \
- ../Core/CPP/Subsys/Src/../Inc/../../Component/Inc/controll.h
+ ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/ctrl_task.h \
+ ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/run_task.h
 
 ../Core/CPP/Subsys/Src/../../Pheripheral/Include/index.h:
 
@@ -188,7 +186,13 @@ Core/CPP/Subsys/Src/make_path.o: ../Core/CPP/Subsys/Src/make_path.cpp \
 
 ../Core/CPP/Subsys/Src/../../Task/Inc/../../Component/Inc/controll.h:
 
-../Core/CPP/Subsys/Src/../../Task/Inc/motion.h:
+../Core/CPP/Subsys/Src/../../Task/Inc/ctrl_task.h:
+
+../Core/CPP/Subsys/Src/../../Task/Inc/run_task.h:
+
+../Core/CPP/Subsys/Src/../../Task/Inc/sensing_task.h:
+
+../Core/CPP/Subsys/Src/../../Task/Inc/../../Component/Inc/singleton.h:
 
 ../Core/CPP/Subsys/Src/../../Task/Inc/../../Params/run_param.h:
 
@@ -197,10 +201,6 @@ Core/CPP/Subsys/Src/make_path.o: ../Core/CPP/Subsys/Src/make_path.cpp \
 ../Core/CPP/Subsys/Src/../../Task/Inc/../../Params/../Task/Inc/run_task.h:
 
 ../Core/CPP/Subsys/Src/../../Task/Inc/../../Params/../Pheripheral/Include/typedef.h:
-
-../Core/CPP/Subsys/Src/../../Task/Inc/../../Component/Inc/singleton.h:
-
-../Core/CPP/Subsys/Src/../../Task/Inc/run_task.h:
 
 ../Core/CPP/Subsys/Src/../../Module/Inc/log_data.h:
 
@@ -216,26 +216,20 @@ Core/CPP/Subsys/Src/make_path.o: ../Core/CPP/Subsys/Src/make_path.cpp \
 
 ../Core/CPP/Subsys/Src/../Inc/make_path.h:
 
-../Core/CPP/Subsys/Src/../Inc/../../Pheripheral/Include/typedef.h:
-
 ../Core/CPP/Subsys/Src/../Inc/wall_class.h:
+
+../Core/CPP/Subsys/Src/../Inc/../../Pheripheral/Include/typedef.h:
 
 ../Core/CPP/Subsys/Src/../Inc/../../Pheripheral/Include/macro.h:
 
 ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/sensing_task.h:
 
-../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/run_task.h:
-
-../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Component/Inc/singleton.h:
-
-../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Pheripheral/Include/typedef.h:
-
-../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/run_task.h:
-
 ../Core/CPP/Subsys/Src/../Inc/../../Component/Inc/singleton.h:
+
+../Core/CPP/Subsys/Src/../Inc/../../Component/Inc/controll.h:
 
 ../Core/CPP/Subsys/Src/../Inc/../../Params/run_param.h:
 
-../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/motion.h:
+../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/ctrl_task.h:
 
-../Core/CPP/Subsys/Src/../Inc/../../Component/Inc/controll.h:
+../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/run_task.h:

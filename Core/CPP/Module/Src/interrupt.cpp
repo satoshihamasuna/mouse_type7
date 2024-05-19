@@ -14,7 +14,6 @@
 #include "../../Pheripheral/Include/index.h"
 
 #include "../../Task/Inc/sensing_task.h"
-#include "../../Task/Inc/motion.h"
 #include "../../Task/Inc/ctrl_task.h"
 
 #include "../../Component/Inc/controll.h"
@@ -96,7 +95,7 @@ void Interrupt::preprocess()
 {
 
 	//update wall sensor information
-	SensingTask::getInstance().IrSensorSet();
+	IrSensTask_type7::getInstance().IrSensorSet();
 
 	//update encoder information
 	Encoder_SetSpeed_Left();
@@ -166,7 +165,7 @@ void Interrupt::postprocess()
 
 	if(LogData::getInstance().log_enable == True)
 	{
-
+		/*
 		LogData::getInstance().data[0][LogData::getInstance().data_count%1000] =  float_to_half(controll_task::getInstance().mouse.velo);
 		LogData::getInstance().data[1][LogData::getInstance().data_count%1000] =  float_to_half(controll_task::getInstance().target.velo);
 		LogData::getInstance().data[2][LogData::getInstance().data_count%1000] =  float_to_half(controll_task::getInstance().mouse.rad_velo);
@@ -179,10 +178,11 @@ void Interrupt::postprocess()
 		LogData::getInstance().data[9][LogData::getInstance().data_count%1000] =  float_to_half(SensingTask::getInstance().sen_l.distance);//Lvelo_sum/((float)(ACC_BUFF_SIZE));
 		LogData::getInstance().data[10][LogData::getInstance().data_count%1000] =  float_to_half(controll_task::getInstance().mouse.x_point);
 		LogData::getInstance().data[11][LogData::getInstance().data_count%1000] =  float_to_half(controll_task::getInstance().V_l);
+		*/
 		LogData::getInstance().data_count++;
 		if(LogData::getInstance().data_count >= LogData::getInstance().data_size) LogData::getInstance().data_count = LogData::getInstance().data_size - 1;
 	}
-	controll_task::getInstance().motionPostControll();
+
 	time_count = time_count + 1;
 	IMU_read_DMA_Start();
 }

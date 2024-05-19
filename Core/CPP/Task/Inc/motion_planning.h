@@ -19,7 +19,7 @@
 #include "../../Component/Inc/controll.h"
 #include "../../Module/Inc/vehicle.h"
 
-
+/*
 class motion_planning
 {
 	private:
@@ -45,5 +45,5 @@ class motion_planning
 		t_bool motion_execute();
 		t_bool motion_error();
 };
-
+*/
 #endif /* CPP_TASK_INC_MOTION_PLANNING_H_ */

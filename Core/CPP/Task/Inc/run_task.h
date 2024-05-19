@@ -85,6 +85,7 @@ typedef enum
 	Enable_st = 1,
 	Enable_di = 2,
 }t_wall_controll;
+
 class PID_Setting
 {
 	private:
@@ -119,48 +120,8 @@ class PID_Setting
 			return om_gain;
 		}
 };
-class RunTask
-{
-	private:
-		t_bool is_runTask = False;
-		int	   brake_time = 0;
-		float  run_turn_table_time = 0.0f;
-		t_run_mode run_mode_state;
-	public:
-		t_wall_controll is_wallControl_Enable = Non_controll;
-		float post_run_fix = 0.0;
-		float prev_run_fix = 0.0;
-		float turn_rmin_fix =0.0;
-		t_bool is_exe_runTask();
-		void set_stragith_sp_gain(float _kp,float _ki,float _kd);
-		void MotionFree(float *run_time,float run_time_limit);
-		void search_straight(t_motion_param mt_param,t_machine_param *target_,t_machine_param *machine_,float delta_t_ms);
-		void search_slalom(t_motion_param *mt_param,const t_param *turn_param,t_machine_param *target_,t_machine_param *machine_,float delta_t_ms);
-		void pivotturn(t_motion_param mt_param,t_machine_param *target_,t_machine_param *machine_,float delta_t_ms);
-		void fix_wall(t_machine_param *target_,float *run_time,float run_time_limit,float delta_t_ms);
-		void straight(t_motion_param mt_param,t_machine_param *target_,t_machine_param *machine_,float delta_t_ms);
-		void diagonal(t_motion_param mt_param,t_machine_param *target_,t_machine_param *machine_,float delta_t_ms);
-		void long_turn(t_motion_param *mt_param,const t_param *turn_param,t_machine_param *target_,t_machine_param *machine_,float delta_t_ms);
-		void turn_v90(t_motion_param *mt_param,const t_param *turn_param,t_machine_param *target_,t_machine_param *machine_,float delta_t_ms);
-		void turn_in(t_motion_param *mt_param,const t_param *turn_param,t_machine_param *target_,t_machine_param *machine_,float delta_t_ms);
-		void turn_out(t_motion_param *mt_param,const t_param *turn_param,t_machine_param *target_,t_machine_param *machine_,float delta_t_ms);
-		void brake();
 
-		void reset_brake_time()
-		{
-			brake_time = 0;
-		}
 
-		void set_run_mode_state(t_run_mode _run_mode_state)
-		{
-			run_mode_state = _run_mode_state;
-		}
-
-		t_run_mode get_run_mode_state()
-		{
-			return run_mode_state;
-		}
-};
 
 
 

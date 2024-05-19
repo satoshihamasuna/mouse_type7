@@ -2,16 +2,16 @@ vehicle.h:60:15:void param_element::set(float)	16	static
 vehicle.h:62:16:float param_element::get()	16	static
 vehicle.h:70:15:void turn_dir_element::set(t_turn_dir)	16	static
 vehicle.h:72:21:t_turn_dir turn_dir_element::get()	16	static
-sensing_task.h:99:15:void IrSensTask::EnableIrSens()	16	static
-sensing_task.h:100:15:void IrSensTask::DisableIrSens()	16	static
-sensing_task.h:101:8:void IrSensTask::EnableIrSensStraight()	16	static
-sensing_task.h:102:8:void IrSensTask::EnableIrSensDiagonal()	16	static
+sensing_task.h:57:15:void IrSensTask::EnableIrSens()	16	static
+sensing_task.h:58:15:void IrSensTask::DisableIrSens()	16	static
+sensing_task.h:59:8:void IrSensTask::EnableIrSensStraight()	16	static
+sensing_task.h:60:8:void IrSensTask::EnableIrSensDiagonal()	16	static
 ctrl_task.h:110:15:void Motion::run_time_ms_update()	16	static
 ctrl_task.h:111:16:float Motion::run_time_ms_get()	16	static
 ctrl_task.h:115:16:float Motion::run_time_limit_ms_get()	16	static
-ctrl_task.h:120:24:t_runStatus Motion::motion_state_get()	16	static
 ctrl_task.h:121:18:void Motion::motion_state_set(t_runStatus)	16	static
 ctrl_task.h:124:18:void Motion::motion_exeStatus_set(t_exeStatus)	16	static
+ctrl_task.h:142:24:t_runStatus Motion::motion_state_get()	16	static
 motion.cpp:11:7:float get_turn_table_value(float, float)	40	static
 motion.cpp:30:6:void Motion::SetIdeal_wall_control()	24	static
 motion.cpp:52:7:void Motion::SetIdeal_search_straight()	32	static

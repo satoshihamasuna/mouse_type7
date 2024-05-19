@@ -18,7 +18,6 @@
 #include "../../Params/sens_table.h"
 #include "../../Pheripheral/Include/typedef.h"
 #include "../../Pheripheral/Include/index.h"
-#include "../Inc/motion.h"
 
 t_wall_state IrSensTask::conv_Sensin2Wall(t_sensor_dir sens_dir)
 {

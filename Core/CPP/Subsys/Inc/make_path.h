@@ -8,13 +8,16 @@
 #ifndef CPP_INC_MAKE_PATH_H_
 #define CPP_INC_MAKE_PATH_H_
 
-#include "../../Pheripheral/Include/typedef.h"
 #include "wall_class.h"
-#include "../../Task/Inc/run_task.h"
+#include "../../Pheripheral/Include/typedef.h"
+
 #include "../../Component/Inc/singleton.h"
-#include "../../Params/run_param.h"
-#include "../../Task/Inc/motion.h"
 #include "../../Component/Inc/controll.h"
+
+#include "../../Params/run_param.h"
+
+#include "../../Task/Inc/ctrl_task.h"
+#include "../../Task/Inc/run_task.h"
 //#define DEBUG_MODE
 
 typedef enum
@@ -153,11 +156,11 @@ class Dijkstra:public calcRunTime
 		void run_Dijkstra(t_position start_pos,t_direction start_wallPos,t_position goal_pos,uint8_t goal_size,
 						  const t_straight_param *const *st_mode,uint16_t size_st_mode,
 						  const t_straight_param *const *di_mode,uint16_t size_di_mode,
-						  const t_param *const *turn_mode,motion_plan *motionPlan);
+						  const t_param *const *turn_mode,Motion *motion);
 		void run_Dijkstra_suction(t_position start_pos,t_direction start_wallPos,t_position goal_pos,uint8_t goal_size,int suction,
 								  const t_straight_param *const *st_mode,uint16_t size_st_mode,
 								  const t_straight_param *const *di_mode,uint16_t size_di_mode,
-								  const t_param *const *turn_mode , motion_plan *motionPlan);
+								  const t_param *const *turn_mode , Motion *motion);
 		void expand(t_posDijkstra pos);
 		t_posDijkstra last_expand(t_posDijkstra pos,t_direction m_dir,t_position goal_pos,uint8_t goal_size);
 		uint16_t straight_section_num(t_posDijkstra s_pos,t_posDijkstra e_pos,t_direction dir);

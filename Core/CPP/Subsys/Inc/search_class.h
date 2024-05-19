@@ -12,32 +12,32 @@
 #include "wall_class.h"
 #include "make_map_class.h"
 #include "adachi_class.h"
-#include "../../Task/Inc/motion.h"
 
+#include "../../Task/Inc/ctrl_task.h"
 
 class Search
 {
 	private:
 		wall_class *wall_property;
 		make_map   *map_property;
-		motion_plan *motion_planning;
+		Motion *motion;
 	public:
 		t_position search_adachi_1(	t_position start_pos,	t_position goal_pos,	int goal_size,
-									wall_class *_wall,		make_map *_map,			motion_plan *motion_plan );
+									wall_class *_wall,		make_map *_map,			Motion *motion );
 		t_position search_adachi_1_acc(	t_position start_pos,t_position goal_pos,int goal_size,
-												wall_class *_wall,make_map *_map,motion_plan *motion_plan);
+												wall_class *_wall,make_map *_map,Motion *motion );
 
 		t_position search_adachi_2(	t_position start_pos,	t_position goal_pos,	int goal_size,
-									wall_class *_wall,		make_map *_map,			motion_plan *motion_plan );
+									wall_class *_wall,		make_map *_map,			Motion *motion );
 
 		t_position search_adachi_2_acc(	t_position start_pos,	t_position goal_pos,	int goal_size,
-									wall_class *_wall,		make_map *_map,			motion_plan *motion_plan );
+									wall_class *_wall,		make_map *_map,			Motion *motion );
 
 		t_position search_adachi_3(	t_position start_pos,	t_position goal_pos,	int goal_size,
-									wall_class *_wall,		make_map *_map,			motion_plan *motion_plan );
+									wall_class *_wall,		make_map *_map,			Motion *motion );
 
 		t_position search_adachi_3_acc(	t_position start_pos,	t_position goal_pos,	int goal_size,
-									wall_class *_wall,		make_map *_map,			motion_plan *motion_plan );
+									wall_class *_wall,		make_map *_map,			Motion *motion );
 
 
 		t_bool i_am_goal(int x,int y,int gx,int gy,int goal_size);

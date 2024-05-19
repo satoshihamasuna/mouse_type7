@@ -57,13 +57,12 @@ Core/CPP/Module/Src/interrupt.o: ../Core/CPP/Module/Src/interrupt.cpp \
  ../Core/CPP/Module/Src/../../Task/Inc/../../Module/Inc/../../Component/Inc/controll.h \
  ../Core/CPP/Module/Src/../../Task/Inc/../../Component/Inc/controll.h \
  ../Core/CPP/Module/Src/../../Task/Inc/../../Component/Inc/singleton.h \
- ../Core/CPP/Module/Src/../../Task/Inc/motion.h \
+ ../Core/CPP/Module/Src/../../Task/Inc/ctrl_task.h \
+ ../Core/CPP/Module/Src/../../Task/Inc/sensing_task.h \
  ../Core/CPP/Module/Src/../../Task/Inc/../../Params/run_param.h \
  ../Core/CPP/Module/Src/../../Task/Inc/../../Params/../Component/Inc/controll.h \
  ../Core/CPP/Module/Src/../../Task/Inc/../../Params/../Task/Inc/run_task.h \
  ../Core/CPP/Module/Src/../../Task/Inc/../../Params/../Pheripheral/Include/typedef.h \
- ../Core/CPP/Module/Src/../../Task/Inc/ctrl_task.h \
- ../Core/CPP/Module/Src/../../Task/Inc/sensing_task.h \
  ../Core/CPP/Module/Src/../../Component/Inc/controll.h \
  ../Core/CPP/Module/Src/../../Component/Inc/half_float.h \
  ../Core/CPP/Module/Src/../../Component/Inc/Kalman_filter.h \
@@ -197,7 +196,9 @@ Core/CPP/Module/Src/interrupt.o: ../Core/CPP/Module/Src/interrupt.cpp \
 
 ../Core/CPP/Module/Src/../../Task/Inc/../../Component/Inc/singleton.h:
 
-../Core/CPP/Module/Src/../../Task/Inc/motion.h:
+../Core/CPP/Module/Src/../../Task/Inc/ctrl_task.h:
+
+../Core/CPP/Module/Src/../../Task/Inc/sensing_task.h:
 
 ../Core/CPP/Module/Src/../../Task/Inc/../../Params/run_param.h:
 
@@ -206,10 +207,6 @@ Core/CPP/Module/Src/interrupt.o: ../Core/CPP/Module/Src/interrupt.cpp \
 ../Core/CPP/Module/Src/../../Task/Inc/../../Params/../Task/Inc/run_task.h:
 
 ../Core/CPP/Module/Src/../../Task/Inc/../../Params/../Pheripheral/Include/typedef.h:
-
-../Core/CPP/Module/Src/../../Task/Inc/ctrl_task.h:
-
-../Core/CPP/Module/Src/../../Task/Inc/sensing_task.h:
 
 ../Core/CPP/Module/Src/../../Component/Inc/controll.h:
 

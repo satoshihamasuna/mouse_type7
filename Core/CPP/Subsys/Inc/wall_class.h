@@ -15,9 +15,9 @@
 
 class wall_class
 {
-	SensingTask *ir_sens;
+	IrSensTask *ir_sens;
 	public:
-		wall_class(SensingTask *ir_sens_)
+		wall_class(IrSensTask *ir_sens_)
 		{
 			ir_sens = ir_sens_;
 		}

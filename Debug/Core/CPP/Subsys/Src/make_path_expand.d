@@ -56,15 +56,16 @@ Core/CPP/Subsys/Src/make_path_expand.o: \
  ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Component/Inc/controll.h \
  ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Component/Inc/singleton.h \
  ../Core/CPP/Subsys/Src/../Inc/make_path.h \
- ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/run_task.h \
  ../Core/CPP/Subsys/Src/../Inc/../../Component/Inc/singleton.h \
+ ../Core/CPP/Subsys/Src/../Inc/../../Component/Inc/controll.h \
  ../Core/CPP/Subsys/Src/../Inc/../../Params/run_param.h \
  ../Core/CPP/Subsys/Src/../Inc/../../Params/../Component/Inc/controll.h \
  ../Core/CPP/Subsys/Src/../Inc/../../Params/../Task/Inc/run_task.h \
  ../Core/CPP/Subsys/Src/../Inc/../../Params/../Pheripheral/Include/typedef.h \
- ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/motion.h \
+ ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/ctrl_task.h \
+ ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/sensing_task.h \
  ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Params/run_param.h \
- ../Core/CPP/Subsys/Src/../Inc/../../Component/Inc/controll.h
+ ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/run_task.h
 
 ../Core/CPP/Subsys/Src/../../Component/Inc/queue_class.h:
 
@@ -190,9 +191,9 @@ Core/CPP/Subsys/Src/make_path_expand.o: \
 
 ../Core/CPP/Subsys/Src/../Inc/make_path.h:
 
-../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/run_task.h:
-
 ../Core/CPP/Subsys/Src/../Inc/../../Component/Inc/singleton.h:
+
+../Core/CPP/Subsys/Src/../Inc/../../Component/Inc/controll.h:
 
 ../Core/CPP/Subsys/Src/../Inc/../../Params/run_param.h:
 
@@ -202,8 +203,10 @@ Core/CPP/Subsys/Src/make_path_expand.o: \
 
 ../Core/CPP/Subsys/Src/../Inc/../../Params/../Pheripheral/Include/typedef.h:
 
-../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/motion.h:
+../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/ctrl_task.h:
+
+../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/sensing_task.h:
 
 ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Params/run_param.h:
 
-../Core/CPP/Subsys/Src/../Inc/../../Component/Inc/controll.h:
+../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/run_task.h:

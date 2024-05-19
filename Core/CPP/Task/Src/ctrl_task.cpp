@@ -20,7 +20,6 @@
 #include "../../Params/run_param.h"
 
 #include "../Inc/ctrl_task.h"
-#include "../Inc/motion.h"
 #include "../Inc/run_task.h"
 #include "../Inc/sensing_task.h"
 

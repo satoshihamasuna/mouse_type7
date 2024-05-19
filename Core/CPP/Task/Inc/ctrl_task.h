@@ -114,19 +114,19 @@ class Motion
 		inline void run_time_limit_ms_set(float run_time_ms_limit_)				{	run_time_ms_limit = run_time_ms_limit_;		}
 		inline float run_time_limit_ms_get()									{	return run_time_ms_limit;					}
 
-		inline t_run_pattern motion_pattern_get() 							 	{	return motion_pattern;				}
+		//inline t_run_pattern motion_pattern_get() 							 	{	return motion_pattern;				}
 		inline void			 motion_pattern_set(t_run_pattern _motion_pattern)  {	motion_pattern	= _motion_pattern;	}
 
-		inline t_runStatus 	 motion_state_get() 							 	{	return motion_state;				}
+		//inline t_runStatus 	 motion_state_get() 							 	{	return motion_state;				}
 		inline void			 motion_state_set(t_runStatus _motion_state)   	 	{	motion_state	= _motion_state;	}
 
-		inline t_exeStatus 	 motion_exeStatus_get() 							 	{	return motion_exeStatus;				}
+		//inline t_exeStatus 	 motion_exeStatus_get() 							 	{	return motion_exeStatus;				}
 		inline void			 motion_exeStatus_set(t_exeStatus _motion_exeStatus)   	{	motion_exeStatus	= _motion_exeStatus;	}
 		t_exeStatus 		 motion_execute();
 
 		inline	void 		motion_enable_set()										{ 	is_motion_enable		= True;		}
 		inline	void 		motion_disable_set()									{ 	is_motion_enable		= False;	}
-		inline  t_bool 		motion_is_enable_get()									{	return	is_motion_enable;			}
+		//inline  t_bool 		motion_is_enable_get()									{	return	is_motion_enable;			}
 
 
 	public:
@@ -138,6 +138,12 @@ class Motion
 			deltaT_ms = _deltaT_ms;
 		}
 
+		inline t_run_pattern motion_pattern_get() 							 		{	return motion_pattern;				}
+		inline t_runStatus 	 motion_state_get() 							 		{	return motion_state;				}
+		inline t_exeStatus 	 motion_exeStatus_get() 							 	{	return motion_exeStatus;				}
+		inline  t_bool 		motion_is_enable_get()									{	return	is_motion_enable;			}
+
+		void Motion_start();
 
 		//Initialize motion parameters
 		void Init_Motion_free_rotation_set	();
@@ -175,28 +181,28 @@ class Motion
 			return execute_Motion();
 		}
 
-		inline t_exeStatus exe_pivot_turn		(float rad_target,float rad_acc,float rad_velo,const t_pid_gain *sp_gain = &basic_sp_gain,const t_pid_gain *om_gain = &basic_om_gain)
+		inline t_exeStatus exe_Motion_pivot_turn		(float rad_target,float rad_acc,float rad_velo,const t_pid_gain *sp_gain = &basic_sp_gain,const t_pid_gain *om_gain = &basic_om_gain)
 		{
 			Init_Motion_pivot_turn		(rad_target,rad_acc,rad_velo,sp_gain,om_gain);
 			return execute_Motion();
 		}
 
-		inline t_exeStatus exe_turn_in		(const t_param *turn_param,t_run_pattern run_pt,const t_pid_gain *sp_gain = &basic_sp_gain,const t_pid_gain *om_gain = &basic_om_gain)
+		inline t_exeStatus exe_Motion_turn_in		(const t_param *turn_param,t_run_pattern run_pt,const t_pid_gain *sp_gain = &basic_sp_gain,const t_pid_gain *om_gain = &basic_om_gain)
 		{
 			Init_Motion_turn_in			(turn_param,run_pt,sp_gain,om_gain);
 			return execute_Motion();
 		}
-		inline t_exeStatus exe_turn_out		(const t_param *turn_param,t_run_pattern run_pt,const t_pid_gain *sp_gain = &basic_sp_gain,const t_pid_gain *om_gain = &basic_om_gain)
+		inline t_exeStatus exe_Motion_turn_out		(const t_param *turn_param,t_run_pattern run_pt,const t_pid_gain *sp_gain = &basic_sp_gain,const t_pid_gain *om_gain = &basic_om_gain)
 		{
 			Init_Motion_turn_out		(turn_param,run_pt,sp_gain,om_gain);
 			return execute_Motion();
 		}
-		inline t_exeStatus exe_long_turn		(const t_param *turn_param,t_run_pattern run_pt,const t_pid_gain *sp_gain = &basic_sp_gain,const t_pid_gain *om_gain = &basic_om_gain)
+		inline t_exeStatus exe_Motion_long_turn		(const t_param *turn_param,t_run_pattern run_pt,const t_pid_gain *sp_gain = &basic_sp_gain,const t_pid_gain *om_gain = &basic_om_gain)
 		{
 			Init_Motion_long_turn		(turn_param,run_pt,sp_gain,om_gain);
 			return execute_Motion();
 		}
-		inline t_exeStatus exe_turn_v90		(const t_param *turn_param,t_run_pattern run_pt,const t_pid_gain *sp_gain = &basic_sp_gain,const t_pid_gain *om_gain = &basic_om_gain)
+		inline t_exeStatus exe_Motion_turn_v90		(const t_param *turn_param,t_run_pattern run_pt,const t_pid_gain *sp_gain = &basic_sp_gain,const t_pid_gain *om_gain = &basic_om_gain)
 		{
 			Init_Motion_turn_v90		(turn_param,run_pt,sp_gain,om_gain);
 			return execute_Motion();

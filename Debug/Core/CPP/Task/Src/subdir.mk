@@ -4,39 +4,25 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
-../Core/CPP/Task/Src/controll_task.cpp \
 ../Core/CPP/Task/Src/ctrl_task.cpp \
 ../Core/CPP/Task/Src/init_motion.cpp \
 ../Core/CPP/Task/Src/ir_sens_task.cpp \
-../Core/CPP/Task/Src/motion.cpp \
-../Core/CPP/Task/Src/motion_plan.cpp \
-../Core/CPP/Task/Src/run_task.cpp \
-../Core/CPP/Task/Src/sensing_task.cpp 
+../Core/CPP/Task/Src/motion.cpp 
 
 OBJS += \
-./Core/CPP/Task/Src/controll_task.o \
 ./Core/CPP/Task/Src/ctrl_task.o \
 ./Core/CPP/Task/Src/init_motion.o \
 ./Core/CPP/Task/Src/ir_sens_task.o \
-./Core/CPP/Task/Src/motion.o \
-./Core/CPP/Task/Src/motion_plan.o \
-./Core/CPP/Task/Src/run_task.o \
-./Core/CPP/Task/Src/sensing_task.o 
+./Core/CPP/Task/Src/motion.o 
 
 CPP_DEPS += \
-./Core/CPP/Task/Src/controll_task.d \
 ./Core/CPP/Task/Src/ctrl_task.d \
 ./Core/CPP/Task/Src/init_motion.d \
 ./Core/CPP/Task/Src/ir_sens_task.d \
-./Core/CPP/Task/Src/motion.d \
-./Core/CPP/Task/Src/motion_plan.d \
-./Core/CPP/Task/Src/run_task.d \
-./Core/CPP/Task/Src/sensing_task.d 
+./Core/CPP/Task/Src/motion.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
-Core/CPP/Task/Src/controll_task.o: ../Core/CPP/Task/Src/controll_task.cpp
-	arm-none-eabi-g++ "$<" -mcpu=cortex-m4 -std=gnu++14 -g3 -DUSE_HAL_DRIVER -DSTM32F411xE -DDEBUG -c -I../Drivers/CMSIS/Include -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Core/Inc -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I"C:/Users/sato1/Documents/git/mouse_type7_program/mouse_type7/Drivers/ntshell-v0.3.1/src/lib" -O0 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-threadsafe-statics -fno-use-cxa-atexit -Wall -fstack-usage -MMD -MP -MF"Core/CPP/Task/Src/controll_task.d" -MT"$@" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "$@"
 Core/CPP/Task/Src/ctrl_task.o: ../Core/CPP/Task/Src/ctrl_task.cpp
 	arm-none-eabi-g++ "$<" -mcpu=cortex-m4 -std=gnu++14 -g3 -DUSE_HAL_DRIVER -DSTM32F411xE -DDEBUG -c -I../Drivers/CMSIS/Include -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Core/Inc -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I"C:/Users/sato1/Documents/git/mouse_type7_program/mouse_type7/Drivers/ntshell-v0.3.1/src/lib" -O0 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-threadsafe-statics -fno-use-cxa-atexit -Wall -fstack-usage -MMD -MP -MF"Core/CPP/Task/Src/ctrl_task.d" -MT"$@" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "$@"
 Core/CPP/Task/Src/init_motion.o: ../Core/CPP/Task/Src/init_motion.cpp
@@ -45,10 +31,4 @@ Core/CPP/Task/Src/ir_sens_task.o: ../Core/CPP/Task/Src/ir_sens_task.cpp
 	arm-none-eabi-g++ "$<" -mcpu=cortex-m4 -std=gnu++14 -g3 -DUSE_HAL_DRIVER -DSTM32F411xE -DDEBUG -c -I../Drivers/CMSIS/Include -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Core/Inc -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I"C:/Users/sato1/Documents/git/mouse_type7_program/mouse_type7/Drivers/ntshell-v0.3.1/src/lib" -O0 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-threadsafe-statics -fno-use-cxa-atexit -Wall -fstack-usage -MMD -MP -MF"Core/CPP/Task/Src/ir_sens_task.d" -MT"$@" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "$@"
 Core/CPP/Task/Src/motion.o: ../Core/CPP/Task/Src/motion.cpp
 	arm-none-eabi-g++ "$<" -mcpu=cortex-m4 -std=gnu++14 -g3 -DUSE_HAL_DRIVER -DSTM32F411xE -DDEBUG -c -I../Drivers/CMSIS/Include -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Core/Inc -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I"C:/Users/sato1/Documents/git/mouse_type7_program/mouse_type7/Drivers/ntshell-v0.3.1/src/lib" -O0 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-threadsafe-statics -fno-use-cxa-atexit -Wall -fstack-usage -MMD -MP -MF"Core/CPP/Task/Src/motion.d" -MT"$@" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "$@"
-Core/CPP/Task/Src/motion_plan.o: ../Core/CPP/Task/Src/motion_plan.cpp
-	arm-none-eabi-g++ "$<" -mcpu=cortex-m4 -std=gnu++14 -g3 -DUSE_HAL_DRIVER -DSTM32F411xE -DDEBUG -c -I../Drivers/CMSIS/Include -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Core/Inc -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I"C:/Users/sato1/Documents/git/mouse_type7_program/mouse_type7/Drivers/ntshell-v0.3.1/src/lib" -O0 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-threadsafe-statics -fno-use-cxa-atexit -Wall -fstack-usage -MMD -MP -MF"Core/CPP/Task/Src/motion_plan.d" -MT"$@" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "$@"
-Core/CPP/Task/Src/run_task.o: ../Core/CPP/Task/Src/run_task.cpp
-	arm-none-eabi-g++ "$<" -mcpu=cortex-m4 -std=gnu++14 -g3 -DUSE_HAL_DRIVER -DSTM32F411xE -DDEBUG -c -I../Drivers/CMSIS/Include -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Core/Inc -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I"C:/Users/sato1/Documents/git/mouse_type7_program/mouse_type7/Drivers/ntshell-v0.3.1/src/lib" -O0 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-threadsafe-statics -fno-use-cxa-atexit -Wall -fstack-usage -MMD -MP -MF"Core/CPP/Task/Src/run_task.d" -MT"$@" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "$@"
-Core/CPP/Task/Src/sensing_task.o: ../Core/CPP/Task/Src/sensing_task.cpp
-	arm-none-eabi-g++ "$<" -mcpu=cortex-m4 -std=gnu++14 -g3 -DUSE_HAL_DRIVER -DSTM32F411xE -DDEBUG -c -I../Drivers/CMSIS/Include -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Core/Inc -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I"C:/Users/sato1/Documents/git/mouse_type7_program/mouse_type7/Drivers/ntshell-v0.3.1/src/lib" -O0 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-threadsafe-statics -fno-use-cxa-atexit -Wall -fstack-usage -MMD -MP -MF"Core/CPP/Task/Src/sensing_task.d" -MT"$@" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "$@"
 

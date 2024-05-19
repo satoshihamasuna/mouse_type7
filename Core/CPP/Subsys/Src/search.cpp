@@ -14,7 +14,7 @@
 #include "../Inc/search_class.h"
 #include "../Inc/adachi_class.h"
 #include "../../Params/run_param.h"
-#include "../../Task/Inc/motion.h"
+#include "../../Task/Inc/ctrl_task.h"
 //#include "glob_var_machine.h"
 
 #define ALLOW_SIDE_DIFF 8.0
@@ -50,7 +50,7 @@ t_bool Search::i_am_goal(t_position pos,t_position g_pos,int goal_size)
 }
 
 t_position Search::search_adachi_1(	t_position start_pos,t_position goal_pos,int goal_size,
-									wall_class *_wall,make_map *_map,motion_plan *motion_plan)
+									wall_class *_wall,make_map *_map,Motion *motion)
 {
 	t_position tmp_my_pos = start_pos;
 	t_position my_position = tmp_my_pos;
@@ -270,7 +270,7 @@ t_position Search::search_adachi_1(	t_position start_pos,t_position goal_pos,int
 	return my_position;
 }
 
-t_position Search::search_adachi_1_acc(	t_position start_pos,t_position goal_pos,int goal_size,wall_class *_wall,make_map *_map,motion_plan *motion_plan)
+t_position Search::search_adachi_1_acc(	t_position start_pos,t_position goal_pos,int goal_size,wall_class *_wall,make_map *_map,Motion *motion)
 {
 	t_position tmp_my_pos = start_pos;
 	t_position my_position = tmp_my_pos;
@@ -514,7 +514,7 @@ t_position Search::search_adachi_1_acc(	t_position start_pos,t_position goal_pos
 }
 
 t_position Search::search_adachi_2(	t_position start_pos,t_position goal_pos,int goal_size,
-									wall_class *_wall,make_map *_map,motion_plan *motion_plan)
+									wall_class *_wall,make_map *_map,Motion *motion)
 {
 	t_position tmp_my_pos = start_pos;
 	t_position my_position = tmp_my_pos;
@@ -738,7 +738,7 @@ t_position Search::search_adachi_2(	t_position start_pos,t_position goal_pos,int
 }
 
 t_position Search::search_adachi_2_acc(	t_position start_pos,t_position goal_pos,int goal_size,
-									wall_class *_wall,make_map *_map,motion_plan *motion_plan)
+									wall_class *_wall,make_map *_map,Motion *motion)
 {
 	t_position tmp_my_pos = start_pos;
 	t_position my_position = tmp_my_pos;
@@ -984,7 +984,7 @@ t_position Search::search_adachi_2_acc(	t_position start_pos,t_position goal_pos
 }
 
 t_position Search::search_adachi_3(	t_position start_pos,t_position goal_pos,int goal_size,
-									wall_class *_wall,make_map *_map,motion_plan *motion_plan)
+									wall_class *_wall,make_map *_map,Motion *motion)
 {
 	t_position tmp_my_pos = start_pos;
 	t_position my_position = tmp_my_pos;
@@ -1204,7 +1204,7 @@ t_position Search::search_adachi_3(	t_position start_pos,t_position goal_pos,int
 	return my_position;
 }
 
-t_position Search::search_adachi_3_acc(	t_position start_pos,t_position goal_pos,int goal_size,wall_class *_wall,make_map *_map,motion_plan *motion_plan)
+t_position Search::search_adachi_3_acc(	t_position start_pos,t_position goal_pos,int goal_size,wall_class *_wall,make_map *_map,Motion *motion)
 {
 	t_position tmp_my_pos = start_pos;
 	t_position my_position = tmp_my_pos;
