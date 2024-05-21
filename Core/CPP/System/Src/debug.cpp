@@ -76,7 +76,7 @@ namespace Mode
 			switch((enable<<4)|param)
 			{
 				case ENABLE|0x00:
-				   if(SensingTask::getInstance().IrSensor_Avg() > 2500){
+				   if(IrSensTask_type7::getInstance().IrSensor_Avg() > 2500){
 						  for(int i = 0;i < 11;i++)
 						  {
 							  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
@@ -95,7 +95,7 @@ namespace Mode
 					}
 					break;
 				case ENABLE|0x01:
-				   if(SensingTask::getInstance().IrSensor_Avg() > 2500){
+				   if(IrSensTask_type7::getInstance().IrSensor_Avg() > 2500){
 						  for(int i = 0;i < 11;i++)
 						  {
 							  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
@@ -117,7 +117,7 @@ namespace Mode
 					}
 					break;
 				case ENABLE|0x02:
-					if(SensingTask::getInstance().IrSensor_Avg() > 2500){
+					if(IrSensTask_type7::getInstance().IrSensor_Avg() > 2500){
 						  for(int i = 0;i < 11;i++)
 						  {
 							  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
@@ -151,7 +151,7 @@ namespace Mode
 					}
 					break;
 				case ENABLE|0x03:
-					if(SensingTask::getInstance().IrSensor_Avg() > 2500){
+					if(IrSensTask_type7::getInstance().IrSensor_Avg() > 2500){
 						  for(int i = 0;i < 11;i++)
 						  {
 							  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
@@ -184,7 +184,7 @@ namespace Mode
 					}
 					break;
 				case ENABLE|0x04:
-					if(SensingTask::getInstance().IrSensor_Avg() > 2500){
+					if(IrSensTask_type7::getInstance().IrSensor_Avg() > 2500){
 						  for(int i = 0;i < 11;i++)
 						  {
 							  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
@@ -216,7 +216,7 @@ namespace Mode
 					}
 					break;
 				case ENABLE|0x05:
-					if(SensingTask::getInstance().IrSensor_Avg() > 2500){
+					if(IrSensTask_type7::getInstance().IrSensor_Avg() > 2500){
 						  for(int i = 0;i < 11;i++)
 						  {
 							  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
@@ -249,7 +249,7 @@ namespace Mode
 					}
 					break;
 				case ENABLE|0x06:
-					if(SensingTask::getInstance().IrSensor_Avg() > 2500){
+					if(IrSensTask_type7::getInstance().IrSensor_Avg() > 2500){
 						  for(int i = 0;i < 11;i++)
 						  {
 							  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
@@ -281,7 +281,7 @@ namespace Mode
 					}
 					break;
 				case ENABLE|0x07:
-					if(SensingTask::getInstance().IrSensor_Avg() > 2500){
+					if(IrSensTask_type7::getInstance().IrSensor_Avg() > 2500){
 						  for(int i = 0;i < 11;i++)
 						  {
 							  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
@@ -314,7 +314,7 @@ namespace Mode
 					}
 					break;
 				case ENABLE|0x08:
-					if(SensingTask::getInstance().IrSensor_Avg() > 2500){
+					if(IrSensTask_type7::getInstance().IrSensor_Avg() > 2500){
 						  for(int i = 0;i < 11;i++)
 						  {
 							  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
@@ -347,7 +347,7 @@ namespace Mode
 					}
 					break;
 				case ENABLE|0x09:
-					if(SensingTask::getInstance().IrSensor_Avg() > 2500){
+					if(IrSensTask_type7::getInstance().IrSensor_Avg() > 2500){
 						  for(int i = 0;i < 11;i++)
 						  {
 							  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
@@ -380,7 +380,7 @@ namespace Mode
 					}
 					break;
 				case ENABLE|0x0A:
-					if(SensingTask::getInstance().IrSensor_Avg() > 2500){
+					if(IrSensTask_type7::getInstance().IrSensor_Avg() > 2500){
 						  for(int i = 0;i < 11;i++)
 						  {
 							  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
@@ -413,7 +413,7 @@ namespace Mode
 					}
 					break;
 				case ENABLE|0x0B:
-					if(SensingTask::getInstance().IrSensor_Avg() > 2500){
+					if(IrSensTask_type7::getInstance().IrSensor_Avg() > 2500){
 						  for(int i = 0;i < 11;i++)
 						  {
 							  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
@@ -446,7 +446,7 @@ namespace Mode
 					}
 					break;
 				case ENABLE|0x0C:
-					if(SensingTask::getInstance().IrSensor_Avg() > 2500){
+					if(IrSensTask_type7::getInstance().IrSensor_Avg() > 2500){
 						  for(int i = 0;i < 11;i++)
 						  {
 							  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
@@ -479,7 +479,7 @@ namespace Mode
 					}
 					break;
 				case ENABLE|0x0D:
-					if(SensingTask::getInstance().IrSensor_Avg() > 2500){
+					if(IrSensTask_type7::getInstance().IrSensor_Avg() > 2500){
 						  for(int i = 0;i < 11;i++)
 						  {
 							  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
@@ -511,7 +511,7 @@ namespace Mode
 					}
 					break;
 				case ENABLE|0x0E:
-					if(SensingTask::getInstance().IrSensor_Avg() > 2500){
+					if(IrSensTask_type7::getInstance().IrSensor_Avg() > 2500){
 						for(int i = 0;i < 11;i++)
 						{
 						  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
@@ -522,7 +522,7 @@ namespace Mode
 					}
 					break;
 				case ENABLE|0x0F:
-					if(SensingTask::getInstance().IrSensor_Avg() > 2500){
+					if(IrSensTask_type7::getInstance().IrSensor_Avg() > 2500){
 						for(int i = 0;i < 11;i++)
 						{
 						  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);

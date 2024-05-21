@@ -630,7 +630,7 @@ void Dijkstra::run_Dijkstra_suction(t_position start_pos,t_direction start_wallP
 		FAN_Motor_SetDuty(i);;
 		HAL_Delay(3);
 	}
-	while(motion->motion_exeStatus_get() == execute);
+	motion->execute_Motion();
 	motion->Motion_start();
 	LogData::getInstance().data_count = 0;
 	LogData::getInstance().log_enable = True;
