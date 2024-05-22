@@ -21,6 +21,13 @@ class Search
 		wall_class *wall_property;
 		make_map   *map_property;
 		Motion *motion;
+
+		t_exeStatus updataMap_half_straight	(int x, int y,t_position expand_end,int size,int mask,make_map *_map,Motion *motion);
+		t_exeStatus updataMap_half_straight_and_stop(int x, int y,t_position expand_end,int size,int mask,make_map *_map,Motion *motion);
+		t_exeStatus updataMap_straight		(int x, int y,t_position expand_end,int size,int mask,make_map *_map,Motion *motion);
+		t_exeStatus updataMap_left_turn		(int x, int y,t_position expand_end,int size,int mask,make_map *_map,Motion *motion);
+		t_exeStatus updataMap_right_turn	(int x, int y,t_position expand_end,int size,int mask,make_map *_map,Motion *motion);
+
 	public:
 		t_position search_adachi_1(	t_position start_pos,	t_position goal_pos,	int goal_size,
 									wall_class *_wall,		make_map *_map,			Motion *motion );

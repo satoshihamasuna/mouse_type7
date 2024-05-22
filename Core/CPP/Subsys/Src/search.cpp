@@ -49,6 +49,54 @@ t_bool Search::i_am_goal(t_position pos,t_position g_pos,int goal_size)
 	return flag;
 }
 
+
+t_exeStatus updataMap_half_straight(int x, int y,t_position expand_end,int size,int mask,make_map *_map,Motion *motion)
+{
+	t_exeStatus result;
+	if(x == 0 && y == 0)
+		motion->Init_Motion_search_straight(45.0+15.0, search_st_param->param->acc, search_st_param->param->max_velo, search_st_param->param->max_velo);
+	else
+		motion->Init_Motion_search_straight(45.0, search_st_param->param->acc, search_st_param->param->max_velo, search_st_param->param->max_velo);
+	_map->make_map_queue(x, y, expand_end, size, mask);
+	result = motion->execute_Motion();
+	return result;
+}
+
+t_exeStatus updataMap_half_straight_and_stop(int x, int y,t_position expand_end,int size,int mask,make_map *_map,Motion *motion)
+{
+	t_exeStatus result;
+	motion->Init_Motion_search_straight(45.0, search_st_param->param->acc, search_st_param->param->max_velo, 0.0f);
+	_map->make_map_queue(x, y, expand_end, size, mask);
+	result = motion->execute_Motion();
+	return result;
+}
+
+t_exeStatus updataMap_straight(int x, int y,t_position expand_end,int size,int mask,make_map *_map,Motion *motion)
+{
+	t_exeStatus result;
+	motion->Init_Motion_search_straight(90.0, search_st_param->param->acc, search_st_param->param->max_velo, search_st_param->param->max_velo);
+	_map->make_map_queue(x, y, expand_end, size, mask);
+	result = motion->execute_Motion();
+	return result;
+}
+t_exeStatus updataMap_left_turn(int x, int y,t_position expand_end,int size,int mask,make_map *_map,Motion *motion)
+{
+	t_exeStatus result;
+	motion->Init_Motion_search_straight(90.0, search_st_param->param->acc, search_st_param->param->max_velo, search_st_param->param->max_velo);
+	_map->make_map_queue(x, y, expand_end, size, mask);
+	result = motion->execute_Motion();
+	return result;
+}
+t_exeStatus updataMap_right_turn(int x, int y,t_position expand_end,int size,int mask,make_map *_map,Motion *motion)
+{
+	t_exeStatus result;
+	motion->Init_Motion_search_straight(90.0, search_st_param->param->acc, search_st_param->param->max_velo, search_st_param->param->max_velo);
+	_map->make_map_queue(x, y, expand_end, size, mask);
+	result = motion->execute_Motion();
+	return result;
+}
+
+
 t_position Search::search_adachi_1(	t_position start_pos,t_position goal_pos,int goal_size,
 									wall_class *_wall,make_map *_map,Motion *motion)
 {
