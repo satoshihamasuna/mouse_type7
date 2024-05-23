@@ -11,11 +11,11 @@ ctrl_task.h:225:12:Vehicle* Motion::return_vehicleObj()	16	static
 search.cpp:24:8:t_bool Search::i_am_goal(int, int, int, int, int)	32	static
 search.cpp:36:8:t_bool Search::i_am_goal(t_position, t_position, int)	48	static
 search.cpp:52:6:void Search::update_map(int, int, t_position, int, int, make_map*)	32	static
-search.cpp:60:13:t_exeStatus Search::updataMap_half_straight(int, int, t_position, int, int, make_map*, Motion*)	32	static
-search.cpp:73:13:t_exeStatus Search::updataMap_half_straight_and_stop(int, int, t_position, int, int, make_map*, Motion*)	48	static
-search.cpp:82:13:t_exeStatus Search::updataMap_straight(int, int, t_position, int, int, make_map*, Motion*)	48	static
-search.cpp:90:13:t_exeStatus Search::updataMap_left_turn(int, int, t_position, int, int, make_map*, Motion*)	48	static
-search.cpp:98:13:t_exeStatus Search::updataMap_right_turn(int, int, t_position, int, int, make_map*, Motion*)	48	static
+search.cpp:60:13:t_exeStatus Search::updateMap_half_straight(int, int, t_position, int, int, make_map*, Motion*)	32	static
+search.cpp:73:13:t_exeStatus Search::updateMap_half_straight_and_stop(int, int, t_position, int, int, make_map*, Motion*)	48	static
+search.cpp:82:13:t_exeStatus Search::updateMap_straight(int, int, t_position, int, int, make_map*, Motion*)	48	static
+search.cpp:90:13:t_exeStatus Search::updateMap_left_turn(int, int, t_position, int, int, make_map*, Motion*)	48	static
+search.cpp:98:13:t_exeStatus Search::updateMap_right_turn(int, int, t_position, int, int, make_map*, Motion*)	48	static
 search.cpp:107:13:t_exeStatus Search::turn_right_process(t_position, t_position, t_position, int, int, wall_class*, make_map*, Motion*)	56	static
 search.cpp:149:13:t_exeStatus Search::turn_left_process(t_position, t_position, t_position, int, int, wall_class*, make_map*, Motion*)	56	static
 search.cpp:190:13:t_exeStatus Search::turn_rear_process(t_position, t_position, t_position, int, int, wall_class*, make_map*, Motion*)	48	static

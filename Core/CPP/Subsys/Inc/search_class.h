@@ -28,11 +28,11 @@ class Search
 		make_map   *map_property;
 		Motion *motion;
 
-		t_exeStatus updataMap_half_straight	(int x, int y,t_position expand_end,int size,int mask,make_map *_map,Motion *motion);
-		t_exeStatus updataMap_half_straight_and_stop(int x, int y,t_position expand_end,int size,int mask,make_map *_map,Motion *motion);
-		t_exeStatus updataMap_straight		(int x, int y,t_position expand_end,int size,int mask,make_map *_map,Motion *motion);
-		t_exeStatus updataMap_left_turn		(int x, int y,t_position expand_end,int size,int mask,make_map *_map,Motion *motion);
-		t_exeStatus updataMap_right_turn	(int x, int y,t_position expand_end,int size,int mask,make_map *_map,Motion *motion);
+		t_exeStatus updateMap_half_straight	(int x, int y,t_position expand_end,int size,int mask,make_map *_map,Motion *motion);
+		t_exeStatus updateMap_half_straight_and_stop(int x, int y,t_position expand_end,int size,int mask,make_map *_map,Motion *motion);
+		t_exeStatus updateMap_straight		(int x, int y,t_position expand_end,int size,int mask,make_map *_map,Motion *motion);
+		t_exeStatus updateMap_left_turn		(int x, int y,t_position expand_end,int size,int mask,make_map *_map,Motion *motion);
+		t_exeStatus updateMap_right_turn	(int x, int y,t_position expand_end,int size,int mask,make_map *_map,Motion *motion);
 
 		t_exeStatus turn_right_process( t_position my_position,t_position tmp_my_pos,t_position goal_pos,int goal_size,int mask,
 										wall_class *_wall,make_map *_map,Motion *motion);

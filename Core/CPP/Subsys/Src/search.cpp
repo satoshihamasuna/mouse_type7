@@ -57,7 +57,7 @@ void Search::update_map(int x, int y,t_position expand_end,int size,int mask,mak
 		_map->make_map_queue(x, y, expand_end, size, mask);
 }
 
-t_exeStatus Search::updataMap_half_straight(int x, int y,t_position expand_end,int size,int mask,make_map *_map,Motion *motion)
+t_exeStatus Search::updateMap_half_straight(int x, int y,t_position expand_end,int size,int mask,make_map *_map,Motion *motion)
 {
 	t_exeStatus result;
 	if(expand_end.x == 0 && expand_end.y == 0)
@@ -70,7 +70,7 @@ t_exeStatus Search::updataMap_half_straight(int x, int y,t_position expand_end,i
 	return result;
 }
 
-t_exeStatus Search::updataMap_half_straight_and_stop(int x, int y,t_position expand_end,int size,int mask,make_map *_map,Motion *motion)
+t_exeStatus Search::updateMap_half_straight_and_stop(int x, int y,t_position expand_end,int size,int mask,make_map *_map,Motion *motion)
 {
 	t_exeStatus result;
 	motion->Init_Motion_search_straight(45.0, search_st_param->param->acc, search_st_param->param->max_velo, 0.0f);
@@ -79,7 +79,7 @@ t_exeStatus Search::updataMap_half_straight_and_stop(int x, int y,t_position exp
 	return result;
 }
 
-t_exeStatus Search::updataMap_straight(int x, int y,t_position expand_end,int size,int mask,make_map *_map,Motion *motion)
+t_exeStatus Search::updateMap_straight(int x, int y,t_position expand_end,int size,int mask,make_map *_map,Motion *motion)
 {
 	t_exeStatus result;
 	motion->Init_Motion_search_straight(90.0, search_st_param->param->acc, search_st_param->param->max_velo, search_st_param->param->max_velo);
@@ -87,7 +87,7 @@ t_exeStatus Search::updataMap_straight(int x, int y,t_position expand_end,int si
 	result = motion->execute_Motion();
 	return result;
 }
-t_exeStatus Search::updataMap_left_turn(int x, int y,t_position expand_end,int size,int mask,make_map *_map,Motion *motion)
+t_exeStatus Search::updateMap_left_turn(int x, int y,t_position expand_end,int size,int mask,make_map *_map,Motion *motion)
 {
 	t_exeStatus result;
 	motion->Init_Motion_search_turn(&param_L90_search);
@@ -95,7 +95,7 @@ t_exeStatus Search::updataMap_left_turn(int x, int y,t_position expand_end,int s
 	result = motion->execute_Motion();
 	return result;
 }
-t_exeStatus Search::updataMap_right_turn(int x, int y,t_position expand_end,int size,int mask,make_map *_map,Motion *motion)
+t_exeStatus Search::updateMap_right_turn(int x, int y,t_position expand_end,int size,int mask,make_map *_map,Motion *motion)
 {
 	t_exeStatus result;
 	motion->Init_Motion_search_turn(&param_R90_search);
@@ -111,7 +111,7 @@ t_exeStatus Search::turn_right_process(t_position my_position,t_position tmp_my_
 	t_exeStatus result;
 	if(ir_sens->sen_l.is_wall == True && ABS(ir_sens->sen_l.distance - 45.0) >= ALLOW_SIDE_DIFF)
 	{
-		result = updataMap_half_straight_and_stop(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01,_map,motion);
+		result = updateMap_half_straight_and_stop(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01,_map,motion);
 
 		if(_wall->get_WallState(my_position) == WALL)
 		{
@@ -128,7 +128,7 @@ t_exeStatus Search::turn_right_process(t_position my_position,t_position tmp_my_
 	}
 	else if(_wall->get_WallState(my_position) == WALL && ABS(ir_sens->sen_fr.distance - ir_sens->sen_fl.distance) >= ALLOW_SIDE_DIFF)
 	{
-		result = updataMap_half_straight_and_stop(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01,_map,motion);
+		result = updateMap_half_straight_and_stop(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01,_map,motion);
 
 		if(_wall->get_WallState(my_position) == WALL)
 		{
@@ -141,7 +141,7 @@ t_exeStatus Search::turn_right_process(t_position my_position,t_position tmp_my_
 	}
 	else
 	{
-		result = updataMap_right_turn(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01,_map,motion);
+		result = updateMap_right_turn(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01,_map,motion);
 	}
 	return result;
 }
@@ -153,7 +153,7 @@ t_exeStatus Search::turn_left_process (	t_position my_position,t_position tmp_my
 	t_exeStatus result;
 	if(ir_sens->sen_r.is_wall == True && ABS(ir_sens->sen_r.distance - 45.0) >= ALLOW_SIDE_DIFF)
 	{
-		result = updataMap_half_straight_and_stop(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01,_map,motion);
+		result = updateMap_half_straight_and_stop(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01,_map,motion);
 
 		if(_wall->get_WallState(my_position) == WALL)
 		{
@@ -170,7 +170,7 @@ t_exeStatus Search::turn_left_process (	t_position my_position,t_position tmp_my
 	}
 	else if(_wall->get_WallState(my_position) == WALL && ABS(ir_sens->sen_fr.distance - ir_sens->sen_fl.distance) >= ALLOW_SIDE_DIFF)
 	{
-		result = updataMap_half_straight_and_stop(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01,_map,motion);
+		result = updateMap_half_straight_and_stop(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01,_map,motion);
 
 		if(_wall->get_WallState(my_position) == WALL)
 		{
@@ -182,7 +182,7 @@ t_exeStatus Search::turn_left_process (	t_position my_position,t_position tmp_my
 	}
 	else
 	{
-		result = updataMap_left_turn(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01,_map,motion);
+		result = updateMap_left_turn(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01,_map,motion);
 	}
 	return result;
 }
@@ -191,7 +191,7 @@ t_exeStatus Search::turn_rear_process (	t_position my_position,t_position tmp_my
 										wall_class *_wall,make_map *_map,Motion *motion)
 {
 	t_exeStatus result;
-	result = updataMap_half_straight_and_stop(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01,_map,motion);
+	result = updateMap_half_straight_and_stop(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01,_map,motion);
 
 	if(_wall->get_WallState(my_position) == WALL)
 	{
@@ -254,20 +254,20 @@ t_position Search::search_adachi(	t_position start_pos,t_position goal_pos,int g
 	switch(direction)
 	{
 		case Front:
-			updataMap_half_straight(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01,_map,motion);
+			updateMap_half_straight(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01,_map,motion);
 			break;
 		case Right:
 			motion->exe_Motion_pivot_turn(DEG2RAD(-90.0f), -40.0*PI, -4.0*PI);
-			updataMap_half_straight(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01,_map,motion);
+			updateMap_half_straight(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01,_map,motion);
 			break;
 		case Left:
 			motion->exe_Motion_pivot_turn(DEG2RAD(90.0f), 40.0*PI, 4.0*PI);
-			updataMap_half_straight(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01,_map,motion);
+			updateMap_half_straight(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01,_map,motion);
 
 			break;
 		case Rear:
 			motion->exe_Motion_pivot_turn(DEG2RAD(180.0f), 40.0*PI, 4.0*PI);
-			updataMap_half_straight(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01,_map,motion);
+			updateMap_half_straight(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01,_map,motion);
 			break;
 
 	}
@@ -293,7 +293,7 @@ t_position Search::search_adachi(	t_position start_pos,t_position goal_pos,int g
 		switch(direction)
 		{
 			case Front:
-				updataMap_straight(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01,_map,motion);
+				updateMap_straight(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01,_map,motion);
 				break;
 			case Right:
 				turn_right_process(my_position,tmp_my_pos,goal_pos,goal_size,0x01,_wall,_map,motion);
@@ -341,20 +341,20 @@ t_position Search::search_adachi_acc(	t_position start_pos,t_position goal_pos,i
 	switch(direction)
 	{
 		case Front:
-			updataMap_half_straight(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01,_map,motion);
+			updateMap_half_straight(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01,_map,motion);
 			break;
 		case Right:
 			motion->exe_Motion_pivot_turn(DEG2RAD(-90.0f), -40.0*PI, -4.0*PI);
-			updataMap_half_straight(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01,_map,motion);
+			updateMap_half_straight(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01,_map,motion);
 			break;
 		case Left:
 			motion->exe_Motion_pivot_turn(DEG2RAD(90.0f), 40.0*PI, 4.0*PI);
-			updataMap_half_straight(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01,_map,motion);
+			updateMap_half_straight(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01,_map,motion);
 
 			break;
 		case Rear:
 			motion->exe_Motion_pivot_turn(DEG2RAD(180.0f), 40.0*PI, 4.0*PI);
-			updataMap_half_straight(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01,_map,motion);
+			updateMap_half_straight(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01,_map,motion);
 			break;
 
 	}
