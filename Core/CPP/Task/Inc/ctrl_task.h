@@ -169,6 +169,12 @@ class Motion
 			return motion_exeStatus_get();
 		}
 
+		inline t_exeStatus exe_Motion_search_turn	(const t_param *turn_param,const t_pid_gain *sp_gain = &basic_sp_gain,const t_pid_gain *om_gain = &basic_om_gain)
+		{
+			Init_Motion_search_turn	(turn_param,sp_gain,om_gain);
+			return execute_Motion();
+		}
+
 		inline t_exeStatus exe_Motion_straight		(float len_target,float acc,float max_sp,float end_sp,const t_pid_gain *sp_gain = &basic_sp_gain,const t_pid_gain *om_gain = &basic_om_gain)
 		{
 			Init_Motion_straight(len_target,acc,max_sp,end_sp,sp_gain,om_gain);
@@ -184,6 +190,13 @@ class Motion
 		inline t_exeStatus exe_Motion_pivot_turn		(float rad_target,float rad_acc,float rad_velo,const t_pid_gain *sp_gain = &basic_sp_gain,const t_pid_gain *om_gain = &basic_om_gain)
 		{
 			Init_Motion_pivot_turn		(rad_target,rad_acc,rad_velo,sp_gain,om_gain);
+			return execute_Motion();
+		}
+
+
+		inline t_exeStatus exe_Motion_fix_wall		(float set_time,const t_pid_gain *sp_gain = &basic_sp_gain,const t_pid_gain *om_gain = &basic_om_gain)
+		{
+			Init_Motion_fix_wall		(set_time,sp_gain,om_gain);
 			return execute_Motion();
 		}
 
@@ -207,6 +220,10 @@ class Motion
 			Init_Motion_turn_v90		(turn_param,run_pt,sp_gain,om_gain);
 			return execute_Motion();
 		}
+
+
+		Vehicle *return_vehicleObj() 	{return vehicle;};
+		IrSensTask *return_irObj() 		{return ir_sens;};
 
 };
 

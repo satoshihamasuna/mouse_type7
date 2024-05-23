@@ -21,6 +21,7 @@ class wall_class
 		{
 			ir_sens = ir_sens_;
 		}
+		IrSensTask *return_irObj() {return ir_sens;};
 		t_wall wall[MAZE_SIZE_X][MAZE_SIZE_Y];
 		void init_maze();
 		void set_wall(t_position pos);

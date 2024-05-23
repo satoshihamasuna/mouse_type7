@@ -61,14 +61,15 @@ Core/CPP/Subsys/Src/search.o: ../Core/CPP/Subsys/Src/search.cpp \
  ../Core/CPP/Subsys/Src/../Inc/search_class.h \
  ../Core/CPP/Subsys/Src/../Inc/make_map_class.h \
  ../Core/CPP/Subsys/Src/../Inc/adachi_class.h \
- ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/motion.h \
+ ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/ctrl_task.h \
+ ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/sensing_task.h \
  ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Params/run_param.h \
  ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Params/../Component/Inc/controll.h \
  ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Params/../Task/Inc/run_task.h \
  ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Params/../Pheripheral/Include/typedef.h \
  ../Core/CPP/Subsys/Src/../Inc/adachi_class.h \
  ../Core/CPP/Subsys/Src/../../Params/run_param.h \
- ../Core/CPP/Subsys/Src/../../Task/Inc/motion.h
+ ../Core/CPP/Subsys/Src/../../Task/Inc/ctrl_task.h
 
 ../Core/CPP/Subsys/Src/../../Component/Inc/queue_class.h:
 
@@ -206,7 +207,9 @@ Core/CPP/Subsys/Src/search.o: ../Core/CPP/Subsys/Src/search.cpp \
 
 ../Core/CPP/Subsys/Src/../Inc/adachi_class.h:
 
-../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/motion.h:
+../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/ctrl_task.h:
+
+../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/sensing_task.h:
 
 ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Params/run_param.h:
 
@@ -220,4 +223,4 @@ Core/CPP/Subsys/Src/search.o: ../Core/CPP/Subsys/Src/search.cpp \
 
 ../Core/CPP/Subsys/Src/../../Params/run_param.h:
 
-../Core/CPP/Subsys/Src/../../Task/Inc/motion.h:
+../Core/CPP/Subsys/Src/../../Task/Inc/ctrl_task.h:

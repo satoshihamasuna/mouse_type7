@@ -63,7 +63,6 @@ namespace Mode
 		uint32_t time = Interrupt::getInstance().return_time_count();
 
 		ring_queue<1024,t_MapNode> maze_q;
-		//motion_plan mp(&controll_task::getInstance());
 
 		Motion *mp = &(CtrlTask_type7::getInstance());
 		Search solve_maze;

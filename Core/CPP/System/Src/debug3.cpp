@@ -51,15 +51,15 @@ namespace Mode
 	uint8_t enable = 0x00;
 
 	ring_queue<1024,t_MapNode> maze_q;
-	motion_plan mp(&controll_task::getInstance());
-	wall_class wall_data(&SensingTask::getInstance());
+	//Motion *mp = &(CtrlTask_type7::getInstance());
+	wall_class wall_data(&IrSensTask_type7::getInstance());
 	wall_data.init_maze();
 	make_map map_data(&wall_data,&maze_q);
 	Dijkstra run_path(&wall_data);
-	const t_param *const *turn_mode;
-	turn_mode = mode_1400;
-	float acc  = 12.0;
-	float velo = 1.4;
+	//const t_param *const *turn_mode;
+	//turn_mode = mode_1400;
+	//float acc  = 12.0;
+	//float velo = 1.4;
 	uint32_t time = Interrupt::getInstance().return_time_count();
 	path_follow_class::getInstance().set_path_follow_gain(50.0, 0.0);
 	while(debug_end == False)

@@ -48,15 +48,14 @@ namespace Mode
 		uint8_t enable = 0x00;
 
 		ring_queue<1024,t_MapNode> maze_q;
-		motion_plan mp(&controll_task::getInstance());
-		//Search solve_maze;
-		wall_class wall_data(&SensingTask::getInstance());
+		Motion *motion = &(CtrlTask_type7::getInstance());
+		wall_class wall_data(&IrSensTask_type7::getInstance());
 		wall_data.init_maze();
 		make_map map_data(&wall_data,&maze_q);
 		Dijkstra run_path(&wall_data);
 		uint32_t time = Interrupt::getInstance().return_time_count();
-		 float fr,fl,sr,sl;
-		 int16_t int_fr,int_fl,int_sr,int_sl;
+		float fr,fl,sr,sl;
+		int16_t int_fr,int_fl,int_sr,int_sl;
 		while(debug_end == False)
 		{
 			enable = Mode::Select(enable,0x01,Encoder_GetProperty_Left());
@@ -78,18 +77,18 @@ namespace Mode
 			switch((enable<<4)|param)
 			{
 				case ENABLE|0x00:
-					 fr = SensingTask::getInstance().sen_fr.distance;	fl = SensingTask::getInstance().sen_fl.distance;
-					 sr = SensingTask::getInstance().sen_r.avg_distance;	sl = SensingTask::getInstance().sen_l.avg_distance;
-					 int_fr = SensingTask::getInstance().sen_r.value_sum;	int_fl = SensingTask::getInstance().sen_l.value_sum;
-					 int_sr = SensingTask::getInstance().sen_r.value;	int_sl = SensingTask::getInstance().sen_l.value;
+					 fr = IrSensTask_type7::getInstance().sen_fr.distance;	fl = IrSensTask_type7::getInstance().sen_fl.distance;
+					 sr = IrSensTask_type7::getInstance().sen_r.avg_distance;	sl = IrSensTask_type7::getInstance().sen_l.avg_distance;
+					 int_fr = IrSensTask_type7::getInstance().sen_r.value_sum;	int_fl = IrSensTask_type7::getInstance().sen_l.value_sum;
+					 int_sr = IrSensTask_type7::getInstance().sen_r.value;	int_sl = IrSensTask_type7::getInstance().sen_l.value;
 					 printf("fr:%f,fl:%f,sr:%f,sl:%f\n",fr,fl,sr,sl);
 					 printf("fr:%4d,fl:%4d,sr:%4d,sl:%4d\n",int_fr,int_fl,int_sr,int_sl);
 					 break;
 				case ENABLE|0x01:
-					 fr = SensingTask::getInstance().sen_fr.distance;	fl = SensingTask::getInstance().sen_fl.distance;
-					 sr = SensingTask::getInstance().sen_r.distance;	sl = SensingTask::getInstance().sen_l.distance;
-					 int_fr = SensingTask::getInstance().sen_fr.value;	int_fl = SensingTask::getInstance().sen_fl.value;
-					 int_sr = SensingTask::getInstance().sen_r.value;	int_sl = SensingTask::getInstance().sen_l.value;
+					 fr = IrSensTask_type7::getInstance().sen_fr.distance;	fl = IrSensTask_type7::getInstance().sen_fl.distance;
+					 sr = IrSensTask_type7::getInstance().sen_r.distance;	sl = IrSensTask_type7::getInstance().sen_l.distance;
+					 int_fr = IrSensTask_type7::getInstance().sen_fr.value;	int_fl = IrSensTask_type7::getInstance().sen_fl.value;
+					 int_sr = IrSensTask_type7::getInstance().sen_r.value;	int_sl = IrSensTask_type7::getInstance().sen_l.value;
 					 printf("fr:%f,fl:%f,sr:%f,sl:%f\n",fr,fl,sr,sl);
 					 printf("fr:%4d,fl:%4d,sr:%4d,sl:%4d\n",int_fr,int_fl,int_sr,int_sl);
 					 break;
@@ -100,7 +99,7 @@ namespace Mode
 				case ENABLE|0x03:
 					while(1)
 					{
-						printf("length:%lf\n",controll_task::getInstance().mouse.length);
+						printf("length:%lf\n",CtrlTask_type7::getInstance().return_vehicleObj()->ego.length.get());
 						HAL_Delay(10);
 						if(HAL_GPIO_ReadPin(Button_GPIO_Port, Button_Pin) == 1) break;
 					}
@@ -112,9 +111,9 @@ namespace Mode
 							  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
 							  HAL_Delay(50);
 						  }
-						  mp.free_rotation();
-						  while(controll_task::getInstance().run_task !=No_run){
-								printf("gyro:%ld,%ld\n",Encoder_GetProperty_Right().sp_pulse,Encoder_GetProperty_Left().sp_pulse);
+						  motion->Init_Motion_free_rotation_set();
+						  while(motion->motion_exeStatus_get() == execute){
+								printf("encoder:%ld,%ld\n",Encoder_GetProperty_Right().sp_pulse,Encoder_GetProperty_Left().sp_pulse);
 								HAL_Delay(10);
 						  }
 						  enable = 0x00;
@@ -129,14 +128,11 @@ namespace Mode
 									  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
 									  HAL_Delay(50);
 								  }
-								  controll_task::getInstance().ct.speed_ctrl.Gain_Set(6.0, 0.05, 0.0);
-								  controll_task::getInstance().ct.omega_ctrl.Gain_Set(0.4, 0.01, 0.0);
 								  KalmanFilter::getInstance().filter_init();
-								  mp.motion_start();
+								  motion->Motion_start();
 								  LogData::getInstance().data_count = 0;
 								  LogData::getInstance().log_enable = True;
-								  mp.pivot_turn(DEG2RAD(90.0f), 40.0*PI, 4.0*PI);
-								  while(controll_task::getInstance().run_task !=No_run){}
+								  motion->exe_Motion_pivot_turn(DEG2RAD(90.0f), 40.0*PI, 4.0*PI);
 								  LogData::getInstance().log_enable = False;
 								  enable = 0x00;
 								  HAL_Delay(500);
@@ -150,14 +146,11 @@ namespace Mode
 							  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
 							  HAL_Delay(50);
 						  }
-							  controll_task::getInstance().ct.speed_ctrl.Gain_Set(6.0, 0.05, 0.0);
-							  controll_task::getInstance().ct.omega_ctrl.Gain_Set(0.4, 0.01, 0.0);
 							  KalmanFilter::getInstance().filter_init();
-							  mp.motion_start();
+							  motion->Motion_start();
 							  LogData::getInstance().data_count = 0;
 							  LogData::getInstance().log_enable = True;
-								mp.fix_wall(3000);
-								while(controll_task::getInstance().run_task !=No_run){}
+							  motion->exe_Motion_fix_wall(3000);
 							  LogData::getInstance().log_enable = False;
 							  enable = 0x00;
 							  HAL_Delay(500);

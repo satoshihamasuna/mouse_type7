@@ -9,6 +9,10 @@
 #include "../Inc/ctrl_task.h"
 #include "../../Params/turn_table.h"
 
+void Motion::Motion_start()
+{
+
+}
 
 void Motion::Init_Motion_free_rotation_set( )
 {

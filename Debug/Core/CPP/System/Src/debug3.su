@@ -1,0 +1,20 @@
+sensing_task.h:67:8:virtual void IrSensTask_type7::IrSensorSet()	16	static
+wall_class.h:20:3:wall_class::wall_class(IrSensTask*)	16	static
+gthr-default.h:229:1:int __gthread_key_delete(__gthread_key_t)	16	static
+make_path.h:93:3:calcRunTime::calcRunTime()	16	static
+make_path.h:144:3:Dijkstra::Dijkstra(wall_class*)	16	static
+path_follow.h:34:8:void path_follow_class::set_path_follow_gain(float, float)	24	static
+interrupt.h:29:12:uint32_t Interrupt::return_time_count()	16	static
+debug3.cpp:46:7:void Mode::Debug3()	45640	static
+sensing_task.h:37:7:IrSensTask::IrSensTask()	16	static
+sensing_task.h:64:7:IrSensTask_type7::IrSensTask_type7()	16	static
+singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = IrSensTask_type7]	8	static
+queue_class.h:22:3:ring_queue<SIZE, T>::ring_queue() [with unsigned int SIZE = 1024; T = t_MapNode]	16	static
+singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = Interrupt]	4	static
+path_follow.h:15:7:path_follow_class::path_follow_class()	16	static
+singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = path_follow_class]	8	static
+log_data.h:18:7:LogData::LogData()	16	static
+singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = LogData]	8	static
+debug3.cpp:246:1:void __static_initialization_and_destruction_0(int, int)	16	static
+debug3.cpp:246:1:cpp)	8	static
+debug3.cpp:246:1:cpp)	8	static
