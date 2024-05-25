@@ -49,7 +49,9 @@ namespace Mode
 
 		ring_queue<1024,t_MapNode> maze_q;
 		Motion *motion = &(CtrlTask_type7::getInstance());
-		wall_class wall_data(&IrSensTask_type7::getInstance());
+		IrSensTask *irsens = (CtrlTask_type7::getInstance().return_irObj());
+		wall_class wall_data(irsens);
+
 		wall_data.init_maze();
 		make_map map_data(&wall_data,&maze_q);
 		Dijkstra run_path(&wall_data);
@@ -77,18 +79,18 @@ namespace Mode
 			switch((enable<<4)|param)
 			{
 				case ENABLE|0x00:
-					 fr = IrSensTask_type7::getInstance().sen_fr.distance;	fl = IrSensTask_type7::getInstance().sen_fl.distance;
-					 sr = IrSensTask_type7::getInstance().sen_r.avg_distance;	sl = IrSensTask_type7::getInstance().sen_l.avg_distance;
-					 int_fr = IrSensTask_type7::getInstance().sen_r.value_sum;	int_fl = IrSensTask_type7::getInstance().sen_l.value_sum;
-					 int_sr = IrSensTask_type7::getInstance().sen_r.value;	int_sl = IrSensTask_type7::getInstance().sen_l.value;
+					 fr = irsens->sen_fr.distance;	fl = irsens->sen_fl.distance;
+					 sr = irsens->sen_r.avg_distance;	sl = irsens->sen_l.avg_distance;
+					 int_fr = irsens->sen_r.value_sum;	int_fl = irsens->sen_l.value_sum;
+					 int_sr = irsens->sen_r.value;	int_sl = irsens->sen_l.value;
 					 printf("fr:%f,fl:%f,sr:%f,sl:%f\n",fr,fl,sr,sl);
 					 printf("fr:%4d,fl:%4d,sr:%4d,sl:%4d\n",int_fr,int_fl,int_sr,int_sl);
 					 break;
 				case ENABLE|0x01:
-					 fr = IrSensTask_type7::getInstance().sen_fr.distance;	fl = IrSensTask_type7::getInstance().sen_fl.distance;
-					 sr = IrSensTask_type7::getInstance().sen_r.distance;	sl = IrSensTask_type7::getInstance().sen_l.distance;
-					 int_fr = IrSensTask_type7::getInstance().sen_fr.value;	int_fl = IrSensTask_type7::getInstance().sen_fl.value;
-					 int_sr = IrSensTask_type7::getInstance().sen_r.value;	int_sl = IrSensTask_type7::getInstance().sen_l.value;
+					 fr = irsens->sen_fr.distance;	fl = irsens->sen_fl.distance;
+					 sr = irsens->sen_r.distance;	sl = irsens->sen_l.distance;
+					 int_fr = irsens->sen_fr.value;	int_fl = irsens->sen_fl.value;
+					 int_sr = irsens->sen_r.value;	int_sl = irsens->sen_l.value;
 					 printf("fr:%f,fl:%f,sr:%f,sl:%f\n",fr,fl,sr,sl);
 					 printf("fr:%4d,fl:%4d,sr:%4d,sl:%4d\n",int_fr,int_fl,int_sr,int_sl);
 					 break;
@@ -105,12 +107,13 @@ namespace Mode
 					}
 						break;
 				case ENABLE|0x04:
-					if(IrSensTask_type7::getInstance().IrSensor_Avg() > 2500){
+					if(irsens->IrSensor_Avg() > 2500){
 						  for(int i = 0;i < 11;i++)
 						  {
 							  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
 							  HAL_Delay(50);
 						  }
+						  motion->Motion_start();
 						  motion->Init_Motion_free_rotation_set();
 						  while(motion->motion_exeStatus_get() == execute){
 								printf("encoder:%ld,%ld\n",Encoder_GetProperty_Right().sp_pulse,Encoder_GetProperty_Left().sp_pulse);
@@ -121,7 +124,7 @@ namespace Mode
 					}
 					break;
 				case ENABLE|0x05:
-					if(IrSensTask_type7::getInstance().IrSensor_Avg() > 2500){
+					if(irsens->IrSensor_Avg() > 2500){
 
 								  for(int i = 0;i < 11;i++)
 								  {
@@ -140,7 +143,7 @@ namespace Mode
 					}
 					break;
 				case ENABLE|0x06:
-					if(IrSensTask_type7::getInstance().IrSensor_Avg() > 2500){
+					if(irsens->IrSensor_Avg() > 2500){
 						  for(int i = 0;i < 11;i++)
 						  {
 							  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
@@ -157,7 +160,7 @@ namespace Mode
 					}
 					break;
 				case ENABLE|0x07:
-					if(IrSensTask_type7::getInstance().IrSensor_Avg() > 2500){
+					if(irsens->IrSensor_Avg() > 2500){
 						  for(int i = 0;i < 11;i++)
 						  {
 							  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
@@ -168,7 +171,7 @@ namespace Mode
 					}
 					break;
 				case ENABLE|0x08:
-					if(IrSensTask_type7::getInstance().IrSensor_Avg() > 2500){
+					if(irsens->IrSensor_Avg() > 2500){
 						  for(int i = 0;i < 11;i++)
 						  {
 							  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
@@ -179,7 +182,7 @@ namespace Mode
 					}
 					break;
 				case ENABLE|0x09:
-					if(IrSensTask_type7::getInstance().IrSensor_Avg() > 2500){
+					if(irsens->IrSensor_Avg() > 2500){
 						  for(int i = 0;i < 11;i++)
 						  {
 							  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
@@ -190,7 +193,7 @@ namespace Mode
 					}
 					break;
 				case ENABLE|0x0A:
-					if(IrSensTask_type7::getInstance().IrSensor_Avg() > 2500){
+					if(irsens->IrSensor_Avg() > 2500){
 						  for(int i = 0;i < 11;i++)
 						  {
 							  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
@@ -201,7 +204,7 @@ namespace Mode
 					}
 					break;
 				case ENABLE|0x0B:
-					if(IrSensTask_type7::getInstance().IrSensor_Avg() > 2500){
+					if(irsens->IrSensor_Avg() > 2500){
 						  for(int i = 0;i < 11;i++)
 						  {
 							  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
@@ -212,7 +215,7 @@ namespace Mode
 					}
 					break;
 				case ENABLE|0x0C:
-					if(IrSensTask_type7::getInstance().IrSensor_Avg() > 2500){
+					if(irsens->IrSensor_Avg() > 2500){
 						  for(int i = 0;i < 11;i++)
 						  {
 							  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
@@ -223,7 +226,7 @@ namespace Mode
 					}
 					break;
 				case ENABLE|0x0D:
-					if(IrSensTask_type7::getInstance().IrSensor_Avg() > 2500){
+					if(irsens->IrSensor_Avg() > 2500){
 						  for(int i = 0;i < 11;i++)
 						  {
 							  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
@@ -234,7 +237,7 @@ namespace Mode
 					}
 					break;
 				case ENABLE|0x0E:
-					if(IrSensTask_type7::getInstance().IrSensor_Avg() > 2500){
+					if(irsens->IrSensor_Avg() > 2500){
 						for(int i = 0;i < 11;i++)
 						{
 						  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
@@ -245,7 +248,7 @@ namespace Mode
 					}
 					break;
 				case ENABLE|0x0F:
-					if(IrSensTask_type7::getInstance().IrSensor_Avg() > 2500){
+					if(irsens->IrSensor_Avg() > 2500){
 						for(int i = 0;i < 11;i++)
 						{
 						  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);

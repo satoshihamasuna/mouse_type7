@@ -18,7 +18,7 @@
 #include "../../Component/Inc/controll.h"
 #include "../../Module/Inc/vehicle.h"
 
-struct motion_set_params
+struct motion_plan_params
 {
 		param_element velo;
 		param_element max_velo;
@@ -67,7 +67,7 @@ class Motion
 		//define motion parameter
 		t_param 			turn_motion_param;
 		t_straight_param 	straight_motion_param;
-		motion_set_params    motion_set;
+		motion_plan_params    motion_plan;
 
 
 		Vehicle *vehicle;
@@ -144,6 +144,7 @@ class Motion
 		inline  t_bool 		motion_is_enable_get()									{	return	is_motion_enable;			}
 
 		void Motion_start();
+		void Motion_end();
 
 		//Initialize motion parameters
 		void Init_Motion_free_rotation_set	();

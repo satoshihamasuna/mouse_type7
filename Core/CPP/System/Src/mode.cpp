@@ -64,12 +64,15 @@ namespace Mode
 
 		ring_queue<1024,t_MapNode> maze_q;
 
-		Motion *mp = &(CtrlTask_type7::getInstance());
+		Motion *motion = &(CtrlTask_type7::getInstance());
+		IrSensTask *irsens = (CtrlTask_type7::getInstance().return_irObj());
+
 		Search solve_maze;
-		wall_class wall_data(&IrSensTask_type7::getInstance());
+		wall_class wall_data(irsens);
 		wall_data.init_maze();
 		make_map map_data(&wall_data,&maze_q);
 		Dijkstra run_path(&wall_data);
+
 
 		t_position start,goal;
 		start.x = start.y = 0;start.dir = North;
@@ -98,7 +101,7 @@ namespace Mode
 			switch((enable<<4)|param)
 			{
 				case ENABLE|0x00:
-					if(IrSensTask_type7::getInstance().IrSensor_Avg() > 2500){
+					if(irsens->IrSensor_Avg() > 2500){
 						for(int i = 0;i < 11;i++)
 						{
 							(i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
@@ -109,15 +112,15 @@ namespace Mode
 						//controll_task::getInstance().ct.speed_ctrl.Gain_Set(6.0, 0.05, 0.0);
 						//controll_task::getInstance().ct.omega_ctrl.Gain_Set(0.4, 0.05, 0.0);
 						KalmanFilter::getInstance().filter_init();
-						t_position return_pos = solve_maze.search_adachi_1_acc(start, goal, goal_size, &wall_data, &map_data,mp);
+						t_position return_pos = solve_maze.search_adachi_1_acc(start, goal, goal_size, &wall_data, &map_data,motion);
 						write_save_data(&wall_data);
-						solve_maze.search_adachi_2_acc(return_pos, start, 1, &wall_data, &map_data,mp);
+						solve_maze.search_adachi_2_acc(return_pos, start, 1, &wall_data, &map_data,motion);
 						write_save_data(&wall_data);
 						enable = 0x00;
 					}
 					break;
 				case ENABLE|0x01:
-					if(IrSensTask_type7::getInstance().IrSensor_Avg() > 2500){
+					if(irsens->IrSensor_Avg() > 2500){
 						for(int i = 0;i < 11;i++)
 						{
 							(i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
@@ -126,15 +129,15 @@ namespace Mode
 
 						Indicate_LED(mode|param);
 						KalmanFilter::getInstance().filter_init();
-						t_position return_pos = solve_maze.search_adachi_1(start, goal, goal_size, &wall_data, &map_data,mp);
+						t_position return_pos = solve_maze.search_adachi_1(start, goal, goal_size, &wall_data, &map_data,motion);
 						write_save_data(&wall_data);
-						solve_maze.search_adachi_1(return_pos, start, 1, &wall_data, &map_data,mp);
+						solve_maze.search_adachi_1(return_pos, start, 1, &wall_data, &map_data,motion);
 						write_save_data(&wall_data);
 						enable = 0x00;
 					}
 					break;
 				case ENABLE|0x02:
-					if(IrSensTask_type7::getInstance().IrSensor_Avg() > 2500){
+					if(irsens->IrSensor_Avg() > 2500){
 						for(int i = 0;i < 11;i++)
 						{
 							(i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
@@ -143,15 +146,15 @@ namespace Mode
 
 						Indicate_LED(mode|param);
 						KalmanFilter::getInstance().filter_init();
-						t_position return_pos = solve_maze.search_adachi_3_acc(start, goal, goal_size, &wall_data, &map_data,mp);
+						t_position return_pos = solve_maze.search_adachi_3_acc(start, goal, goal_size, &wall_data, &map_data,motion);
 						write_save_data(&wall_data);
-						solve_maze.search_adachi_2_acc(return_pos, start, 1, &wall_data, &map_data,mp);
+						solve_maze.search_adachi_2_acc(return_pos, start, 1, &wall_data, &map_data,motion);
 						write_save_data(&wall_data);
 						enable = 0x00;
 					}
 					break;
 				case ENABLE|0x03:
-					if(IrSensTask_type7::getInstance().IrSensor_Avg() > 2500){
+					if(irsens->IrSensor_Avg() > 2500){
 						for(int i = 0;i < 11;i++)
 						{
 							(i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
@@ -160,9 +163,9 @@ namespace Mode
 
 						Indicate_LED(mode|param);
 						KalmanFilter::getInstance().filter_init();
-						t_position return_pos = solve_maze.search_adachi_3_acc(start, goal, goal_size, &wall_data, &map_data,mp);
+						t_position return_pos = solve_maze.search_adachi_3_acc(start, goal, goal_size, &wall_data, &map_data,motion);
 						write_save_data(&wall_data);
-						solve_maze.search_adachi_3_acc(return_pos, start, 1, &wall_data, &map_data,mp);
+						solve_maze.search_adachi_3_acc(return_pos, start, 1, &wall_data, &map_data,motion);
 						write_save_data(&wall_data);
 						enable = 0x00;
 					}
@@ -172,7 +175,7 @@ namespace Mode
 				case ENABLE|0x05:
 					break;
 				case ENABLE|0x06:
-				   if(IrSensTask_type7::getInstance().IrSensor_Avg() > 2500)
+				   if(irsens->IrSensor_Avg() > 2500)
 				   {
 						for(int i = 0;i < 11;i++)
 						{
@@ -183,13 +186,13 @@ namespace Mode
 				  		run_path.turn_time_set(mode_1000);
 						run_path.run_Dijkstra(		start, Dir_None, goal,MAZE_GOAL_SIZE,
 															st_mode_500_v0, (int)(sizeof(st_mode_500_v0)/sizeof(t_straight_param *const)),
-															di_mode_500_v0, (int)(sizeof(di_mode_500_v0)/sizeof(t_straight_param *const)), mode_500,mp);
+															di_mode_500_v0, (int)(sizeof(di_mode_500_v0)/sizeof(t_straight_param *const)), mode_500,motion);
 
 						enable = 0x00;
 					}
 					break;
 				case ENABLE|0x07:
-					if(IrSensTask_type7::getInstance().IrSensor_Avg() > 2500)
+					if(irsens->IrSensor_Avg() > 2500)
 					{
 						for(int i = 0;i < 11;i++)
 						{
@@ -201,7 +204,7 @@ namespace Mode
 					}
 					break;
 				case ENABLE|0x08:
-				   if(IrSensTask_type7::getInstance().IrSensor_Avg() > 2500)
+				   if(irsens->IrSensor_Avg() > 2500)
 				   {
 						for(int i = 0;i < 11;i++)
 						{
@@ -212,13 +215,13 @@ namespace Mode
 				  		run_path.turn_time_set(mode_1000);
 						run_path.run_Dijkstra_suction(		start, Dir_None, goal,MAZE_GOAL_SIZE,600,
 															st_mode_1000_v0, (int)(sizeof(st_mode_1000_v0)/sizeof(t_straight_param *const)),
-															di_mode_1000_v0, (int)(sizeof(di_mode_1000_v0)/sizeof(t_straight_param *const)), mode_1000,mp);
+															di_mode_1000_v0, (int)(sizeof(di_mode_1000_v0)/sizeof(t_straight_param *const)), mode_1000,motion);
 
 						enable = 0x00;
 					}
 					break;
 				case ENABLE|0x09:
-				   if(IrSensTask_type7::getInstance().IrSensor_Avg() > 2500)
+				   if(irsens->IrSensor_Avg() > 2500)
 				   {
 						for(int i = 0;i < 11;i++)
 						{
@@ -229,13 +232,13 @@ namespace Mode
 				  		run_path.turn_time_set(mode_1000);
 						run_path.run_Dijkstra_suction(		start, Dir_None, goal, MAZE_GOAL_SIZE,600,
 															st_mode_1000_v1, (int)(sizeof(st_mode_1000_v1)/sizeof(t_straight_param *const)),
-															di_mode_1000_v1, (int)(sizeof(di_mode_1000_v1)/sizeof(t_straight_param *const)), mode_1000,mp);
+															di_mode_1000_v1, (int)(sizeof(di_mode_1000_v1)/sizeof(t_straight_param *const)), mode_1000,motion);
 
 						enable = 0x00;
 					}
 					break;
 				case ENABLE|0x0A:
-				   if(IrSensTask_type7::getInstance().IrSensor_Avg() > 2500)
+				   if(irsens->IrSensor_Avg() > 2500)
 				   {
 						for(int i = 0;i < 11;i++)
 						{
@@ -246,13 +249,13 @@ namespace Mode
 				  		run_path.turn_time_set(mode_1200);
 						run_path.run_Dijkstra_suction(		start, Dir_None, goal, MAZE_GOAL_SIZE,600,
 															st_mode_1200_v0, (int)(sizeof(st_mode_1200_v0)/sizeof(t_straight_param *const)),
-															di_mode_1200_v0, (int)(sizeof(di_mode_1200_v0)/sizeof(t_straight_param *const)), mode_1200,mp);
+															di_mode_1200_v0, (int)(sizeof(di_mode_1200_v0)/sizeof(t_straight_param *const)), mode_1200,motion);
 
 						enable = 0x00;
 					}
 					break;
 				case ENABLE|0x0B:
-				   if(IrSensTask_type7::getInstance().IrSensor_Avg() > 2500)
+				   if(irsens->IrSensor_Avg() > 2500)
 				   {
 						for(int i = 0;i < 11;i++)
 						{
@@ -264,13 +267,13 @@ namespace Mode
 				  		run_path.turn_time_set(mode_1400);
 						run_path.run_Dijkstra_suction(		start, Dir_None, goal, MAZE_GOAL_SIZE,700,
 															st_mode_1400_v0, (int)(sizeof(st_mode_1400_v0)/sizeof(t_straight_param *const)),
-															di_mode_1400_v0, (int)(sizeof(di_mode_1400_v0)/sizeof(t_straight_param *const)), mode_1400,mp);
+															di_mode_1400_v0, (int)(sizeof(di_mode_1400_v0)/sizeof(t_straight_param *const)), mode_1400,motion);
 
 						enable = 0x00;
 					}
 					break;
 				case ENABLE|0x0C:
-				   if(IrSensTask_type7::getInstance().IrSensor_Avg() > 2500)
+				   if(irsens->IrSensor_Avg() > 2500)
 				   {
 						for(int i = 0;i < 11;i++)
 						{
@@ -282,13 +285,13 @@ namespace Mode
 				  		run_path.turn_time_set(mode_1400);
 						run_path.run_Dijkstra_suction(		start, Dir_None, goal, MAZE_GOAL_SIZE,700,
 															st_mode_1400_v1, (int)(sizeof(st_mode_1400_v1)/sizeof(t_straight_param *const)),
-															di_mode_1400_v1, (int)(sizeof(di_mode_1400_v1)/sizeof(t_straight_param *const)), mode_1400,mp);
+															di_mode_1400_v1, (int)(sizeof(di_mode_1400_v1)/sizeof(t_straight_param *const)), mode_1400,motion);
 
 						enable = 0x00;
 					}
 					break;
 				case ENABLE|0x0D:
-				   if(IrSensTask_type7::getInstance().IrSensor_Avg() > 2500)
+				   if(irsens->IrSensor_Avg() > 2500)
 				   {
 						for(int i = 0;i < 11;i++)
 						{
@@ -300,13 +303,13 @@ namespace Mode
 				  		run_path.turn_time_set(mode_1400);
 						run_path.run_Dijkstra_suction(		start, Dir_None, goal, MAZE_GOAL_SIZE,700,
 															st_mode_1500_v0, (int)(sizeof(st_mode_1500_v0)/sizeof(t_straight_param *const)),
-															di_mode_1500_v0, (int)(sizeof(di_mode_1500_v0)/sizeof(t_straight_param *const)), mode_1500,mp);
+															di_mode_1500_v0, (int)(sizeof(di_mode_1500_v0)/sizeof(t_straight_param *const)), mode_1500,motion);
 
 						enable = 0x00;
 					}
 					break;
 				case ENABLE|0x0E:
-				   if(IrSensTask_type7::getInstance().IrSensor_Avg() > 2500)
+				   if(irsens->IrSensor_Avg() > 2500)
 				   {
 						for(int i = 0;i < 11;i++)
 						{
@@ -325,7 +328,7 @@ namespace Mode
 					}
 					break;
 				case ENABLE|0x0F:
-					if(IrSensTask_type7::getInstance().IrSensor_Avg() > 2500){
+					if(irsens->IrSensor_Avg() > 2500){
 						for(int i = 0;i < 11;i++)
 						{
 						  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);

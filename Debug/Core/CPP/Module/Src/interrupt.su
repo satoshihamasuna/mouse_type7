@@ -7,14 +7,14 @@ vehicle.h:186:7:virtual void Vehicle_type7::motorSetDuty_l(int)	16	static
 vehicle.h:192:7:virtual void Vehicle_type7::motorSetDuty_r(int)	16	static
 sensing_task.h:67:8:virtual void IrSensTask_type7::IrSensorSet()	16	static
 ctrl_task.h:134:3:Motion::Motion(Vehicle*, IrSensTask*, int)	24	static
-ctrl_task.h:240:3:CtrlTask::CtrlTask(Vehicle*, IrSensTask*, int)	24	static
-ctrl_task.h:258:3:CtrlTask_type7::CtrlTask_type7(Vehicle*, IrSensTask*)	24	static
+ctrl_task.h:241:3:CtrlTask::CtrlTask(Vehicle*, IrSensTask*, int)	24	static
+ctrl_task.h:259:3:CtrlTask_type7::CtrlTask_type7(Vehicle*, IrSensTask*)	24	static
 interrupt.cpp:25:6:void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef*)	16	static
 interrupt.cpp:34:6:void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef*)	16	static
 interrupt.cpp:42:6:void Interrupt_Initialize()	4	static
 interrupt.cpp:94:6:void Interrupt::preprocess()	400	static
 interrupt.cpp:151:6:void Interrupt::main()	16	static
-interrupt.cpp:163:6:void Interrupt::postprocess()	24	static
+interrupt.cpp:163:6:void Interrupt::postprocess()	32	static
 controll.h:19:7:constexpr PID_Controller::PID_Controller()	16	static
 controll.h:36:7:constexpr mouse_Controll::mouse_Controll()	16	static
 vehicle.h:95:7:Vehicle::Vehicle()	16	static

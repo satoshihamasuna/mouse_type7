@@ -155,8 +155,8 @@ void CtrlTask::motion_controll()
 				sp_antiwindup = vehicle->Vehicle_controller.speed_ctrl.Anti_windup_1(vehicle->sp_feedback.get() + vehicle->sp_feedforward.get(),ctrl_battery - vehicle->sp_feedforward.get());
 				om_antiwindup = vehicle->Vehicle_controller.omega_ctrl.Anti_windup_2(vehicle->om_feedback.get() + vehicle->om_feedforward.get(),ctrl_battery - vehicle->om_feedforward.get());
 			}
-			vehicle->sp_feedback.set( sp_antiwindup );
-			vehicle->om_feedback.set( om_antiwindup );
+			//vehicle->sp_feedback.set( sp_antiwindup );
+			//vehicle->om_feedback.set( om_antiwindup );
 
 			//set & supply voltage
 			vehicle->V_r =  vehicle->sp_feedforward.get() + vehicle->om_feedforward.get() + vehicle->sp_feedback.get() + vehicle->om_feedback.get();

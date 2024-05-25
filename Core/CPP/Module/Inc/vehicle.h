@@ -192,7 +192,7 @@ class Vehicle_type7:public Vehicle,public Singleton<Vehicle_type7>{
 	void motorSetDuty_r(int out_r) override
 	{
 		r_duty = out_r;
-		Motor_SetDuty_Left(out_r);
+		Motor_SetDuty_Right(out_r);
 	}
 
 };
