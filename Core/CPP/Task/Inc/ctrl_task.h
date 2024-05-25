@@ -9,14 +9,14 @@
 #define CPP_TASK_INC_CTRL_TASK_H_
 
 #include <stdio.h>
-#include "run_task.h"
 #include "sensing_task.h"
 
-#include "../../Pheripheral/Include/typedef.h"
 #include "../../Params/run_param.h"
-#include "../../Component/Inc/singleton.h"
+
 #include "../../Component/Inc/controll.h"
+
 #include "../../Module/Inc/vehicle.h"
+#include "run_typedef.h"
 
 struct motion_plan_params
 {

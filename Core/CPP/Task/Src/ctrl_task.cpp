@@ -6,8 +6,6 @@
  */
 
 #include <stdio.h>
-#include "../Inc/run_task.h"
-
 #include "../../Pheripheral/Include/index.h"
 #include "../../Pheripheral/Include/typedef.h"
 
@@ -20,7 +18,9 @@
 #include "../../Params/run_param.h"
 
 #include "../Inc/ctrl_task.h"
-#include "../Inc/run_task.h"
+
+#include "../Inc/run_typedef.h"
+#include "../Inc/run_typedef.h"
 #include "../Inc/sensing_task.h"
 
 
@@ -147,16 +147,16 @@ void CtrlTask::motion_controll()
 
 			if( ctrl_limit < ctrl_battery )
 			{
-				sp_antiwindup = vehicle->Vehicle_controller.speed_ctrl.Anti_windup_1( vehicle->sp_feedforward.get(),ctrl_battery - ctrl_limit);
-				om_antiwindup = vehicle->Vehicle_controller.omega_ctrl.Anti_windup_2( vehicle->om_feedforward.get(),ctrl_battery - ctrl_limit);
+				sp_antiwindup = vehicle->Vehicle_controller.speed_ctrl.Anti_windup_1( vehicle->sp_feedback.get(),ctrl_battery - ctrl_limit);
+				om_antiwindup = vehicle->Vehicle_controller.omega_ctrl.Anti_windup_2( vehicle->om_feedback.get(),ctrl_battery - ctrl_limit);
 			}
 			else
 			{
-				sp_antiwindup = vehicle->Vehicle_controller.speed_ctrl.Anti_windup_1(vehicle->sp_feedback.get() + vehicle->sp_feedforward.get(),ctrl_battery - vehicle->sp_feedforward.get());
-				om_antiwindup = vehicle->Vehicle_controller.omega_ctrl.Anti_windup_2(vehicle->om_feedback.get() + vehicle->om_feedforward.get(),ctrl_battery - vehicle->om_feedforward.get());
+				sp_antiwindup = vehicle->Vehicle_controller.speed_ctrl.Anti_windup_1(vehicle->sp_feedback.get() + vehicle->sp_feedforward.get(),ctrl_battery) - vehicle->sp_feedforward.get();
+				om_antiwindup = vehicle->Vehicle_controller.omega_ctrl.Anti_windup_2(vehicle->om_feedback.get() + vehicle->om_feedforward.get(),ctrl_battery) - vehicle->om_feedforward.get();
 			}
-			//vehicle->sp_feedback.set( sp_antiwindup );
-			//vehicle->om_feedback.set( om_antiwindup );
+			vehicle->sp_feedback.set( sp_antiwindup );
+			vehicle->om_feedback.set( om_antiwindup );
 
 			//set & supply voltage
 			vehicle->V_r =  vehicle->sp_feedforward.get() + vehicle->om_feedforward.get() + vehicle->sp_feedback.get() + vehicle->om_feedback.get();

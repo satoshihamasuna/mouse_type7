@@ -17,7 +17,7 @@
 #include "../../Params/run_param.h"
 
 #include "../../Task/Inc/ctrl_task.h"
-#include "../../Task/Inc/run_task.h"
+#include "../../Task/Inc/run_typedef.h"
 //#define DEBUG_MODE
 
 typedef enum

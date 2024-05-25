@@ -1,8 +1,8 @@
-vehicle.h:173:16:virtual void Vehicle::motorSetDuty_l(int)	16	static
-vehicle.h:177:16:virtual void Vehicle::motorSetDuty_r(int)	16	static
-vehicle.h:186:7:virtual void Vehicle_type7::motorSetDuty_l(int)	16	static
-vehicle.h:192:7:virtual void Vehicle_type7::motorSetDuty_r(int)	16	static
-sensing_task.h:67:8:virtual void IrSensTask_type7::IrSensorSet()	16	static
+vehicle.h:168:16:virtual void Vehicle::motorSetDuty_l(int)	16	static
+vehicle.h:172:16:virtual void Vehicle::motorSetDuty_r(int)	16	static
+vehicle.h:181:7:virtual void Vehicle_type7::motorSetDuty_l(int)	16	static
+vehicle.h:187:7:virtual void Vehicle_type7::motorSetDuty_r(int)	16	static
+sensing_task.h:66:8:virtual void IrSensTask_type7::IrSensorSet()	16	static
 wall_class.h:20:3:wall_class::wall_class(IrSensTask*)	16	static
 gthr-default.h:229:1:int __gthread_key_delete(__gthread_key_t)	16	static
 ctrl_task.h:134:3:Motion::Motion(Vehicle*, IrSensTask*, int)	24	static
@@ -23,13 +23,13 @@ make_path.h:144:3:Dijkstra::Dijkstra(wall_class*)	16	static
 path_follow.h:34:8:void path_follow_class::set_path_follow_gain(float, float)	24	static
 interrupt.h:29:12:uint32_t Interrupt::return_time_count()	16	static
 debug.cpp:42:7:void Mode::Debug(const t_straight_param*, const t_param* const*, int)	45712	static
-controll.h:19:7:constexpr PID_Controller::PID_Controller()	16	static
-controll.h:36:7:constexpr mouse_Controll::mouse_Controll()	16	static
-vehicle.h:95:7:Vehicle::Vehicle()	16	static
-vehicle.h:184:7:Vehicle_type7::Vehicle_type7()	16	static
+controll.h:22:7:constexpr PID_Controller::PID_Controller()	16	static
+controll.h:39:7:constexpr mouse_Controll::mouse_Controll()	16	static
+vehicle.h:90:7:Vehicle::Vehicle()	16	static
+vehicle.h:179:7:Vehicle_type7::Vehicle_type7()	16	static
 singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = Vehicle_type7]	8	static
-sensing_task.h:37:7:IrSensTask::IrSensTask()	16	static
-sensing_task.h:64:7:IrSensTask_type7::IrSensTask_type7()	16	static
+sensing_task.h:36:7:IrSensTask::IrSensTask()	16	static
+sensing_task.h:63:7:IrSensTask_type7::IrSensTask_type7()	16	static
 singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = IrSensTask_type7]	8	static
 queue_class.h:22:3:ring_queue<SIZE, T>::ring_queue() [with unsigned int SIZE = 1024; T = t_MapNode]	16	static
 singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = CtrlTask_type7]	16	static

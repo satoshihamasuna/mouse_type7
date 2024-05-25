@@ -163,9 +163,11 @@ void Motion::Init_Motion_straight		(float len_target,float acc,float max_sp,floa
 	vehicle->ego_integral_init();
 	vehicle->ideal_integral_init();
 
+
 	vehicle->Vehicle_controller.speed_ctrl.Gain_Set(sp_gain->Kp, sp_gain->Ki, sp_gain->Kd);
 	vehicle->Vehicle_controller.omega_ctrl.Gain_Set(om_gain->Kp, om_gain->Ki, om_gain->Kd);
-
+	vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
+	vehicle->Vehicle_controller.omega_ctrl.I_param_reset();
 
 	motion_pattern_set(Straight);
 	motion_exeStatus_set(execute);

@@ -10,9 +10,11 @@
 
 #include "../../Pheripheral/Include/typedef.h"
 #include "../../Pheripheral/Include/index.h"
-//#include "../../Component/Inc/half_float.h"
+
 #include "../../Component/Inc/singleton.h"
 #include "../../Component/Inc/controll.h"
+
+#include "../../Task/Inc/run_typedef.h"
 
 typedef struct{
 	float velo;
@@ -30,14 +32,6 @@ typedef struct{
 	float turn_slip_dot;
 }t_machine_param;
 
-typedef enum{
-	Turn_None 	= 0,
-	Turn_R 		= 1,
-	Turn_L		= 2,
-	Prev_Turn	= 3,
-	Post_Turn	= 4,
-}t_turn_dir;
-
 typedef struct{
 	float velo;
 	float max_velo;
@@ -51,6 +45,7 @@ typedef struct{
 	float radian;
 	t_turn_dir turn_d;
 }t_motion_param;
+
 
 class param_element
 {

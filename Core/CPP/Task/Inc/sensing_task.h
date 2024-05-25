@@ -8,11 +8,10 @@
 #ifndef CPP_INC_SENSING_TASK_H_
 #define CPP_INC_SENSING_TASK_H_
 
-#include "run_task.h"
-//#include "ctrl_task.h"
-
+#include "../../Module/Inc/vehicle.h"
 #include "../../Component/Inc/singleton.h"
 #include "../../Pheripheral/Include/typedef.h"
+#include "run_typedef.h"
 
 #define STRAIGHT_REF		(45.0)
 #define DIAGONAL_REF		(32.0)

@@ -9,7 +9,7 @@
 #include "../Inc/make_path.h"
 #include "../../Pheripheral/Include/typedef.h"
 #include "../Inc/wall_class.h"
-#include "../../Task/Inc/run_task.h"
+#include "../../Task/Inc/run_typedef.h"
 #include "../../Params/turn_table.h"
 #include "../../Component/Inc/controll.h"
 #define OFF_SET_LENGTH 10.0

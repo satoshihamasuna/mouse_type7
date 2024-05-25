@@ -11,7 +11,7 @@
 
 #include "../../Component/Inc/controll.h"
 
-#include "../../Task/Inc/run_task.h"
+#include "../../Task/Inc/run_typedef.h"
 #include "../../Task/Inc/ctrl_task.h"
 
 #include "../../Module/Inc/log_data.h"
