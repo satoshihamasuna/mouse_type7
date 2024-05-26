@@ -11,5 +11,5 @@ ir_sens_task.cpp:78:7:float IrSensTask::Sensor_CalcDistance(t_sensor_dir, int16_
 ir_sens_task.cpp:150:6:void IrSensTask::IrSensorDistanceSet()	16	static
 ir_sens_task.cpp:181:6:void IrSensTask::IrSensorWallSet()	16	static
 ir_sens_task.cpp:242:6:void IrSensTask::IrSensorReferenceSet(float)	16	static
-ir_sens_task.cpp:247:6:void IrSensTask::SetWallControll_RadVelo(Vehicle*, float)	80	static
+ir_sens_task.cpp:247:6:void IrSensTask::SetWallControl_RadVelo(Vehicle*, float)	80	static
 ir_sens_task.cpp:292:9:int16_t IrSensTask::IrSensor_Avg()	16	static

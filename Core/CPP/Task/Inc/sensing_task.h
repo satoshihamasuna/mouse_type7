@@ -22,10 +22,10 @@
 typedef struct{
 	int16_t value;
 	t_bool is_wall;
-	t_bool is_controll;
+	t_bool is_control;
 	float distance;
-	float controll_th;
-	uint16_t controll_cnt;
+	float control_th;
+	uint16_t control_cnt;
 	float error;
 	int16_t value_log[20];
 	int value_sum;
@@ -52,7 +52,7 @@ class IrSensTask
 		void IrSensorReferenceSet(float ref_value);
 		void IrSensorDistanceSet();
 		void IrSensorWallSet();
-		void SetWallControll_RadVelo(Vehicle *vehicle,float delta_tms);
+		void SetWallControl_RadVelo(Vehicle *vehicle,float delta_tms);
 		inline void EnableIrSens()		{isEnableIrSens = True;}
 		inline void DisableIrSens()			{isEnableIrSens = False;}
 		void EnableIrSensStraight()		{	EnableIrSens();		IrSensorReferenceSet(STRAIGHT_REF);	}

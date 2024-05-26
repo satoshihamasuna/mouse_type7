@@ -85,17 +85,17 @@ void CtrlTask::motion_ideal_param_set()
 	}
 }
 
-void CtrlTask::motion_prev_controll()
+void CtrlTask::motion_prev_control()
 {
-	if(is_controll_enable() == True)
+	if(is_control_enable() == True)
 	{
 		motion_ideal_param_set();
 	}
 }
 
-void CtrlTask::motion_controll()
+void CtrlTask::motion_control()
 {
-	if(is_controll_enable() == True)
+	if(is_control_enable() == True)
 	{
 		if(motion_pattern_get() != motor_free )
 		{
@@ -123,8 +123,8 @@ void CtrlTask::motion_controll()
 								 + MOTOR_BR*motor_l_rpm/MOTOR_K_TR*0.0;
 
 			//calc motor induce voltage
-			float sp_FF_controll_r =  MOTOR_R*motor_r_ampere + MOTOR_K_ER*motor_r_rpm/1000;
-			float sp_FF_controll_l =  MOTOR_R*motor_l_ampere + MOTOR_K_ER*motor_l_rpm/1000;
+			float sp_FF_control_r =  MOTOR_R*motor_r_ampere + MOTOR_K_ER*motor_r_rpm/1000;
+			float sp_FF_control_l =  MOTOR_R*motor_l_ampere + MOTOR_K_ER*motor_l_rpm/1000;
 
 
 			//feedback controll
@@ -132,8 +132,8 @@ void CtrlTask::motion_controll()
 			vehicle->om_feedback.set(vehicle->Vehicle_controller.omega_ctrl.Control(vehicle->ideal.rad_velo.get()	,vehicle->ego.rad_velo.get(), (float)ctr_deltaT_ms));
 
 			//feedforward controll
-			vehicle->sp_feedforward.set((sp_FF_controll_r + sp_FF_controll_l)/2.0);
-			vehicle->om_feedforward.set((sp_FF_controll_r - sp_FF_controll_l)/2.0);
+			vehicle->sp_feedforward.set((sp_FF_control_r + sp_FF_control_l)/2.0);
+			vehicle->om_feedforward.set((sp_FF_control_r - sp_FF_control_l)/2.0);
 
 			//calc anti windup
 			float ctrl_battery = vehicle->battery.get();
@@ -199,10 +199,10 @@ void CtrlTask::motion_controll()
 
 }
 
-void CtrlTask::motion_post_controll()
+void CtrlTask::motion_post_control()
 {
 
-	if(motion_exeStatus_get() == execute && is_controll_enable() == True)
+	if(motion_exeStatus_get() == execute && is_control_enable() == True)
 	{
 		if(motion_pattern_get() != motor_free)
 		{

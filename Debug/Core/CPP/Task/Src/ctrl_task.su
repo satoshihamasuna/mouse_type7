@@ -7,8 +7,8 @@ ctrl_task.h:139:8:int Motion::error_counter_get()	16	static
 ctrl_task.h:151:24:t_run_pattern Motion::motion_pattern_get()	16	static
 ctrl_task.h:153:24:t_exeStatus Motion::motion_exeStatus_get()	16	static
 ctrl_task.h:154:20:t_bool Motion::motion_is_enable_get()	16	static
-ctrl_task.h:261:17:t_bool CtrlTask::is_controll_enable()	16	static
+ctrl_task.h:261:17:t_bool CtrlTask::is_control_enable()	16	static
 ctrl_task.cpp:28:6:void CtrlTask::motion_ideal_param_set()	16	static
-ctrl_task.cpp:88:6:void CtrlTask::motion_prev_controll()	16	static
-ctrl_task.cpp:96:6:void CtrlTask::motion_controll()	88	static
-ctrl_task.cpp:202:6:void CtrlTask::motion_post_controll()	40	static
+ctrl_task.cpp:88:6:void CtrlTask::motion_prev_control()	16	static
+ctrl_task.cpp:96:6:void CtrlTask::motion_control()	88	static
+ctrl_task.cpp:202:6:void CtrlTask::motion_post_control()	40	static

@@ -255,10 +255,10 @@ class CtrlTask:public Motion
 			ctr_deltaT_ms = _ctr_deltaT_ms;
 		}
 
-		void motion_prev_controll();
-		void motion_controll();
-		void motion_post_controll();
-		inline t_bool is_controll_enable()	{	return	motion_is_enable_get();	}
+		void motion_prev_control();
+		void motion_control();
+		void motion_post_control();
+		inline t_bool is_control_enable()	{	return	motion_is_enable_get();	}
 
 
 };

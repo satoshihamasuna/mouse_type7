@@ -162,9 +162,9 @@ void Interrupt::main()
 	controll_task::getInstance().motionControll();
 	 */
 
-	CtrlTask_type7::getInstance().motion_prev_controll();
-	CtrlTask_type7::getInstance().motion_controll();
-	CtrlTask_type7::getInstance().motion_post_controll();
+	CtrlTask_type7::getInstance().motion_prev_control();
+	CtrlTask_type7::getInstance().motion_control();
+	CtrlTask_type7::getInstance().motion_post_control();
 }
 
 void Interrupt::postprocess()

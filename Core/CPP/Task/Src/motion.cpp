@@ -41,7 +41,7 @@ void Motion::SetIdeal_wall_control()
 		}
 		else
 		{
-			ir_sens->SetWallControll_RadVelo(vehicle, deltaT_ms);
+			ir_sens->SetWallControl_RadVelo(vehicle, deltaT_ms);
 		}
 	}
 	else
