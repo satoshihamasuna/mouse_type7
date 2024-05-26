@@ -50,7 +50,8 @@ Core/CPP/Subsys/Src/myshell.o: ../Core/CPP/Subsys/Src/myshell.cpp \
  ../Core/CPP/Subsys/Src/../../Module/Inc/../../Component/Inc/../codegen/rtwhalf.h \
  ../Core/CPP/Subsys/Src/../../Module/Inc/../../Component/Inc/../codegen/rtwtypes.h \
  ../Core/CPP/Subsys/Src/../../Module/Inc/../../Component/Inc/singleton.h \
- ../Core/CPP/Subsys/Src/../Inc/myshell.h
+ ../Core/CPP/Subsys/Src/../Inc/myshell.h \
+ ../Core/CPP/Subsys/Src/../../Pheripheral/Include/typedef.h
 
 C:/Users/sato1/Documents/git/mouse_type7_program/mouse_type7/Drivers/ntshell-v0.3.1/src/lib/core/ntshell.h:
 
@@ -159,3 +160,5 @@ c:\users\sato1\documents\git\mouse_type7_program\mouse_type7\core\cpp\component\
 ../Core/CPP/Subsys/Src/../../Module/Inc/../../Component/Inc/singleton.h:
 
 ../Core/CPP/Subsys/Src/../Inc/myshell.h:
+
+../Core/CPP/Subsys/Src/../../Pheripheral/Include/typedef.h:

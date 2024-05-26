@@ -6,21 +6,21 @@ vehicle.h:187:7:virtual void Vehicle_type7::motorSetDuty_r(int)	16	static
 sensing_task.h:66:8:virtual void IrSensTask_type7::IrSensorSet()	16	static
 wall_class.h:20:3:wall_class::wall_class(IrSensTask*)	16	static
 gthr-default.h:229:1:int __gthread_key_delete(__gthread_key_t)	16	static
-ctrl_task.h:134:3:Motion::Motion(Vehicle*, IrSensTask*, int)	24	static
-ctrl_task.h:143:24:t_exeStatus Motion::motion_exeStatus_get()	16	static
-ctrl_task.h:167:22:t_exeStatus Motion::execute_Motion()	16	static
-ctrl_task.h:191:22:t_exeStatus Motion::exe_Motion_pivot_turn(float, float, float, const t_pid_gain*, const t_pid_gain*)	32	static
-ctrl_task.h:198:22:t_exeStatus Motion::exe_Motion_fix_wall(float, const t_pid_gain*, const t_pid_gain*)	24	static
-ctrl_task.h:226:12:Vehicle* Motion::return_vehicleObj()	16	static
-ctrl_task.h:227:15:IrSensTask* Motion::return_irObj()	16	static
-ctrl_task.h:241:3:CtrlTask::CtrlTask(Vehicle*, IrSensTask*, int)	24	static
-ctrl_task.h:259:3:CtrlTask_type7::CtrlTask_type7(Vehicle*, IrSensTask*)	24	static
+ctrl_task.h:143:3:Motion::Motion(Vehicle*, IrSensTask*, int)	24	static
+ctrl_task.h:152:24:t_exeStatus Motion::motion_exeStatus_get()	16	static
+ctrl_task.h:177:22:t_exeStatus Motion::execute_Motion()	16	static
+ctrl_task.h:201:22:t_exeStatus Motion::exe_Motion_pivot_turn(float, float, float, const t_pid_gain*, const t_pid_gain*)	32	static
+ctrl_task.h:208:22:t_exeStatus Motion::exe_Motion_fix_wall(float, const t_pid_gain*, const t_pid_gain*)	24	static
+ctrl_task.h:236:12:Vehicle* Motion::return_vehicleObj()	16	static
+ctrl_task.h:237:15:IrSensTask* Motion::return_irObj()	16	static
+ctrl_task.h:250:3:CtrlTask::CtrlTask(Vehicle*, IrSensTask*, int)	24	static
+ctrl_task.h:268:3:CtrlTask_type7::CtrlTask_type7(Vehicle*, IrSensTask*)	24	static
 make_path.h:93:3:calcRunTime::calcRunTime()	16	static
 make_path.h:144:3:Dijkstra::Dijkstra(wall_class*)	16	static
-interrupt.h:29:12:uint32_t Interrupt::return_time_count()	16	static
+interrupt.h:32:12:uint32_t Interrupt::return_time_count()	16	static
 interface_check.cpp:43:7:void Mode::Interface_Check()	45976	static
-controll.h:22:7:constexpr PID_Controller::PID_Controller()	16	static
-controll.h:39:7:constexpr mouse_Controll::mouse_Controll()	16	static
+controll.h:19:7:constexpr PID_Controller::PID_Controller()	16	static
+controll.h:37:7:constexpr mouse_Controll::mouse_Controll()	16	static
 vehicle.h:90:7:Vehicle::Vehicle()	16	static
 vehicle.h:179:7:Vehicle_type7::Vehicle_type7()	16	static
 singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = Vehicle_type7]	8	static

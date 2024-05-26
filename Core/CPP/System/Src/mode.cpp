@@ -381,11 +381,7 @@ namespace Mode
 					//Mode::Debug2(&st_param_1500_acc2G,mode_1500,500);
 					//Mode::Debug2(&st_param_700,mode_700,0);
 					Myshell_Initialize();
-					while(1)
-					{
-						Myshell_Execute();
-
-					}
+					Myshell_Execute();
 					enable = 0;
 					break;
 				default:

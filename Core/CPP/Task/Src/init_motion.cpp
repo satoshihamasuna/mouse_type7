@@ -7,6 +7,7 @@
 
 
 #include "../Inc/ctrl_task.h"
+#include "../Inc/run_typedef.h"
 #include "../../Params/turn_table.h"
 
 void Motion::Motion_start()
@@ -23,6 +24,8 @@ void Motion::Motion_start()
 
 void Motion::Motion_end()
 {
+	vehicle->ego_initialize();
+	vehicle->ideal_initialize();
 	motion_disable_set();
 	motion_pattern_set(No_run);
 	motion_exeStatus_set(complete);
@@ -31,8 +34,43 @@ void Motion::Motion_end()
 	run_time_limit_ms_reset();
 }
 
+void Motion::Motion_error_handling()
+{
+	vehicle->ego_initialize();
+	vehicle->ideal_initialize();
+	motion_plan.velo.init();
+	motion_plan.max_velo.init();
+	motion_plan.end_velo.init();
+	motion_plan.accel.init();
+	motion_plan.deccel.init();
+	motion_plan.end_length.init();
+	motion_plan.length_accel.init();
+	motion_plan.length_deccel.init();
+
+	motion_plan.rad_accel.init();
+	motion_plan.rad_deccel.init();
+	motion_plan.rad_max_velo.init();
+	motion_plan.end_radian.init();
+	motion_plan.radian_accel.init();
+	motion_plan.radian_deccel.init();
+	motion_plan.turn_r_min.init();
+	motion_plan.turn_state.init();
+	motion_plan.turn_time_ms.init		();
+
+	motion_disable_set();
+	motion_exeStatus_set(error);
+	motion_state_set(NOP_STATE);
+	motion_pattern_set(No_run);
+}
+
 void Motion::Init_Motion_free_rotation_set( )
 {
+	if(motion_exeStatus_get() == error)
+	{
+		Motion_error_handling();
+		return;
+	}
+
 	motion_plan.velo.init();
 	motion_plan.max_velo.init();
 	motion_plan.end_velo.init();
@@ -63,6 +101,11 @@ void Motion::Init_Motion_free_rotation_set( )
 
 void Motion::Init_Motion_search_straight(float len_target,float acc,float max_sp,float end_sp,const t_pid_gain *sp_gain  ,const t_pid_gain *om_gain  )
 {
+	if(motion_exeStatus_get() == error)
+	{
+		Motion_error_handling();
+		return;
+	}
 
 	motion_plan.velo.set				(vehicle->ideal.velo.get());
 	motion_plan.max_velo.set			(max_sp);
@@ -89,16 +132,27 @@ void Motion::Init_Motion_search_straight(float len_target,float acc,float max_sp
 	turn_motion_param.sp_gain = sp_gain;
 	turn_motion_param.om_gain = om_gain;
 
+	vehicle->ego_integral_init();
+	vehicle->ideal_integral_init();
+
 	motion_pattern_set(Search_st_section);
 	motion_exeStatus_set(execute);
 	motion_state_set(STRAIGHT_STATE);
 	run_time_ms_reset();
 	run_time_limit_ms_reset();
 
+	error_counter_reset();
+
 }
 
 void Motion::Init_Motion_search_turn	(const t_param *turn_param,const t_pid_gain *sp_gain  ,const t_pid_gain *om_gain  )
 {
+
+	if(motion_exeStatus_get() == error)
+	{
+		Motion_error_handling();
+		return;
+	}
 
 	motion_plan.velo.set				(turn_param->param->velo);
 	motion_plan.max_velo.set			(turn_param->param->velo);
@@ -124,17 +178,26 @@ void Motion::Init_Motion_search_turn	(const t_param *turn_param,const t_pid_gain
 	straight_motion_param.om_gain = om_gain;
 	turn_motion_param = *turn_param;
 
+	vehicle->ego_integral_init();
+	vehicle->ideal_integral_init();
+
 	(motion_plan.end_radian.get() > 0) ? motion_pattern_set(Search_slalom_L): motion_pattern_set(Search_slalom_R);
 	motion_exeStatus_set(execute);
 	motion_state_set(STRAIGHT_STATE);
 	run_time_ms_reset();
 	run_time_limit_ms_reset();
 
+	error_counter_reset();
+
 }
 
 void Motion::Init_Motion_straight		(float len_target,float acc,float max_sp,float end_sp,const t_pid_gain *sp_gain  ,const t_pid_gain *om_gain  )
 {
-
+	if(motion_exeStatus_get() == error)
+	{
+		Motion_error_handling();
+		return;
+	}
 	motion_plan.velo.set				(vehicle->ideal.velo.get());
 	motion_plan.max_velo.set			(max_sp);
 	motion_plan.end_velo.set			(end_sp);
@@ -160,14 +223,14 @@ void Motion::Init_Motion_straight		(float len_target,float acc,float max_sp,floa
 	turn_motion_param.sp_gain = sp_gain;
 	turn_motion_param.om_gain = om_gain;
 
-	vehicle->ego_integral_init();
-	vehicle->ideal_integral_init();
 
-
-	vehicle->Vehicle_controller.speed_ctrl.Gain_Set(sp_gain->Kp, sp_gain->Ki, sp_gain->Kd);
-	vehicle->Vehicle_controller.omega_ctrl.Gain_Set(om_gain->Kp, om_gain->Ki, om_gain->Kd);
+	vehicle->Vehicle_controller.speed_ctrl.Gain_Set(*straight_motion_param.sp_gain);
+	vehicle->Vehicle_controller.omega_ctrl.Gain_Set(*straight_motion_param.om_gain);
 	vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
 	vehicle->Vehicle_controller.omega_ctrl.I_param_reset();
+
+	vehicle->ego_integral_init();
+	vehicle->ideal_integral_init();
 
 	motion_pattern_set(Straight);
 	motion_exeStatus_set(execute);
@@ -175,11 +238,17 @@ void Motion::Init_Motion_straight		(float len_target,float acc,float max_sp,floa
 	run_time_ms_reset();
 	run_time_limit_ms_reset();
 
+	error_counter_reset();
+
 }
 
 void Motion::Init_Motion_diagonal		(float len_target,float acc,float max_sp,float end_sp,const t_pid_gain *sp_gain  ,const t_pid_gain *om_gain  )
 {
-
+	if(motion_exeStatus_get() == error)
+	{
+		Motion_error_handling();
+		return;
+	}
 	motion_plan.velo.set				(vehicle->ideal.velo.get());
 	motion_plan.max_velo.set			(max_sp);
 	motion_plan.end_velo.set			(end_sp);
@@ -205,17 +274,30 @@ void Motion::Init_Motion_diagonal		(float len_target,float acc,float max_sp,floa
 	turn_motion_param.sp_gain = sp_gain;
 	turn_motion_param.om_gain = om_gain;
 
+	vehicle->Vehicle_controller.speed_ctrl.Gain_Set(*straight_motion_param.sp_gain);
+	vehicle->Vehicle_controller.omega_ctrl.Gain_Set(*straight_motion_param.om_gain);
+	vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
+	vehicle->Vehicle_controller.omega_ctrl.I_param_reset();
+
+	vehicle->ego_integral_init();
+	vehicle->ideal_integral_init();
+
 	motion_pattern_set(Diagonal);
 	motion_exeStatus_set(execute);
 	motion_state_set(DIAGONAL_STATE);
 	run_time_ms_reset();
 	run_time_limit_ms_reset();
 
+	error_counter_reset();
 }
 
 void Motion::Init_Motion_pivot_turn	(float rad_target,float rad_acc,float rad_velo,const t_pid_gain *sp_gain ,const t_pid_gain *om_gain  )
 {
-
+	if(motion_exeStatus_get() == error)
+	{
+		Motion_error_handling();
+		return;
+	}
 	motion_plan.velo.set				(0.0f);
 	motion_plan.max_velo.set			(0.0f);
 	motion_plan.end_velo.set			(0.0f);
@@ -241,17 +323,31 @@ void Motion::Init_Motion_pivot_turn	(float rad_target,float rad_acc,float rad_ve
 	turn_motion_param.sp_gain = sp_gain;
 	turn_motion_param.om_gain = om_gain;
 
+
+	vehicle->Vehicle_controller.speed_ctrl.Gain_Set(*straight_motion_param.sp_gain);
+	vehicle->Vehicle_controller.omega_ctrl.Gain_Set(*straight_motion_param.om_gain);
+	vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
+	vehicle->Vehicle_controller.omega_ctrl.I_param_reset();
+
+	vehicle->ego_integral_init();
+	vehicle->ideal_integral_init();
+
 	(motion_plan.end_radian.get() > 0) ? motion_pattern_set(Pivot_turn_L) : motion_pattern_set(Pivot_turn_R);
 	motion_exeStatus_set(execute);
 	motion_state_set(PIVTURN_STATE);
 	run_time_ms_reset();
 	run_time_limit_ms_reset();
 
+	error_counter_reset();
 }
 
 void Motion::Init_Motion_turn_in		(const t_param *turn_param,t_run_pattern run_pt,const t_pid_gain *sp_gain  ,const t_pid_gain *om_gain  )
 {
-
+	if(motion_exeStatus_get() == error)
+	{
+		Motion_error_handling();
+		return;
+	}
 	motion_plan.velo.set				(turn_param->param->velo);
 	motion_plan.max_velo.set			(turn_param->param->velo);
 	motion_plan.end_velo.set			(turn_param->param->velo);
@@ -276,16 +372,30 @@ void Motion::Init_Motion_turn_in		(const t_param *turn_param,t_run_pattern run_p
 	straight_motion_param.sp_gain = sp_gain;
 	straight_motion_param.om_gain = om_gain;
 
+	vehicle->Vehicle_controller.speed_ctrl.Gain_Set(*straight_motion_param.sp_gain);
+	vehicle->Vehicle_controller.omega_ctrl.Gain_Set(*straight_motion_param.om_gain);
+	vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
+	vehicle->Vehicle_controller.omega_ctrl.I_param_reset();
+
+	vehicle->ego_integral_init();
+	vehicle->ideal_integral_init();
+
 	motion_pattern_set(run_pt);
 	motion_exeStatus_set(execute);
 	motion_state_set(STRAIGHT_STATE);
 	run_time_ms_reset();
 	run_time_limit_ms_reset();
+
+	error_counter_reset();
 }
 
 void Motion::Init_Motion_turn_out		(const t_param *turn_param,t_run_pattern run_pt,const t_pid_gain *sp_gain  ,const t_pid_gain *om_gain  )
 {
-
+	if(motion_exeStatus_get() == error)
+	{
+		Motion_error_handling();
+		return;
+	}
 	motion_plan.velo.set				(turn_param->param->velo);
 	motion_plan.max_velo.set			(turn_param->param->velo);
 	motion_plan.end_velo.set			(turn_param->param->velo);
@@ -309,16 +419,31 @@ void Motion::Init_Motion_turn_out		(const t_param *turn_param,t_run_pattern run_
 	turn_motion_param = *turn_param;
 	straight_motion_param.sp_gain = sp_gain;
 	straight_motion_param.om_gain = om_gain;
+
+	vehicle->Vehicle_controller.speed_ctrl.Gain_Set(*straight_motion_param.sp_gain);
+	vehicle->Vehicle_controller.omega_ctrl.Gain_Set(*straight_motion_param.om_gain);
+	vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
+	vehicle->Vehicle_controller.omega_ctrl.I_param_reset();
+
+	vehicle->ego_integral_init();
+	vehicle->ideal_integral_init();
 
 	motion_pattern_set(run_pt);
 	motion_exeStatus_set(execute);
 	motion_state_set(DIAGONAL_STATE);
 	run_time_ms_reset();
 	run_time_limit_ms_reset();
+
+	error_counter_reset();
 }
 
 void Motion::Init_Motion_long_turn	(const t_param *turn_param,t_run_pattern run_pt,const t_pid_gain *sp_gain  ,const t_pid_gain *om_gain  )
 {
+	if(motion_exeStatus_get() == error)
+	{
+		Motion_error_handling();
+		return;
+	}
 	motion_plan.velo.set				(turn_param->param->velo);
 	motion_plan.max_velo.set			(turn_param->param->velo);
 	motion_plan.end_velo.set			(turn_param->param->velo);
@@ -342,16 +467,31 @@ void Motion::Init_Motion_long_turn	(const t_param *turn_param,t_run_pattern run_
 	turn_motion_param = *turn_param;
 	straight_motion_param.sp_gain = sp_gain;
 	straight_motion_param.om_gain = om_gain;
+
+	vehicle->Vehicle_controller.speed_ctrl.Gain_Set(*straight_motion_param.sp_gain);
+	vehicle->Vehicle_controller.omega_ctrl.Gain_Set(*straight_motion_param.om_gain);
+	vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
+	vehicle->Vehicle_controller.omega_ctrl.I_param_reset();
+
+	vehicle->ego_integral_init();
+	vehicle->ideal_integral_init();
 
 	motion_pattern_set(run_pt);
 	motion_exeStatus_set(execute);
 	motion_state_set(STRAIGHT_STATE);
 	run_time_ms_reset();
 	run_time_limit_ms_reset();
+
+	error_counter_reset();
 }
 
 void Motion::Init_Motion_turn_v90		(const t_param *turn_param,t_run_pattern run_pt,const t_pid_gain *sp_gain  ,const t_pid_gain *om_gain  )
 {
+	if(motion_exeStatus_get() == error)
+	{
+		Motion_error_handling();
+		return;
+	}
 	motion_plan.velo.set				(turn_param->param->velo);
 	motion_plan.max_velo.set			(turn_param->param->velo);
 	motion_plan.end_velo.set			(turn_param->param->velo);
@@ -376,15 +516,30 @@ void Motion::Init_Motion_turn_v90		(const t_param *turn_param,t_run_pattern run_
 	straight_motion_param.sp_gain = sp_gain;
 	straight_motion_param.om_gain = om_gain;
 
+	vehicle->Vehicle_controller.speed_ctrl.Gain_Set(*straight_motion_param.sp_gain);
+	vehicle->Vehicle_controller.omega_ctrl.Gain_Set(*straight_motion_param.om_gain);
+	vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
+	vehicle->Vehicle_controller.omega_ctrl.I_param_reset();
+
+	vehicle->ego_integral_init();
+	vehicle->ideal_integral_init();
+
 	motion_pattern_set(run_pt);
 	motion_exeStatus_set(execute);
 	motion_state_set(DIAGONAL_STATE);
 	run_time_ms_reset();
 	run_time_limit_ms_reset();
+
+	error_counter_reset();
 }
 
 void Motion::Init_Motion_fix_wall		(float set_time,const t_pid_gain *sp_gain  ,const t_pid_gain *om_gain  )
 {
+	if(motion_exeStatus_get() == error)
+	{
+		Motion_error_handling();
+		return;
+	}
 	motion_plan.velo.init();
 	motion_plan.max_velo.init();
 	motion_plan.end_velo.init();
@@ -409,15 +564,30 @@ void Motion::Init_Motion_fix_wall		(float set_time,const t_pid_gain *sp_gain  ,c
 	straight_motion_param.om_gain = om_gain;
 	turn_motion_param.sp_gain = sp_gain;
 	turn_motion_param.om_gain = om_gain;
+
+	vehicle->Vehicle_controller.speed_ctrl.Gain_Set(*straight_motion_param.sp_gain);
+	vehicle->Vehicle_controller.omega_ctrl.Gain_Set(*straight_motion_param.om_gain);
+	vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
+	vehicle->Vehicle_controller.omega_ctrl.I_param_reset();
+
+	vehicle->ego_integral_init();
+	vehicle->ideal_integral_init();
 
 	motion_pattern_set(Fix_wall);
 	motion_exeStatus_set(execute);
 	motion_state_set(BRAKE_STATE);
 	run_time_ms_reset();
 	run_time_limit_ms_set(set_time);
+
+	error_counter_reset();
 }
 void Motion::Init_Motion_stop_brake	(float set_time,const t_pid_gain *sp_gain  ,const t_pid_gain *om_gain  )
 {
+	if(motion_exeStatus_get() == error)
+	{
+		Motion_error_handling();
+		return;
+	}
 	motion_plan.velo.init();
 	motion_plan.max_velo.init();
 	motion_plan.end_velo.init();
@@ -443,10 +613,19 @@ void Motion::Init_Motion_stop_brake	(float set_time,const t_pid_gain *sp_gain  ,
 	turn_motion_param.sp_gain = sp_gain;
 	turn_motion_param.om_gain = om_gain;
 
+	vehicle->Vehicle_controller.speed_ctrl.Gain_Set(*straight_motion_param.sp_gain);
+	vehicle->Vehicle_controller.omega_ctrl.Gain_Set(*straight_motion_param.om_gain);
+	vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
+	vehicle->Vehicle_controller.omega_ctrl.I_param_reset();
+
+	vehicle->ego_integral_init();
+	vehicle->ideal_integral_init();
 
 	motion_pattern_set(run_brake);
 	motion_exeStatus_set(execute);
 	motion_state_set(BRAKE_STATE);
 	run_time_ms_reset();
 	run_time_limit_ms_set(set_time);
+
+	error_counter_reset();
 }

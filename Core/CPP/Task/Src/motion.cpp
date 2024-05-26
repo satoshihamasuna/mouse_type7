@@ -6,6 +6,7 @@
  */
 
 #include "../Inc/ctrl_task.h"
+#include "../Inc/run_typedef.h"
 #include "../../Params/turn_table.h"
 
 float get_turn_table_value(float time_period_ms,float time_ms)
@@ -878,7 +879,7 @@ void Motion::SetIdeal_stop_brake	( )
 		motion_exeStatus_set(complete);
 		motion_state_set(NOP_STATE);
 		motion_pattern_set(No_run);
-		motion_disable_set();
+
 		return;
 	}
 

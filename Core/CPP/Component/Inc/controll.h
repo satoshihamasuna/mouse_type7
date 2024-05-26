@@ -8,9 +8,6 @@
 #ifndef CPP_INC_CONTROLL_H_
 #define CPP_INC_CONTROLL_H_
 
-//#include "singleton.h"
-
-
 
 typedef struct{
 	float Kp;
@@ -28,6 +25,7 @@ class PID_Controller
 		float target= 0.0,I_target= 0.0,prev_target= 0.0;
 		float output= 0.0,I_output= 0.0,prev_output= 0.0;
 		void Gain_Set(float _Kp,float _Ki,float _Kd);
+		void Gain_Set(t_pid_gain gain);
 		void I_param_reset();
 		float Controll(float _target,float _output,float dt);
 		float Anti_windup_1(float operation,float limit);

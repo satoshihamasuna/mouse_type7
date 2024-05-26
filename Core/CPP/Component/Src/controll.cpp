@@ -15,6 +15,15 @@ void PID_Controller::Gain_Set(float _Kp,float _Ki,float _Kd)
 	Kd = _Kd;
 }
 
+
+void PID_Controller::Gain_Set(t_pid_gain gain)
+{
+	Kp = gain.Kp;
+	Ki = gain.Ki;
+	Kd = gain.Kd;
+}
+
+
 void PID_Controller::I_param_reset()
 {
 	I_target = I_output = 0.0;

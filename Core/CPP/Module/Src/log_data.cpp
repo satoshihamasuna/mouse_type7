@@ -7,12 +7,18 @@
 
 
 
-#include "../../Pheripheral/Include/index.h"
 #include "../Inc/log_data.h"
 #include "../Inc/communicate.h"
 #include "stdio.h"
-#include "../../Component/Inc/half_float.h"
 
+#include "../../Pheripheral/Include/index.h"
+
+#include "../../Task/Inc/sensing_task.h"
+#include "../../Task/Inc/ctrl_task.h"
+
+#include "../../Component/Inc/controll.h"
+#include "../../Component/Inc/half_float.h"
+#include "../../Component/Inc/Kalman_filter.h"
 
 void LogData::indicate_data()
 {
@@ -33,3 +39,20 @@ void LogData::indicate_data()
 	}
 }
 
+
+void LogData::logging()
+{
+	if(log_enable == True)
+	{
+		data[0][data_count%1000] =  float_to_half(Vehicle_type7::getInstance().ideal.velo.get());
+		data[1][data_count%1000] =  float_to_half(Vehicle_type7::getInstance().ego.velo.get());
+		data[2][data_count%1000] =  float_to_half(Vehicle_type7::getInstance().ideal.rad_velo.get());
+		data[3][data_count%1000] =  float_to_half(Vehicle_type7::getInstance().ego.rad_velo.get());
+		data[4][data_count%1000] =  float_to_half(Vehicle_type7::getInstance().ideal.length.get());
+		data[5][data_count%1000] =  float_to_half(Vehicle_type7::getInstance().ego.length.get());
+		data[6][data_count%1000] =  float_to_half(Vehicle_type7::getInstance().ideal.radian.get());
+		data[7][data_count%1000] =  float_to_half(Vehicle_type7::getInstance().ego.radian.get());
+		data_count++;
+		if(data_count >= data_size) data_count = data_size - 1;
+	}
+}

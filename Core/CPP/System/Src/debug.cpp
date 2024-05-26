@@ -92,6 +92,7 @@ namespace Mode
 						  LogData::getInstance().log_enable = True;
 						  motion->exe_Motion_straight( 90.0*3.0,6.0,0.3,0.0);
 						  LogData::getInstance().log_enable = False;
+						  motion->Motion_end();
 						  enable = 0x00;
 						  HAL_Delay(500);
 					}
@@ -107,9 +108,10 @@ namespace Mode
 						  motion->Motion_start();
 						  LogData::getInstance().data_count = 0;
 						  LogData::getInstance().log_enable = True;
-						  motion->exe_Motion_straight( 45.0,6.0,0.3,0.3);
+						  motion->exe_Motion_straight( 45.0,6.0,0.32,0.32);
 						  motion->exe_Motion_search_turn( &param_R90_search);
-						  motion->exe_Motion_straight(45.0,6.0,0.3,0.0);
+						  motion->exe_Motion_straight(45.0,6.0,0.32,0.0);
+						  motion->Motion_end();
 						  LogData::getInstance().log_enable = False;
 						  enable = 0x00;
 						  HAL_Delay(500);
@@ -142,6 +144,7 @@ namespace Mode
 						  HAL_Delay(200);
 						  FAN_Motor_SetDuty(0);;
 						  HAL_Delay(200);
+						  motion->Motion_end();
 						  LogData::getInstance().log_enable = False;
 						  enable = 0x00;
 						  HAL_Delay(500);
@@ -177,6 +180,7 @@ namespace Mode
 						  HAL_Delay(200);
 						  FAN_Motor_SetDuty(0);;
 						  HAL_Delay(200);
+						  motion->Motion_end();
 						  LogData::getInstance().log_enable = False;
 						  enable = 0x00;
 						  HAL_Delay(500);
@@ -246,6 +250,7 @@ namespace Mode
 						  HAL_Delay(200);
 						  FAN_Motor_SetDuty(0);;
 						  HAL_Delay(200);
+						  motion->Motion_end();
 						  LogData::getInstance().log_enable = False;
 						  enable = 0x00;
 						  HAL_Delay(500);
@@ -280,6 +285,7 @@ namespace Mode
 						  HAL_Delay(200);
 						  FAN_Motor_SetDuty(0);;
 						  HAL_Delay(200);
+						  motion->Motion_end();
 						  LogData::getInstance().log_enable = False;
 						  enable = 0x00;
 						  HAL_Delay(500);
@@ -315,6 +321,7 @@ namespace Mode
 						  HAL_Delay(200);
 						  FAN_Motor_SetDuty(0);;
 						  HAL_Delay(200);
+						  motion->Motion_end();
 						  LogData::getInstance().log_enable = False;
 						  enable = 0x00;
 						  HAL_Delay(500);
@@ -350,6 +357,7 @@ namespace Mode
 						  HAL_Delay(200);
 						  FAN_Motor_SetDuty(0);;
 						  HAL_Delay(200);
+						  motion->Motion_end();
 						  LogData::getInstance().log_enable = False;
 						  enable = 0x00;
 						  HAL_Delay(500);
@@ -385,6 +393,7 @@ namespace Mode
 						  HAL_Delay(200);
 						  FAN_Motor_SetDuty(0);;
 						  HAL_Delay(200);
+						  motion->Motion_end();
 						  LogData::getInstance().log_enable = False;
 						  enable = 0x00;
 						  HAL_Delay(500);
@@ -420,6 +429,7 @@ namespace Mode
 						  HAL_Delay(200);
 						  FAN_Motor_SetDuty(0);;
 						  HAL_Delay(200);
+						  motion->Motion_end();
 						  LogData::getInstance().log_enable = False;
 						  enable = 0x00;
 						  HAL_Delay(500);
@@ -455,6 +465,7 @@ namespace Mode
 						  HAL_Delay(200);
 						  FAN_Motor_SetDuty(0);;
 						  HAL_Delay(200);
+						  motion->Motion_end();
 						  LogData::getInstance().log_enable = False;
 						  enable = 0x00;
 						  HAL_Delay(500);
@@ -490,6 +501,7 @@ namespace Mode
 						  HAL_Delay(200);
 						  FAN_Motor_SetDuty(0);;
 						  HAL_Delay(200);
+						  motion->Motion_end();
 						  LogData::getInstance().log_enable = False;
 						  enable = 0x00;
 						  HAL_Delay(500);
@@ -524,6 +536,7 @@ namespace Mode
 						  HAL_Delay(200);
 						  FAN_Motor_SetDuty(0);;
 						  HAL_Delay(200);
+						  motion->Motion_end();
 						  LogData::getInstance().log_enable = False;
 						  enable = 0x00;
 						  HAL_Delay(500);

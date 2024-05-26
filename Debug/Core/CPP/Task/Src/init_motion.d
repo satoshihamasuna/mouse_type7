@@ -53,6 +53,7 @@ Core/CPP/Task/Src/init_motion.o: ../Core/CPP/Task/Src/init_motion.cpp \
  ../Core/CPP/Task/Src/../Inc/../../Params/../Component/Inc/controll.h \
  ../Core/CPP/Task/Src/../Inc/../../Params/../Module/Inc/vehicle.h \
  ../Core/CPP/Task/Src/../Inc/../../Component/Inc/controll.h \
+ ../Core/CPP/Task/Src/../Inc/run_typedef.h \
  ../Core/CPP/Task/Src/../../Params/turn_table.h
 
 ../Core/CPP/Task/Src/../Inc/ctrl_task.h:
@@ -174,5 +175,7 @@ c:\users\sato1\documents\git\mouse_type7_program\mouse_type7\core\cpp\component\
 ../Core/CPP/Task/Src/../Inc/../../Params/../Module/Inc/vehicle.h:
 
 ../Core/CPP/Task/Src/../Inc/../../Component/Inc/controll.h:
+
+../Core/CPP/Task/Src/../Inc/run_typedef.h:
 
 ../Core/CPP/Task/Src/../../Params/turn_table.h:

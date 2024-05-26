@@ -12,6 +12,7 @@
 #include "../../Module/Inc/log_data.h"
 #include "../Inc/myshell.h"
 #include <stdio.h>
+#include "../../Pheripheral/Include/typedef.h"
 
 typedef int (*USRCMDFUNC)(int argc, char **argv);
 
@@ -24,6 +25,7 @@ static int usrcmd_ntopt_callback(int argc, char **argv, void *extobj);
 static int usrcmd_help(int argc, char **argv);
 static int usrcmd_info(int argc, char **argv);
 static int usrcmd_disp(int argc, char **argv);
+static int usrcmd_end(int argc, char **argv);
 
 typedef struct {
 	const char *cmd;
@@ -35,10 +37,12 @@ static const cmd_table_t cmdlist[] = {
     { "help", "This is a description text string for help command.", usrcmd_help },
     { "info", "This is a description text string for info command.", usrcmd_info },
 	{ "disp", "This is a description text string for disp command.", usrcmd_disp },
+	{ "end", "This is a description text string for end command.", usrcmd_end },
 };
 
 static ntshell_t nts;
 
+t_bool	shell_end_flag;
 
 /* ---------------------------------------------------------------
 	help と info
@@ -89,6 +93,21 @@ static int usrcmd_disp(int argc, char **argv)
     }
     if (ntlibc_strcmp(argv[1], "log") == 0) {
     	LogData::getInstance().indicate_data();
+        return 0;
+    }
+    printf("Unknown sub command found\r\n");
+    return -1;
+}
+
+static int usrcmd_end(int argc, char **argv)
+{
+    if (argc != 2) {
+    	printf("end exe\r\n");
+    	return 0;
+    }
+    if (ntlibc_strcmp(argv[1], "exe") == 0) {
+    	shell_end_flag = True;
+    	printf("shell_end!\r\n");
         return 0;
     }
     printf("Unknown sub command found\r\n");
@@ -162,14 +181,18 @@ void Myshell_Initialize( void )
 void Myshell_Execute( void )
 {
 
-	if( (&nts)->initcode != 0x4367 ) {
-		return;
-	} else;
+	shell_end_flag = False;
+	while(shell_end_flag != True)
+	{
+		if( (&nts)->initcode != 0x4367 ) {
+			return;
+		} else;
 
-	unsigned char ch;
-	func_read((char *)&ch, sizeof(ch), (&nts)->extobj);
-	vtrecv_execute(&((&nts)->vtrecv), &ch, sizeof(ch));
-	//ntshell_execute(&nts);
-	//ntshell_execute(&nts);
+		unsigned char ch;
+		func_read((char *)&ch, sizeof(ch), (&nts)->extobj);
+		vtrecv_execute(&((&nts)->vtrecv), &ch, sizeof(ch));
+		//ntshell_execute(&nts);
+		//ntshell_execute(&nts);
+	}
 }
 

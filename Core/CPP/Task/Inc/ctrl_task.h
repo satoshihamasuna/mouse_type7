@@ -69,7 +69,10 @@ class Motion
 		t_straight_param 	straight_motion_param;
 		motion_plan_params    motion_plan;
 
+		//define error counter
+		int error_cnt = 0;
 
+		//define ir sensor & vehicle instance
 		Vehicle *vehicle;
 		IrSensTask *ir_sens;
 
@@ -128,6 +131,12 @@ class Motion
 		inline	void 		motion_disable_set()									{ 	is_motion_enable		= False;	}
 		//inline  t_bool 		motion_is_enable_get()									{	return	is_motion_enable;			}
 
+		void Motion_error_handling();
+
+		void error_counter_reset()												{	error_cnt = 0;							}
+		void error_counter_set	(int cnt)										{	error_cnt = cnt;						}
+		int  error_counter_get	()												{	return error_cnt;						}
+
 
 	public:
 
@@ -145,6 +154,7 @@ class Motion
 
 		void Motion_start();
 		void Motion_end();
+
 
 		//Initialize motion parameters
 		void Init_Motion_free_rotation_set	();
@@ -232,7 +242,6 @@ class Motion
 class CtrlTask:public Motion
 {
 	private:
-		int error_cnt;
 		void motion_ideal_param_set();
 		Vehicle *vehicle;
 		IrSensTask *ir_sens;

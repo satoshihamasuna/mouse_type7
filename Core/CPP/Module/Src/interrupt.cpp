@@ -108,19 +108,26 @@ void Interrupt::preprocess()
 	acc_buff[(acc_time_cnt)%ACC_BUFF_SIZE] = (-1.0)*read_accel_y_axis();
 	acc_sum = acc_sum + acc_buff[(acc_time_cnt)%ACC_BUFF_SIZE];
 
+	z_acc_sum = z_acc_sum - z_acc_buff[(acc_time_cnt)%ACC_BUFF_SIZE];
+	z_acc_buff[(acc_time_cnt)%ACC_BUFF_SIZE] = (-1.0)*read_accel_z_axis();
+	z_acc_sum = z_acc_sum + z_acc_buff[(acc_time_cnt)%ACC_BUFF_SIZE];
+
 	acc_time_cnt = (acc_time_cnt == (ACC_BUFF_SIZE-1))? 0:acc_time_cnt + 1;
 
 
 	//update vehicle ego information
 	float acc_mean   	= acc_sum/(float)(ACC_BUFF_SIZE);
+	float z_acc_mean    = z_acc_sum/(float)(ACC_BUFF_SIZE);
 	float enc_velo_mean = ((Renc.wheel_speed) - (Lenc.wheel_speed))/2.0;
 	float velo			= (1.0/2.0f)*acc_mean*((float)(ACC_BUFF_SIZE))/1000.0f + enc_velo_mean;
-	float enc_velo		= ((Renc.sp_pulse ) - (Lenc.sp_pulse))*MMPP;
+	float enc_velo		= ((Renc.sp_pulse ) - (Lenc.sp_pulse))*MMPP/2.0;
 	float length		= Vehicle_type7::getInstance().ego.length.get() + enc_velo;
 
 	Vehicle_type7::getInstance().ego.accel.set(acc_mean);
 	Vehicle_type7::getInstance().ego.velo.set(velo);
 	Vehicle_type7::getInstance().ego.length.set(length);
+
+	Vehicle_type7::getInstance().ego.z_accel.set(z_acc_mean);
 
 	float rad_velo 		= (-1.0)*read_gyro_z_axis()*PI/180;
 	float rad			= Vehicle_type7::getInstance().ego.radian.get() + rad_velo/1000.0f;
@@ -163,30 +170,8 @@ void Interrupt::main()
 void Interrupt::postprocess()
 {
 
-	if(LogData::getInstance().log_enable == True)
-	{
-		/*
-		LogData::getInstance().data[0][LogData::getInstance().data_count%1000] =  float_to_half(controll_task::getInstance().mouse.velo);
-		LogData::getInstance().data[1][LogData::getInstance().data_count%1000] =  float_to_half(controll_task::getInstance().target.velo);
-		LogData::getInstance().data[2][LogData::getInstance().data_count%1000] =  float_to_half(controll_task::getInstance().mouse.rad_velo);
-		LogData::getInstance().data[3][LogData::getInstance().data_count%1000] =  float_to_half(controll_task::getInstance().target.rad_velo);
-		LogData::getInstance().data[4][LogData::getInstance().data_count%1000] =  float_to_half(controll_task::getInstance().mouse.length);
-		LogData::getInstance().data[5][LogData::getInstance().data_count%1000] =  float_to_half((-1.0)*read_accel_y_axis());//Battery_GetVoltage()  ;
-		LogData::getInstance().data[6][LogData::getInstance().data_count%1000] =  float_to_half(controll_task::getInstance().mouse.turn_x);
-		LogData::getInstance().data[7][LogData::getInstance().data_count%1000] =  float_to_half(controll_task::getInstance().mouse.turn_y);
-		LogData::getInstance().data[8][LogData::getInstance().data_count%1000] =  float_to_half(SensingTask::getInstance().sen_r.distance);//Rvelo_sum/((float)(ACC_BUFF_SIZE));
-		LogData::getInstance().data[9][LogData::getInstance().data_count%1000] =  float_to_half(SensingTask::getInstance().sen_l.distance);//Lvelo_sum/((float)(ACC_BUFF_SIZE));
-		LogData::getInstance().data[10][LogData::getInstance().data_count%1000] =  float_to_half(controll_task::getInstance().mouse.x_point);
-		LogData::getInstance().data[11][LogData::getInstance().data_count%1000] =  float_to_half(controll_task::getInstance().V_l);
-		*/
-		LogData::getInstance().data[0][LogData::getInstance().data_count%1000] =  float_to_half(Vehicle_type7::getInstance().ideal.velo.get());
-		LogData::getInstance().data[1][LogData::getInstance().data_count%1000] =  float_to_half(Vehicle_type7::getInstance().ego.velo.get());
-		LogData::getInstance().data[2][LogData::getInstance().data_count%1000] =  float_to_half(Vehicle_type7::getInstance().ideal.rad_velo.get());
-		LogData::getInstance().data[3][LogData::getInstance().data_count%1000] =  float_to_half(Vehicle_type7::getInstance().ego.rad_velo.get());
-		LogData::getInstance().data_count++;
-		if(LogData::getInstance().data_count >= LogData::getInstance().data_size) LogData::getInstance().data_count = LogData::getInstance().data_size - 1;
-	}
 
+	LogData::getInstance().logging();
 	time_count = time_count + 1;
 	IMU_read_DMA_Start();
 }

@@ -202,11 +202,59 @@ void CtrlTask::motion_controll()
 void CtrlTask::motion_post_controll()
 {
 
+	if(motion_exeStatus_get() == execute && is_controll_enable() == True)
+	{
+		if(motion_pattern_get() != motor_free)
+		{
+			if(vehicle->ideal.velo.get() != 0.0f)
+			{
+				int error_flag = error_counter_get();
+				if(ABS((vehicle->ego.velo.get() - vehicle->ideal.velo.get())) >= 2.0)
+				{
+					error_counter_set(error_counter_get() + 50);
+				}
+
+				if(ABS(vehicle->ego.z_accel.get()) >= 30.0)
+				{
+					error_counter_set(error_counter_get() + 30);
+				}
+
+				if(ABS(vehicle->ego.rad_velo.get() - vehicle->ideal.rad_velo.get()) > 10.0)
+				{
+					//error_cnt = error_cnt +	10;
+				}
+
+				if(ABS(vehicle->V_l) > vehicle->battery.get())
+				{
+					error_counter_set(error_counter_get() + 5);
+				}
+				if(ABS(vehicle->V_l) > vehicle->battery.get())
+				{
+					error_counter_set(error_counter_get() + 5);
+				}
+
+				if(error_flag == error_counter_get())
+				{
+					error_counter_set(error_counter_get() - 2);
+					if(error_counter_get() < 0) error_counter_reset();
+				}
+			}
+
+		}
+		else
+		{
+			error_counter_reset();
+		}
+	}
+
+	if(error_counter_get() >= 1000)
+	{
+		motion_exeStatus_set(error);
+	}
+
 	if(motion_exeStatus_get() == error)
 	{
-		motion_disable_set();
-		motion_state_set(NOP_STATE);
-		motion_pattern_set(No_run);
+		Motion_error_handling();
 	}
 }
 

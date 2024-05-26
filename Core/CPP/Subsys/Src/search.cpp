@@ -276,6 +276,11 @@ t_position Search::search_adachi(	t_position start_pos,t_position goal_pos,int g
 	while(i_am_goal(my_position, goal_pos, goal_size) != True)
 	{
 
+		if(motion->motion_exeStatus_get() == error)
+		{
+			break;
+		}
+
 		//if(_wall->is_unknown(my_position.x, my_position.y) == True)
 		//{
 				_wall->set_wall(my_position);
@@ -362,6 +367,10 @@ t_position Search::search_adachi_acc(	t_position start_pos,t_position goal_pos,i
 
 	while(i_am_goal(my_position, goal_pos, goal_size) != True)
 	{
+		if(motion->motion_exeStatus_get() == error)
+		{
+			break;
+		}
 
 		if(_wall->is_unknown(my_position.x, my_position.y) == True)
 		{

@@ -35,6 +35,8 @@ class LogData:public Singleton<LogData>
 				}
 			}
 		}
+
+		void logging();
 };
 
 
