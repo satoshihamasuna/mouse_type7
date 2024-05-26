@@ -2,12 +2,12 @@ gthr-default.h:229:1:int __gthread_key_delete(__gthread_key_t)	16	static
 vehicle.h:57:16:float param_element::get()	16	static
 wall_class.h:24:15:IrSensTask* wall_class::return_irObj()	16	static
 adachi_class.h:22:3:adachi::adachi(wall_class*, make_map*)	24	static
-ctrl_task.h:152:24:t_exeStatus Motion::motion_exeStatus_get()	16	static
-ctrl_task.h:177:22:t_exeStatus Motion::execute_Motion()	16	static
-ctrl_task.h:189:22:t_exeStatus Motion::exe_Motion_straight(float, float, float, float, const t_pid_gain*, const t_pid_gain*)	40	static
-ctrl_task.h:201:22:t_exeStatus Motion::exe_Motion_pivot_turn(float, float, float, const t_pid_gain*, const t_pid_gain*)	32	static
-ctrl_task.h:208:22:t_exeStatus Motion::exe_Motion_fix_wall(float, const t_pid_gain*, const t_pid_gain*)	24	static
-ctrl_task.h:236:12:Vehicle* Motion::return_vehicleObj()	16	static
+ctrl_task.h:153:24:t_exeStatus Motion::motion_exeStatus_get()	16	static
+ctrl_task.h:178:22:t_exeStatus Motion::execute_Motion()	16	static
+ctrl_task.h:190:22:t_exeStatus Motion::exe_Motion_straight(float, float, float, float, const t_pid_gain*, const t_pid_gain*)	40	static
+ctrl_task.h:202:22:t_exeStatus Motion::exe_Motion_pivot_turn(float, float, float, const t_pid_gain*, const t_pid_gain*)	32	static
+ctrl_task.h:209:22:t_exeStatus Motion::exe_Motion_fix_wall(float, const t_pid_gain*, const t_pid_gain*)	24	static
+ctrl_task.h:237:12:Vehicle* Motion::return_vehicleObj()	16	static
 search.cpp:24:8:t_bool Search::i_am_goal(int, int, int, int, int)	32	static
 search.cpp:36:8:t_bool Search::i_am_goal(t_position, t_position, int)	48	static
 search.cpp:52:6:void Search::update_map(int, int, t_position, int, int, make_map*)	32	static

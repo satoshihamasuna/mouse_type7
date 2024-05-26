@@ -112,6 +112,7 @@ class Motion
 		inline void run_time_ms_reset()											{	run_time_ms = 0.0f;					}
 		inline void run_time_ms_update()										{	run_time_ms = run_time_ms + (float) deltaT_ms;	}
 		inline float run_time_ms_get()											{	return run_time_ms;					}
+		inline void run_time_ms_set(float time_ms)								{	run_time_ms = time_ms;				}
 
 		inline void run_time_limit_ms_reset()									{	run_time_ms_limit = 0.0f;					}
 		inline void run_time_limit_ms_set(float run_time_ms_limit_)				{	run_time_ms_limit = run_time_ms_limit_;		}

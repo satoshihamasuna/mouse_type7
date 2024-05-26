@@ -5,10 +5,10 @@ vehicle.h:187:7:virtual void Vehicle_type7::motorSetDuty_r(int)	16	static
 sensing_task.h:66:8:virtual void IrSensTask_type7::IrSensorSet()	16	static
 wall_class.h:20:3:wall_class::wall_class(IrSensTask*)	16	static
 gthr-default.h:229:1:int __gthread_key_delete(__gthread_key_t)	16	static
-ctrl_task.h:143:3:Motion::Motion(Vehicle*, IrSensTask*, int)	24	static
-ctrl_task.h:237:15:IrSensTask* Motion::return_irObj()	16	static
-ctrl_task.h:250:3:CtrlTask::CtrlTask(Vehicle*, IrSensTask*, int)	24	static
-ctrl_task.h:268:3:CtrlTask_type7::CtrlTask_type7(Vehicle*, IrSensTask*)	24	static
+ctrl_task.h:144:3:Motion::Motion(Vehicle*, IrSensTask*, int)	24	static
+ctrl_task.h:238:15:IrSensTask* Motion::return_irObj()	16	static
+ctrl_task.h:251:3:CtrlTask::CtrlTask(Vehicle*, IrSensTask*, int)	24	static
+ctrl_task.h:269:3:CtrlTask_type7::CtrlTask_type7(Vehicle*, IrSensTask*)	24	static
 make_path.h:93:3:calcRunTime::calcRunTime()	16	static
 make_path.h:144:3:Dijkstra::Dijkstra(wall_class*)	16	static
 path_follow.h:34:8:void path_follow_class::set_path_follow_gain(float, float)	24	static

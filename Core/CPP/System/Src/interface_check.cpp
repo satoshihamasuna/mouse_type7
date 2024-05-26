@@ -119,6 +119,7 @@ namespace Mode
 								printf("encoder:%ld,%ld\n",Encoder_GetProperty_Right().sp_pulse,Encoder_GetProperty_Left().sp_pulse);
 								HAL_Delay(10);
 						  }
+						  motion->Motion_end();
 						  enable = 0x00;
 						  HAL_Delay(500);
 					}
@@ -137,6 +138,7 @@ namespace Mode
 								  LogData::getInstance().log_enable = True;
 								  motion->exe_Motion_pivot_turn(DEG2RAD(90.0f), 40.0*PI, 4.0*PI);
 								  LogData::getInstance().log_enable = False;
+								  motion->Motion_end();
 								  enable = 0x00;
 								  HAL_Delay(500);
 
@@ -155,6 +157,7 @@ namespace Mode
 							  LogData::getInstance().log_enable = True;
 							  motion->exe_Motion_fix_wall(3000);
 							  LogData::getInstance().log_enable = False;
+							  motion->Motion_end();
 							  enable = 0x00;
 							  HAL_Delay(500);
 					}
