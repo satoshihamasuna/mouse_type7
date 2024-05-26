@@ -52,7 +52,7 @@ Core/CPP/Module/Src/log_data.o: ../Core/CPP/Module/Src/log_data.cpp \
  ../Core/CPP/Module/Src/../../Task/Inc/../../Module/Inc/../../Pheripheral/Include/typedef.h \
  ../Core/CPP/Module/Src/../../Task/Inc/../../Module/Inc/../../Pheripheral/Include/index.h \
  ../Core/CPP/Module/Src/../../Task/Inc/../../Module/Inc/../../Component/Inc/singleton.h \
- ../Core/CPP/Module/Src/../../Task/Inc/../../Module/Inc/../../Component/Inc/controll.h \
+ ../Core/CPP/Module/Src/../../Task/Inc/../../Module/Inc/../../Component/Inc/controller.h \
  ../Core/CPP/Module/Src/../../Task/Inc/../../Module/Inc/../../Task/Inc/run_typedef.h \
  c:\users\sato1\documents\git\mouse_type7_program\mouse_type7\core\cpp\pheripheral\include\typedef.h \
  ../Core/CPP/Module/Src/../../Task/Inc/../../Component/Inc/singleton.h \
@@ -61,10 +61,10 @@ Core/CPP/Module/Src/log_data.o: ../Core/CPP/Module/Src/log_data.cpp \
  ../Core/CPP/Module/Src/../../Task/Inc/ctrl_task.h \
  ../Core/CPP/Module/Src/../../Task/Inc/sensing_task.h \
  ../Core/CPP/Module/Src/../../Task/Inc/../../Params/run_param.h \
- ../Core/CPP/Module/Src/../../Task/Inc/../../Params/../Component/Inc/controll.h \
+ ../Core/CPP/Module/Src/../../Task/Inc/../../Params/../Component/Inc/controller.h \
  ../Core/CPP/Module/Src/../../Task/Inc/../../Params/../Module/Inc/vehicle.h \
- ../Core/CPP/Module/Src/../../Task/Inc/../../Component/Inc/controll.h \
- ../Core/CPP/Module/Src/../../Component/Inc/controll.h \
+ ../Core/CPP/Module/Src/../../Task/Inc/../../Component/Inc/controller.h \
+ ../Core/CPP/Module/Src/../../Component/Inc/controller.h \
  ../Core/CPP/Module/Src/../../Component/Inc/half_float.h \
  ../Core/CPP/Module/Src/../../Component/Inc/Kalman_filter.h \
  ../Core/CPP/Module/Src/../../Component/Inc/singleton.h
@@ -185,7 +185,7 @@ Core/CPP/Module/Src/log_data.o: ../Core/CPP/Module/Src/log_data.cpp \
 
 ../Core/CPP/Module/Src/../../Task/Inc/../../Module/Inc/../../Component/Inc/singleton.h:
 
-../Core/CPP/Module/Src/../../Task/Inc/../../Module/Inc/../../Component/Inc/controll.h:
+../Core/CPP/Module/Src/../../Task/Inc/../../Module/Inc/../../Component/Inc/controller.h:
 
 ../Core/CPP/Module/Src/../../Task/Inc/../../Module/Inc/../../Task/Inc/run_typedef.h:
 
@@ -203,13 +203,13 @@ c:\users\sato1\documents\git\mouse_type7_program\mouse_type7\core\cpp\pheriphera
 
 ../Core/CPP/Module/Src/../../Task/Inc/../../Params/run_param.h:
 
-../Core/CPP/Module/Src/../../Task/Inc/../../Params/../Component/Inc/controll.h:
+../Core/CPP/Module/Src/../../Task/Inc/../../Params/../Component/Inc/controller.h:
 
 ../Core/CPP/Module/Src/../../Task/Inc/../../Params/../Module/Inc/vehicle.h:
 
-../Core/CPP/Module/Src/../../Task/Inc/../../Component/Inc/controll.h:
+../Core/CPP/Module/Src/../../Task/Inc/../../Component/Inc/controller.h:
 
-../Core/CPP/Module/Src/../../Component/Inc/controll.h:
+../Core/CPP/Module/Src/../../Component/Inc/controller.h:
 
 ../Core/CPP/Module/Src/../../Component/Inc/half_float.h:
 

@@ -49,7 +49,7 @@ Core/CPP/Subsys/Src/search.o: ../Core/CPP/Subsys/Src/search.cpp \
  ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Module/Inc/../../Pheripheral/Include/lsm6dsr_reg.h \
  ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Module/Inc/../../Pheripheral/Include/macro.h \
  ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Module/Inc/../../Component/Inc/singleton.h \
- ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Module/Inc/../../Component/Inc/controll.h \
+ ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Module/Inc/../../Component/Inc/controller.h \
  ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Module/Inc/../../Task/Inc/run_typedef.h \
  c:\users\sato1\documents\git\mouse_type7_program\mouse_type7\core\cpp\pheripheral\include\typedef.h \
  ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Component/Inc/singleton.h \
@@ -65,9 +65,9 @@ Core/CPP/Subsys/Src/search.o: ../Core/CPP/Subsys/Src/search.cpp \
  ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/ctrl_task.h \
  ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/sensing_task.h \
  ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Params/run_param.h \
- ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Params/../Component/Inc/controll.h \
+ ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Params/../Component/Inc/controller.h \
  ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Params/../Module/Inc/vehicle.h \
- ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Component/Inc/controll.h \
+ ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Component/Inc/controller.h \
  ../Core/CPP/Subsys/Src/../Inc/adachi_class.h \
  ../Core/CPP/Subsys/Src/../../Params/run_param.h \
  ../Core/CPP/Subsys/Src/../../Task/Inc/ctrl_task.h
@@ -184,7 +184,7 @@ Core/CPP/Subsys/Src/search.o: ../Core/CPP/Subsys/Src/search.cpp \
 
 ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Module/Inc/../../Component/Inc/singleton.h:
 
-../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Module/Inc/../../Component/Inc/controll.h:
+../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Module/Inc/../../Component/Inc/controller.h:
 
 ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Module/Inc/../../Task/Inc/run_typedef.h:
 
@@ -216,11 +216,11 @@ c:\users\sato1\documents\git\mouse_type7_program\mouse_type7\core\cpp\pheriphera
 
 ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Params/run_param.h:
 
-../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Params/../Component/Inc/controll.h:
+../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Params/../Component/Inc/controller.h:
 
 ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Params/../Module/Inc/vehicle.h:
 
-../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Component/Inc/controll.h:
+../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Component/Inc/controller.h:
 
 ../Core/CPP/Subsys/Src/../Inc/adachi_class.h:
 

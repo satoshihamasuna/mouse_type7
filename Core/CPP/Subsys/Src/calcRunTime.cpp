@@ -11,7 +11,7 @@
 #include "../Inc/wall_class.h"
 #include "../../Task/Inc/run_typedef.h"
 #include "../../Params/turn_table.h"
-#include "../../Component/Inc/controll.h"
+#include "../../Component/Inc/controller.h"
 #define OFF_SET_LENGTH 10.0
 
 void calcRunTime::turn_time_set(const t_param *const *mode)

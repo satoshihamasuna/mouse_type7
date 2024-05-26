@@ -12,7 +12,7 @@
 #include "../../Pheripheral/Include/index.h"
 
 #include "../../Component/Inc/singleton.h"
-#include "../../Component/Inc/controll.h"
+#include "../../Component/Inc/controller.h"
 
 #include "../../Task/Inc/run_typedef.h"
 
@@ -159,7 +159,7 @@ class Vehicle
 
 		param_element battery;
 
-		mouse_Controll Vehicle_controller;
+		mouse_Controller Vehicle_controller;
 		float V_r,V_l;
 		int motor_out_r,motor_out_l;
 

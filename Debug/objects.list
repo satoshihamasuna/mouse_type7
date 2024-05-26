@@ -1,4 +1,4 @@
-"Core/CPP/Component/Src/controll.o"
+"Core/CPP/Component/Src/controller.o"
 "Core/CPP/Component/Src/half_float.o"
 "Core/CPP/Component/Src/kalman_filter.o"
 "Core/CPP/Component/Src/path_follow.o"

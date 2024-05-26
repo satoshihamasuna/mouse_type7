@@ -10,7 +10,7 @@
 #include "../../Pheripheral/Include/typedef.h"
 
 #include "../../Component/Inc/singleton.h"
-#include "../../Component/Inc/controll.h"
+#include "../../Component/Inc/controller.h"
 #include "../../Component/Inc/path_follow.h"
 
 #include "../../Module/Inc/vehicle.h"
@@ -128,8 +128,8 @@ void CtrlTask::motion_controll()
 
 
 			//feedback controll
-			vehicle->sp_feedback.set(vehicle->Vehicle_controller.speed_ctrl.Controll(vehicle->ideal.velo.get()		,vehicle->ego.velo.get()	, (float)ctr_deltaT_ms));
-			vehicle->om_feedback.set(vehicle->Vehicle_controller.omega_ctrl.Controll(vehicle->ideal.rad_velo.get()	,vehicle->ego.rad_velo.get(), (float)ctr_deltaT_ms));
+			vehicle->sp_feedback.set(vehicle->Vehicle_controller.speed_ctrl.Control(vehicle->ideal.velo.get()		,vehicle->ego.velo.get()	, (float)ctr_deltaT_ms));
+			vehicle->om_feedback.set(vehicle->Vehicle_controller.omega_ctrl.Control(vehicle->ideal.rad_velo.get()	,vehicle->ego.rad_velo.get(), (float)ctr_deltaT_ms));
 
 			//feedforward controll
 			vehicle->sp_feedforward.set((sp_FF_controll_r + sp_FF_controll_l)/2.0);

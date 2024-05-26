@@ -50,7 +50,7 @@ Core/CPP/Subsys/Src/adachi.o: ../Core/CPP/Subsys/Src/adachi.cpp \
  ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Module/Inc/../../Pheripheral/Include/lsm6dsr_reg.h \
  ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Module/Inc/../../Pheripheral/Include/macro.h \
  ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Module/Inc/../../Component/Inc/singleton.h \
- ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Module/Inc/../../Component/Inc/controll.h \
+ ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Module/Inc/../../Component/Inc/controller.h \
  ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Module/Inc/../../Task/Inc/run_typedef.h \
  c:\users\sato1\documents\git\mouse_type7_program\mouse_type7\core\cpp\pheripheral\include\typedef.h \
  ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Component/Inc/singleton.h \
@@ -171,7 +171,7 @@ Core/CPP/Subsys/Src/adachi.o: ../Core/CPP/Subsys/Src/adachi.cpp \
 
 ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Module/Inc/../../Component/Inc/singleton.h:
 
-../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Module/Inc/../../Component/Inc/controll.h:
+../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Module/Inc/../../Component/Inc/controller.h:
 
 ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/../../Module/Inc/../../Task/Inc/run_typedef.h:
 

@@ -13,7 +13,7 @@
 
 #include "../../Params/run_param.h"
 
-#include "../../Component/Inc/controll.h"
+#include "../../Component/Inc/controller.h"
 
 #include "../../Module/Inc/vehicle.h"
 #include "run_typedef.h"

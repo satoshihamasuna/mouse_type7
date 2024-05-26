@@ -12,7 +12,7 @@
 #include "../../Pheripheral/Include/typedef.h"
 
 #include "../../Component/Inc/singleton.h"
-#include "../../Component/Inc/controll.h"
+#include "../../Component/Inc/controller.h"
 
 #include "../../Params/run_param.h"
 

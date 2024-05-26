@@ -40,7 +40,7 @@ Core/CPP/Task/Src/ctrl_task.o: ../Core/CPP/Task/Src/ctrl_task.cpp \
  ../Core/CPP/Task/Src/../../Pheripheral/Include/lsm6dsr_reg.h \
  ../Core/CPP/Task/Src/../../Pheripheral/Include/typedef.h \
  ../Core/CPP/Task/Src/../../Component/Inc/singleton.h \
- ../Core/CPP/Task/Src/../../Component/Inc/controll.h \
+ ../Core/CPP/Task/Src/../../Component/Inc/controller.h \
  ../Core/CPP/Task/Src/../../Component/Inc/path_follow.h \
  ../Core/CPP/Task/Src/../../Component/Inc/../../Component/Inc/singleton.h \
  ../Core/CPP/Task/Src/../../Component/Inc/../../Pheripheral/Include/typedef.h \
@@ -48,11 +48,11 @@ Core/CPP/Task/Src/ctrl_task.o: ../Core/CPP/Task/Src/ctrl_task.cpp \
  ../Core/CPP/Task/Src/../../Module/Inc/../../Pheripheral/Include/typedef.h \
  ../Core/CPP/Task/Src/../../Module/Inc/../../Pheripheral/Include/index.h \
  ../Core/CPP/Task/Src/../../Module/Inc/../../Component/Inc/singleton.h \
- ../Core/CPP/Task/Src/../../Module/Inc/../../Component/Inc/controll.h \
+ ../Core/CPP/Task/Src/../../Module/Inc/../../Component/Inc/controller.h \
  ../Core/CPP/Task/Src/../../Module/Inc/../../Task/Inc/run_typedef.h \
  ../Core/CPP/Task/Src/../../Module/Inc/../../Task/Inc/../../Pheripheral/Include/typedef.h \
  ../Core/CPP/Task/Src/../../Params/run_param.h \
- ../Core/CPP/Task/Src/../../Params/../Component/Inc/controll.h \
+ ../Core/CPP/Task/Src/../../Params/../Component/Inc/controller.h \
  ../Core/CPP/Task/Src/../../Params/../Module/Inc/vehicle.h \
  ../Core/CPP/Task/Src/../Inc/ctrl_task.h \
  ../Core/CPP/Task/Src/../Inc/sensing_task.h \
@@ -61,7 +61,7 @@ Core/CPP/Task/Src/ctrl_task.o: ../Core/CPP/Task/Src/ctrl_task.cpp \
  ../Core/CPP/Task/Src/../Inc/../../Pheripheral/Include/typedef.h \
  ../Core/CPP/Task/Src/../Inc/run_typedef.h \
  ../Core/CPP/Task/Src/../Inc/../../Params/run_param.h \
- ../Core/CPP/Task/Src/../Inc/../../Component/Inc/controll.h \
+ ../Core/CPP/Task/Src/../Inc/../../Component/Inc/controller.h \
  ../Core/CPP/Task/Src/../Inc/run_typedef.h \
  ../Core/CPP/Task/Src/../Inc/sensing_task.h
 
@@ -159,7 +159,7 @@ Core/CPP/Task/Src/ctrl_task.o: ../Core/CPP/Task/Src/ctrl_task.cpp \
 
 ../Core/CPP/Task/Src/../../Component/Inc/singleton.h:
 
-../Core/CPP/Task/Src/../../Component/Inc/controll.h:
+../Core/CPP/Task/Src/../../Component/Inc/controller.h:
 
 ../Core/CPP/Task/Src/../../Component/Inc/path_follow.h:
 
@@ -175,7 +175,7 @@ Core/CPP/Task/Src/ctrl_task.o: ../Core/CPP/Task/Src/ctrl_task.cpp \
 
 ../Core/CPP/Task/Src/../../Module/Inc/../../Component/Inc/singleton.h:
 
-../Core/CPP/Task/Src/../../Module/Inc/../../Component/Inc/controll.h:
+../Core/CPP/Task/Src/../../Module/Inc/../../Component/Inc/controller.h:
 
 ../Core/CPP/Task/Src/../../Module/Inc/../../Task/Inc/run_typedef.h:
 
@@ -183,7 +183,7 @@ Core/CPP/Task/Src/ctrl_task.o: ../Core/CPP/Task/Src/ctrl_task.cpp \
 
 ../Core/CPP/Task/Src/../../Params/run_param.h:
 
-../Core/CPP/Task/Src/../../Params/../Component/Inc/controll.h:
+../Core/CPP/Task/Src/../../Params/../Component/Inc/controller.h:
 
 ../Core/CPP/Task/Src/../../Params/../Module/Inc/vehicle.h:
 
@@ -201,7 +201,7 @@ Core/CPP/Task/Src/ctrl_task.o: ../Core/CPP/Task/Src/ctrl_task.cpp \
 
 ../Core/CPP/Task/Src/../Inc/../../Params/run_param.h:
 
-../Core/CPP/Task/Src/../Inc/../../Component/Inc/controll.h:
+../Core/CPP/Task/Src/../Inc/../../Component/Inc/controller.h:
 
 ../Core/CPP/Task/Src/../Inc/run_typedef.h:
 

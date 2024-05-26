@@ -49,7 +49,7 @@ Core/CPP/System/Src/mode.o: ../Core/CPP/System/Src/mode.cpp \
  c:\users\sato1\documents\git\mouse_type7_program\mouse_type7\core\cpp\pheripheral\include\typedef.h \
  c:\users\sato1\documents\git\mouse_type7_program\mouse_type7\core\cpp\pheripheral\include\index.h \
  c:\users\sato1\documents\git\mouse_type7_program\mouse_type7\core\cpp\component\inc\singleton.h \
- c:\users\sato1\documents\git\mouse_type7_program\mouse_type7\core\cpp\component\inc\controll.h \
+ c:\users\sato1\documents\git\mouse_type7_program\mouse_type7\core\cpp\component\inc\controller.h \
  c:\users\sato1\documents\git\mouse_type7_program\mouse_type7\core\cpp\task\inc\run_typedef.h \
  c:\users\sato1\documents\git\mouse_type7_program\mouse_type7\core\cpp\pheripheral\include\typedef.h \
  ../Core/CPP/System/Src/../../Subsys/Inc/../../Task/Inc/../../Component/Inc/singleton.h \
@@ -61,18 +61,18 @@ Core/CPP/System/Src/mode.o: ../Core/CPP/System/Src/mode.cpp \
  ../Core/CPP/System/Src/../../Subsys/Inc/../../Task/Inc/ctrl_task.h \
  ../Core/CPP/System/Src/../../Subsys/Inc/../../Task/Inc/sensing_task.h \
  ../Core/CPP/System/Src/../../Subsys/Inc/../../Task/Inc/../../Params/run_param.h \
- c:\users\sato1\documents\git\mouse_type7_program\mouse_type7\core\cpp\component\inc\controll.h \
+ c:\users\sato1\documents\git\mouse_type7_program\mouse_type7\core\cpp\component\inc\controller.h \
  c:\users\sato1\documents\git\mouse_type7_program\mouse_type7\core\cpp\module\inc\vehicle.h \
- ../Core/CPP/System/Src/../../Subsys/Inc/../../Task/Inc/../../Component/Inc/controll.h \
+ ../Core/CPP/System/Src/../../Subsys/Inc/../../Task/Inc/../../Component/Inc/controller.h \
  ../Core/CPP/System/Src/../../Subsys/Inc/make_map_class.h \
  ../Core/CPP/System/Src/../../Subsys/Inc/wall_class.h \
  ../Core/CPP/System/Src/../../Subsys/Inc/make_path.h \
  ../Core/CPP/System/Src/../../Subsys/Inc/../../Component/Inc/singleton.h \
- ../Core/CPP/System/Src/../../Subsys/Inc/../../Component/Inc/controll.h \
+ ../Core/CPP/System/Src/../../Subsys/Inc/../../Component/Inc/controller.h \
  ../Core/CPP/System/Src/../../Subsys/Inc/../../Params/run_param.h \
  ../Core/CPP/System/Src/../../Subsys/Inc/../../Task/Inc/run_typedef.h \
  ../Core/CPP/System/Src/../../Subsys/Inc/myshell.h \
- ../Core/CPP/System/Src/../../Component/Inc/controll.h \
+ ../Core/CPP/System/Src/../../Component/Inc/controller.h \
  ../Core/CPP/System/Src/../../Component/Inc/Kalman_filter.h \
  ../Core/CPP/System/Src/../../Component/Inc/singleton.h \
  ../Core/CPP/System/Src/../../Component/Inc/queue_class.h \
@@ -215,7 +215,7 @@ c:\users\sato1\documents\git\mouse_type7_program\mouse_type7\core\cpp\pheriphera
 
 c:\users\sato1\documents\git\mouse_type7_program\mouse_type7\core\cpp\component\inc\singleton.h:
 
-c:\users\sato1\documents\git\mouse_type7_program\mouse_type7\core\cpp\component\inc\controll.h:
+c:\users\sato1\documents\git\mouse_type7_program\mouse_type7\core\cpp\component\inc\controller.h:
 
 c:\users\sato1\documents\git\mouse_type7_program\mouse_type7\core\cpp\task\inc\run_typedef.h:
 
@@ -239,11 +239,11 @@ c:\users\sato1\documents\git\mouse_type7_program\mouse_type7\core\cpp\pheriphera
 
 ../Core/CPP/System/Src/../../Subsys/Inc/../../Task/Inc/../../Params/run_param.h:
 
-c:\users\sato1\documents\git\mouse_type7_program\mouse_type7\core\cpp\component\inc\controll.h:
+c:\users\sato1\documents\git\mouse_type7_program\mouse_type7\core\cpp\component\inc\controller.h:
 
 c:\users\sato1\documents\git\mouse_type7_program\mouse_type7\core\cpp\module\inc\vehicle.h:
 
-../Core/CPP/System/Src/../../Subsys/Inc/../../Task/Inc/../../Component/Inc/controll.h:
+../Core/CPP/System/Src/../../Subsys/Inc/../../Task/Inc/../../Component/Inc/controller.h:
 
 ../Core/CPP/System/Src/../../Subsys/Inc/make_map_class.h:
 
@@ -253,7 +253,7 @@ c:\users\sato1\documents\git\mouse_type7_program\mouse_type7\core\cpp\module\inc
 
 ../Core/CPP/System/Src/../../Subsys/Inc/../../Component/Inc/singleton.h:
 
-../Core/CPP/System/Src/../../Subsys/Inc/../../Component/Inc/controll.h:
+../Core/CPP/System/Src/../../Subsys/Inc/../../Component/Inc/controller.h:
 
 ../Core/CPP/System/Src/../../Subsys/Inc/../../Params/run_param.h:
 
@@ -261,7 +261,7 @@ c:\users\sato1\documents\git\mouse_type7_program\mouse_type7\core\cpp\module\inc
 
 ../Core/CPP/System/Src/../../Subsys/Inc/myshell.h:
 
-../Core/CPP/System/Src/../../Component/Inc/controll.h:
+../Core/CPP/System/Src/../../Component/Inc/controller.h:
 
 ../Core/CPP/System/Src/../../Component/Inc/Kalman_filter.h:
 

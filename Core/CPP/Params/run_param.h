@@ -8,7 +8,7 @@
 #ifndef CPP_INC_RUN_PARAM_H_
 #define CPP_INC_RUN_PARAM_H_
 
-#include "../Component/Inc/controll.h"
+#include "../Component/Inc/controller.h"
 
 #include "../Module/Inc/vehicle.h"
 

@@ -18,7 +18,7 @@
 #include "../../Subsys/Inc/wall_class.h"
 #include "../../Subsys/Inc/make_path.h"
 
-#include "../../Component/Inc/controll.h"
+#include "../../Component/Inc/controller.h"
 #include "../../Component/Inc/Kalman_filter.h"
 #include "../../Component/Inc/queue_class.h"
 #include "../../Component/Inc/priority_queue.h"

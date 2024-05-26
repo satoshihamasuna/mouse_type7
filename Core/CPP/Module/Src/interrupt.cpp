@@ -16,7 +16,7 @@
 #include "../../Task/Inc/sensing_task.h"
 #include "../../Task/Inc/ctrl_task.h"
 
-#include "../../Component/Inc/controll.h"
+#include "../../Component/Inc/controller.h"
 #include "../../Component/Inc/half_float.h"
 #include "../../Component/Inc/Kalman_filter.h"
 

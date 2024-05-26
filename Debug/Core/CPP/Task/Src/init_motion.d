@@ -43,16 +43,16 @@ Core/CPP/Task/Src/init_motion.o: ../Core/CPP/Task/Src/init_motion.cpp \
  ../Core/CPP/Task/Src/../Inc/../../Module/Inc/../../Pheripheral/Include/typedef.h \
  ../Core/CPP/Task/Src/../Inc/../../Module/Inc/../../Pheripheral/Include/lsm6dsr_reg.h \
  ../Core/CPP/Task/Src/../Inc/../../Module/Inc/../../Component/Inc/singleton.h \
- ../Core/CPP/Task/Src/../Inc/../../Module/Inc/../../Component/Inc/controll.h \
+ ../Core/CPP/Task/Src/../Inc/../../Module/Inc/../../Component/Inc/controller.h \
  ../Core/CPP/Task/Src/../Inc/../../Module/Inc/../../Task/Inc/run_typedef.h \
  ../Core/CPP/Task/Src/../Inc/../../Module/Inc/../../Task/Inc/../../Pheripheral/Include/typedef.h \
  ../Core/CPP/Task/Src/../Inc/../../Component/Inc/singleton.h \
  ../Core/CPP/Task/Src/../Inc/../../Pheripheral/Include/typedef.h \
  ../Core/CPP/Task/Src/../Inc/run_typedef.h \
  ../Core/CPP/Task/Src/../Inc/../../Params/run_param.h \
- ../Core/CPP/Task/Src/../Inc/../../Params/../Component/Inc/controll.h \
+ ../Core/CPP/Task/Src/../Inc/../../Params/../Component/Inc/controller.h \
  ../Core/CPP/Task/Src/../Inc/../../Params/../Module/Inc/vehicle.h \
- ../Core/CPP/Task/Src/../Inc/../../Component/Inc/controll.h \
+ ../Core/CPP/Task/Src/../Inc/../../Component/Inc/controller.h \
  ../Core/CPP/Task/Src/../Inc/run_typedef.h \
  ../Core/CPP/Task/Src/../../Params/turn_table.h
 
@@ -156,7 +156,7 @@ c:\users\sato1\documents\git\mouse_type7_program\mouse_type7\core\cpp\component\
 
 ../Core/CPP/Task/Src/../Inc/../../Module/Inc/../../Component/Inc/singleton.h:
 
-../Core/CPP/Task/Src/../Inc/../../Module/Inc/../../Component/Inc/controll.h:
+../Core/CPP/Task/Src/../Inc/../../Module/Inc/../../Component/Inc/controller.h:
 
 ../Core/CPP/Task/Src/../Inc/../../Module/Inc/../../Task/Inc/run_typedef.h:
 
@@ -170,11 +170,11 @@ c:\users\sato1\documents\git\mouse_type7_program\mouse_type7\core\cpp\component\
 
 ../Core/CPP/Task/Src/../Inc/../../Params/run_param.h:
 
-../Core/CPP/Task/Src/../Inc/../../Params/../Component/Inc/controll.h:
+../Core/CPP/Task/Src/../Inc/../../Params/../Component/Inc/controller.h:
 
 ../Core/CPP/Task/Src/../Inc/../../Params/../Module/Inc/vehicle.h:
 
-../Core/CPP/Task/Src/../Inc/../../Component/Inc/controll.h:
+../Core/CPP/Task/Src/../Inc/../../Component/Inc/controller.h:
 
 ../Core/CPP/Task/Src/../Inc/run_typedef.h:
 

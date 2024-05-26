@@ -15,8 +15,8 @@ interrupt.cpp:42:6:void Interrupt_Initialize()	4	static
 interrupt.cpp:94:6:void Interrupt::preprocess()	400	static
 interrupt.cpp:158:6:void Interrupt::main()	16	static
 interrupt.cpp:170:6:void Interrupt::postprocess()	16	static
-controll.h:19:7:constexpr PID_Controller::PID_Controller()	16	static
-controll.h:37:7:constexpr mouse_Controll::mouse_Controll()	16	static
+controller.h:19:7:constexpr PID_Controller::PID_Controller()	16	static
+controller.h:37:7:constexpr mouse_Controller::mouse_Controller()	16	static
 vehicle.h:90:7:Vehicle::Vehicle()	16	static
 vehicle.h:179:7:Vehicle_type7::Vehicle_type7()	16	static
 singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = Vehicle_type7]	8	static

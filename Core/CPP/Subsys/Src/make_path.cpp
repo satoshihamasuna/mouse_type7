@@ -9,7 +9,7 @@
 #include "../../Pheripheral/Include/typedef.h"
 #include "../../Pheripheral/Include/macro.h"
 
-#include "../../Component/Inc/controll.h"
+#include "../../Component/Inc/controller.h"
 
 #include "../../Task/Inc/run_typedef.h"
 #include "../../Task/Inc/ctrl_task.h"

@@ -42,7 +42,7 @@ Core/CPP/Task/Src/ir_sens_task.o: ../Core/CPP/Task/Src/ir_sens_task.cpp \
  ../Core/CPP/Task/Src/../Inc/../../Module/Inc/../../Pheripheral/Include/typedef.h \
  ../Core/CPP/Task/Src/../Inc/../../Module/Inc/../../Pheripheral/Include/lsm6dsr_reg.h \
  ../Core/CPP/Task/Src/../Inc/../../Module/Inc/../../Component/Inc/singleton.h \
- ../Core/CPP/Task/Src/../Inc/../../Module/Inc/../../Component/Inc/controll.h \
+ ../Core/CPP/Task/Src/../Inc/../../Module/Inc/../../Component/Inc/controller.h \
  ../Core/CPP/Task/Src/../Inc/../../Module/Inc/../../Task/Inc/run_typedef.h \
  ../Core/CPP/Task/Src/../Inc/../../Module/Inc/../../Task/Inc/../../Pheripheral/Include/typedef.h \
  ../Core/CPP/Task/Src/../Inc/../../Component/Inc/singleton.h \
@@ -150,7 +150,7 @@ c:\users\sato1\documents\git\mouse_type7_program\mouse_type7\core\cpp\component\
 
 ../Core/CPP/Task/Src/../Inc/../../Module/Inc/../../Component/Inc/singleton.h:
 
-../Core/CPP/Task/Src/../Inc/../../Module/Inc/../../Component/Inc/controll.h:
+../Core/CPP/Task/Src/../Inc/../../Module/Inc/../../Component/Inc/controller.h:
 
 ../Core/CPP/Task/Src/../Inc/../../Module/Inc/../../Task/Inc/run_typedef.h:
 

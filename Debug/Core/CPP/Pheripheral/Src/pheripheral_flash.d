@@ -50,7 +50,7 @@ Core/CPP/Pheripheral/Src/pheripheral_flash.o: \
  c:\users\sato1\documents\git\mouse_type7_program\mouse_type7\core\cpp\pheripheral\include\typedef.h \
  c:\users\sato1\documents\git\mouse_type7_program\mouse_type7\core\cpp\pheripheral\include\index.h \
  c:\users\sato1\documents\git\mouse_type7_program\mouse_type7\core\cpp\component\inc\singleton.h \
- c:\users\sato1\documents\git\mouse_type7_program\mouse_type7\core\cpp\component\inc\controll.h \
+ c:\users\sato1\documents\git\mouse_type7_program\mouse_type7\core\cpp\component\inc\controller.h \
  c:\users\sato1\documents\git\mouse_type7_program\mouse_type7\core\cpp\task\inc\run_typedef.h \
  c:\users\sato1\documents\git\mouse_type7_program\mouse_type7\core\cpp\pheripheral\include\typedef.h \
  c:\users\sato1\documents\git\mouse_type7_program\mouse_type7\core\cpp\component\inc\singleton.h \
@@ -169,7 +169,7 @@ c:\users\sato1\documents\git\mouse_type7_program\mouse_type7\core\cpp\pheriphera
 
 c:\users\sato1\documents\git\mouse_type7_program\mouse_type7\core\cpp\component\inc\singleton.h:
 
-c:\users\sato1\documents\git\mouse_type7_program\mouse_type7\core\cpp\component\inc\controll.h:
+c:\users\sato1\documents\git\mouse_type7_program\mouse_type7\core\cpp\component\inc\controller.h:
 
 c:\users\sato1\documents\git\mouse_type7_program\mouse_type7\core\cpp\task\inc\run_typedef.h:
 
