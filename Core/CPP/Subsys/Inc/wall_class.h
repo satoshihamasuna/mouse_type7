@@ -44,7 +44,12 @@ class wall_class
 		t_wall_state get_WallState(t_position pos);
 };
 
-
-
+/*
+class wall_class_type7: public wall_class,public Singleton<wall_class_type7>
+{
+public:
+	wall_class_type7(IrSensTask *ir = &IrSensTask_type7::getInstance()):wall_class(ir){}
+};
+*/
 
 #endif /* CPP_INC_WALL_CLASS_H_ */

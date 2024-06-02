@@ -18,6 +18,7 @@
 
 #include "../../Task/Inc/ctrl_task.h"
 #include "../../Task/Inc/run_typedef.h"
+#include "../../Task/Inc/sensing_task.h"
 //#define DEBUG_MODE
 
 typedef enum
@@ -39,7 +40,7 @@ typedef struct
 	t_posDijkstra parent_pos;
 	uint16_t time;
 	t_direction dir;
-	t_run_pattern run_pt;
+	uint8_t run_pt;
 	t_bool determine;
 }t_element;
 
@@ -107,6 +108,7 @@ class calcRunTime
 		}
 };
 
+
 class Dijkstra:public calcRunTime
 {
 	private:
@@ -167,7 +169,12 @@ class Dijkstra:public calcRunTime
 		uint16_t diagonal_section_num(t_posDijkstra s_pos,t_posDijkstra e_pos,t_direction dir);
 };
 
-
-
+/*
+class Dijkstra_type7: public Dijkstra,public Singleton<Dijkstra_type7>
+{
+public:
+	Dijkstra_type7(wall_class *w = &wall_class_type7::getInstance()):Dijkstra(w){}
+};
+*/
 
 #endif /* CPP_INC_MAKE_PATH_H_ */

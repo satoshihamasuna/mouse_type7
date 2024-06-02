@@ -67,7 +67,7 @@ void LogData::indicate_data()
 		HAL_Delay(2);
 		printf("%4.4lf,%4.4lf,%4.4lf,%4.4lf,",
 				half_to_float(data[16][i]),half_to_float(data[17][i]),
-				half_to_float(data[18][i]),half_to_float(data[19][i]));
+				half_to_float(data[16][i]),half_to_float(data[17][i]));
 		HAL_Delay(2);
 		printf("\n");
 		HAL_Delay(2);
