@@ -202,6 +202,7 @@ void CtrlTask::motion_control()
 void CtrlTask::motion_post_control()
 {
 
+	// error process
 	if(motion_exeStatus_get() == execute && is_control_enable() == True)
 	{
 		if(motion_pattern_get() != motor_free)
@@ -212,6 +213,14 @@ void CtrlTask::motion_post_control()
 				if(ABS((vehicle->ego.velo.get() - vehicle->ideal.velo.get())) >= 2.0)
 				{
 					error_counter_set(error_counter_get() + 50);
+				}
+
+				if(vehicle->ideal.velo.get() >= 0.120f)
+				{
+					if(ABS((vehicle->ego.velo.get() - vehicle->ideal.velo.get()))/vehicle->ideal.velo.get() >= 0.80f )
+					{
+						error_counter_set(error_counter_get() + 50);
+					}
 				}
 
 				if(ABS(vehicle->ego.z_accel.get()) >= 30.0)
@@ -227,10 +236,18 @@ void CtrlTask::motion_post_control()
 				if(ABS(vehicle->V_l) > vehicle->battery.get())
 				{
 					error_counter_set(error_counter_get() + 5);
+					if(ABS(vehicle->V_l) > vehicle->battery.get()*1.5)
+					{
+						error_counter_set(error_counter_get() + 50);
+					}
 				}
-				if(ABS(vehicle->V_l) > vehicle->battery.get())
+				if(ABS(vehicle->V_r) > vehicle->battery.get())
 				{
 					error_counter_set(error_counter_get() + 5);
+					if(ABS(vehicle->V_r) > vehicle->battery.get()*1.5)
+					{
+						error_counter_set(error_counter_get() + 50);
+					}
 				}
 
 				if(error_flag == error_counter_get())

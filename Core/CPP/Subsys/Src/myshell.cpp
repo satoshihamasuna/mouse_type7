@@ -83,8 +83,8 @@ static int usrcmd_info(int argc, char **argv)
 static int usrcmd_disp(int argc, char **argv)
 {
     if (argc != 2) {
-    	printf("info maze\r\n");
-    	printf("info log\r\n");
+    	printf("disp maze\r\n");
+    	printf("disp log\r\n");
     	return 0;
     }
     if (ntlibc_strcmp(argv[1], "maze") == 0) {

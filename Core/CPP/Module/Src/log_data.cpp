@@ -22,8 +22,33 @@
 
 void LogData::indicate_data()
 {
+	printf("cnt,");
+	printf("%s,","ideal.velo");
+	printf("%s,","ego.velo");
+	printf("%s,","ideal.rad_velo");
+	printf("%s,","ego.rad_velo");
+	printf("%s,","ideal.length");
+	printf("%s,","ego.length");
+	printf("%s,","ideal.radian");
+	printf("%s,","ego.radian");
+
+	printf("%s,","V_r");
+	printf("%s,","V_l");
+	printf("%s,","sp_feedback");
+	printf("%s,","sp_feedforward");
+	printf("%s,","om_feedback");
+	printf("%s,","om_feedforward");
+
+	printf("%s,","sen_fl.distance");
+	printf("%s,","sen_fr.distance");
+	printf("%s,","sen_l.distance");
+	printf("%s,","sen_r.distance");
+
+	printf("\n");
 	for(int i = 0; i< 1000;i++)
 	{
+		printf("%d,",i);
+		HAL_Delay(2);
 		printf("%4.4lf,%4.4lf,%4.4lf,%4.4lf,",
 				half_to_float(data[0][i]),half_to_float(data[1][i]),
 				half_to_float(data[2][i]),half_to_float(data[3][i]));
@@ -32,9 +57,19 @@ void LogData::indicate_data()
 				half_to_float(data[4][i]),half_to_float(data[5][i]),
 				half_to_float(data[6][i]),half_to_float(data[7][i]));
 		HAL_Delay(2);
-		printf("%4.4lf,%4.4lf,%4.4lf,%4.4lf\n",
+		printf("%4.4lf,%4.4lf,%4.4lf,%4.4lf,",
 				half_to_float(data[8][i]),half_to_float(data[9][i]),
 				half_to_float(data[10][i]),half_to_float(data[11][i]));
+		HAL_Delay(2);
+		printf("%4.4lf,%4.4lf,%4.4lf,%4.4lf,",
+				half_to_float(data[12][i]),half_to_float(data[13][i]),
+				half_to_float(data[14][i]),half_to_float(data[15][i]));
+		HAL_Delay(2);
+		printf("%4.4lf,%4.4lf,%4.4lf,%4.4lf,",
+				half_to_float(data[16][i]),half_to_float(data[17][i]),
+				half_to_float(data[18][i]),half_to_float(data[19][i]));
+		HAL_Delay(2);
+		printf("\n");
 		HAL_Delay(2);
 	}
 }
@@ -52,6 +87,20 @@ void LogData::logging()
 		data[5][data_count%1000] =  float_to_half(Vehicle_type7::getInstance().ego.length.get());
 		data[6][data_count%1000] =  float_to_half(Vehicle_type7::getInstance().ideal.radian.get());
 		data[7][data_count%1000] =  float_to_half(Vehicle_type7::getInstance().ego.radian.get());
+
+		data[8][data_count%1000] =  float_to_half(Vehicle_type7::getInstance().V_r);
+		data[9][data_count%1000] =  float_to_half(Vehicle_type7::getInstance().V_l);
+		data[10][data_count%1000] =  float_to_half(Vehicle_type7::getInstance().sp_feedback.get());
+		data[11][data_count%1000] =  float_to_half(Vehicle_type7::getInstance().sp_feedforward.get());
+		data[12][data_count%1000] =  float_to_half(Vehicle_type7::getInstance().om_feedback.get());
+		data[13][data_count%1000] =  float_to_half(Vehicle_type7::getInstance().om_feedforward.get());
+
+		data[14][data_count%1000] =  float_to_half(IrSensTask_type7::getInstance().sen_fl.distance);
+		data[15][data_count%1000] =  float_to_half(IrSensTask_type7::getInstance().sen_fr.distance);
+		data[16][data_count%1000] =  float_to_half(IrSensTask_type7::getInstance().sen_l.distance);
+		data[17][data_count%1000] =  float_to_half(IrSensTask_type7::getInstance().sen_r.distance);
+
+
 		data_count++;
 		if(data_count >= data_size) data_count = data_size - 1;
 	}

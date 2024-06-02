@@ -229,9 +229,13 @@ void  Motion::SetIdeal_search_turn()
 void Motion::SetIdeal_straight()
 {
 	motion_state_set(STRAIGHT_STATE);
+	float offset = 0.0f;
+	if(motion_plan.max_velo.get() > motion_plan.end_velo.get())
+	{
+		offset = 10.0f;
+	}
 
-
-	if(motion_plan.length_deccel.get() < ( motion_plan.end_length.get() - vehicle->ego.length.get()))
+	if((motion_plan.length_deccel.get()+offset) < ( motion_plan.end_length.get() - vehicle->ego.length.get()))
 	{
 		//accel & constant velo running set up
 		vehicle->ideal.accel.set(motion_plan.accel.get());

@@ -522,7 +522,7 @@ void Dijkstra::run_Dijkstra(t_position start_pos,t_direction start_wallPos,t_pos
 			break;
 		}
 	}
-
+	log_enable();
 	motion->Motion_start();
 	motion->exe_Motion_straight(  16.10-3.0, straight_base_velo().param->acc, straight_base_velo().param->max_velo, straight_base_velo().param->max_velo);
 

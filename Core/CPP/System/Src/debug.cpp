@@ -81,6 +81,8 @@ namespace Mode
 			{
 				case ENABLE|0x00:
 				   if(irsens->IrSensor_Avg() > 2500){
+					      const static t_pid_gain debug_sp_gain = {16.0,0.1,0.2};
+					      const static t_pid_gain debug_om_gain = {0.60f, 0.01f, 0.00f};
 						  for(int i = 0;i < 11;i++)
 						  {
 							  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
@@ -90,7 +92,7 @@ namespace Mode
 						  motion->Motion_start();
 						  LogData::getInstance().data_count = 0;
 						  LogData::getInstance().log_enable = True;
-						  motion->Init_Motion_search_straight(90.0*3.0,6.0,0.3,0.0);
+						  motion->Init_Motion_straight(90.0*4.0,6.5,0.7,0.0,&debug_sp_gain,&debug_om_gain);
 						  motion->execute_Motion();
 
 						  LogData::getInstance().log_enable = False;
