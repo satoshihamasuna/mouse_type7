@@ -8,6 +8,7 @@
 #include "../../Pheripheral/Include/index.h"
 #include "../../Pheripheral/Include/macro.h"
 #include "../../Pheripheral/Include/typedef.h"
+
 //#include "../../Pheripheral/Include/interrupt.h"
 
 #include "../../Subsys/Inc/search_class.h"
@@ -38,6 +39,17 @@
 
 namespace Mode
 {
+
+	void indicate_error()
+	{
+		while(button_status() != True)
+		{
+			Indicate_LED(0xff);
+			HAL_Delay(80);
+			Indicate_LED(0x00);
+			HAL_Delay(80);
+		}
+	}
 
 	uint8_t Select(uint8_t _param,uint8_t max,t_encoder enc)
 	{
@@ -109,13 +121,25 @@ namespace Mode
 						}
 
 						Indicate_LED(mode|param);
-						//controll_task::getInstance().ct.speed_ctrl.Gain_Set(6.0, 0.05, 0.0);
-						//controll_task::getInstance().ct.omega_ctrl.Gain_Set(0.4, 0.05, 0.0);
 						KalmanFilter::getInstance().filter_init();
 						t_position return_pos = solve_maze.search_adachi_1_acc(start, goal, goal_size, &wall_data, &map_data,motion);
+						if(motion->motion_exeStatus_get() == error)
+						{
+							Mode::indicate_error();
+							enable = 0x00;
+							break;
+						}
+						motion->Motion_end();
 						write_save_data(&wall_data);
 						solve_maze.search_adachi_2_acc(return_pos, start, 1, &wall_data, &map_data,motion);
+						if(motion->motion_exeStatus_get() == error)
+						{
+							Mode::indicate_error();
+							enable = 0x00;
+							break;
+						}
 						write_save_data(&wall_data);
+						motion->Motion_end();
 						enable = 0x00;
 					}
 					break;
@@ -130,8 +154,20 @@ namespace Mode
 						Indicate_LED(mode|param);
 						KalmanFilter::getInstance().filter_init();
 						t_position return_pos = solve_maze.search_adachi_1(start, goal, goal_size, &wall_data, &map_data,motion);
+						if(motion->motion_exeStatus_get() == error)
+						{
+							Mode::indicate_error();
+							enable = 0x00;
+							break;
+						}
 						write_save_data(&wall_data);
 						solve_maze.search_adachi_1(return_pos, start, 1, &wall_data, &map_data,motion);
+						if(motion->motion_exeStatus_get() == error)
+						{
+							Mode::indicate_error();
+							enable = 0x00;
+							break;
+						}
 						write_save_data(&wall_data);
 						enable = 0x00;
 					}
@@ -147,8 +183,20 @@ namespace Mode
 						Indicate_LED(mode|param);
 						KalmanFilter::getInstance().filter_init();
 						t_position return_pos = solve_maze.search_adachi_3_acc(start, goal, goal_size, &wall_data, &map_data,motion);
+						if(motion->motion_exeStatus_get() == error)
+						{
+							Mode::indicate_error();
+							enable = 0x00;
+							break;
+						}
 						write_save_data(&wall_data);
 						solve_maze.search_adachi_2_acc(return_pos, start, 1, &wall_data, &map_data,motion);
+						if(motion->motion_exeStatus_get() == error)
+						{
+							Mode::indicate_error();
+							enable = 0x00;
+							break;
+						}
 						write_save_data(&wall_data);
 						enable = 0x00;
 					}
@@ -164,8 +212,20 @@ namespace Mode
 						Indicate_LED(mode|param);
 						KalmanFilter::getInstance().filter_init();
 						t_position return_pos = solve_maze.search_adachi_3_acc(start, goal, goal_size, &wall_data, &map_data,motion);
+						if(motion->motion_exeStatus_get() == error)
+						{
+							Mode::indicate_error();
+							enable = 0x00;
+							break;
+						}
 						write_save_data(&wall_data);
 						solve_maze.search_adachi_3_acc(return_pos, start, 1, &wall_data, &map_data,motion);
+						if(motion->motion_exeStatus_get() == error)
+						{
+							Mode::indicate_error();
+							enable = 0x00;
+							break;
+						}
 						write_save_data(&wall_data);
 						enable = 0x00;
 					}
@@ -188,6 +248,13 @@ namespace Mode
 															st_mode_500_v0, (int)(sizeof(st_mode_500_v0)/sizeof(t_straight_param *const)),
 															di_mode_500_v0, (int)(sizeof(di_mode_500_v0)/sizeof(t_straight_param *const)), mode_500,motion);
 
+
+						if(motion->motion_exeStatus_get() == error)
+						{
+							Mode::indicate_error();
+							enable = 0x00;
+							break;
+						}
 						enable = 0x00;
 					}
 					break;
@@ -217,6 +284,12 @@ namespace Mode
 															st_mode_1000_v0, (int)(sizeof(st_mode_1000_v0)/sizeof(t_straight_param *const)),
 															di_mode_1000_v0, (int)(sizeof(di_mode_1000_v0)/sizeof(t_straight_param *const)), mode_1000,motion);
 
+						if(motion->motion_exeStatus_get() == error)
+						{
+							Mode::indicate_error();
+							enable = 0x00;
+							break;
+						}
 						enable = 0x00;
 					}
 					break;
@@ -234,6 +307,12 @@ namespace Mode
 															st_mode_1000_v1, (int)(sizeof(st_mode_1000_v1)/sizeof(t_straight_param *const)),
 															di_mode_1000_v1, (int)(sizeof(di_mode_1000_v1)/sizeof(t_straight_param *const)), mode_1000,motion);
 
+						if(motion->motion_exeStatus_get() == error)
+						{
+							Mode::indicate_error();
+							enable = 0x00;
+							break;
+						}
 						enable = 0x00;
 					}
 					break;
@@ -251,6 +330,12 @@ namespace Mode
 															st_mode_1200_v0, (int)(sizeof(st_mode_1200_v0)/sizeof(t_straight_param *const)),
 															di_mode_1200_v0, (int)(sizeof(di_mode_1200_v0)/sizeof(t_straight_param *const)), mode_1200,motion);
 
+						if(motion->motion_exeStatus_get() == error)
+						{
+							Mode::indicate_error();
+							enable = 0x00;
+							break;
+						}
 						enable = 0x00;
 					}
 					break;
@@ -268,7 +353,12 @@ namespace Mode
 						run_path.run_Dijkstra_suction(		start, Dir_None, goal, MAZE_GOAL_SIZE,700,
 															st_mode_1400_v0, (int)(sizeof(st_mode_1400_v0)/sizeof(t_straight_param *const)),
 															di_mode_1400_v0, (int)(sizeof(di_mode_1400_v0)/sizeof(t_straight_param *const)), mode_1400,motion);
-
+						if(motion->motion_exeStatus_get() == error)
+						{
+							Mode::indicate_error();
+							enable = 0x00;
+							break;
+						}
 						enable = 0x00;
 					}
 					break;
@@ -287,6 +377,12 @@ namespace Mode
 															st_mode_1400_v1, (int)(sizeof(st_mode_1400_v1)/sizeof(t_straight_param *const)),
 															di_mode_1400_v1, (int)(sizeof(di_mode_1400_v1)/sizeof(t_straight_param *const)), mode_1400,motion);
 
+						if(motion->motion_exeStatus_get() == error)
+						{
+							Mode::indicate_error();
+							enable = 0x00;
+							break;
+						}
 						enable = 0x00;
 					}
 					break;
@@ -305,6 +401,12 @@ namespace Mode
 															st_mode_1500_v0, (int)(sizeof(st_mode_1500_v0)/sizeof(t_straight_param *const)),
 															di_mode_1500_v0, (int)(sizeof(di_mode_1500_v0)/sizeof(t_straight_param *const)), mode_1500,motion);
 
+						if(motion->motion_exeStatus_get() == error)
+						{
+							Mode::indicate_error();
+							enable = 0x00;
+							break;
+						}
 						enable = 0x00;
 					}
 					break;

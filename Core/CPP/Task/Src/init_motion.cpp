@@ -28,7 +28,7 @@ void Motion::Motion_end()
 	vehicle->ideal_initialize();
 	motion_disable_set();
 	motion_pattern_set(No_run);
-	motion_exeStatus_set(complete);
+	//motion_exeStatus_set(complete);
 	motion_state_set(NOP_STATE);
 	run_time_ms_reset();
 	run_time_limit_ms_reset();
@@ -106,7 +106,6 @@ void Motion::Init_Motion_search_straight(float len_target,float acc,float max_sp
 		Motion_error_handling();
 		return;
 	}
-
 	motion_plan.velo.set				(vehicle->ideal.velo.get());
 	motion_plan.max_velo.set			(max_sp);
 	motion_plan.end_velo.set			(end_sp);
@@ -126,11 +125,17 @@ void Motion::Init_Motion_search_straight(float len_target,float acc,float max_sp
 	motion_plan.turn_state.init		();
 	motion_plan.turn_time_ms.init		();
 
-	//Set control gain & turn_param
+	//Set control gain
 	straight_motion_param.sp_gain = sp_gain;
 	straight_motion_param.om_gain = om_gain;
 	turn_motion_param.sp_gain = sp_gain;
 	turn_motion_param.om_gain = om_gain;
+
+
+	vehicle->Vehicle_controller.speed_ctrl.Gain_Set(*straight_motion_param.sp_gain);
+	vehicle->Vehicle_controller.omega_ctrl.Gain_Set(*straight_motion_param.om_gain);
+	vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
+	vehicle->Vehicle_controller.omega_ctrl.I_param_reset();
 
 	vehicle->ego_integral_init();
 	vehicle->ideal_integral_init();
@@ -140,6 +145,8 @@ void Motion::Init_Motion_search_straight(float len_target,float acc,float max_sp
 	motion_state_set(STRAIGHT_STATE);
 	run_time_ms_reset();
 	run_time_limit_ms_reset();
+
+	ir_sens->Division_Wall_Correction_Reset();
 
 	error_counter_reset();
 
@@ -309,10 +316,10 @@ void Motion::Init_Motion_pivot_turn	(float rad_target,float rad_acc,float rad_ve
 
 	motion_plan.rad_accel.set		(rad_acc);
 	motion_plan.rad_deccel.set		(-rad_acc);
-	motion_plan.rad_max_velo.set		(rad_velo);
+	motion_plan.rad_max_velo.set	(rad_velo);
 	motion_plan.end_radian.set		(rad_target);
-	motion_plan.radian_accel.init	();//check
-	motion_plan.radian_deccel.init	();//check
+	motion_plan.radian_accel.set	(rad_velo*rad_velo/ABS(2.0*motion_plan.rad_accel.get()));
+	motion_plan.radian_deccel.set	(rad_velo*rad_velo/ABS(2.0*motion_plan.rad_accel.get()));
 	motion_plan.turn_r_min.set		(0.0f);
 	motion_plan.turn_state.init			();//check
 	motion_plan.turn_time_ms.init		();

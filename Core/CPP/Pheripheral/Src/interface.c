@@ -50,3 +50,16 @@ void Mode_Disable()
 	is_mode_enable = DISABLE;
 }
 
+t_bool button_status()
+{
+	t_bool button_status = False;
+	if(HAL_GPIO_ReadPin(Button_GPIO_Port, Button_Pin) == GPIO_PIN_SET)
+	{
+		button_status = True;
+	}
+	else
+	{
+		button_status = False;
+	}
+	return button_status;
+}

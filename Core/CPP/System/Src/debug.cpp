@@ -90,7 +90,9 @@ namespace Mode
 						  motion->Motion_start();
 						  LogData::getInstance().data_count = 0;
 						  LogData::getInstance().log_enable = True;
-						  motion->exe_Motion_straight( 90.0*3.0,6.0,0.3,0.0);
+						  motion->Init_Motion_search_straight(90.0*3.0,6.0,0.3,0.0);
+						  motion->execute_Motion();
+
 						  LogData::getInstance().log_enable = False;
 						  motion->Motion_end();
 						  enable = 0x00;

@@ -40,7 +40,7 @@ typedef struct{
 }t_straight_param;
 
 
-const static t_pid_gain basic_sp_gain = {20.0,0.04,0.0};
+const static t_pid_gain basic_sp_gain = {12.0,0.04,0.0};
 const static t_pid_gain basic_om_gain = {0.60f, 0.01f, 0.00f};
 
 

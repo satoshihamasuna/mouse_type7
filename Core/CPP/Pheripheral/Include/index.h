@@ -38,6 +38,8 @@ void Mode_Change_ENC();
 void Mode_Init();
 void Mode_Disable();
 uint8_t Mode_State();
+t_bool button_status();
+
 
 //imu
 uint8_t read_byte(uint8_t reg);

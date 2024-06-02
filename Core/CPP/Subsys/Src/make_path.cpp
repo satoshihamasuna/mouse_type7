@@ -20,6 +20,19 @@
 
 #define DIJKSTRA_MAX_TIME (65535-1)
 
+
+void log_enable()
+{
+	  LogData::getInstance().data_count = 0;
+	  LogData::getInstance().log_enable = True;
+}
+
+void log_disable()
+{
+	  LogData::getInstance().data_count = 0;
+	  LogData::getInstance().log_enable = False;
+}
+
 t_posDijkstra Dijkstra::conv_t_pos2t_posDijkstra(t_position pos,t_direction wall_pos)
 {
 	t_posDijkstra position;
@@ -594,7 +607,16 @@ void Dijkstra::run_Dijkstra(t_position start_pos,t_direction start_wallPos,t_pos
 				break;
 		}
 		//while(controll_task::getInstance().run_task !=No_run);
+		if(motion->motion_exeStatus_get() == error)
+		{
+			break;
+		}
 	}
+	log_disable();
+	motion->Motion_end();
+	HAL_Delay(200);
+	FAN_Motor_SetDuty(0);;
+	HAL_Delay(200);
 }
 
 void Dijkstra::run_Dijkstra_suction(t_position start_pos,t_direction start_wallPos,t_position goal_pos,uint8_t goal_size,int suction,
@@ -632,8 +654,7 @@ void Dijkstra::run_Dijkstra_suction(t_position start_pos,t_direction start_wallP
 	}
 	motion->execute_Motion();
 	motion->Motion_start();
-	LogData::getInstance().data_count = 0;
-	LogData::getInstance().log_enable = True;
+	log_enable();
 	motion->exe_Motion_straight(  16.10-3.0, straight_base_velo().param->acc, straight_base_velo().param->max_velo, straight_base_velo().param->max_velo);
 
 	uint16_t section_count = 0;
@@ -717,9 +738,15 @@ void Dijkstra::run_Dijkstra_suction(t_position start_pos,t_direction start_wallP
 				break;
 		}
 		//while(controll_task::getInstance().run_task !=No_run);
-
+		if(motion->motion_exeStatus_get() == error)
+		{
+			break;
+		}
 	}
-	  HAL_Delay(200);
-	  FAN_Motor_SetDuty(0);;
-	  HAL_Delay(200);
+
+	log_disable();
+	motion->Motion_end();
+	HAL_Delay(200);
+	FAN_Motor_SetDuty(0);;
+	HAL_Delay(200);
 }

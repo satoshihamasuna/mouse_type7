@@ -105,7 +105,7 @@ class Motion
 
 		void SetIdeal_free_rotation_set	( );
 
-		void SetIdeal_wall_control();
+		void SetIdeal_wall_control  ();
 
 
 		//set & get status

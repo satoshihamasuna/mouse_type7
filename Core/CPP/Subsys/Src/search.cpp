@@ -241,6 +241,8 @@ t_position Search::search_adachi(	t_position start_pos,t_position goal_pos,int g
 
 	int direction;
 
+	motion->Motion_start();
+
 	switch(search_priority)
 	{
 		case priority_first:
@@ -312,9 +314,13 @@ t_position Search::search_adachi(	t_position start_pos,t_position goal_pos,int g
 		}
 		my_position = tmp_my_pos;
 	}
-	_wall->set_wall(my_position);
-	motion->exe_Motion_straight( 45.0, search_st_param->param->acc, search_st_param->param->max_velo, 0.0f);
+	if(motion->motion_exeStatus_get() != error)
+	{
+		_wall->set_wall(my_position);
+		motion->exe_Motion_straight( 45.0, search_st_param->param->acc, search_st_param->param->max_velo, 0.0f);
+	}
 	HAL_Delay(100);
+	motion->Motion_end();
 	return my_position;
 }
 
@@ -331,6 +337,8 @@ t_position Search::search_adachi_acc(	t_position start_pos,t_position goal_pos,i
 	update_map(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01,_map);
 
 	KalmanFilter::getInstance().filter_init();
+
+	motion->Motion_start();
 
 	int direction;
 	switch(search_priority)
@@ -440,9 +448,13 @@ t_position Search::search_adachi_acc(	t_position start_pos,t_position goal_pos,i
 		}
 		my_position = tmp_my_pos;
 	}
-	_wall->set_wall(my_position);
-	motion->exe_Motion_straight( 45.0, search_st_param->param->acc, search_st_param->param->max_velo, 0.0f);
+	if(motion->motion_exeStatus_get() != error)
+	{
+		_wall->set_wall(my_position);
+		motion->exe_Motion_straight( 45.0, search_st_param->param->acc, search_st_param->param->max_velo, 0.0f);
+	}
 	HAL_Delay(100);
+	motion->Motion_end();
 	return my_position;
 }
 

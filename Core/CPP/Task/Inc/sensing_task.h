@@ -58,6 +58,29 @@ class IrSensTask
 		void EnableIrSensStraight()		{	EnableIrSens();		IrSensorReferenceSet(STRAIGHT_REF);	}
 		void EnableIrSensDiagonal()		{	EnableIrSens();		IrSensorReferenceSet(DIAGONAL_REF);	}
 		int16_t IrSensor_Avg();
+		t_bool Division_Wall_Correction()
+		{
+			t_bool flag = False;
+			if(sen_r.is_wall == False && r_check == True && wall_correction == False)
+			{
+				flag = True;
+				wall_correction = True;
+			}
+			if(sen_l.is_wall == False && l_check == True && wall_correction == False)
+			{
+				flag = True;
+				wall_correction = True;
+			}
+
+			r_check = sen_r.is_wall;l_check = sen_l.is_wall;
+			if(flag ==  True) Indicate_LED(0xff|Return_LED_Status());
+			return flag;
+		}
+		void Division_Wall_Correction_Reset()
+		{
+			Indicate_LED(0x00);
+			r_check = l_check = wall_correction = False;
+		}
 };
 
 class IrSensTask_type7: public IrSensTask,public Singleton<IrSensTask_type7>
