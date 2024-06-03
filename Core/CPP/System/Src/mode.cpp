@@ -74,7 +74,6 @@ namespace Mode
 		uint8_t enable = 0x00;
 		uint32_t time = Interrupt::getInstance().return_time_count();
 
-		ring_queue<1024,t_MapNode> maze_q;
 
 		Motion *motion = &(CtrlTask_type7::getInstance());
 		IrSensTask *irsens = (CtrlTask_type7::getInstance().return_irObj());
@@ -82,6 +81,8 @@ namespace Mode
 		Search solve_maze;
 		wall_class wall_data(irsens);
 		wall_data.init_maze();
+
+		ring_queue<1024,t_MapNode> maze_q;
 		make_map map_data(&wall_data,&maze_q);
 		Dijkstra run_path(&wall_data);
 
