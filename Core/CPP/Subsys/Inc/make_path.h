@@ -30,18 +30,18 @@ typedef enum
 
 typedef struct
 {
-	uint8_t x;
-	uint8_t y;
-	t_DijkstraWallPos NodePos;
+	uint8_t x:6;
+	uint8_t y:6;
+	t_DijkstraWallPos NodePos:2;
 }t_posDijkstra;
 
 typedef struct
 {
 	t_posDijkstra parent_pos;
 	uint16_t time;
-	t_direction dir;
-	uint8_t run_pt;
-	t_bool determine;
+	t_direction dir:4;
+	uint8_t run_pt:5;
+	t_bool determine:1;
 }t_element;
 
 typedef struct
@@ -107,7 +107,6 @@ class calcRunTime
 
 		}
 };
-
 
 class Dijkstra:public calcRunTime
 {

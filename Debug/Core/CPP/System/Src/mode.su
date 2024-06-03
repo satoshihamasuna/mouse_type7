@@ -15,13 +15,13 @@ search_class.h:63:14:t_position Search::search_adachi_1_acc(t_position, t_positi
 search_class.h:81:14:t_position Search::search_adachi_2_acc(t_position, t_position, int, wall_class*, make_map*, Motion*)	48	static
 search_class.h:98:14:t_position Search::search_adachi_3_acc(t_position, t_position, int, wall_class*, make_map*, Motion*)	48	static
 make_path.h:94:3:calcRunTime::calcRunTime()	16	static
-make_path.h:146:3:Dijkstra::Dijkstra(wall_class*)	16	static
+make_path.h:145:3:Dijkstra::Dijkstra(wall_class*)	16	static
 path_follow.h:34:8:void path_follow_class::set_path_follow_gain(float, float)	24	static
 interrupt.h:32:12:uint32_t Interrupt::return_time_count()	16	static
 mode.cpp:43:7:void Mode::indicate_error()	8	static
 mode.cpp:54:10:uint8_t Mode::Select(uint8_t, uint8_t, t_encoder)	24	static
 search_class.h:24:7:Search::Search()	16	static
-mode.cpp:69:7:void Mode::Demo()	45704	static
+mode.cpp:69:7:void Mode::Demo()	30344	static
 mode.cpp:453:7:void Mode::Select_Mode()	448	static
 controller.h:19:7:constexpr PID_Controller::PID_Controller()	16	static
 controller.h:37:7:constexpr mouse_Controller::mouse_Controller()	16	static

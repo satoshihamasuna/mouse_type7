@@ -14,8 +14,8 @@
 #include "wall_class.h"
 
 typedef struct{
-	int16_t st_x;
-	int16_t st_y;
+	uint8_t st_x;
+	uint8_t st_y;
 	int16_t cost;
 	int16_t cost_h;
 }t_MapNode;
