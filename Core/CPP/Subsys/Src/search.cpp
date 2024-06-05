@@ -336,8 +336,6 @@ t_position Search::search_adachi_acc(	t_position start_pos,t_position goal_pos,i
 	_map->init_map(goal_pos.x, goal_pos.y, goal_size);
 	update_map(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01,_map);
 
-	KalmanFilter::getInstance().filter_init();
-
 	motion->Motion_start();
 
 	int direction;

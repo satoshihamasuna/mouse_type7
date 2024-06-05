@@ -122,7 +122,7 @@ namespace Mode
 						}
 
 						Indicate_LED(mode|param);
-						KalmanFilter::getInstance().filter_init();
+
 						t_position return_pos = solve_maze.search_adachi_1_acc(start, goal, goal_size, &wall_data, &map_data,motion);
 						if(motion->motion_exeStatus_get() == error)
 						{
@@ -153,7 +153,7 @@ namespace Mode
 						}
 
 						Indicate_LED(mode|param);
-						KalmanFilter::getInstance().filter_init();
+
 						t_position return_pos = solve_maze.search_adachi_1(start, goal, goal_size, &wall_data, &map_data,motion);
 						if(motion->motion_exeStatus_get() == error)
 						{
@@ -182,7 +182,7 @@ namespace Mode
 						}
 
 						Indicate_LED(mode|param);
-						KalmanFilter::getInstance().filter_init();
+
 						t_position return_pos = solve_maze.search_adachi_3_acc(start, goal, goal_size, &wall_data, &map_data,motion);
 						if(motion->motion_exeStatus_get() == error)
 						{
@@ -211,7 +211,7 @@ namespace Mode
 						}
 
 						Indicate_LED(mode|param);
-						KalmanFilter::getInstance().filter_init();
+
 						t_position return_pos = solve_maze.search_adachi_3_acc(start, goal, goal_size, &wall_data, &map_data,motion);
 						if(motion->motion_exeStatus_get() == error)
 						{
@@ -243,7 +243,7 @@ namespace Mode
 							(i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
 							HAL_Delay(50);
 						}
-				  		KalmanFilter::getInstance().filter_init();
+
 				  		run_path.turn_time_set(mode_1000);
 						run_path.run_Dijkstra(		start, Dir_None, goal,MAZE_GOAL_SIZE,
 															st_mode_500_v0, (int)(sizeof(st_mode_500_v0)/sizeof(t_straight_param *const)),
@@ -279,7 +279,7 @@ namespace Mode
 							(i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
 							HAL_Delay(50);
 						}
-				  		KalmanFilter::getInstance().filter_init();
+
 				  		run_path.turn_time_set(mode_1000);
 						run_path.run_Dijkstra_suction(		start, Dir_None, goal,MAZE_GOAL_SIZE,600,
 															st_mode_1000_v0, (int)(sizeof(st_mode_1000_v0)/sizeof(t_straight_param *const)),
@@ -302,7 +302,7 @@ namespace Mode
 							(i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
 							HAL_Delay(50);
 						}
-				  		KalmanFilter::getInstance().filter_init();
+
 				  		run_path.turn_time_set(mode_1000);
 						run_path.run_Dijkstra_suction(		start, Dir_None, goal, MAZE_GOAL_SIZE,600,
 															st_mode_1000_v1, (int)(sizeof(st_mode_1000_v1)/sizeof(t_straight_param *const)),
@@ -325,7 +325,7 @@ namespace Mode
 							(i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
 							HAL_Delay(50);
 						}
-				  		KalmanFilter::getInstance().filter_init();
+
 				  		run_path.turn_time_set(mode_1200);
 						run_path.run_Dijkstra_suction(		start, Dir_None, goal, MAZE_GOAL_SIZE,600,
 															st_mode_1200_v0, (int)(sizeof(st_mode_1200_v0)/sizeof(t_straight_param *const)),
@@ -349,7 +349,7 @@ namespace Mode
 							HAL_Delay(50);
 						}
 
-				  		KalmanFilter::getInstance().filter_init();
+
 				  		run_path.turn_time_set(mode_1400);
 						run_path.run_Dijkstra_suction(		start, Dir_None, goal, MAZE_GOAL_SIZE,700,
 															st_mode_1400_v0, (int)(sizeof(st_mode_1400_v0)/sizeof(t_straight_param *const)),
@@ -372,7 +372,7 @@ namespace Mode
 							HAL_Delay(50);
 						}
 
-				  		KalmanFilter::getInstance().filter_init();
+
 				  		run_path.turn_time_set(mode_1400);
 						run_path.run_Dijkstra_suction(		start, Dir_None, goal, MAZE_GOAL_SIZE,700,
 															st_mode_1400_v1, (int)(sizeof(st_mode_1400_v1)/sizeof(t_straight_param *const)),
@@ -396,7 +396,7 @@ namespace Mode
 							HAL_Delay(50);
 						}
 
-				  		KalmanFilter::getInstance().filter_init();
+
 				  		run_path.turn_time_set(mode_1400);
 						run_path.run_Dijkstra_suction(		start, Dir_None, goal, MAZE_GOAL_SIZE,700,
 															st_mode_1500_v0, (int)(sizeof(st_mode_1500_v0)/sizeof(t_straight_param *const)),
@@ -473,16 +473,12 @@ namespace Mode
 					break;
 				case ENABLE|0x02:
 					//Mode::Debug(&st_param_700,mode_700,0);
-				Mode::Debug(&st_param_1200,mode_1200,500);
+					Mode::Debug(&st_param_1200,mode_1200,500);
 				    Mode::Debug(&st_param_1400_acc2G,mode_1400,500);
 					Mode::Debug(&st_param_1500_acc2G,mode_1500,500);
 					enable = 0;
 					break;
 				case ENABLE|0x03:
-				    //Mode::Debug2(&st_param_1200,mode_1200,500);
-				    //Mode::Debug2(&st_param_1400_acc2G,mode_1400,500);
-					//Mode::Debug2(&st_param_1500_acc2G,mode_1500,500);
-					//Mode::Debug2(&st_param_700,mode_700,0);
 					Myshell_Initialize();
 					Myshell_Execute();
 					enable = 0;

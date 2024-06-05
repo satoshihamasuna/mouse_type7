@@ -8,11 +8,15 @@
 #include "core/ntshell.h"
 #include "core/ntlibc.h"
 #include "util/ntopt.h"
+#include "../Inc/myshell.h"
 #include "../../Module/Inc/communicate.h"
 #include "../../Module/Inc/log_data.h"
-#include "../Inc/myshell.h"
-#include <stdio.h>
 #include "../../Pheripheral/Include/typedef.h"
+#include "../../Task/Inc/sensing_task.h"
+#include "../../Task/Inc/ctrl_task.h"
+#include "../../Params/run_param.h"
+
+#include <stdio.h>
 
 typedef int (*USRCMDFUNC)(int argc, char **argv);
 
@@ -26,6 +30,7 @@ static int usrcmd_help(int argc, char **argv);
 static int usrcmd_info(int argc, char **argv);
 static int usrcmd_disp(int argc, char **argv);
 static int usrcmd_end(int argc, char **argv);
+static int usrcmd_debug(int argc, char **argv);
 
 typedef struct {
 	const char *cmd;
@@ -37,7 +42,8 @@ static const cmd_table_t cmdlist[] = {
     { "help", "This is a description text string for help command.", usrcmd_help },
     { "info", "This is a description text string for info command.", usrcmd_info },
 	{ "disp", "This is a description text string for disp command.", usrcmd_disp },
-	{ "end", "This is a description text string for end command.", usrcmd_end },
+	{ "end",  "This is a description text string for end command.", usrcmd_end },
+	{ "debug","This is a description text string for debug command.", usrcmd_debug },
 };
 
 static ntshell_t nts;
@@ -108,6 +114,79 @@ static int usrcmd_end(int argc, char **argv)
     if (ntlibc_strcmp(argv[1], "exe") == 0) {
     	shell_end_flag = True;
     	printf("shell_end!\r\n");
+        return 0;
+    }
+
+    printf("Unknown sub command found\r\n");
+    return -1;
+}
+
+static int usrcmd_debug(int argc, char **argv)
+{
+	static t_pid_gain debug_sp_gain = {12.0,0.04,0.0};
+	static t_pid_gain debug_om_gain = {0.60f, 0.01f, 0.00f};
+
+	Motion *motion = &(CtrlTask_type7::getInstance());
+	IrSensTask *irsens = (CtrlTask_type7::getInstance().return_irObj());
+
+    if (argc != 2) {
+    	printf("debug exe\r\n");
+    	printf("debug om_params\r\n");
+    	printf("debug sp_params\r\n");
+    	return 0;
+    }
+    if (ntlibc_strcmp(argv[1], "om_params") == 0)
+    {
+    	printf("Kp->%.3lf,Ki->%.3lf,Kd->%.3lf\n",debug_om_gain.Kp,debug_om_gain.Ki,debug_om_gain.Kd);
+    	printf("y/n?");
+    	unsigned char c = 'n';
+    	scanf("%c",&c);
+    	if(c == 'y')
+    	{
+    		float tmp;
+    		printf("Kp->");scanf("%f",&tmp);debug_om_gain.Kp = tmp;
+    		printf("Ki->");scanf("%f",&tmp);debug_om_gain.Ki = tmp;
+    		printf("Kd->");scanf("%f",&tmp);debug_om_gain.Kd = tmp;
+    	}
+        return 0;
+    }
+    if (ntlibc_strcmp(argv[1], "sp_params") == 0)
+    {
+    	printf("Kp->%.3lf,Ki->%.3lf,Kd->%.3lf\n",debug_sp_gain.Kp,debug_sp_gain.Ki,debug_sp_gain.Kd);
+    	printf("y/n?");
+    	unsigned char c = 'n';
+    	scanf("%c",&c);
+    	if(c == 'y')
+    	{
+    		float tmp;
+    		printf("Kp->");scanf("%f",&tmp);debug_sp_gain.Kp = tmp;
+    		printf("Ki->");scanf("%f",&tmp);debug_sp_gain.Ki = tmp;
+    		printf("Kd->");scanf("%f",&tmp);debug_sp_gain.Kd = tmp;
+    	}
+    	return 0;
+    }
+    if (ntlibc_strcmp(argv[1], "exe") == 0) {
+    	printf("execute!\r\n");
+    	for(int i = 0;irsens->IrSensor_Avg() < 2500;i++)
+    	{
+			(i%2 == 0) ? Indicate_LED(0xff):Indicate_LED(0x00|0x00);
+			HAL_Delay(200);
+    	}
+
+    	for(int i = 0;i < 21;i++)
+		{
+			(i%2 == 0) ? Indicate_LED(0xff):Indicate_LED(0x00|0x00);
+			HAL_Delay(50);
+		}
+		motion->Motion_start();
+		LogData::getInstance().data_count = 0;
+		LogData::getInstance().log_enable = True;
+		motion->Init_Motion_straight(90.0*4.0,6.5,0.7,0.0,&debug_sp_gain,&debug_om_gain);
+		motion->execute_Motion();
+
+		LogData::getInstance().log_enable = False;
+		motion->Motion_end();
+		HAL_Delay(500);
         return 0;
     }
     printf("Unknown sub command found\r\n");
@@ -191,8 +270,7 @@ void Myshell_Execute( void )
 		unsigned char ch;
 		func_read((char *)&ch, sizeof(ch), (&nts)->extobj);
 		vtrecv_execute(&((&nts)->vtrecv), &ch, sizeof(ch));
-		//ntshell_execute(&nts);
-		//ntshell_execute(&nts);
+
 	}
 }
 
