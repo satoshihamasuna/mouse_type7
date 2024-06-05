@@ -138,30 +138,34 @@ static int usrcmd_debug(int argc, char **argv)
     if (ntlibc_strcmp(argv[1], "om_params") == 0)
     {
     	printf("Kp->%.3lf,Ki->%.3lf,Kd->%.3lf\n",debug_om_gain.Kp,debug_om_gain.Ki,debug_om_gain.Kd);
-    	printf("y/n?");
+    	printf("y/n?->");
     	unsigned char c = 'n';
     	scanf("%c",&c);
+    	printf("%c\n",c);
     	if(c == 'y')
     	{
     		float tmp;
-    		printf("Kp->");scanf("%f",&tmp);debug_om_gain.Kp = tmp;
-    		printf("Ki->");scanf("%f",&tmp);debug_om_gain.Ki = tmp;
-    		printf("Kd->");scanf("%f",&tmp);debug_om_gain.Kd = tmp;
+    		printf("Kp->");scanf("%f",&tmp);debug_om_gain.Kp = tmp;printf("%.3f\n",tmp);
+    		printf("Ki->");scanf("%f",&tmp);debug_om_gain.Ki = tmp;printf("%.3f\n",tmp);
+    		printf("Kd->");scanf("%f",&tmp);debug_om_gain.Kd = tmp;printf("%.3f\n",tmp);
+    		printf("Kp->%.3lf,Ki->%.3lf,Kd->%.3lf\n",debug_om_gain.Kp,debug_om_gain.Ki,debug_om_gain.Kd);
     	}
         return 0;
     }
     if (ntlibc_strcmp(argv[1], "sp_params") == 0)
     {
     	printf("Kp->%.3lf,Ki->%.3lf,Kd->%.3lf\n",debug_sp_gain.Kp,debug_sp_gain.Ki,debug_sp_gain.Kd);
-    	printf("y/n?");
+    	printf("y/n?->");
     	unsigned char c = 'n';
     	scanf("%c",&c);
+    	printf("%c\n",c);
     	if(c == 'y')
     	{
     		float tmp;
-    		printf("Kp->");scanf("%f",&tmp);debug_sp_gain.Kp = tmp;
-    		printf("Ki->");scanf("%f",&tmp);debug_sp_gain.Ki = tmp;
-    		printf("Kd->");scanf("%f",&tmp);debug_sp_gain.Kd = tmp;
+    		printf("Kp->");scanf("%f",&tmp);debug_sp_gain.Kp = tmp;printf("%.3f\n",tmp);
+    		printf("Ki->");scanf("%f",&tmp);debug_sp_gain.Ki = tmp;printf("%.3f\n",tmp);
+    		printf("Kd->");scanf("%f",&tmp);debug_sp_gain.Kd = tmp;printf("%.3f\n",tmp);
+    		printf("Kp->%.3lf,Ki->%.3lf,Kd->%.3lf\n",debug_sp_gain.Kp,debug_sp_gain.Ki,debug_sp_gain.Kd);
     	}
     	return 0;
     }
