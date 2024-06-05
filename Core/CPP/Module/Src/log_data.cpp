@@ -44,6 +44,17 @@ void LogData::indicate_data()
 	printf("%s,","sen_l.distance");
 	printf("%s,","sen_r.distance");
 
+	printf("%s,","ego.x_point");
+	printf("%s,","ideal.x_point");
+	printf("%s,","ego.turn_x");
+	printf("%s,","ideal.turn_x");
+	printf("%s,","ego.turn_y");
+	printf("%s,","ideal.turn_y");
+	printf("%s,","ego.turn_slip_theta");
+	printf("%s,","ideal.turn_slip_theta");
+	printf("%s,","ego.turn_slip_dot");
+	printf("%s,","ideal.turn_slip_dot");
+
 	printf("\n");
 	for(int i = 0; i< 1000;i++)
 	{
@@ -67,7 +78,18 @@ void LogData::indicate_data()
 		HAL_Delay(2);
 		printf("%4.4lf,%4.4lf,%4.4lf,%4.4lf,",
 				half_to_float(data[16][i]),half_to_float(data[17][i]),
-				half_to_float(data[16][i]),half_to_float(data[17][i]));
+				half_to_float(data[18][i]),half_to_float(data[19][i]));
+		HAL_Delay(2);
+		printf("%4.4lf,%4.4lf,%4.4lf,%4.4lf,",
+				half_to_float(data[20][i]),half_to_float(data[21][i]),
+				half_to_float(data[22][i]),half_to_float(data[23][i]));
+		HAL_Delay(2);
+		printf("%4.4lf,%4.4lf,%4.4lf,%4.4lf,",
+				half_to_float(data[24][i]),half_to_float(data[25][i]),
+				half_to_float(data[26][i]),half_to_float(data[27][i]));
+		HAL_Delay(2);
+		printf("%4.4lf,%4.4lf,",
+				half_to_float(data[28][i]),half_to_float(data[29][i]));
 		HAL_Delay(2);
 		printf("\n");
 		HAL_Delay(2);
@@ -100,6 +122,32 @@ void LogData::logging()
 		data[16][data_count%1000] =  float_to_half(IrSensTask_type7::getInstance().sen_l.distance);
 		data[17][data_count%1000] =  float_to_half(IrSensTask_type7::getInstance().sen_r.distance);
 
+		if(mode == 0)
+		{
+			data[18][data_count%1000] =  float_to_half(Vehicle_type7::getInstance().ego.x_point.get());
+			data[19][data_count%1000] =  float_to_half(Vehicle_type7::getInstance().ideal.x_point.get());
+			data[20][data_count%1000] =  float_to_half(Vehicle_type7::getInstance().ego.turn_x.get());
+			data[21][data_count%1000] =  float_to_half(Vehicle_type7::getInstance().ideal.turn_x.get());
+			data[22][data_count%1000] =  float_to_half(Vehicle_type7::getInstance().ego.turn_y.get());
+			data[23][data_count%1000] =  float_to_half(Vehicle_type7::getInstance().ideal.turn_y.get());
+			data[24][data_count%1000] =  float_to_half(Vehicle_type7::getInstance().ego.turn_slip_theta.get());
+			data[25][data_count%1000] =  float_to_half(Vehicle_type7::getInstance().ideal.turn_slip_theta.get());
+			data[26][data_count%1000] =  float_to_half(Vehicle_type7::getInstance().ego.turn_slip_dot.get());
+			data[27][data_count%1000] =  float_to_half(Vehicle_type7::getInstance().ideal.turn_slip_dot.get());
+		}
+		else if(mode == 1)
+		{
+			data[18][data_count%1000] =  float_to_half(Vehicle_type7::getInstance().ego.x_point.get());
+			data[19][data_count%1000] =  float_to_half(Vehicle_type7::getInstance().ideal.x_point.get());
+			data[20][data_count%1000] =  float_to_half(Vehicle_type7::getInstance().ego.turn_x.get());
+			data[21][data_count%1000] =  float_to_half(Vehicle_type7::getInstance().ideal.turn_x.get());
+			data[22][data_count%1000] =  float_to_half(Vehicle_type7::getInstance().ego.turn_y.get());
+			data[23][data_count%1000] =  float_to_half(Vehicle_type7::getInstance().ideal.turn_y.get());
+			data[24][data_count%1000] =  float_to_half(Vehicle_type7::getInstance().ego.turn_slip_theta.get());
+			data[25][data_count%1000] =  float_to_half(Vehicle_type7::getInstance().ideal.turn_slip_theta.get());
+			data[26][data_count%1000] =  float_to_half(Vehicle_type7::getInstance().ego.turn_slip_dot.get());
+			data[27][data_count%1000] =  float_to_half(Vehicle_type7::getInstance().ideal.turn_slip_dot.get());
+		}
 
 		data_count++;
 		if(data_count >= data_size) data_count = data_size - 1;
