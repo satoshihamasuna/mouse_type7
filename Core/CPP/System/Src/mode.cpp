@@ -15,7 +15,7 @@
 #include "../../Subsys/Inc/make_map_class.h"
 #include "../../Subsys/Inc/wall_class.h"
 #include "../../Subsys/Inc/make_path.h"
-#include "../../Subsys/Inc/myshell.h"
+#include "../Inc/myshell.h"
 
 #include "../../Component/Inc/controller.h"
 #include "../../Component/Inc/Kalman_filter.h"
