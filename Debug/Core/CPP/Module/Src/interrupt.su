@@ -6,9 +6,9 @@ vehicle.h:172:16:virtual void Vehicle::motorSetDuty_r(int)	16	static
 vehicle.h:181:7:virtual void Vehicle_type7::motorSetDuty_l(int)	16	static
 vehicle.h:187:7:virtual void Vehicle_type7::motorSetDuty_r(int)	16	static
 sensing_task.h:89:8:virtual void IrSensTask_type7::IrSensorSet()	16	static
-ctrl_task.h:144:3:Motion::Motion(Vehicle*, IrSensTask*, int)	24	static
-ctrl_task.h:251:3:CtrlTask::CtrlTask(Vehicle*, IrSensTask*, int)	24	static
-ctrl_task.h:269:3:CtrlTask_type7::CtrlTask_type7(Vehicle*, IrSensTask*)	24	static
+ctrl_task.h:152:3:Motion::Motion(Vehicle*, IrSensTask*, int)	24	static
+ctrl_task.h:259:3:CtrlTask::CtrlTask(Vehicle*, IrSensTask*, int)	24	static
+ctrl_task.h:277:3:CtrlTask_type7::CtrlTask_type7(Vehicle*, IrSensTask*)	24	static
 interrupt.cpp:25:6:void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef*)	16	static
 interrupt.cpp:34:6:void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef*)	16	static
 interrupt.cpp:42:6:void Interrupt_Initialize()	4	static

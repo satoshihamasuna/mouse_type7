@@ -5,15 +5,15 @@ vehicle.h:181:7:virtual void Vehicle_type7::motorSetDuty_l(int)	16	static
 vehicle.h:187:7:virtual void Vehicle_type7::motorSetDuty_r(int)	16	static
 sensing_task.h:89:8:virtual void IrSensTask_type7::IrSensorSet()	16	static
 gthr-default.h:229:1:int __gthread_key_delete(__gthread_key_t)	16	static
-ctrl_task.h:144:3:Motion::Motion(Vehicle*, IrSensTask*, int)	24	static
-ctrl_task.h:153:24:t_exeStatus Motion::motion_exeStatus_get()	16	static
-ctrl_task.h:178:22:t_exeStatus Motion::execute_Motion()	16	static
-ctrl_task.h:202:22:t_exeStatus Motion::exe_Motion_pivot_turn(float, float, float, const t_pid_gain*, const t_pid_gain*)	32	static
-ctrl_task.h:209:22:t_exeStatus Motion::exe_Motion_fix_wall(float, const t_pid_gain*, const t_pid_gain*)	24	static
-ctrl_task.h:237:12:Vehicle* Motion::return_vehicleObj()	16	static
-ctrl_task.h:238:15:IrSensTask* Motion::return_irObj()	16	static
-ctrl_task.h:251:3:CtrlTask::CtrlTask(Vehicle*, IrSensTask*, int)	24	static
-ctrl_task.h:269:3:CtrlTask_type7::CtrlTask_type7(Vehicle*, IrSensTask*)	24	static
+ctrl_task.h:152:3:Motion::Motion(Vehicle*, IrSensTask*, int)	24	static
+ctrl_task.h:161:24:t_exeStatus Motion::motion_exeStatus_get()	16	static
+ctrl_task.h:186:22:t_exeStatus Motion::execute_Motion()	16	static
+ctrl_task.h:210:22:t_exeStatus Motion::exe_Motion_pivot_turn(float, float, float, const t_pid_gain*, const t_pid_gain*)	32	static
+ctrl_task.h:217:22:t_exeStatus Motion::exe_Motion_fix_wall(float, const t_pid_gain*, const t_pid_gain*)	24	static
+ctrl_task.h:245:12:Vehicle* Motion::return_vehicleObj()	16	static
+ctrl_task.h:246:15:IrSensTask* Motion::return_irObj()	16	static
+ctrl_task.h:259:3:CtrlTask::CtrlTask(Vehicle*, IrSensTask*, int)	24	static
+ctrl_task.h:277:3:CtrlTask_type7::CtrlTask_type7(Vehicle*, IrSensTask*)	24	static
 interrupt.h:32:12:uint32_t Interrupt::return_time_count()	16	static
 interface_check.cpp:43:7:void Mode::Interface_Check()	856	static
 controller.h:19:7:constexpr PID_Controller::PID_Controller()	16	static

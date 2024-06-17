@@ -9,6 +9,9 @@
 #include "../Inc/run_typedef.h"
 #include "../../Params/turn_table.h"
 
+const float detect_wall_edge_st = 10.0f;
+const float detect_wall_edge_di = 10.0f;
+
 float get_turn_table_value(float time_period_ms,float time_ms)
 {
 	float turn_table_value = 0.0f;
@@ -148,7 +151,7 @@ void  Motion::SetIdeal_search_turn()
 	if(motion_plan.turn_state.get() == Prev_Turn)
 	{
 		motion_state_set(STRAIGHT_STATE);
-		if(vehicle->ego.length.get() <= turn_motion_param.param->Lstart)
+		if(vehicle->ego.length.get() <= (turn_motion_param.param->Lstart + motion_plan.fix_prev_run.get()))
 		{
 
 		}
@@ -193,7 +196,7 @@ void  Motion::SetIdeal_search_turn()
 	if(motion_plan.turn_state.get() == Post_Turn)
 	{
 		motion_state_set(STRAIGHT_STATE);
-		if(vehicle->ego.length.get() <= turn_motion_param.param->Lend)
+		if(vehicle->ego.length.get() <= (turn_motion_param.param->Lend + motion_plan.fix_post_run.get()))
 		{
 
 		}
@@ -461,7 +464,10 @@ void Motion::SetIdeal_turn_in		( )
 		motion_state_set(STRAIGHT_STATE);
 		if(vehicle->ego.length.get() <= turn_motion_param.param->Lstart)
 		{
-
+			if(ir_sens->Division_Wall_Correction() == True)
+			{
+				vehicle->ego.length.set((vehicle->ego.length.get() + detect_wall_edge_st)/2.0f);
+			}
 		}
 		else
 		{
@@ -544,7 +550,10 @@ void Motion::SetIdeal_turn_out		( ){
 		motion_state_set(DIAGONAL_STATE);
 		if(vehicle->ego.length.get() <= turn_motion_param.param->Lstart)
 		{
-
+			if(ir_sens->Division_Wall_Correction() == True)
+			{
+				vehicle->ego.length.set((vehicle->ego.length.get() + detect_wall_edge_di)/2.0f);
+			}
 		}
 		else
 		{
@@ -628,7 +637,10 @@ void Motion::SetIdeal_long_turn		( )
 		motion_state_set(STRAIGHT_STATE);
 		if(vehicle->ego.length.get() <= turn_motion_param.param->Lstart)
 		{
-
+			if(ir_sens->Division_Wall_Correction() == True)
+			{
+				vehicle->ego.length.set((vehicle->ego.length.get() + detect_wall_edge_st)/2.0f);
+			}
 		}
 		else
 		{
@@ -712,7 +724,10 @@ void Motion::SetIdeal_turn_v90		( )
 		motion_state_set(DIAGONAL_STATE);
 		if(vehicle->ego.length.get() <= turn_motion_param.param->Lstart)
 		{
-
+			if(ir_sens->Division_Wall_Correction() == True)
+			{
+				vehicle->ego.length.set((vehicle->ego.length.get() + detect_wall_edge_di)/2.0f);
+			}
 		}
 		else
 		{

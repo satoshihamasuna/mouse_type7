@@ -185,6 +185,27 @@ void Motion::Init_Motion_search_turn	(const t_param *turn_param,const t_pid_gain
 	straight_motion_param.om_gain = om_gain;
 	turn_motion_param = *turn_param;
 
+	motion_plan.fix_prev_run.init();
+	motion_plan.fix_post_run.init();
+	if(turn_motion_param.param->turn_dir == Turn_L)
+	{
+		if(ir_sens->sen_r.is_wall == True)
+			motion_plan.fix_post_run.set(45.0 - ir_sens->sen_r.distance);
+	}
+	else if(turn_motion_param.param->turn_dir  == Turn_R)
+	{
+		if(ir_sens->sen_l.is_wall == True)
+			motion_plan.fix_post_run.set(45.0 - ir_sens->sen_l.distance);
+	}
+
+	if(ir_sens->sen_fr.is_wall == True && ir_sens->sen_fl.is_wall == True)
+	{
+		float avg_distance = (ir_sens->sen_fr.distance + ir_sens->sen_fl.distance)/2.0f;
+		//if(ABS(90.0 - avg_distance) < 5.0)
+		motion_plan.fix_prev_run.set((-1.0)*(90.0 - avg_distance));
+	}
+
+
 	vehicle->ego_integral_init();
 	vehicle->ideal_integral_init();
 
@@ -193,6 +214,8 @@ void Motion::Init_Motion_search_turn	(const t_param *turn_param,const t_pid_gain
 	motion_state_set(STRAIGHT_STATE);
 	run_time_ms_reset();
 	run_time_limit_ms_reset();
+
+	ir_sens->Division_Wall_Correction_Reset();
 
 	error_counter_reset();
 
@@ -245,6 +268,8 @@ void Motion::Init_Motion_straight		(float len_target,float acc,float max_sp,floa
 	run_time_ms_reset();
 	run_time_limit_ms_reset();
 
+	ir_sens->Division_Wall_Correction_Reset();
+
 	error_counter_reset();
 
 }
@@ -294,6 +319,8 @@ void Motion::Init_Motion_diagonal		(float len_target,float acc,float max_sp,floa
 	motion_state_set(DIAGONAL_STATE);
 	run_time_ms_reset();
 	run_time_limit_ms_reset();
+
+	ir_sens->Division_Wall_Correction_Reset();
 
 	error_counter_reset();
 }
@@ -345,6 +372,8 @@ void Motion::Init_Motion_pivot_turn	(float rad_target,float rad_acc,float rad_ve
 	run_time_ms_reset();
 	run_time_limit_ms_reset();
 
+	ir_sens->Division_Wall_Correction_Reset();
+
 	error_counter_reset();
 }
 
@@ -374,6 +403,9 @@ void Motion::Init_Motion_turn_in		(const t_param *turn_param,t_run_pattern run_p
 	motion_plan.turn_state.set			(Prev_Turn);
 	motion_plan.turn_time_ms.set		( ABS(DEG2RAD(turn_param->param->degree)/(accel_Integral*motion_plan.rad_max_velo.get()))*1000.0f);
 
+	motion_plan.fix_prev_run.init();
+	motion_plan.fix_post_run.init();
+
 	//Set control gain & turn_param
 	turn_motion_param = *turn_param;
 	straight_motion_param.sp_gain = sp_gain;
@@ -392,6 +424,8 @@ void Motion::Init_Motion_turn_in		(const t_param *turn_param,t_run_pattern run_p
 	motion_state_set(STRAIGHT_STATE);
 	run_time_ms_reset();
 	run_time_limit_ms_reset();
+
+	ir_sens->Division_Wall_Correction_Reset();
 
 	error_counter_reset();
 }
@@ -422,6 +456,9 @@ void Motion::Init_Motion_turn_out		(const t_param *turn_param,t_run_pattern run_
 	motion_plan.turn_state.set		(Prev_Turn);
 	motion_plan.turn_time_ms.set		( ABS(DEG2RAD(turn_param->param->degree)/(accel_Integral*motion_plan.rad_max_velo.get()))*1000.0f);
 
+	motion_plan.fix_prev_run.init();
+	motion_plan.fix_post_run.init();
+
 	//Set control gain & turn_param
 	turn_motion_param = *turn_param;
 	straight_motion_param.sp_gain = sp_gain;
@@ -440,6 +477,8 @@ void Motion::Init_Motion_turn_out		(const t_param *turn_param,t_run_pattern run_
 	motion_state_set(DIAGONAL_STATE);
 	run_time_ms_reset();
 	run_time_limit_ms_reset();
+
+	ir_sens->Division_Wall_Correction_Reset();
 
 	error_counter_reset();
 }
@@ -470,6 +509,9 @@ void Motion::Init_Motion_long_turn	(const t_param *turn_param,t_run_pattern run_
 	motion_plan.turn_state.set		(Prev_Turn);
 	motion_plan.turn_time_ms.set		( ABS(DEG2RAD(turn_param->param->degree)/(accel_Integral*motion_plan.rad_max_velo.get()))*1000.0f);
 
+	motion_plan.fix_prev_run.init();
+	motion_plan.fix_post_run.init();
+
 	//Set control gain & turn_param
 	turn_motion_param = *turn_param;
 	straight_motion_param.sp_gain = sp_gain;
@@ -488,6 +530,8 @@ void Motion::Init_Motion_long_turn	(const t_param *turn_param,t_run_pattern run_
 	motion_state_set(STRAIGHT_STATE);
 	run_time_ms_reset();
 	run_time_limit_ms_reset();
+
+	ir_sens->Division_Wall_Correction_Reset();
 
 	error_counter_reset();
 }
@@ -518,6 +562,9 @@ void Motion::Init_Motion_turn_v90		(const t_param *turn_param,t_run_pattern run_
 	motion_plan.turn_state.set		(Prev_Turn);
 	motion_plan.turn_time_ms.set		( ABS(DEG2RAD(turn_param->param->degree)/(accel_Integral*motion_plan.rad_max_velo.get()))*1000.0f);
 
+	motion_plan.fix_prev_run.init();
+	motion_plan.fix_post_run.init();
+
 	//Set control gain & turn_param
 	turn_motion_param = *turn_param;
 	straight_motion_param.sp_gain = sp_gain;
@@ -536,6 +583,8 @@ void Motion::Init_Motion_turn_v90		(const t_param *turn_param,t_run_pattern run_
 	motion_state_set(DIAGONAL_STATE);
 	run_time_ms_reset();
 	run_time_limit_ms_reset();
+
+	ir_sens->Division_Wall_Correction_Reset();
 
 	error_counter_reset();
 }
@@ -585,6 +634,8 @@ void Motion::Init_Motion_fix_wall		(float set_time,const t_pid_gain *sp_gain  ,c
 	motion_state_set(BRAKE_STATE);
 	run_time_ms_reset();
 	run_time_limit_ms_set(set_time);
+
+	ir_sens->Division_Wall_Correction_Reset();
 
 	error_counter_reset();
 }

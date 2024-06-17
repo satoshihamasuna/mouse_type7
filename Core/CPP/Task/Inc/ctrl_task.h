@@ -35,6 +35,8 @@ struct motion_plan_params
 		param_element radian_accel;
 		param_element radian_deccel;
 		param_element turn_r_min;
+		param_element fix_post_run;
+		param_element fix_prev_run;
 		turn_dir_element turn_state;
 		param_element turn_time_ms;
 };
@@ -55,6 +57,12 @@ typedef enum
 	BRAKE_STATE		= 5,
 }t_runStatus;
 
+typedef struct{
+	t_turn_param_table * param;
+	t_pid_gain * sp_gain;
+	t_pid_gain * om_gain;
+}t_turn_motion_param;
+
 class Motion
 {
 	private:
@@ -65,7 +73,7 @@ class Motion
 		t_bool				is_motion_enable	= False;
 
 		//define motion parameter
-		t_param 			turn_motion_param;
+	    t_param			turn_motion_param;
 		t_straight_param 	straight_motion_param;
 		motion_plan_params    motion_plan;
 
