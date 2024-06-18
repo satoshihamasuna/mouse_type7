@@ -19,6 +19,7 @@
 #include "../../Pheripheral/Include/typedef.h"
 #include "../../Pheripheral/Include/index.h"
 
+
 t_wall_state IrSensTask::conv_Sensin2Wall(t_sensor_dir sens_dir)
 {
 	switch(sens_dir){
@@ -197,7 +198,8 @@ void IrSensTask::IrSensorWallSet()
 	//need to update
 	if(isEnableIrSens == True)
 	{
-		if(wall_ref >= STRAIGHT_REF)
+
+		if(irsens_motion == STRAIGHT_IRSENS || irsens_motion == DIAGONAL_IRSENS)
 		{
 			sen_r.control_th = (sen_r.control_cnt > 10) ? SIDE_THRESHOLD: wall_ref;
 			sen_l.control_th = (sen_l.control_cnt > 10) ? SIDE_THRESHOLD: wall_ref;
@@ -211,7 +213,7 @@ void IrSensTask::IrSensorWallSet()
 		sen_r.is_control 	= (sen_r.is_wall == True && sen_r.distance <= sen_r.control_th)? True:False;
 		sen_l.is_control 	= (sen_l.is_wall == True && sen_l.distance <= sen_l.control_th)? True:False;
 
-		if(wall_ref >= STRAIGHT_REF)
+		if(irsens_motion == STRAIGHT_IRSENS || irsens_motion == DIAGONAL_IRSENS)
 		{
 			sen_r.is_control 	= (sen_fr.distance > SIDE_THRESHOLD+10.0)? sen_r.is_control:False;
 			sen_l.is_control 	= (sen_fl.distance > SIDE_THRESHOLD+10.0)? sen_l.is_control:False;
@@ -222,8 +224,21 @@ void IrSensTask::IrSensorWallSet()
 			sen_l.is_control 	= (sen_fl.distance <= 80.0)? False:sen_l.is_control;
 		}
 
+
 		sen_r.error	= (sen_r.is_control == True) ? sen_r.distance - wall_ref : 0.0;
 		sen_l.error	= (sen_l.is_control == True) ? sen_l.distance - wall_ref : 0.0;
+
+		if(irsens_motion == STRAIGHT_IRSENS)
+		{
+			sen_r.error	= sen_r.error;
+			sen_l.error	= sen_l.error;
+
+		}
+		if(irsens_motion == DIAGONAL_IRSENS)
+		{
+			sen_r.error	= (sen_r.error	<= 0.0f) ? sen_r.error : 0.0;
+			sen_l.error	= (sen_l.error	<= 0.0f) ? sen_l.error : 0.0;
+		}
 	}
 	else
 	{

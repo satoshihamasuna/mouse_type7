@@ -5,7 +5,7 @@ vehicle.h:168:16:virtual void Vehicle::motorSetDuty_l(int)	16	static
 vehicle.h:172:16:virtual void Vehicle::motorSetDuty_r(int)	16	static
 vehicle.h:181:7:virtual void Vehicle_type7::motorSetDuty_l(int)	16	static
 vehicle.h:187:7:virtual void Vehicle_type7::motorSetDuty_r(int)	16	static
-sensing_task.h:89:8:virtual void IrSensTask_type7::IrSensorSet()	16	static
+sensing_task.h:99:8:virtual void IrSensTask_type7::IrSensorSet()	16	static
 ctrl_task.h:152:3:Motion::Motion(Vehicle*, IrSensTask*, int)	24	static
 ctrl_task.h:259:3:CtrlTask::CtrlTask(Vehicle*, IrSensTask*, int)	24	static
 ctrl_task.h:277:3:CtrlTask_type7::CtrlTask_type7(Vehicle*, IrSensTask*)	24	static
@@ -20,8 +20,8 @@ controller.h:37:7:constexpr mouse_Controller::mouse_Controller()	16	static
 vehicle.h:90:7:Vehicle::Vehicle()	16	static
 vehicle.h:179:7:Vehicle_type7::Vehicle_type7()	16	static
 singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = Vehicle_type7]	8	static
-sensing_task.h:36:7:IrSensTask::IrSensTask()	16	static
-sensing_task.h:86:7:IrSensTask_type7::IrSensTask_type7()	16	static
+sensing_task.h:43:7:IrSensTask::IrSensTask()	16	static
+sensing_task.h:96:7:IrSensTask_type7::IrSensTask_type7()	16	static
 singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = IrSensTask_type7]	8	static
 singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = Interrupt]	4	static
 singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = CtrlTask_type7]	16	static

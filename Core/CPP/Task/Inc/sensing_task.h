@@ -33,6 +33,13 @@ typedef struct{
 }t_sensor;
 
 
+typedef enum
+{
+	STRAIGHT_IRSENS = 0,
+	DIAGONAL_IRSENS = 1,
+	TURN_IRSENS		= 2,
+}t_irsens_motion;
+
 class IrSensTask
 {
 	private:
@@ -44,19 +51,22 @@ class IrSensTask
 		float IrSensor_Irradiance(int16_t value);
 		float	 wall_ref = STRAIGHT_REF;
 		t_bool	 isEnableIrSens = False;
+		t_irsens_motion irsens_motion;
 	public:
 		t_sensor sen_fr,sen_fl,sen_r,sen_l;
 		t_bool 	 r_check,l_check,wall_correction;
 		t_wall_state conv_Sensin2Wall(t_sensor_dir sens_dir);
 		virtual 		void IrSensorSet();
+		void IrSensMotion_Set(t_irsens_motion _irsens_motion){irsens_motion = _irsens_motion;	}
+
 		void IrSensorReferenceSet(float ref_value);
 		void IrSensorDistanceSet();
 		void IrSensorWallSet();
 		void SetWallControl_RadVelo(Vehicle *vehicle,float delta_tms);
 		inline void EnableIrSens()		{isEnableIrSens = True;}
 		inline void DisableIrSens()			{isEnableIrSens = False;}
-		void EnableIrSensStraight()		{	EnableIrSens();		IrSensorReferenceSet(STRAIGHT_REF);	}
-		void EnableIrSensDiagonal()		{	EnableIrSens();		IrSensorReferenceSet(DIAGONAL_REF);	}
+		void EnableIrSensStraight()		{	EnableIrSens();		IrSensMotion_Set(STRAIGHT_IRSENS);	IrSensorReferenceSet(STRAIGHT_REF);	}
+		void EnableIrSensDiagonal()		{	EnableIrSens();		IrSensMotion_Set(DIAGONAL_IRSENS);	IrSensorReferenceSet(DIAGONAL_REF);	}
 		int16_t IrSensor_Avg();
 		t_bool Division_Wall_Correction()
 		{

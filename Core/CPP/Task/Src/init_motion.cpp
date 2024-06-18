@@ -146,6 +146,7 @@ void Motion::Init_Motion_search_straight(float len_target,float acc,float max_sp
 	run_time_ms_reset();
 	run_time_limit_ms_reset();
 
+	ir_sens->EnableIrSensStraight();
 	ir_sens->Division_Wall_Correction_Reset();
 
 	error_counter_reset();
@@ -215,6 +216,7 @@ void Motion::Init_Motion_search_turn	(const t_param *turn_param,const t_pid_gain
 	run_time_ms_reset();
 	run_time_limit_ms_reset();
 
+	ir_sens->EnableIrSensStraight();
 	ir_sens->Division_Wall_Correction_Reset();
 
 	error_counter_reset();
@@ -268,6 +270,7 @@ void Motion::Init_Motion_straight		(float len_target,float acc,float max_sp,floa
 	run_time_ms_reset();
 	run_time_limit_ms_reset();
 
+	ir_sens->EnableIrSensStraight();
 	ir_sens->Division_Wall_Correction_Reset();
 
 	error_counter_reset();
@@ -320,6 +323,7 @@ void Motion::Init_Motion_diagonal		(float len_target,float acc,float max_sp,floa
 	run_time_ms_reset();
 	run_time_limit_ms_reset();
 
+	ir_sens->EnableIrSensDiagonal();
 	ir_sens->Division_Wall_Correction_Reset();
 
 	error_counter_reset();
@@ -372,6 +376,7 @@ void Motion::Init_Motion_pivot_turn	(float rad_target,float rad_acc,float rad_ve
 	run_time_ms_reset();
 	run_time_limit_ms_reset();
 
+	ir_sens->EnableIrSensStraight();
 	ir_sens->Division_Wall_Correction_Reset();
 
 	error_counter_reset();
@@ -478,6 +483,7 @@ void Motion::Init_Motion_turn_out		(const t_param *turn_param,t_run_pattern run_
 	run_time_ms_reset();
 	run_time_limit_ms_reset();
 
+	ir_sens->EnableIrSensStraight();
 	ir_sens->Division_Wall_Correction_Reset();
 
 	error_counter_reset();
@@ -531,6 +537,7 @@ void Motion::Init_Motion_long_turn	(const t_param *turn_param,t_run_pattern run_
 	run_time_ms_reset();
 	run_time_limit_ms_reset();
 
+	ir_sens->EnableIrSensStraight();
 	ir_sens->Division_Wall_Correction_Reset();
 
 	error_counter_reset();
@@ -584,6 +591,7 @@ void Motion::Init_Motion_turn_v90		(const t_param *turn_param,t_run_pattern run_
 	run_time_ms_reset();
 	run_time_limit_ms_reset();
 
+	ir_sens->EnableIrSensStraight();
 	ir_sens->Division_Wall_Correction_Reset();
 
 	error_counter_reset();
@@ -635,6 +643,7 @@ void Motion::Init_Motion_fix_wall		(float set_time,const t_pid_gain *sp_gain  ,c
 	run_time_ms_reset();
 	run_time_limit_ms_set(set_time);
 
+	ir_sens->EnableIrSensStraight();
 	ir_sens->Division_Wall_Correction_Reset();
 
 	error_counter_reset();
