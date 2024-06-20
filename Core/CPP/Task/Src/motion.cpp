@@ -159,6 +159,10 @@ void  Motion::SetIdeal_search_turn()
 		{
 			motion_plan.turn_state.set(turn_motion_param.param->turn_dir);
 			turn_start_time_ms = run_time_ms_get();
+			vehicle->Vehicle_controller.speed_ctrl.Gain_Set(*turn_motion_param.sp_gain);
+			vehicle->Vehicle_controller.omega_ctrl.Gain_Set(*turn_motion_param.om_gain);
+			//vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
+			//vehicle->Vehicle_controller.omega_ctrl.I_param_reset();
 		}
 	}
 
@@ -190,6 +194,11 @@ void  Motion::SetIdeal_search_turn()
 
 			motion_plan.turn_state.set(Post_Turn);
 			turn_start_time_ms = 0.0f;
+
+			vehicle->Vehicle_controller.speed_ctrl.Gain_Set(*straight_motion_param.sp_gain);
+			vehicle->Vehicle_controller.omega_ctrl.Gain_Set(*straight_motion_param.om_gain);
+			//vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
+			//vehicle->Vehicle_controller.omega_ctrl.I_param_reset();
 		}
 	}
 
@@ -473,6 +482,10 @@ void Motion::SetIdeal_turn_in		( )
 		{
 			motion_plan.turn_state.set(turn_motion_param.param->turn_dir);
 			turn_start_time_ms = run_time_ms_get();
+			vehicle->Vehicle_controller.speed_ctrl.Gain_Set(*turn_motion_param.sp_gain);
+			vehicle->Vehicle_controller.omega_ctrl.Gain_Set(*turn_motion_param.om_gain);
+			//vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
+			//vehicle->Vehicle_controller.omega_ctrl.I_param_reset();
 		}
 	}
 
@@ -504,6 +517,11 @@ void Motion::SetIdeal_turn_in		( )
 
 			motion_plan.turn_state.set(Post_Turn);
 			turn_start_time_ms = 0.0f;
+
+			vehicle->Vehicle_controller.speed_ctrl.Gain_Set(*straight_motion_param.sp_gain);
+			vehicle->Vehicle_controller.omega_ctrl.Gain_Set(*straight_motion_param.om_gain);
+			//vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
+			//vehicle->Vehicle_controller.omega_ctrl.I_param_reset();
 		}
 	}
 
@@ -559,6 +577,10 @@ void Motion::SetIdeal_turn_out		( ){
 		{
 			motion_plan.turn_state.set(turn_motion_param.param->turn_dir);
 			turn_start_time_ms = run_time_ms_get();
+			vehicle->Vehicle_controller.speed_ctrl.Gain_Set(*turn_motion_param.sp_gain);
+			vehicle->Vehicle_controller.omega_ctrl.Gain_Set(*turn_motion_param.om_gain);
+			//vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
+			//vehicle->Vehicle_controller.omega_ctrl.I_param_reset();
 		}
 	}
 
@@ -590,6 +612,11 @@ void Motion::SetIdeal_turn_out		( ){
 
 			motion_plan.turn_state.set(Post_Turn);
 			turn_start_time_ms = 0.0f;
+
+			vehicle->Vehicle_controller.speed_ctrl.Gain_Set(*straight_motion_param.sp_gain);
+			vehicle->Vehicle_controller.omega_ctrl.Gain_Set(*straight_motion_param.om_gain);
+			//vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
+			//vehicle->Vehicle_controller.omega_ctrl.I_param_reset();
 		}
 	}
 
@@ -646,6 +673,10 @@ void Motion::SetIdeal_long_turn		( )
 		{
 			motion_plan.turn_state.set(turn_motion_param.param->turn_dir);
 			turn_start_time_ms = run_time_ms_get();
+			vehicle->Vehicle_controller.speed_ctrl.Gain_Set(*turn_motion_param.sp_gain);
+			vehicle->Vehicle_controller.omega_ctrl.Gain_Set(*turn_motion_param.om_gain);
+			//vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
+			vehicle->Vehicle_controller.omega_ctrl.I_param_reset();
 		}
 	}
 
@@ -677,6 +708,11 @@ void Motion::SetIdeal_long_turn		( )
 
 			motion_plan.turn_state.set(Post_Turn);
 			turn_start_time_ms = 0.0f;
+
+			vehicle->Vehicle_controller.speed_ctrl.Gain_Set(*straight_motion_param.sp_gain);
+			vehicle->Vehicle_controller.omega_ctrl.Gain_Set(*straight_motion_param.om_gain);
+			//vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
+			//vehicle->Vehicle_controller.omega_ctrl.I_param_reset();
 		}
 	}
 
@@ -733,6 +769,10 @@ void Motion::SetIdeal_turn_v90		( )
 		{
 			motion_plan.turn_state.set(turn_motion_param.param->turn_dir);
 			turn_start_time_ms = run_time_ms_get();
+			vehicle->Vehicle_controller.speed_ctrl.Gain_Set(*turn_motion_param.sp_gain);
+			vehicle->Vehicle_controller.omega_ctrl.Gain_Set(*turn_motion_param.om_gain);
+			//vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
+			//vehicle->Vehicle_controller.omega_ctrl.I_param_reset();
 		}
 	}
 
@@ -764,6 +804,11 @@ void Motion::SetIdeal_turn_v90		( )
 
 			motion_plan.turn_state.set(Post_Turn);
 			turn_start_time_ms = 0.0f;
+
+			vehicle->Vehicle_controller.speed_ctrl.Gain_Set(*straight_motion_param.sp_gain);
+			vehicle->Vehicle_controller.omega_ctrl.Gain_Set(*straight_motion_param.om_gain);
+			//vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
+			//vehicle->Vehicle_controller.omega_ctrl.I_param_reset();
 		}
 	}
 
@@ -947,6 +992,8 @@ void Motion::SetIdeal_stop_brake	( )
 		vehicle->ego.turn_y.set(0.0f);
 		vehicle->ideal.turn_x.set(0.0f);
 		vehicle->ideal.turn_y.set(0.0f);
+		vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
+		vehicle->Vehicle_controller.omega_ctrl.I_param_reset();
 		//Init_Motion_stop_brake(200);
 		motion_exeStatus_set(complete);
 		motion_state_set(NOP_STATE);
@@ -986,6 +1033,8 @@ void Motion::SetIdeal_free_rotation_set	()
 		vehicle->ego.turn_y.set(0.0f);
 		vehicle->ideal.turn_x.set(0.0f);
 		vehicle->ideal.turn_y.set(0.0f);
+		vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
+		vehicle->Vehicle_controller.omega_ctrl.I_param_reset();
 		motion_exeStatus_set(complete);
 	}
 

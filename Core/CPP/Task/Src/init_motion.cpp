@@ -20,6 +20,8 @@ void Motion::Motion_start()
 	motion_state_set(NOP_STATE);
 	run_time_ms_reset();
 	run_time_limit_ms_reset();
+	vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
+	vehicle->Vehicle_controller.omega_ctrl.I_param_reset();
 }
 
 void Motion::Motion_end()
@@ -32,6 +34,8 @@ void Motion::Motion_end()
 	motion_state_set(NOP_STATE);
 	run_time_ms_reset();
 	run_time_limit_ms_reset();
+	vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
+	vehicle->Vehicle_controller.omega_ctrl.I_param_reset();
 }
 
 void Motion::Motion_error_handling()
@@ -134,7 +138,7 @@ void Motion::Init_Motion_search_straight(float len_target,float acc,float max_sp
 
 	vehicle->Vehicle_controller.speed_ctrl.Gain_Set(*straight_motion_param.sp_gain);
 	vehicle->Vehicle_controller.omega_ctrl.Gain_Set(*straight_motion_param.om_gain);
-	vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
+	//vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
 	vehicle->Vehicle_controller.omega_ctrl.I_param_reset();
 
 	vehicle->ego_integral_init();
@@ -185,6 +189,12 @@ void Motion::Init_Motion_search_turn	(const t_param *turn_param,const t_pid_gain
 	straight_motion_param.sp_gain = sp_gain;
 	straight_motion_param.om_gain = om_gain;
 	turn_motion_param = *turn_param;
+
+	vehicle->Vehicle_controller.speed_ctrl.Gain_Set(*straight_motion_param.sp_gain);
+	vehicle->Vehicle_controller.omega_ctrl.Gain_Set(*straight_motion_param.om_gain);
+	//vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
+	vehicle->Vehicle_controller.omega_ctrl.I_param_reset();
+
 
 	motion_plan.fix_prev_run.init();
 	motion_plan.fix_post_run.init();
@@ -258,7 +268,7 @@ void Motion::Init_Motion_straight		(float len_target,float acc,float max_sp,floa
 
 	vehicle->Vehicle_controller.speed_ctrl.Gain_Set(*straight_motion_param.sp_gain);
 	vehicle->Vehicle_controller.omega_ctrl.Gain_Set(*straight_motion_param.om_gain);
-	vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
+	//vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
 	vehicle->Vehicle_controller.omega_ctrl.I_param_reset();
 
 	vehicle->ego_integral_init();
@@ -311,7 +321,7 @@ void Motion::Init_Motion_diagonal		(float len_target,float acc,float max_sp,floa
 
 	vehicle->Vehicle_controller.speed_ctrl.Gain_Set(*straight_motion_param.sp_gain);
 	vehicle->Vehicle_controller.omega_ctrl.Gain_Set(*straight_motion_param.om_gain);
-	vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
+	//vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
 	vehicle->Vehicle_controller.omega_ctrl.I_param_reset();
 
 	vehicle->ego_integral_init();
@@ -364,7 +374,7 @@ void Motion::Init_Motion_pivot_turn	(float rad_target,float rad_acc,float rad_ve
 
 	vehicle->Vehicle_controller.speed_ctrl.Gain_Set(*straight_motion_param.sp_gain);
 	vehicle->Vehicle_controller.omega_ctrl.Gain_Set(*straight_motion_param.om_gain);
-	vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
+	//vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
 	vehicle->Vehicle_controller.omega_ctrl.I_param_reset();
 
 	vehicle->ego_integral_init();
