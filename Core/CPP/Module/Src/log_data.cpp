@@ -88,9 +88,9 @@ void LogData::indicate_data()
 				half_to_float(data[24][i]),half_to_float(data[25][i]),
 				half_to_float(data[26][i]),half_to_float(data[27][i]));
 		HAL_Delay(2);
-		printf("%4.4lf,%4.4lf,",
-				half_to_float(data[28][i]),half_to_float(data[29][i]));
-		HAL_Delay(2);
+		//printf("%4.4lf,%4.4lf,",
+		//		half_to_float(data[28][i]),half_to_float(data[29][i]));
+		//HAL_Delay(2);
 		printf("\n");
 		HAL_Delay(2);
 	}
@@ -101,55 +101,55 @@ void LogData::logging()
 {
 	if(log_enable == True)
 	{
-		data[0][data_count%1000] =  float_to_half(Vehicle_type7::getInstance().ideal.velo.get());
-		data[1][data_count%1000] =  float_to_half(Vehicle_type7::getInstance().ego.velo.get());
-		data[2][data_count%1000] =  float_to_half(Vehicle_type7::getInstance().ideal.rad_velo.get());
-		data[3][data_count%1000] =  float_to_half(Vehicle_type7::getInstance().ego.rad_velo.get());
-		data[4][data_count%1000] =  float_to_half(Vehicle_type7::getInstance().ideal.length.get());
-		data[5][data_count%1000] =  float_to_half(Vehicle_type7::getInstance().ego.length.get());
-		data[6][data_count%1000] =  float_to_half(Vehicle_type7::getInstance().ideal.radian.get());
-		data[7][data_count%1000] =  float_to_half(Vehicle_type7::getInstance().ego.radian.get());
+		data[0][(data_count/LOG_DATA_PRIOD)%data_size] =  float_to_half(Vehicle_type7::getInstance().ideal.velo.get());
+		data[1][(data_count/LOG_DATA_PRIOD)%data_size] =  float_to_half(Vehicle_type7::getInstance().ego.velo.get());
+		data[2][(data_count/LOG_DATA_PRIOD)%data_size] =  float_to_half(Vehicle_type7::getInstance().ideal.rad_velo.get());
+		data[3][(data_count/LOG_DATA_PRIOD)%data_size] =  float_to_half(Vehicle_type7::getInstance().ego.rad_velo.get());
+		data[4][(data_count/LOG_DATA_PRIOD)%data_size] =  float_to_half(Vehicle_type7::getInstance().ideal.length.get());
+		data[5][(data_count/LOG_DATA_PRIOD)%data_size] =  float_to_half(Vehicle_type7::getInstance().ego.length.get());
+		data[6][(data_count/LOG_DATA_PRIOD)%data_size] =  float_to_half(Vehicle_type7::getInstance().ideal.radian.get());
+		data[7][(data_count/LOG_DATA_PRIOD)%data_size] =  float_to_half(Vehicle_type7::getInstance().ego.radian.get());
 
-		data[8][data_count%1000] =  float_to_half(Vehicle_type7::getInstance().V_r);
-		data[9][data_count%1000] =  float_to_half(Vehicle_type7::getInstance().V_l);
-		data[10][data_count%1000] =  float_to_half(Vehicle_type7::getInstance().sp_feedback.get());
-		data[11][data_count%1000] =  float_to_half(Vehicle_type7::getInstance().sp_feedforward.get());
-		data[12][data_count%1000] =  float_to_half(Vehicle_type7::getInstance().om_feedback.get());
-		data[13][data_count%1000] =  float_to_half(Vehicle_type7::getInstance().om_feedforward.get());
+		data[8][(data_count/LOG_DATA_PRIOD)%data_size] =  float_to_half(Vehicle_type7::getInstance().V_r);
+		data[9][(data_count/LOG_DATA_PRIOD)%data_size] =  float_to_half(Vehicle_type7::getInstance().V_l);
+		data[10][(data_count/LOG_DATA_PRIOD)%data_size] =  float_to_half(Vehicle_type7::getInstance().sp_feedback.get());
+		data[11][(data_count/LOG_DATA_PRIOD)%data_size] =  float_to_half(Vehicle_type7::getInstance().sp_feedforward.get());
+		data[12][(data_count/LOG_DATA_PRIOD)%data_size] =  float_to_half(Vehicle_type7::getInstance().om_feedback.get());
+		data[13][(data_count/LOG_DATA_PRIOD)%data_size] =  float_to_half(Vehicle_type7::getInstance().om_feedforward.get());
 
-		data[14][data_count%1000] =  float_to_half(IrSensTask_type7::getInstance().sen_fl.distance);
-		data[15][data_count%1000] =  float_to_half(IrSensTask_type7::getInstance().sen_fr.distance);
-		data[16][data_count%1000] =  float_to_half(IrSensTask_type7::getInstance().sen_l.distance);
-		data[17][data_count%1000] =  float_to_half(IrSensTask_type7::getInstance().sen_r.distance);
+		data[14][(data_count/LOG_DATA_PRIOD)%data_size] =  float_to_half(IrSensTask_type7::getInstance().sen_fl.distance);
+		data[15][(data_count/LOG_DATA_PRIOD)%data_size] =  float_to_half(IrSensTask_type7::getInstance().sen_fr.distance);
+		data[16][(data_count/LOG_DATA_PRIOD)%data_size] =  float_to_half(IrSensTask_type7::getInstance().sen_l.distance);
+		data[17][(data_count/LOG_DATA_PRIOD)%data_size] =  float_to_half(IrSensTask_type7::getInstance().sen_r.distance);
 
 		if(mode == 0)
 		{
-			data[18][data_count%1000] =  float_to_half(Vehicle_type7::getInstance().ego.x_point.get());
-			data[19][data_count%1000] =  float_to_half(Vehicle_type7::getInstance().ideal.x_point.get());
-			data[20][data_count%1000] =  float_to_half(Vehicle_type7::getInstance().ego.turn_x.get());
-			data[21][data_count%1000] =  float_to_half(Vehicle_type7::getInstance().ideal.turn_x.get());
-			data[22][data_count%1000] =  float_to_half(Vehicle_type7::getInstance().ego.turn_y.get());
-			data[23][data_count%1000] =  float_to_half(Vehicle_type7::getInstance().ideal.turn_y.get());
-			data[24][data_count%1000] =  float_to_half(Vehicle_type7::getInstance().ego.turn_slip_theta.get());
-			data[25][data_count%1000] =  float_to_half(Vehicle_type7::getInstance().ideal.turn_slip_theta.get());
-			data[26][data_count%1000] =  float_to_half(Vehicle_type7::getInstance().ego.turn_slip_dot.get());
-			data[27][data_count%1000] =  float_to_half(Vehicle_type7::getInstance().ideal.turn_slip_dot.get());
+			data[18][(data_count/LOG_DATA_PRIOD)%data_size] =  float_to_half(Vehicle_type7::getInstance().ego.x_point.get());
+			data[19][(data_count/LOG_DATA_PRIOD)%data_size] =  float_to_half(Vehicle_type7::getInstance().ideal.x_point.get());
+			data[20][(data_count/LOG_DATA_PRIOD)%data_size] =  float_to_half(Vehicle_type7::getInstance().ego.turn_x.get());
+			data[21][(data_count/LOG_DATA_PRIOD)%data_size] =  float_to_half(Vehicle_type7::getInstance().ideal.turn_x.get());
+			data[22][(data_count/LOG_DATA_PRIOD)%data_size] =  float_to_half(Vehicle_type7::getInstance().ego.turn_y.get());
+			data[23][(data_count/LOG_DATA_PRIOD)%data_size] =  float_to_half(Vehicle_type7::getInstance().ideal.turn_y.get());
+			data[24][(data_count/LOG_DATA_PRIOD)%data_size] =  float_to_half(Vehicle_type7::getInstance().ego.turn_slip_theta.get());
+			data[25][(data_count/LOG_DATA_PRIOD)%data_size] =  float_to_half(Vehicle_type7::getInstance().ideal.turn_slip_theta.get());
+			data[26][(data_count/LOG_DATA_PRIOD)%data_size] =  float_to_half(Vehicle_type7::getInstance().ego.turn_slip_dot.get());
+			data[27][(data_count/LOG_DATA_PRIOD)%data_size] =  float_to_half(Vehicle_type7::getInstance().ideal.turn_slip_dot.get());
 		}
 		else if(mode == 1)
 		{
-			data[18][data_count%1000] =  float_to_half(Vehicle_type7::getInstance().ego.x_point.get());
-			data[19][data_count%1000] =  float_to_half(Vehicle_type7::getInstance().ideal.x_point.get());
-			data[20][data_count%1000] =  float_to_half(Vehicle_type7::getInstance().ego.turn_x.get());
-			data[21][data_count%1000] =  float_to_half(Vehicle_type7::getInstance().ideal.turn_x.get());
-			data[22][data_count%1000] =  float_to_half(Vehicle_type7::getInstance().ego.turn_y.get());
-			data[23][data_count%1000] =  float_to_half(Vehicle_type7::getInstance().ideal.turn_y.get());
-			data[24][data_count%1000] =  float_to_half(Vehicle_type7::getInstance().ego.turn_slip_theta.get());
-			data[25][data_count%1000] =  float_to_half(Vehicle_type7::getInstance().ideal.turn_slip_theta.get());
-			data[26][data_count%1000] =  float_to_half(Vehicle_type7::getInstance().ego.turn_slip_dot.get());
-			data[27][data_count%1000] =  float_to_half(Vehicle_type7::getInstance().ideal.turn_slip_dot.get());
+			data[18][(data_count/LOG_DATA_PRIOD)%data_size] =  float_to_half(Vehicle_type7::getInstance().ego.x_point.get());
+			data[19][(data_count/LOG_DATA_PRIOD)%data_size] =  float_to_half(Vehicle_type7::getInstance().ideal.x_point.get());
+			data[20][(data_count/LOG_DATA_PRIOD)%data_size] =  float_to_half(Vehicle_type7::getInstance().ego.turn_x.get());
+			data[21][(data_count/LOG_DATA_PRIOD)%data_size] =  float_to_half(Vehicle_type7::getInstance().ideal.turn_x.get());
+			data[22][(data_count/LOG_DATA_PRIOD)%data_size] =  float_to_half(Vehicle_type7::getInstance().ego.turn_y.get());
+			data[23][(data_count/LOG_DATA_PRIOD)%data_size] =  float_to_half(Vehicle_type7::getInstance().ideal.turn_y.get());
+			data[24][(data_count/LOG_DATA_PRIOD)%data_size] =  float_to_half(Vehicle_type7::getInstance().ego.turn_slip_theta.get());
+			data[25][(data_count/LOG_DATA_PRIOD)%data_size] =  float_to_half(Vehicle_type7::getInstance().ideal.turn_slip_theta.get());
+			data[26][(data_count/LOG_DATA_PRIOD)%data_size] =  float_to_half(Vehicle_type7::getInstance().ego.turn_slip_dot.get());
+			data[27][(data_count/LOG_DATA_PRIOD)%data_size] =  float_to_half(Vehicle_type7::getInstance().ideal.turn_slip_dot.get());
 		}
 
 		data_count++;
-		if(data_count >= data_size) data_count = data_size - 1;
+		if(data_count >= data_size*LOG_DATA_PRIOD) data_count = (data_size*LOG_DATA_PRIOD) - 1;
 	}
 }

@@ -7,11 +7,11 @@ vehicle.h:96:8:void Vehicle::ego_initialize()	16	static
 vehicle.h:116:15:void Vehicle::ego_integral_init()	16	static
 vehicle.h:129:8:void Vehicle::ideal_initialize()	16	static
 vehicle.h:149:15:void Vehicle::ideal_integral_init()	16	static
-sensing_task.h:60:8:void IrSensTask::IrSensMotion_Set(t_irsens_motion)	16	static
-sensing_task.h:66:15:void IrSensTask::EnableIrSens()	16	static
-sensing_task.h:68:8:void IrSensTask::EnableIrSensStraight()	16	static
-sensing_task.h:69:8:void IrSensTask::EnableIrSensDiagonal()	16	static
-sensing_task.h:89:8:void IrSensTask::Division_Wall_Correction_Reset()	16	static
+sensing_task.h:64:8:void IrSensTask::IrSensMotion_Set(t_irsens_motion)	16	static
+sensing_task.h:70:15:void IrSensTask::EnableIrSens()	16	static
+sensing_task.h:72:8:void IrSensTask::EnableIrSensStraight()	16	static
+sensing_task.h:73:8:void IrSensTask::EnableIrSensDiagonal()	16	static
+sensing_task.h:99:8:void IrSensTask::Division_Wall_Correction_Reset()	16	static
 ctrl_task.h:120:15:void Motion::run_time_ms_reset()	16	static
 ctrl_task.h:125:15:void Motion::run_time_limit_ms_reset()	16	static
 ctrl_task.h:126:15:void Motion::run_time_limit_ms_set(float)	16	static

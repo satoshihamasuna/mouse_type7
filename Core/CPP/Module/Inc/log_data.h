@@ -13,7 +13,8 @@
 #include "../../Component/Inc/singleton.h"
 
 #define LOG_DATA_SIZE 1000
-#define LOG_DATA_NUM  30
+#define LOG_DATA_NUM  28
+#define LOG_DATA_PRIOD 1
 
 class LogData:public Singleton<LogData>
 {

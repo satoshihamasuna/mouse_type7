@@ -21,6 +21,7 @@
 
 typedef struct{
 	int16_t value;
+	t_bool prev_is_wall;
 	t_bool is_wall;
 	t_bool is_control;
 	float distance;
@@ -52,9 +53,12 @@ class IrSensTask
 		float	 wall_ref = STRAIGHT_REF;
 		t_bool	 isEnableIrSens = False;
 		t_irsens_motion irsens_motion;
+		int ir_log_cnt;
 	public:
 		t_sensor sen_fr,sen_fl,sen_r,sen_l;
-		t_bool 	 r_check,l_check,wall_correction;
+		t_bool 	 wall_correction;
+		t_bool 	 r_wall_corner,l_wall_corner;
+		uint16_t r_corner_time,l_corner_time;
 		t_wall_state conv_Sensin2Wall(t_sensor_dir sens_dir);
 		virtual 		void IrSensorSet();
 		void IrSensMotion_Set(t_irsens_motion _irsens_motion){irsens_motion = _irsens_motion;	}
@@ -71,25 +75,32 @@ class IrSensTask
 		t_bool Division_Wall_Correction()
 		{
 			t_bool flag = False;
-			if(sen_r.is_wall == False && r_check == True && wall_correction == False)
+			if(r_wall_corner == True)
 			{
-				flag = True;
-				wall_correction = True;
+				if(wall_correction == False)
+				{
+					wall_correction = True;
+					flag = True;
+				}
+				Indicate_LED(0x10|Return_LED_Status());
 			}
-			if(sen_l.is_wall == False && l_check == True && wall_correction == False)
+			if(l_wall_corner == True)
 			{
-				flag = True;
-				wall_correction = True;
+				if(wall_correction == False)
+				{
+					wall_correction = True;
+					flag = True;
+				}
+				Indicate_LED(0x20|Return_LED_Status());
 			}
 
-			r_check = sen_r.is_wall;l_check = sen_l.is_wall;
-			if(flag ==  True) Indicate_LED(0xff|Return_LED_Status());
 			return flag;
 		}
 		void Division_Wall_Correction_Reset()
 		{
 			Indicate_LED(0x00);
-			r_check = l_check = wall_correction = False;
+			//r_check = l_check =
+			wall_correction = False;
 		}
 };
 

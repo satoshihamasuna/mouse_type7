@@ -2,7 +2,7 @@ vehicle.h:168:16:virtual void Vehicle::motorSetDuty_l(int)	16	static
 vehicle.h:172:16:virtual void Vehicle::motorSetDuty_r(int)	16	static
 vehicle.h:181:7:virtual void Vehicle_type7::motorSetDuty_l(int)	16	static
 vehicle.h:187:7:virtual void Vehicle_type7::motorSetDuty_r(int)	16	static
-sensing_task.h:99:8:virtual void IrSensTask_type7::IrSensorSet()	16	static
+sensing_task.h:110:8:virtual void IrSensTask_type7::IrSensorSet()	16	static
 ctrl_task.h:152:3:Motion::Motion(Vehicle*, IrSensTask*, int)	24	static
 ctrl_task.h:161:24:t_exeStatus Motion::motion_exeStatus_get()	16	static
 ctrl_task.h:186:22:t_exeStatus Motion::execute_Motion()	16	static
@@ -14,23 +14,24 @@ myshell.cpp:69:12:int usrcmd_info(int, char**)	16	static
 myshell.cpp:89:12:int usrcmd_disp(int, char**)	16	static
 myshell.cpp:108:12:int usrcmd_end(int, char**)	16	static
 myshell.cpp:124:5:int shell_debug_straight(int, char**)	80	static
-myshell.cpp:194:5:int shell_debug_turn(int, char**)	96	static
-myshell.cpp:303:12:int usrcmd_debug(int, char**)	16	static
-myshell.cpp:322:12:int func_read(char*, int, void*)	40	static
-myshell.cpp:331:12:int func_write(const char*, int, void*)	32	static
-myshell.cpp:344:12:int user_callback(const char*, void*)	16	static
-myshell.cpp:351:12:int usrcmd_execute(const char*)	16	static
-myshell.cpp:356:12:int usrcmd_ntopt_callback(int, char**, void*)	32	static
-myshell.cpp:376:6:void Myshell_Initialize()	24	static
-myshell.cpp:383:6:void Myshell_Execute()	16	static
+myshell.cpp:194:5:int shell_debug_diagonal(int, char**)	80	static
+myshell.cpp:264:5:int shell_debug_turn(int, char**)	96	static
+myshell.cpp:373:12:int usrcmd_debug(int, char**)	16	static
+myshell.cpp:399:12:int func_read(char*, int, void*)	40	static
+myshell.cpp:408:12:int func_write(const char*, int, void*)	32	static
+myshell.cpp:421:12:int user_callback(const char*, void*)	16	static
+myshell.cpp:428:12:int usrcmd_execute(const char*)	16	static
+myshell.cpp:433:12:int usrcmd_ntopt_callback(int, char**, void*)	32	static
+myshell.cpp:453:6:void Myshell_Initialize()	24	static
+myshell.cpp:460:6:void Myshell_Execute()	16	static
 controller.h:19:7:constexpr PID_Controller::PID_Controller()	16	static
 controller.h:37:7:constexpr mouse_Controller::mouse_Controller()	16	static
 vehicle.h:90:7:Vehicle::Vehicle()	16	static
 vehicle.h:179:7:Vehicle_type7::Vehicle_type7()	16	static
 singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = Vehicle_type7]	8	static
-sensing_task.h:43:7:IrSensTask::IrSensTask()	16	static
-sensing_task.h:96:7:IrSensTask_type7::IrSensTask_type7()	16	static
+sensing_task.h:44:7:IrSensTask::IrSensTask()	16	static
+sensing_task.h:107:7:IrSensTask_type7::IrSensTask_type7()	16	static
 singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = IrSensTask_type7]	8	static
-log_data.h:18:7:LogData::LogData()	16	static
+log_data.h:19:7:LogData::LogData()	16	static
 singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = LogData]	8	static
 singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = CtrlTask_type7]	16	static

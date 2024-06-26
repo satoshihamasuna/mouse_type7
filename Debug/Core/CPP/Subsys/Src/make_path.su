@@ -27,5 +27,5 @@ make_path.cpp:369:10:uint16_t Dijkstra::diagonal_section_num(t_posDijkstra, t_po
 make_path.cpp:394:6:void Dijkstra::check_run_Dijkstra(t_position, t_direction, t_position, uint8_t)	72	static
 make_path.cpp:500:6:void Dijkstra::run_Dijkstra(t_position, t_direction, t_position, uint8_t, const t_straight_param* const*, uint16_t, const t_straight_param* const*, uint16_t, const t_param* const*, Motion*)	512	static
 make_path.cpp:622:6:void Dijkstra::run_Dijkstra_suction(t_position, t_direction, t_position, uint8_t, int, const t_straight_param* const*, uint16_t, const t_straight_param* const*, uint16_t, const t_param* const*, Motion*)	512	static
-log_data.h:18:7:LogData::LogData()	16	static
+log_data.h:19:7:LogData::LogData()	16	static
 singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = LogData]	8	static
