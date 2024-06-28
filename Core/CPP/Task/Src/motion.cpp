@@ -304,6 +304,17 @@ void Motion::SetIdeal_straight()
 				}
 			}
 		}
+		if(vehicle->ideal.velo.get() > 0.2)
+		{
+			if(ir_sens->r_corner_time > (int)((8.0)/vehicle->ideal.velo.get()) ) Indicate_LED((~0x10)&Return_LED_Status());
+			if(ir_sens->l_corner_time > (int)((8.0)/vehicle->ideal.velo.get()) ) Indicate_LED((~0x20)&Return_LED_Status());
+		}
+		else
+		{
+			if(ir_sens->r_corner_time > 40 ) Indicate_LED((~0x10)&Return_LED_Status());
+			if(ir_sens->l_corner_time > 40 ) Indicate_LED((~0x20)&Return_LED_Status());
+
+		}
 	}
 	else if(vehicle->ego.length.get() < motion_plan.end_length.get())
 	{
@@ -374,7 +385,13 @@ void Motion::SetIdeal_straight()
 void Motion::SetIdeal_diagonal		( )
 {
 	motion_state_set(DIAGONAL_STATE);
-	if(motion_plan.length_deccel.get() < ( motion_plan.end_length.get() - vehicle->ego.length.get()))
+	float offset = 0.0f;
+	if(motion_plan.max_velo.get() > motion_plan.end_velo.get())
+	{
+		offset = 10.0f;
+	}
+
+	if((motion_plan.length_deccel.get()+offset) < ( motion_plan.end_length.get() - vehicle->ego.length.get()))
 	{
 		vehicle->ideal.accel.set(motion_plan.accel.get());
 		vehicle->ideal.velo.set( vehicle->ideal.velo.get() + vehicle->ideal.accel.get()*(float)deltaT_ms/1000.0f);
@@ -382,6 +399,35 @@ void Motion::SetIdeal_diagonal		( )
 		{
 			vehicle->ideal.velo.set( motion_plan.max_velo.get());
 			vehicle->ideal.accel.set(0.0f);
+		}
+
+		if(ir_sens->r_wall_corner == True || ir_sens->l_wall_corner == True )
+		{
+			ir_sens->Division_Wall_Correction();
+			/*
+			if(ABS(ir_sens->r_corner_time - ir_sens->l_corner_time) < (int)((10.0)/vehicle->ideal.velo.get()) && motion_plan.end_length.get() > 90.0f)
+			{
+				int diff_time_ms = (ir_sens->r_corner_time - ir_sens->l_corner_time);
+				float diff = ((float)diff_time_ms) * vehicle->ideal.velo.get();
+				if(diff != 0.0f)
+				{
+					//vehicle->ego.radian.set(-diff/84.0);
+					//vehicle->ego.x_point.set(42.0*diff/65.0);
+					ir_sens->Division_Wall_Correction_Reset();
+				}
+			}
+			*/
+		}
+		if(vehicle->ideal.velo.get() > 0.2)
+		{
+			if(ir_sens->r_corner_time > (int)((8.0)/vehicle->ideal.velo.get()) ) Indicate_LED((~0x10)&Return_LED_Status());
+			if(ir_sens->l_corner_time > (int)((8.0)/vehicle->ideal.velo.get()) ) Indicate_LED((~0x20)&Return_LED_Status());
+		}
+		else
+		{
+			if(ir_sens->r_corner_time > 40 ) Indicate_LED((~0x10)&Return_LED_Status());
+			if(ir_sens->l_corner_time > 40 ) Indicate_LED((~0x20)&Return_LED_Status());
+
 		}
 	}
 	else if(vehicle->ego.length.get() < motion_plan.end_length.get())

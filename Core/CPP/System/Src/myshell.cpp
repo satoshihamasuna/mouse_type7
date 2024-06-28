@@ -249,7 +249,7 @@ int shell_debug_diagonal(int argc, char **argv)
 		motion->Motion_start();
 		LogData::getInstance().data_count = 0;
 		LogData::getInstance().log_enable = True;
-		motion->Init_Motion_diagonal(63.63*4.0,6.5,0.7,0.0,&debug_sp_gain,&debug_om_gain);
+		motion->Init_Motion_diagonal(63.63*6.0,6.5,0.7,0.0,&debug_sp_gain,&debug_om_gain);
 		motion->execute_Motion();
 
 		LogData::getInstance().log_enable = False;

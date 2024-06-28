@@ -212,6 +212,7 @@ void IrSensTask::IrSensorWallSet()
 	}
 
 
+
 	if(sen_l.is_wall == False && sen_l.prev_is_wall == True)
 	{
 		l_wall_corner = True;
@@ -230,6 +231,7 @@ void IrSensTask::IrSensorWallSet()
 		l_wall_corner = False;
 		l_corner_time++;
 	}
+
 
 	sen_fr.control_cnt = (sen_fr.is_wall == True) ? sen_fr.control_cnt + 1 : 0;
 	sen_fl.control_cnt = (sen_fl.is_wall == True) ? sen_fl.control_cnt + 1 : 0;
@@ -259,8 +261,8 @@ void IrSensTask::IrSensorWallSet()
 
 		if(irsens_motion == STRAIGHT_IRSENS || irsens_motion == DIAGONAL_IRSENS)
 		{
-			sen_r.is_control 	= (sen_fr.distance > SIDE_THRESHOLD+10.0)? sen_r.is_control:False;
-			sen_l.is_control 	= (sen_fl.distance > SIDE_THRESHOLD+10.0)? sen_l.is_control:False;
+			sen_r.is_control 	= (sen_fr.distance > SIDE_THRESHOLD+1.0)? sen_r.is_control:False;
+			sen_l.is_control 	= (sen_fl.distance > SIDE_THRESHOLD+1.0)? sen_l.is_control:False;
 		}
 		else
 		{
