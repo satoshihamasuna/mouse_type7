@@ -139,7 +139,7 @@ void Interrupt::preprocess()
 	Vehicle_type7::getInstance().ego.turn_slip_theta.set(0.0f);
 
 	float estimate_theta = Vehicle_type7::getInstance().ego.radian.get() + Vehicle_type7::getInstance().ego.turn_slip_theta.get();
-	float turn_x_dot = enc_velo*sin((-1.0)*estimate_theta);
+	float turn_x_dot = enc_velo*sin(estimate_theta);
 	float turn_y_dot = enc_velo*cos(estimate_theta);
 
 	Vehicle_type7::getInstance().ego.turn_x_dash.set(turn_x_dot);

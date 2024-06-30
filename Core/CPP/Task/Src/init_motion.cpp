@@ -141,8 +141,19 @@ void Motion::Init_Motion_search_straight(float len_target,float acc,float max_sp
 	//vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
 	vehicle->Vehicle_controller.omega_ctrl.I_param_reset();
 
-	vehicle->ego_integral_init();
-	vehicle->ideal_integral_init();
+	vehicle->ego.length.init();
+	vehicle->ego.radian.init();
+	//vehicle->ego.x_point.init();
+	vehicle->ego.turn_x.init();
+	vehicle->ego.turn_y.init();
+	vehicle->ego.turn_slip_theta.init();
+
+	vehicle->ideal.length.init();
+	vehicle->ideal.radian.init();
+	//vehicle->ideal.x_point.init();
+	vehicle->ideal.turn_x.init();
+	vehicle->ideal.turn_y.init();
+	vehicle->ideal.turn_slip_theta.init();
 
 	motion_pattern_set(Search_st_section);
 	motion_exeStatus_set(execute);
@@ -195,6 +206,19 @@ void Motion::Init_Motion_search_turn	(const t_param *turn_param,const t_pid_gain
 	//vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
 	vehicle->Vehicle_controller.omega_ctrl.I_param_reset();
 
+	vehicle->ego.length.init();
+	vehicle->ego.radian.init();
+	//vehicle->ego.x_point.init();
+	vehicle->ego.turn_x.init();
+	vehicle->ego.turn_y.init();
+	vehicle->ego.turn_slip_theta.init();
+
+	vehicle->ideal.length.init();
+	vehicle->ideal.radian.init();
+	//vehicle->ideal.x_point.init();
+	vehicle->ideal.turn_x.init();
+	vehicle->ideal.turn_y.init();
+	vehicle->ideal.turn_slip_theta.init();
 
 	motion_plan.fix_prev_run.init();
 	motion_plan.fix_post_run.init();
@@ -215,10 +239,6 @@ void Motion::Init_Motion_search_turn	(const t_param *turn_param,const t_pid_gain
 		//if(ABS(90.0 - avg_distance) < 5.0)
 		motion_plan.fix_prev_run.set((-1.0)*(90.0 - avg_distance));
 	}
-
-
-	vehicle->ego_integral_init();
-	vehicle->ideal_integral_init();
 
 	(motion_plan.end_radian.get() > 0) ? motion_pattern_set(Search_slalom_L): motion_pattern_set(Search_slalom_R);
 	motion_exeStatus_set(execute);
@@ -259,6 +279,9 @@ void Motion::Init_Motion_straight		(float len_target,float acc,float max_sp,floa
 	motion_plan.turn_state.init		();
 	motion_plan.turn_time_ms.init		();
 
+	motion_plan.fix_prev_run.init();
+	motion_plan.fix_post_run.init();
+
 	//Set control gain
 	straight_motion_param.sp_gain = sp_gain;
 	straight_motion_param.om_gain = om_gain;
@@ -271,8 +294,19 @@ void Motion::Init_Motion_straight		(float len_target,float acc,float max_sp,floa
 	//vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
 	vehicle->Vehicle_controller.omega_ctrl.I_param_reset();
 
-	vehicle->ego_integral_init();
-	vehicle->ideal_integral_init();
+	vehicle->ego.length.init();
+	//vehicle->ego.radian.init();
+	//vehicle->ego.x_point.init();
+	vehicle->ego.turn_x.init();
+	vehicle->ego.turn_y.init();
+	vehicle->ego.turn_slip_theta.init();
+
+	vehicle->ideal.length.init();
+	vehicle->ideal.radian.init();
+	//vehicle->ideal.x_point.init();
+	vehicle->ideal.turn_x.init();
+	vehicle->ideal.turn_y.init();
+	vehicle->ideal.turn_slip_theta.init();
 
 	motion_pattern_set(Straight);
 	motion_exeStatus_set(execute);
@@ -313,6 +347,9 @@ void Motion::Init_Motion_diagonal		(float len_target,float acc,float max_sp,floa
 	motion_plan.turn_state.init		();
 	motion_plan.turn_time_ms.init		();
 
+	motion_plan.fix_prev_run.init();
+	motion_plan.fix_post_run.init();
+
 	//Set control gain & turn_param
 	straight_motion_param.sp_gain = sp_gain;
 	straight_motion_param.om_gain = om_gain;
@@ -324,8 +361,19 @@ void Motion::Init_Motion_diagonal		(float len_target,float acc,float max_sp,floa
 	//vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
 	vehicle->Vehicle_controller.omega_ctrl.I_param_reset();
 
-	vehicle->ego_integral_init();
-	vehicle->ideal_integral_init();
+	vehicle->ego.length.init();
+	//vehicle->ego.radian.init();
+	//vehicle->ego.x_point.init();
+	vehicle->ego.turn_x.init();
+	vehicle->ego.turn_y.init();
+	vehicle->ego.turn_slip_theta.init();
+
+	vehicle->ideal.length.init();
+	vehicle->ideal.radian.init();
+	//vehicle->ideal.x_point.init();
+	vehicle->ideal.turn_x.init();
+	vehicle->ideal.turn_y.init();
+	vehicle->ideal.turn_slip_theta.init();
 
 	motion_pattern_set(Diagonal);
 	motion_exeStatus_set(execute);
@@ -365,6 +413,9 @@ void Motion::Init_Motion_pivot_turn	(float rad_target,float rad_acc,float rad_ve
 	motion_plan.turn_state.init			();//check
 	motion_plan.turn_time_ms.init		();
 
+	motion_plan.fix_prev_run.init();
+	motion_plan.fix_post_run.init();
+
 	//Set control gain
 	straight_motion_param.sp_gain = sp_gain;
 	straight_motion_param.om_gain = om_gain;
@@ -377,8 +428,19 @@ void Motion::Init_Motion_pivot_turn	(float rad_target,float rad_acc,float rad_ve
 	//vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
 	vehicle->Vehicle_controller.omega_ctrl.I_param_reset();
 
-	vehicle->ego_integral_init();
-	vehicle->ideal_integral_init();
+	vehicle->ego.length.init();
+	vehicle->ego.radian.init();
+	//vehicle->ego.x_point.init();
+	vehicle->ego.turn_x.init();
+	vehicle->ego.turn_y.init();
+	vehicle->ego.turn_slip_theta.init();
+
+	vehicle->ideal.length.init();
+	vehicle->ideal.radian.init();
+	//vehicle->ideal.x_point.init();
+	vehicle->ideal.turn_x.init();
+	vehicle->ideal.turn_y.init();
+	vehicle->ideal.turn_slip_theta.init();
 
 	(motion_plan.end_radian.get() > 0) ? motion_pattern_set(Pivot_turn_L) : motion_pattern_set(Pivot_turn_R);
 	motion_exeStatus_set(execute);
@@ -431,8 +493,48 @@ void Motion::Init_Motion_turn_in		(const t_param *turn_param,t_run_pattern run_p
 	//vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
 	vehicle->Vehicle_controller.omega_ctrl.I_param_reset();
 
-	vehicle->ego_integral_init();
-	vehicle->ideal_integral_init();
+	vehicle->ego.length.init();
+	vehicle->ego.radian.init();
+	//vehicle->ego.x_point.init();
+	vehicle->ego.turn_x.init();
+	vehicle->ego.turn_y.init();
+	vehicle->ego.turn_slip_theta.init();
+
+	vehicle->ideal.length.init();
+	vehicle->ideal.radian.init();
+	//vehicle->ideal.x_point.init();
+	vehicle->ideal.turn_x.init();
+	vehicle->ideal.turn_y.init();
+	vehicle->ideal.turn_slip_theta.init();
+
+	if(ABS(turn_param->param->degree) == 135.0f)
+	{
+		float diff = vehicle->ego.x_point.get();
+		if(turn_param->param->turn_dir == Turn_R)
+		{
+			motion_plan.fix_prev_run.set(diff);
+			motion_plan.fix_post_run.set(diff);
+		}
+		else if(turn_param->param->turn_dir == Turn_L)
+		{
+			motion_plan.fix_prev_run.set((-1.0)*diff);
+			motion_plan.fix_post_run.set((-1.0)*diff*SQRT2);
+		}
+	}
+	else if(ABS(turn_param->param->degree) == 45.0f)
+	{
+		float diff = vehicle->ego.x_point.get();
+		if(turn_param->param->turn_dir == Turn_R)
+		{
+			motion_plan.fix_prev_run.set((-1.0)*diff);
+			motion_plan.fix_post_run.set(diff*SQRT2);
+		}
+		else if(turn_param->param->turn_dir == Turn_L)
+		{
+			motion_plan.fix_prev_run.set(diff);
+			motion_plan.fix_post_run.set((-1.0)*diff*SQRT2);
+		}
+	}
 
 	motion_pattern_set(run_pt);
 	motion_exeStatus_set(execute);
@@ -484,8 +586,48 @@ void Motion::Init_Motion_turn_out		(const t_param *turn_param,t_run_pattern run_
 	//vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
 	vehicle->Vehicle_controller.omega_ctrl.I_param_reset();
 
-	vehicle->ego_integral_init();
-	vehicle->ideal_integral_init();
+	vehicle->ego.length.init();
+	vehicle->ego.radian.init();
+	//vehicle->ego.x_point.init();
+	vehicle->ego.turn_x.init();
+	vehicle->ego.turn_y.init();
+	vehicle->ego.turn_slip_theta.init();
+
+	vehicle->ideal.length.init();
+	vehicle->ideal.radian.init();
+	//vehicle->ideal.x_point.init();
+	vehicle->ideal.turn_x.init();
+	vehicle->ideal.turn_y.init();
+	vehicle->ideal.turn_slip_theta.init();
+
+	if(ABS(turn_param->param->degree) == 135.0f)
+	{
+		float diff = vehicle->ego.x_point.get();
+		if(turn_param->param->turn_dir == Turn_R)
+		{
+			motion_plan.fix_prev_run.set(diff);
+			motion_plan.fix_post_run.set(diff);
+		}
+		else if(turn_param->param->turn_dir == Turn_L)
+		{
+			motion_plan.fix_prev_run.set((-1.0)*diff);
+			motion_plan.fix_post_run.set((-1.0)*diff*SQRT2);
+		}
+	}
+	else if(ABS(turn_param->param->degree) == 45.0f)
+	{
+		float diff = vehicle->ego.x_point.get();
+		if(turn_param->param->turn_dir == Turn_R)
+		{
+			motion_plan.fix_prev_run.set((-1.0)*diff);
+			motion_plan.fix_post_run.set(diff*SQRT2);
+		}
+		else if(turn_param->param->turn_dir == Turn_L)
+		{
+			motion_plan.fix_prev_run.set(diff);
+			motion_plan.fix_post_run.set((-1.0)*diff*SQRT2);
+		}
+	}
 
 	motion_pattern_set(run_pt);
 	motion_exeStatus_set(execute);
@@ -538,8 +680,33 @@ void Motion::Init_Motion_long_turn	(const t_param *turn_param,t_run_pattern run_
 	//vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
 	vehicle->Vehicle_controller.omega_ctrl.I_param_reset();
 
-	vehicle->ego_integral_init();
-	vehicle->ideal_integral_init();
+	vehicle->ego.length.init();
+	vehicle->ego.radian.init();
+	//vehicle->ego.x_point.init();
+	vehicle->ego.turn_x.init();
+	vehicle->ego.turn_y.init();
+	vehicle->ego.turn_slip_theta.init();
+
+	vehicle->ideal.length.init();
+	vehicle->ideal.radian.init();
+	//vehicle->ideal.x_point.init();
+	vehicle->ideal.turn_x.init();
+	vehicle->ideal.turn_y.init();
+	vehicle->ideal.turn_slip_theta.init();
+
+
+	if(ABS(turn_param->param->degree) == 90.0f)
+	{
+		float diff = vehicle->ego.x_point.get();
+		if(turn_param->param->turn_dir == Turn_R)
+		{
+			motion_plan.fix_post_run.set((1.0)*diff);
+		}
+		else if(turn_param->param->turn_dir == Turn_L)
+		{
+			motion_plan.fix_post_run.set((-1.0)*diff);
+		}
+	}
 
 	motion_pattern_set(run_pt);
 	motion_exeStatus_set(execute);
@@ -592,8 +759,31 @@ void Motion::Init_Motion_turn_v90		(const t_param *turn_param,t_run_pattern run_
 	//vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
 	vehicle->Vehicle_controller.omega_ctrl.I_param_reset();
 
-	vehicle->ego_integral_init();
-	vehicle->ideal_integral_init();
+	vehicle->ego.length.init();
+	vehicle->ego.radian.init();
+	//vehicle->ego.x_point.init();
+	vehicle->ego.turn_x.init();
+	vehicle->ego.turn_y.init();
+	vehicle->ego.turn_slip_theta.init();
+
+	vehicle->ideal.length.init();
+	vehicle->ideal.radian.init();
+	//vehicle->ideal.x_point.init();
+	vehicle->ideal.turn_x.init();
+	vehicle->ideal.turn_y.init();
+	vehicle->ideal.turn_slip_theta.init();
+
+	float diff = vehicle->ego.x_point.get();
+	if(turn_param->param->turn_dir == Turn_R)
+	{
+		motion_plan.fix_prev_run.set(diff);
+		motion_plan.fix_post_run.set(diff);
+	}
+	else if(turn_param->param->turn_dir == Turn_L)
+	{
+		motion_plan.fix_prev_run.set((-1.0)*diff);
+		motion_plan.fix_post_run.set((-1.0)*diff);
+	}
 
 	motion_pattern_set(run_pt);
 	motion_exeStatus_set(execute);
@@ -644,8 +834,19 @@ void Motion::Init_Motion_fix_wall		(float set_time,const t_pid_gain *sp_gain  ,c
 	vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
 	vehicle->Vehicle_controller.omega_ctrl.I_param_reset();
 
-	vehicle->ego_integral_init();
-	vehicle->ideal_integral_init();
+	vehicle->ego.length.init();
+	vehicle->ego.radian.init();
+	vehicle->ego.x_point.init();
+	vehicle->ego.turn_x.init();
+	vehicle->ego.turn_y.init();
+	vehicle->ego.turn_slip_theta.init();
+
+	vehicle->ideal.length.init();
+	vehicle->ideal.radian.init();
+	vehicle->ideal.x_point.init();
+	vehicle->ideal.turn_x.init();
+	vehicle->ideal.turn_y.init();
+	vehicle->ideal.turn_slip_theta.init();
 
 	motion_pattern_set(Fix_wall);
 	motion_exeStatus_set(execute);
@@ -695,8 +896,19 @@ void Motion::Init_Motion_stop_brake	(float set_time,const t_pid_gain *sp_gain  ,
 	vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
 	vehicle->Vehicle_controller.omega_ctrl.I_param_reset();
 
-	vehicle->ego_integral_init();
-	vehicle->ideal_integral_init();
+	vehicle->ego.length.init();
+	vehicle->ego.radian.init();
+	vehicle->ego.x_point.init();
+	vehicle->ego.turn_x.init();
+	vehicle->ego.turn_y.init();
+	vehicle->ego.turn_slip_theta.init();
+
+	vehicle->ideal.length.init();
+	vehicle->ideal.radian.init();
+	vehicle->ideal.x_point.init();
+	vehicle->ideal.turn_x.init();
+	vehicle->ideal.turn_y.init();
+	vehicle->ideal.turn_slip_theta.init();
 
 	motion_pattern_set(run_brake);
 	motion_exeStatus_set(execute);

@@ -197,14 +197,6 @@ void IrSensTask::IrSensorWallSet()
 		r_wall_corner = True;
 		r_corner_time = 0;
 	}
-	else if(sen_r.value_log[(ir_log_cnt-1)%20] < 72.0 && sen_r.value > 72.0)
-	{
-		if( sen_r.prev_is_wall == False && r_corner_time >= 15)
-		{
-			//r_wall_corner = True;
-			//r_corner_time = 0;
-		}
-	}
 	else
 	{
 		r_wall_corner = False;
@@ -217,14 +209,6 @@ void IrSensTask::IrSensorWallSet()
 	{
 		l_wall_corner = True;
 		l_corner_time = 0;
-	}
-	else if(sen_l.value_log[(ir_log_cnt-1)%20] < 72.0 && sen_l.value > 72.0)
-	{
-		if( sen_l.prev_is_wall == False && l_corner_time >= 15)
-		{
-			//l_wall_corner = True;
-			//l_corner_time = 0;
-		}
 	}
 	else
 	{
@@ -305,6 +289,55 @@ void IrSensTask::IrSensorReferenceSet(float ref_value)
 	 wall_ref = ref_value;
 }
 
+float IrSensTask::IrSensorMaxValueFromLog(t_sensor_dir dir)
+{
+	int16_t value;
+	switch(dir)
+	{
+		case sensor_fl:
+			value = sen_fl.value_log[0];
+			for(int i = 0; i < 20; i++)
+			{
+				if(sen_fl.value_log[i] >value)
+				{
+					value = sen_fl.value_log[i];
+				}
+			}
+			break;
+		case sensor_fr:
+			value = sen_fr.value_log[0];
+			for(int i = 0; i < 20; i++)
+			{
+				if(sen_fr.value_log[i] >value)
+				{
+					value = sen_fr.value_log[i];
+				}
+			}
+			break;
+		case sensor_sr:
+			value = sen_r.value_log[0];
+			for(int i = 0; i < 20; i++)
+			{
+				if(sen_r.value_log[i] >value)
+				{
+					value = sen_r.value_log[i];
+				}
+			}
+			break;
+		case sensor_sl:
+			value = sen_l.value_log[0];
+			for(int i = 0; i < 20; i++)
+			{
+				if(sen_l.value_log[i] >value)
+				{
+					value = sen_l.value_log[i];
+				}
+			}
+			break;
+	}
+	return Sensor_CalcDistance(dir,value);
+}
+
 void IrSensTask::SetWallControl_RadVelo(Vehicle *vehicle,float delta_tms)
 {
 	float ir_rad_acc_control = 0.0;
@@ -321,8 +354,8 @@ void IrSensTask::SetWallControl_RadVelo(Vehicle *vehicle,float delta_tms)
 			ir_rad_acc_control = -(sen_l.error - sen_r.error)/2.0;
 			{
 				vehicle->ego.x_point.set(ir_rad_acc_control);
-				if(ABS(ir_rad_acc_control) < 10.0)
-					vehicle->ego.radian.set(((ir_rad_acc_control/20.0) + vehicle->ego.radian.get())/2.0f);
+				//if(ABS(ir_rad_acc_control) < 10.0 )
+					//vehicle->ego.radian.set(((ir_rad_acc_control/20.0) + vehicle->ego.radian.get())/2.0f);
 			}
 		}
 		else
@@ -331,8 +364,8 @@ void IrSensTask::SetWallControl_RadVelo(Vehicle *vehicle,float delta_tms)
 			if(sen_r.is_control == True || sen_l.is_control == True)
 			{
 				vehicle->ego.x_point.set((ir_rad_acc_control+vehicle->ego.x_point.get())/2.0);
-				if(ABS(ir_rad_acc_control) < 10.0)
-					vehicle->ego.radian.set(((ir_rad_acc_control/20.0) + vehicle->ego.radian.get())/2.0f);
+				//if(ABS(ir_rad_acc_control) < 10.0)
+					//vehicle->ego.radian.set(((ir_rad_acc_control/20.0) + vehicle->ego.radian.get())/2.0f);
 			}
 		}
 	}

@@ -2,12 +2,11 @@ vehicle.h:168:16:virtual void Vehicle::motorSetDuty_l(int)	16	static
 vehicle.h:172:16:virtual void Vehicle::motorSetDuty_r(int)	16	static
 vehicle.h:181:7:virtual void Vehicle_type7::motorSetDuty_l(int)	16	static
 vehicle.h:187:7:virtual void Vehicle_type7::motorSetDuty_r(int)	16	static
-sensing_task.h:111:8:virtual void IrSensTask_type7::IrSensorSet()	16	static
+sensing_task.h:112:8:virtual void IrSensTask_type7::IrSensorSet()	16	static
 gthr-default.h:229:1:int __gthread_key_delete(__gthread_key_t)	16	static
 ctrl_task.h:152:3:Motion::Motion(Vehicle*, IrSensTask*, int)	24	static
 ctrl_task.h:161:24:t_exeStatus Motion::motion_exeStatus_get()	16	static
 ctrl_task.h:186:22:t_exeStatus Motion::execute_Motion()	16	static
-ctrl_task.h:192:22:t_exeStatus Motion::exe_Motion_search_turn(const t_param*, const t_pid_gain*, const t_pid_gain*)	24	static
 ctrl_task.h:198:22:t_exeStatus Motion::exe_Motion_straight(float, float, float, float, const t_pid_gain*, const t_pid_gain*)	40	static
 ctrl_task.h:204:22:t_exeStatus Motion::exe_Motion_diagonal(float, float, float, float, const t_pid_gain*, const t_pid_gain*)	40	static
 ctrl_task.h:223:22:t_exeStatus Motion::exe_Motion_turn_in(const t_param*, t_run_pattern, const t_pid_gain*, const t_pid_gain*)	32	static
@@ -26,7 +25,7 @@ vehicle.h:90:7:Vehicle::Vehicle()	16	static
 vehicle.h:179:7:Vehicle_type7::Vehicle_type7()	16	static
 singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = Vehicle_type7]	8	static
 sensing_task.h:44:7:IrSensTask::IrSensTask()	16	static
-sensing_task.h:108:7:IrSensTask_type7::IrSensTask_type7()	16	static
+sensing_task.h:109:7:IrSensTask_type7::IrSensTask_type7()	16	static
 singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = IrSensTask_type7]	8	static
 singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = CtrlTask_type7]	16	static
 path_follow.h:15:7:path_follow_class::path_follow_class()	16	static
@@ -36,6 +35,6 @@ Kalman_filter.h:13:7:KalmanFilter::KalmanFilter()	16	static
 singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = KalmanFilter]	8	static
 log_data.h:19:7:LogData::LogData()	16	static
 singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = LogData]	8	static
-debug.cpp:571:1:void __static_initialization_and_destruction_0(int, int)	16	static
-debug.cpp:571:1:cpp)	8	static
-debug.cpp:571:1:cpp)	8	static
+debug.cpp:573:1:void __static_initialization_and_destruction_0(int, int)	16	static
+debug.cpp:573:1:cpp)	8	static
+debug.cpp:573:1:cpp)	8	static

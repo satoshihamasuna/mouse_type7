@@ -71,6 +71,7 @@ class IrSensTask
 		inline void DisableIrSens()			{isEnableIrSens = False;}
 		void EnableIrSensStraight()		{	EnableIrSens();		IrSensMotion_Set(STRAIGHT_IRSENS);	IrSensorReferenceSet(STRAIGHT_REF);	}
 		void EnableIrSensDiagonal()		{	EnableIrSens();		IrSensMotion_Set(DIAGONAL_IRSENS);	IrSensorReferenceSet(DIAGONAL_REF);	}
+		float IrSensorMaxValueFromLog(t_sensor_dir dir);
 		int16_t IrSensor_Avg();
 		t_bool Division_Wall_Correction()
 		{
