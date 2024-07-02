@@ -1,12 +1,12 @@
-ctrl_task.h:163:24:t_exeStatus Motion::motion_exeStatus_get()	16	static
-ctrl_task.h:189:22:t_exeStatus Motion::execute_Motion()	16	static
-ctrl_task.h:201:22:t_exeStatus Motion::exe_Motion_straight(float, float, float, float, const t_pid_gain*, const t_pid_gain*)	40	static
-ctrl_task.h:207:22:t_exeStatus Motion::exe_Motion_diagonal(float, float, float, float, const t_pid_gain*, const t_pid_gain*)	40	static
-ctrl_task.h:226:22:t_exeStatus Motion::exe_Motion_suction_start(float, float, const t_pid_gain*, const t_pid_gain*)	32	static
-ctrl_task.h:232:22:t_exeStatus Motion::exe_Motion_turn_in(const t_param*, t_run_pattern, const t_pid_gain*, const t_pid_gain*)	32	static
-ctrl_task.h:237:22:t_exeStatus Motion::exe_Motion_turn_out(const t_param*, t_run_pattern, const t_pid_gain*, const t_pid_gain*)	32	static
-ctrl_task.h:242:22:t_exeStatus Motion::exe_Motion_long_turn(const t_param*, t_run_pattern, const t_pid_gain*, const t_pid_gain*)	32	static
-ctrl_task.h:247:22:t_exeStatus Motion::exe_Motion_turn_v90(const t_param*, t_run_pattern, const t_pid_gain*, const t_pid_gain*)	32	static
+ctrl_task.h:165:24:t_exeStatus Motion::motion_exeStatus_get()	16	static
+ctrl_task.h:191:22:t_exeStatus Motion::execute_Motion()	16	static
+ctrl_task.h:203:22:t_exeStatus Motion::exe_Motion_straight(float, float, float, float, const t_pid_gain*, const t_pid_gain*)	40	static
+ctrl_task.h:209:22:t_exeStatus Motion::exe_Motion_diagonal(float, float, float, float, const t_pid_gain*, const t_pid_gain*)	40	static
+ctrl_task.h:228:22:t_exeStatus Motion::exe_Motion_suction_start(float, float, const t_pid_gain*, const t_pid_gain*)	32	static
+ctrl_task.h:234:22:t_exeStatus Motion::exe_Motion_turn_in(const t_param*, t_run_pattern, const t_pid_gain*, const t_pid_gain*)	32	static
+ctrl_task.h:239:22:t_exeStatus Motion::exe_Motion_turn_out(const t_param*, t_run_pattern, const t_pid_gain*, const t_pid_gain*)	32	static
+ctrl_task.h:244:22:t_exeStatus Motion::exe_Motion_long_turn(const t_param*, t_run_pattern, const t_pid_gain*, const t_pid_gain*)	32	static
+ctrl_task.h:249:22:t_exeStatus Motion::exe_Motion_turn_v90(const t_param*, t_run_pattern, const t_pid_gain*, const t_pid_gain*)	32	static
 make_path.h:76:20:t_straight_param calcRunTime::straight_base_velo()	16	static
 make_path.h:86:20:t_straight_param calcRunTime::diagonal_base_velo()	16	static
 make_path.cpp:24:6:void log_enable()	8	static

@@ -117,6 +117,8 @@ class Motion
 
 		void SetIdeal_wall_control  ();
 
+		void Adjust_wall_corner();
+
 
 		//set & get status
 		inline void run_time_ms_reset()											{	run_time_ms = 0.0f;					}

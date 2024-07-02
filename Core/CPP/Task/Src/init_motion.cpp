@@ -485,13 +485,13 @@ void Motion::Init_Motion_turn_in		(const t_param *turn_param,t_run_pattern run_p
 
 	motion_plan.rad_accel.set		(0.0f);//計算できないわけではない
 	motion_plan.rad_deccel.set		(0.0f);//計算できないわけではない
-	motion_plan.rad_max_velo.set		(turn_param->param->velo/(turn_param->param->r_min/1000.0f));
+	motion_plan.rad_max_velo.set	(turn_param->param->velo/(turn_param->param->r_min/1000.0f));
 	motion_plan.end_radian.set		(turn_param->param->degree/180*PI);
-	motion_plan.radian_accel.set		(0.0f);//計算できないわけではない
+	motion_plan.radian_accel.set	(0.0f);//計算できないわけではない
 	motion_plan.radian_deccel.set	(0.0f);//計算できないわけではない
 	motion_plan.turn_r_min.set		(turn_param->param->r_min);
-	motion_plan.turn_state.set			(Prev_Turn);
-	motion_plan.turn_time_ms.set		( ABS(DEG2RAD(turn_param->param->degree)/(accel_Integral*motion_plan.rad_max_velo.get()))*1000.0f);
+	motion_plan.turn_state.set		(Prev_Turn);
+	motion_plan.turn_time_ms.set	( ABS(DEG2RAD(turn_param->param->degree)/(accel_Integral*motion_plan.rad_max_velo.get()))*1000.0f);
 
 	motion_plan.fix_prev_run.init();
 	motion_plan.fix_post_run.init();
@@ -719,6 +719,40 @@ void Motion::Init_Motion_long_turn	(const t_param *turn_param,t_run_pattern run_
 		{
 			motion_plan.fix_post_run.set((-1.0)*diff);
 		}
+	}
+
+	if(ABS(turn_param->param->degree) == 180.0f)
+	{
+		float diff = vehicle->ego.x_point.get();
+		float r_min_fix = 0.0f;
+
+		if(turn_param->param->turn_dir == Turn_R)
+		{
+			r_min_fix = (1.0)*PI/accel_Integral/10.0f*diff;
+			float fixed_rad_max = turn_param->param->velo/((turn_param->param->r_min + r_min_fix)/1000.0f);
+			motion_plan.rad_max_velo.set(fixed_rad_max);
+			motion_plan.turn_r_min.set((turn_param->param->r_min + r_min_fix));
+		}
+		else if(turn_param->param->turn_dir == Turn_L)
+		{
+			r_min_fix = (1.0)*PI/accel_Integral/10.0f*diff;
+			float fixed_rad_max = turn_param->param->velo/((turn_param->param->r_min + r_min_fix)/1000.0f);
+			motion_plan.rad_max_velo.set(fixed_rad_max);
+			motion_plan.turn_r_min.set((turn_param->param->r_min + r_min_fix));
+		}
+
+		if(r_min_fix > 0.0)
+		{
+			motion_plan.fix_prev_run.set((-1.0f)*ABS(diff));
+			motion_plan.fix_post_run.set((-1.0f)*ABS(diff));
+		}
+		else if(r_min_fix < 0.0)
+		{
+			motion_plan.fix_prev_run.set((1.0f)*ABS(diff));
+			motion_plan.fix_post_run.set((1.0f)*ABS(diff));
+		}
+
+
 	}
 
 	motion_pattern_set(run_pt);

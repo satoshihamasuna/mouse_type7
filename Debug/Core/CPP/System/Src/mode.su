@@ -9,11 +9,11 @@ vehicle.h:226:7:virtual void Vehicle_type7::suctionStop()	16	static
 sensing_task.h:112:8:virtual void IrSensTask_type7::IrSensorSet()	16	static
 wall_class.h:20:3:wall_class::wall_class(IrSensTask*)	16	static
 gthr-default.h:229:1:int __gthread_key_delete(__gthread_key_t)	16	static
-ctrl_task.h:154:3:Motion::Motion(Vehicle*, IrSensTask*, int)	24	static
-ctrl_task.h:163:24:t_exeStatus Motion::motion_exeStatus_get()	16	static
-ctrl_task.h:255:15:IrSensTask* Motion::return_irObj()	16	static
-ctrl_task.h:268:3:CtrlTask::CtrlTask(Vehicle*, IrSensTask*, int)	24	static
-ctrl_task.h:286:3:CtrlTask_type7::CtrlTask_type7(Vehicle*, IrSensTask*)	24	static
+ctrl_task.h:156:3:Motion::Motion(Vehicle*, IrSensTask*, int)	24	static
+ctrl_task.h:165:24:t_exeStatus Motion::motion_exeStatus_get()	16	static
+ctrl_task.h:257:15:IrSensTask* Motion::return_irObj()	16	static
+ctrl_task.h:270:3:CtrlTask::CtrlTask(Vehicle*, IrSensTask*, int)	24	static
+ctrl_task.h:288:3:CtrlTask_type7::CtrlTask_type7(Vehicle*, IrSensTask*)	24	static
 search_class.h:56:14:t_position Search::search_adachi_1(t_position, t_position, int, wall_class*, make_map*, Motion*)	48	static
 search_class.h:63:14:t_position Search::search_adachi_1_acc(t_position, t_position, int, wall_class*, make_map*, Motion*)	48	static
 search_class.h:81:14:t_position Search::search_adachi_2_acc(t_position, t_position, int, wall_class*, make_map*, Motion*)	48	static
