@@ -78,6 +78,9 @@ void CtrlTask::motion_ideal_param_set()
 		case Fix_wall:
 			SetIdeal_fix_wall( );
 				break;
+		case Suction_start:
+			SetIdeal_suction_start( );
+				break;
 		case run_brake:
 			SetIdeal_stop_brake( );
 		case No_run:
@@ -195,6 +198,20 @@ void CtrlTask::motion_control()
 		vehicle->motor_out_r = 0;		vehicle->motor_out_l = 0;
 		vehicle->motorSetDuty_r(vehicle->motor_out_r);
 		vehicle->motorSetDuty_l(vehicle->motor_out_l);
+	}
+
+
+	if(vehicle->suction_flag_get() == True)
+	{
+		float suction_ctrl_battery = vehicle->battery.get();
+		if(suction_ctrl_battery < 3.30) suction_ctrl_battery = 3.30f;
+		vehicle->suction_out = (int)(vehicle->V_suction.get()/suction_ctrl_battery*1000.0f);
+		if(vehicle->suction_out >= 990) vehicle->suction_out = 990;
+		vehicle->suctionSetDuty(vehicle->suction_out);
+	}
+	else
+	{
+		vehicle->suctionStop();
 	}
 
 }

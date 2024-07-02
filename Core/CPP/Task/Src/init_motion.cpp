@@ -14,6 +14,7 @@ void Motion::Motion_start()
 {
 	vehicle->ego_initialize();
 	vehicle->ideal_initialize();
+	vehicle->suctionStop();
 	motion_enable_set();
 	motion_pattern_set(No_run);
 	motion_exeStatus_set(complete);
@@ -28,6 +29,7 @@ void Motion::Motion_end()
 {
 	vehicle->ego_initialize();
 	vehicle->ideal_initialize();
+	vehicle->suctionStop();
 	motion_disable_set();
 	motion_pattern_set(No_run);
 	//motion_exeStatus_set(complete);
@@ -222,6 +224,7 @@ void Motion::Init_Motion_search_turn	(const t_param *turn_param,const t_pid_gain
 
 	motion_plan.fix_prev_run.init();
 	motion_plan.fix_post_run.init();
+	/*
 	if(turn_motion_param.param->turn_dir == Turn_L)
 	{
 		if(ir_sens->sen_r.is_wall == True)
@@ -232,12 +235,22 @@ void Motion::Init_Motion_search_turn	(const t_param *turn_param,const t_pid_gain
 		if(ir_sens->sen_l.is_wall == True)
 			motion_plan.fix_post_run.set(45.0 - ir_sens->sen_l.distance);
 	}
-
+	*/
 	if(ir_sens->sen_fr.is_wall == True && ir_sens->sen_fl.is_wall == True)
 	{
 		float avg_distance = (ir_sens->sen_fr.distance + ir_sens->sen_fl.distance)/2.0f;
 		//if(ABS(90.0 - avg_distance) < 5.0)
 		motion_plan.fix_prev_run.set((-1.0)*(90.0 - avg_distance));
+	}
+
+	float diff = vehicle->ego.x_point.get();
+	if(turn_param->param->turn_dir == Turn_R)
+	{
+		motion_plan.fix_post_run.set(diff);
+	}
+	else if(turn_param->param->turn_dir == Turn_L)
+	{
+		motion_plan.fix_post_run.set((-1.0)*diff);
 	}
 
 	(motion_plan.end_radian.get() > 0) ? motion_pattern_set(Search_slalom_L): motion_pattern_set(Search_slalom_R);
@@ -859,6 +872,75 @@ void Motion::Init_Motion_fix_wall		(float set_time,const t_pid_gain *sp_gain  ,c
 
 	error_counter_reset();
 }
+
+void Motion::Init_Motion_suction_start	(float suction_voltage,float set_time,const t_pid_gain *sp_gain  ,const t_pid_gain *om_gain  )
+{
+	if(motion_exeStatus_get() == error)
+	{
+		Motion_error_handling();
+		return;
+	}
+	motion_plan.velo.init();
+	motion_plan.max_velo.init();
+	motion_plan.end_velo.init();
+	motion_plan.accel.init();
+	motion_plan.deccel.init();
+	motion_plan.end_length.init();
+	motion_plan.length_accel.init();
+	motion_plan.length_deccel.init();
+
+	motion_plan.rad_accel.init();
+	motion_plan.rad_deccel.init();
+	motion_plan.rad_max_velo.init();
+	motion_plan.end_radian.init();
+	motion_plan.radian_accel.init();
+	motion_plan.radian_deccel.init();
+	motion_plan.turn_r_min.init();
+	motion_plan.turn_state.init();
+	motion_plan.turn_time_ms.init		();
+
+	motion_plan.suction_value.set(suction_voltage);
+
+	//Set control gain & turn_param
+	straight_motion_param.sp_gain = sp_gain;
+	straight_motion_param.om_gain = om_gain;
+	turn_motion_param.sp_gain = sp_gain;
+	turn_motion_param.om_gain = om_gain;
+
+	vehicle->Vehicle_controller.speed_ctrl.Gain_Set(*straight_motion_param.sp_gain);
+	vehicle->Vehicle_controller.omega_ctrl.Gain_Set(*straight_motion_param.om_gain);
+	vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
+	vehicle->Vehicle_controller.omega_ctrl.I_param_reset();
+
+	vehicle->ego.length.init();
+	vehicle->ego.radian.init();
+	vehicle->ego.x_point.init();
+	vehicle->ego.turn_x.init();
+	vehicle->ego.turn_y.init();
+	vehicle->ego.turn_slip_theta.init();
+
+	vehicle->ideal.length.init();
+	vehicle->ideal.radian.init();
+	vehicle->ideal.x_point.init();
+	vehicle->ideal.turn_x.init();
+	vehicle->ideal.turn_y.init();
+	vehicle->ideal.turn_slip_theta.init();
+
+	vehicle->V_suction.init();
+	vehicle->suction_flag_set(True);
+
+	motion_pattern_set(Suction_start);
+	motion_exeStatus_set(execute);
+	motion_state_set(BRAKE_STATE);
+	run_time_ms_reset();
+	run_time_limit_ms_set(set_time);
+
+	ir_sens->EnableIrSensStraight();
+	ir_sens->Division_Wall_Correction_Reset();
+
+	error_counter_reset();
+}
+
 void Motion::Init_Motion_stop_brake	(float set_time,const t_pid_gain *sp_gain  ,const t_pid_gain *om_gain  )
 {
 	if(motion_exeStatus_get() == error)

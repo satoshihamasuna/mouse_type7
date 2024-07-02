@@ -41,6 +41,7 @@ typedef enum{
 	run_brake			= 25,
 	motor_free			= 26,
 	Fix_wall			= 27,
+	Suction_start		= 28,
 }t_run_pattern;
 
 typedef enum{

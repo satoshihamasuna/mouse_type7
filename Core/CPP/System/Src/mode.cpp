@@ -281,7 +281,7 @@ namespace Mode
 						}
 
 				  		run_path.turn_time_set(mode_1000);
-						run_path.run_Dijkstra_suction(		start, Dir_None, goal,MAZE_GOAL_SIZE,600,
+						run_path.run_Dijkstra_suction(		start, Dir_None, goal,MAZE_GOAL_SIZE,400,
 															st_mode_1000_v0, (int)(sizeof(st_mode_1000_v0)/sizeof(t_straight_param *const)),
 															di_mode_1000_v0, (int)(sizeof(di_mode_1000_v0)/sizeof(t_straight_param *const)), mode_1000,motion);
 
@@ -304,7 +304,7 @@ namespace Mode
 						}
 
 				  		run_path.turn_time_set(mode_1000);
-						run_path.run_Dijkstra_suction(		start, Dir_None, goal, MAZE_GOAL_SIZE,600,
+						run_path.run_Dijkstra_suction(		start, Dir_None, goal, MAZE_GOAL_SIZE,400,
 															st_mode_1000_v1, (int)(sizeof(st_mode_1000_v1)/sizeof(t_straight_param *const)),
 															di_mode_1000_v1, (int)(sizeof(di_mode_1000_v1)/sizeof(t_straight_param *const)), mode_1000,motion);
 
@@ -327,7 +327,7 @@ namespace Mode
 						}
 
 				  		run_path.turn_time_set(mode_1200);
-						run_path.run_Dijkstra_suction(		start, Dir_None, goal, MAZE_GOAL_SIZE,600,
+						run_path.run_Dijkstra_suction(		start, Dir_None, goal, MAZE_GOAL_SIZE,400,
 															st_mode_1200_v0, (int)(sizeof(st_mode_1200_v0)/sizeof(t_straight_param *const)),
 															di_mode_1200_v0, (int)(sizeof(di_mode_1200_v0)/sizeof(t_straight_param *const)), mode_1200,motion);
 
@@ -351,7 +351,7 @@ namespace Mode
 
 
 				  		run_path.turn_time_set(mode_1400);
-						run_path.run_Dijkstra_suction(		start, Dir_None, goal, MAZE_GOAL_SIZE,700,
+						run_path.run_Dijkstra_suction(		start, Dir_None, goal, MAZE_GOAL_SIZE,400,
 															st_mode_1400_v0, (int)(sizeof(st_mode_1400_v0)/sizeof(t_straight_param *const)),
 															di_mode_1400_v0, (int)(sizeof(di_mode_1400_v0)/sizeof(t_straight_param *const)), mode_1400,motion);
 						if(motion->motion_exeStatus_get() == error)
@@ -374,7 +374,7 @@ namespace Mode
 
 
 				  		run_path.turn_time_set(mode_1400);
-						run_path.run_Dijkstra_suction(		start, Dir_None, goal, MAZE_GOAL_SIZE,700,
+						run_path.run_Dijkstra_suction(		start, Dir_None, goal, MAZE_GOAL_SIZE,400,
 															st_mode_1400_v1, (int)(sizeof(st_mode_1400_v1)/sizeof(t_straight_param *const)),
 															di_mode_1400_v1, (int)(sizeof(di_mode_1400_v1)/sizeof(t_straight_param *const)), mode_1400,motion);
 
@@ -398,7 +398,7 @@ namespace Mode
 
 
 				  		run_path.turn_time_set(mode_1400);
-						run_path.run_Dijkstra_suction(		start, Dir_None, goal, MAZE_GOAL_SIZE,700,
+						run_path.run_Dijkstra_suction(		start, Dir_None, goal, MAZE_GOAL_SIZE,400,
 															st_mode_1500_v0, (int)(sizeof(st_mode_1500_v0)/sizeof(t_straight_param *const)),
 															di_mode_1500_v0, (int)(sizeof(di_mode_1500_v0)/sizeof(t_straight_param *const)), mode_1500,motion);
 

@@ -37,6 +37,7 @@ struct motion_plan_params
 		param_element turn_r_min;
 		param_element fix_post_run;
 		param_element fix_prev_run;
+		param_element suction_value;
 		turn_dir_element turn_state;
 		param_element turn_time_ms;
 };
@@ -109,6 +110,7 @@ class Motion
 		void SetIdeal_turn_v90		();
 
 		void SetIdeal_fix_wall		();
+		void SetIdeal_suction_start ();
 		void SetIdeal_stop_brake	();
 
 		void SetIdeal_free_rotation_set	( );
@@ -181,6 +183,7 @@ class Motion
 		void Init_Motion_turn_v90		(const t_param *turn_param,t_run_pattern run_pt,const t_pid_gain *sp_gain = &basic_sp_gain,const t_pid_gain *om_gain = &basic_om_gain);
 
 		void Init_Motion_fix_wall		(float set_time,const t_pid_gain *sp_gain = &basic_sp_gain,const t_pid_gain *om_gain = &basic_om_gain);
+		void Init_Motion_suction_start	(float suction_voltage,float set_time,const t_pid_gain *sp_gain = &basic_sp_gain,const t_pid_gain *om_gain = &basic_om_gain);
 		void Init_Motion_stop_brake		(float set_time,const t_pid_gain *sp_gain = &basic_sp_gain,const t_pid_gain *om_gain = &basic_om_gain);
 
 		inline t_exeStatus execute_Motion()
@@ -217,6 +220,12 @@ class Motion
 		inline t_exeStatus exe_Motion_fix_wall		(float set_time,const t_pid_gain *sp_gain = &basic_sp_gain,const t_pid_gain *om_gain = &basic_om_gain)
 		{
 			Init_Motion_fix_wall		(set_time,sp_gain,om_gain);
+			return execute_Motion();
+		}
+
+		inline t_exeStatus exe_Motion_suction_start	(float suction_voltage,float set_time,const t_pid_gain *sp_gain = &basic_sp_gain,const t_pid_gain *om_gain = &basic_om_gain)
+		{
+			Init_Motion_suction_start		(suction_voltage,set_time,sp_gain,om_gain);
 			return execute_Motion();
 		}
 

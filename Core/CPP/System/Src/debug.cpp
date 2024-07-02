@@ -84,6 +84,18 @@ namespace Mode
 						  }
 						  KalmanFilter::getInstance().filter_init();
 						  motion->Motion_start();
+						  /*
+							motion->Init_Motion_suction_start( 200/5*3+200);
+							for(int i = 5; i <= 200; i = i + 5)
+							{
+								FAN_Motor_SetDuty(i);;
+								HAL_Delay(3);
+							}
+							motion->execute_Motion();
+							+*/
+						  float suction_value = 250.0/1000.0f*7.20;
+						  int stay_time 	= (int)(suction_value/0.05) + 300;
+						  motion->exe_Motion_suction_start(suction/1000.0f*7.20, stay_time);
 						  LogData::getInstance().data_count = 0;
 						  LogData::getInstance().log_enable = True;
 						  motion->Init_Motion_straight(90.0*7.0,8.0,2.0,0.0,&debug_sp_gain,&debug_om_gain);
@@ -91,6 +103,9 @@ namespace Mode
 
 						  LogData::getInstance().log_enable = False;
 						  motion->Motion_end();
+
+						  FAN_Motor_SetDuty(0);;
+						  HAL_Delay(200);
 						  enable = 0x00;
 						  HAL_Delay(500);
 					}

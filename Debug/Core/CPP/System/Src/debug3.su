@@ -1,20 +1,24 @@
-vehicle.h:168:16:virtual void Vehicle::motorSetDuty_l(int)	16	static
-vehicle.h:172:16:virtual void Vehicle::motorSetDuty_r(int)	16	static
-vehicle.h:181:7:virtual void Vehicle_type7::motorSetDuty_l(int)	16	static
-vehicle.h:187:7:virtual void Vehicle_type7::motorSetDuty_r(int)	16	static
+vehicle.h:171:16:virtual void Vehicle::motorSetDuty_l(int)	16	static
+vehicle.h:175:16:virtual void Vehicle::motorSetDuty_r(int)	16	static
+vehicle.h:193:16:virtual void Vehicle::suctionSetDuty(int)	16	static
+vehicle.h:198:16:virtual void Vehicle::suctionStop()	16	static
+vehicle.h:208:7:virtual void Vehicle_type7::motorSetDuty_l(int)	16	static
+vehicle.h:214:7:virtual void Vehicle_type7::motorSetDuty_r(int)	16	static
+vehicle.h:220:7:virtual void Vehicle_type7::suctionSetDuty(int)	16	static
+vehicle.h:226:7:virtual void Vehicle_type7::suctionStop()	16	static
 sensing_task.h:112:8:virtual void IrSensTask_type7::IrSensorSet()	16	static
 gthr-default.h:229:1:int __gthread_key_delete(__gthread_key_t)	16	static
-ctrl_task.h:152:3:Motion::Motion(Vehicle*, IrSensTask*, int)	24	static
-ctrl_task.h:246:15:IrSensTask* Motion::return_irObj()	16	static
-ctrl_task.h:259:3:CtrlTask::CtrlTask(Vehicle*, IrSensTask*, int)	24	static
-ctrl_task.h:277:3:CtrlTask_type7::CtrlTask_type7(Vehicle*, IrSensTask*)	24	static
+ctrl_task.h:154:3:Motion::Motion(Vehicle*, IrSensTask*, int)	24	static
+ctrl_task.h:255:15:IrSensTask* Motion::return_irObj()	16	static
+ctrl_task.h:268:3:CtrlTask::CtrlTask(Vehicle*, IrSensTask*, int)	24	static
+ctrl_task.h:286:3:CtrlTask_type7::CtrlTask_type7(Vehicle*, IrSensTask*)	24	static
 path_follow.h:34:8:void path_follow_class::set_path_follow_gain(float, float)	24	static
 interrupt.h:32:12:uint32_t Interrupt::return_time_count()	16	static
 debug3.cpp:46:7:void Mode::Debug3()	520	static
 controller.h:19:7:constexpr PID_Controller::PID_Controller()	16	static
 controller.h:37:7:constexpr mouse_Controller::mouse_Controller()	16	static
 vehicle.h:90:7:Vehicle::Vehicle()	16	static
-vehicle.h:179:7:Vehicle_type7::Vehicle_type7()	16	static
+vehicle.h:206:7:Vehicle_type7::Vehicle_type7()	16	static
 singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = Vehicle_type7]	8	static
 sensing_task.h:44:7:IrSensTask::IrSensTask()	16	static
 sensing_task.h:109:7:IrSensTask_type7::IrSensTask_type7()	16	static

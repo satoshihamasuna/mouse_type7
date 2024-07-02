@@ -91,6 +91,8 @@ class Vehicle
 {
 	protected:
 		int r_duty,l_duty;
+		int suction_duty;
+		t_bool suction_flag = False;
 	public:
 		machine_params ego;
 		void ego_initialize()
@@ -159,6 +161,7 @@ class Vehicle
 
 		param_element battery;
 
+
 		mouse_Controller Vehicle_controller;
 		float V_r,V_l;
 		int motor_out_r,motor_out_l;
@@ -174,6 +177,30 @@ class Vehicle
 			r_duty = out_r;
 		}
 
+
+		param_element  V_suction;
+		int suction_out	= 0;
+		void suction_flag_set(t_bool flag)
+		{
+			suction_flag = flag;
+		}
+		t_bool suction_flag_get()
+		{
+			return suction_flag;
+		}
+
+
+		virtual void suctionSetDuty(int out_s)
+		{
+			suction_duty = out_s;
+		}
+
+		virtual void suctionStop()
+		{
+			suction_flag = False;
+			suction_duty = 0;
+			FAN_Motor_SetDuty(suction_duty);
+		}
 };
 
 class Vehicle_type7:public Vehicle,public Singleton<Vehicle_type7>{
@@ -188,6 +215,19 @@ class Vehicle_type7:public Vehicle,public Singleton<Vehicle_type7>{
 	{
 		r_duty = out_r;
 		Motor_SetDuty_Right(out_r);
+	}
+
+	void suctionSetDuty(int out_s) override
+	{
+		suction_duty = out_s;
+		FAN_Motor_SetDuty(suction_duty);
+	}
+
+	void suctionStop() override
+	{
+		suction_flag = False;
+		suction_duty = 0;
+		FAN_Motor_SetDuty(suction_duty);
 	}
 
 };

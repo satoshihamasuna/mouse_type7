@@ -355,7 +355,7 @@ void IrSensTask::SetWallControl_RadVelo(Vehicle *vehicle,float delta_tms)
 			{
 				vehicle->ego.x_point.set(ir_rad_acc_control);
 				//if(ABS(ir_rad_acc_control) < 10.0 )
-					//vehicle->ego.radian.set(((ir_rad_acc_control/20.0) + vehicle->ego.radian.get())/2.0f);
+					//vehicle->ego.radian.set(((-ir_rad_acc_control/20.0) + vehicle->ego.radian.get())/2.0f);
 			}
 		}
 		else
@@ -365,7 +365,7 @@ void IrSensTask::SetWallControl_RadVelo(Vehicle *vehicle,float delta_tms)
 			{
 				vehicle->ego.x_point.set((ir_rad_acc_control+vehicle->ego.x_point.get())/2.0);
 				//if(ABS(ir_rad_acc_control) < 10.0)
-					//vehicle->ego.radian.set(((ir_rad_acc_control/20.0) + vehicle->ego.radian.get())/2.0f);
+					//vehicle->ego.radian.set(((-ir_rad_acc_control/20.0) + vehicle->ego.radian.get())/2.0f);
 			}
 		}
 	}
@@ -378,7 +378,7 @@ void IrSensTask::SetWallControl_RadVelo(Vehicle *vehicle,float delta_tms)
 
 	else
 	{
-		s 		= k1*vehicle->ego.x_point.get()+k2*vehicle->ego.radian.get();//k2*machine_->radian;//
+		s 		= k1*vehicle->ego.x_point.get()+k2*vehicle->ego.radian.get()*1.0;//k2*machine_->radian;//
 		s_dot 	= k1*vehicle->ideal.velo.get()*1000.0*vehicle->ideal.radian.get()*1.0 + k2*vehicle->ideal.rad_velo.get();
 	}
 

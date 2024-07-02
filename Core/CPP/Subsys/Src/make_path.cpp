@@ -646,14 +646,19 @@ void Dijkstra::run_Dijkstra_suction(t_position start_pos,t_direction start_wallP
 	}
 
 	motion->Motion_start();
-	motion->Init_Motion_fix_wall( suction/10*3+500);
-	for(int i = 10; i <= suction; i = i + 10)
+	/*
+	motion->Init_Motion_suction_start( suction/5*3+200);
+	for(int i = 5; i <= suction; i = i + 5)
 	{
 		FAN_Motor_SetDuty(i);;
 		HAL_Delay(3);
 	}
 	motion->execute_Motion();
-	motion->Motion_start();
+	*/
+	float suction_value = suction/1000.0f*7.20;
+	int stay_time 	= (int)(suction_value/0.05) + 300;
+	motion->exe_Motion_suction_start(suction/1000.0f*7.20, stay_time);
+	//motion->Motion_start();
 	log_enable();
 	motion->exe_Motion_straight(  16.10-3.0, straight_base_velo().param->acc, straight_base_velo().param->max_velo, straight_base_velo().param->max_velo);
 
