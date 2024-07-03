@@ -307,6 +307,7 @@ void Motion::Init_Motion_straight		(float len_target,float acc,float max_sp,floa
 	//vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
 	vehicle->Vehicle_controller.omega_ctrl.I_param_reset();
 
+	/*
 	vehicle->ego.length.init();
 	//vehicle->ego.radian.init();
 	//vehicle->ego.x_point.init();
@@ -320,6 +321,7 @@ void Motion::Init_Motion_straight		(float len_target,float acc,float max_sp,floa
 	vehicle->ideal.turn_x.init();
 	vehicle->ideal.turn_y.init();
 	vehicle->ideal.turn_slip_theta.init();
+	*/
 
 	motion_pattern_set(Straight);
 	motion_exeStatus_set(execute);
@@ -374,6 +376,7 @@ void Motion::Init_Motion_diagonal		(float len_target,float acc,float max_sp,floa
 	//vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
 	vehicle->Vehicle_controller.omega_ctrl.I_param_reset();
 
+	/*
 	vehicle->ego.length.init();
 	//vehicle->ego.radian.init();
 	//vehicle->ego.x_point.init();
@@ -387,6 +390,7 @@ void Motion::Init_Motion_diagonal		(float len_target,float acc,float max_sp,floa
 	vehicle->ideal.turn_x.init();
 	vehicle->ideal.turn_y.init();
 	vehicle->ideal.turn_slip_theta.init();
+	*/
 
 	motion_pattern_set(Diagonal);
 	motion_exeStatus_set(execute);
@@ -506,6 +510,7 @@ void Motion::Init_Motion_turn_in		(const t_param *turn_param,t_run_pattern run_p
 	//vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
 	vehicle->Vehicle_controller.omega_ctrl.I_param_reset();
 
+	/*
 	vehicle->ego.length.init();
 	vehicle->ego.radian.init();
 	//vehicle->ego.x_point.init();
@@ -519,6 +524,7 @@ void Motion::Init_Motion_turn_in		(const t_param *turn_param,t_run_pattern run_p
 	vehicle->ideal.turn_x.init();
 	vehicle->ideal.turn_y.init();
 	vehicle->ideal.turn_slip_theta.init();
+	*/
 
 	if(ABS(turn_param->param->degree) == 135.0f)
 	{
@@ -599,6 +605,7 @@ void Motion::Init_Motion_turn_out		(const t_param *turn_param,t_run_pattern run_
 	//vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
 	vehicle->Vehicle_controller.omega_ctrl.I_param_reset();
 
+	/*
 	vehicle->ego.length.init();
 	vehicle->ego.radian.init();
 	//vehicle->ego.x_point.init();
@@ -612,6 +619,7 @@ void Motion::Init_Motion_turn_out		(const t_param *turn_param,t_run_pattern run_
 	vehicle->ideal.turn_x.init();
 	vehicle->ideal.turn_y.init();
 	vehicle->ideal.turn_slip_theta.init();
+	*/
 
 	if(ABS(turn_param->param->degree) == 135.0f)
 	{
@@ -693,6 +701,7 @@ void Motion::Init_Motion_long_turn	(const t_param *turn_param,t_run_pattern run_
 	//vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
 	vehicle->Vehicle_controller.omega_ctrl.I_param_reset();
 
+	/*
 	vehicle->ego.length.init();
 	vehicle->ego.radian.init();
 	//vehicle->ego.x_point.init();
@@ -706,7 +715,7 @@ void Motion::Init_Motion_long_turn	(const t_param *turn_param,t_run_pattern run_
 	vehicle->ideal.turn_x.init();
 	vehicle->ideal.turn_y.init();
 	vehicle->ideal.turn_slip_theta.init();
-
+	*/
 
 	if(ABS(turn_param->param->degree) == 90.0f)
 	{
@@ -728,29 +737,48 @@ void Motion::Init_Motion_long_turn	(const t_param *turn_param,t_run_pattern run_
 
 		if(turn_param->param->turn_dir == Turn_R)
 		{
-			r_min_fix = (1.0)*PI/accel_Integral/10.0f*diff;
-			float fixed_rad_max = turn_param->param->velo/((turn_param->param->r_min + r_min_fix)/1000.0f);
-			motion_plan.rad_max_velo.set(fixed_rad_max);
-			motion_plan.turn_r_min.set((turn_param->param->r_min + r_min_fix));
+			r_min_fix = (-1.0)*PI/accel_Integral/10.0f*diff;
+			if(ABS(r_min_fix) < 3.0)
+			{
+				float fixed_rad_max = turn_param->param->velo/((turn_param->param->r_min + r_min_fix)/1000.0f);
+				motion_plan.rad_max_velo.set(fixed_rad_max);
+				motion_plan.turn_r_min.set((turn_param->param->r_min + r_min_fix));
+
+				if(r_min_fix > 0.0)
+				{
+					motion_plan.fix_prev_run.set((1.0f)*ABS(diff));
+					motion_plan.fix_post_run.set((1.0f)*ABS(diff));
+				}
+				else if(r_min_fix < 0.0)
+				{
+					motion_plan.fix_prev_run.set((-1.0f)*ABS(diff));
+					motion_plan.fix_post_run.set((-1.0f)*ABS(diff));
+				}
+			}
 		}
 		else if(turn_param->param->turn_dir == Turn_L)
 		{
-			r_min_fix = (1.0)*PI/accel_Integral/10.0f*diff;
-			float fixed_rad_max = turn_param->param->velo/((turn_param->param->r_min + r_min_fix)/1000.0f);
-			motion_plan.rad_max_velo.set(fixed_rad_max);
-			motion_plan.turn_r_min.set((turn_param->param->r_min + r_min_fix));
+			r_min_fix = (-1.0)*PI/accel_Integral/10.0f*diff;
+			if(ABS(r_min_fix) < 3.0)
+			{
+				float fixed_rad_max = turn_param->param->velo/((turn_param->param->r_min + r_min_fix)/1000.0f);
+				motion_plan.rad_max_velo.set(fixed_rad_max);
+				motion_plan.turn_r_min.set((turn_param->param->r_min + r_min_fix));
+
+				if(r_min_fix > 0.0)
+				{
+					motion_plan.fix_prev_run.set((-1.0f)*ABS(diff));
+					motion_plan.fix_post_run.set((-1.0f)*ABS(diff));
+				}
+				else if(r_min_fix < 0.0)
+				{
+					motion_plan.fix_prev_run.set((1.0f)*ABS(diff));
+					motion_plan.fix_post_run.set((1.0f)*ABS(diff));
+				}
+			}
 		}
 
-		if(r_min_fix > 0.0)
-		{
-			motion_plan.fix_prev_run.set((-1.0f)*ABS(diff));
-			motion_plan.fix_post_run.set((-1.0f)*ABS(diff));
-		}
-		else if(r_min_fix < 0.0)
-		{
-			motion_plan.fix_prev_run.set((1.0f)*ABS(diff));
-			motion_plan.fix_post_run.set((1.0f)*ABS(diff));
-		}
+
 
 
 	}

@@ -69,7 +69,7 @@ void Motion::Adjust_wall_corner()
 			if(ir_sens->l_wall_corner == True)	{		Indicate_LED(0x20|Return_LED_Status());		}
 
 			if(ABS(ir_sens->r_corner_time - ir_sens->l_corner_time) < (int)((8.0)/vehicle->ideal.velo.get())
-						&& motion_plan.end_length.get() > 90.0f)
+						&& motion_plan.end_length.get() >= 90.0f)
 			{
 				int diff_time_ms = (ir_sens->r_corner_time - ir_sens->l_corner_time);
 				float diff = ((float)diff_time_ms) * vehicle->ideal.velo.get();
@@ -475,7 +475,7 @@ void Motion::SetIdeal_straight()
 			//vehicle->ideal.rad_velo.set(0.0f);
 			vehicle->ideal.radian.set(0.0f);
 
-			vehicle->ego.length.set(0.0f);
+			vehicle->ego.length.set(-(motion_plan.end_length.get() - vehicle->ego.length.get()));
 			vehicle->ego.radian.set(0.0f);
 
 			vehicle->ego.turn_x.set(0.0f);
@@ -565,7 +565,7 @@ void Motion::SetIdeal_diagonal		( )
 			//vehicle->ideal.rad_velo.set(0.0f);
 			vehicle->ideal.radian.set(0.0f);
 
-			vehicle->ego.length.set(0.0f);
+			vehicle->ego.length.set(-(motion_plan.end_length.get() - vehicle->ego.length.get()));
 			vehicle->ego.radian.set(0.0f);
 
 			vehicle->ego.turn_x.set(0.0f);
@@ -743,7 +743,7 @@ void Motion::SetIdeal_turn_in		( )
 			vehicle->ideal.radian.set(0.0f);
 			vehicle->ideal.turn_slip_theta.set(0.0f);
 
-			vehicle->ego.length.set(0.0f);
+			vehicle->ego.length.set(-((turn_motion_param.param->Lend + motion_plan.fix_post_run.get()) - vehicle->ego.length.get()));
 			//vehicle->ego.radian.set(0.0f);
 
 			vehicle->ego.turn_x.set(0.0f);
@@ -850,7 +850,7 @@ void Motion::SetIdeal_turn_out		( ){
 			vehicle->ideal.radian.set(0.0f);
 			vehicle->ideal.turn_slip_theta.set(0.0f);
 
-			vehicle->ego.length.set(0.0f);
+			vehicle->ego.length.set(-((turn_motion_param.param->Lend + motion_plan.fix_post_run.get()) - vehicle->ego.length.get()));
 			//vehicle->ego.radian.set(0.0f);
 
 			vehicle->ego.turn_x.set(0.0f);
@@ -958,7 +958,7 @@ void Motion::SetIdeal_long_turn		( )
 			vehicle->ideal.radian.set(0.0f);
 			vehicle->ideal.turn_slip_theta.set(0.0f);
 
-			vehicle->ego.length.set(0.0f);
+			vehicle->ego.length.set(-((turn_motion_param.param->Lend + motion_plan.fix_post_run.get()) - vehicle->ego.length.get()));
 			//vehicle->ego.radian.set(0.0f);
 
 			vehicle->ego.turn_x.set(0.0f);
@@ -1066,7 +1066,7 @@ void Motion::SetIdeal_turn_v90		( )
 			vehicle->ideal.radian.set(0.0f);
 			vehicle->ideal.turn_slip_theta.set(0.0f);
 
-			vehicle->ego.length.set(0.0f);
+			vehicle->ego.length.set(-((turn_motion_param.param->Lend + motion_plan.fix_post_run.get()) - vehicle->ego.length.get()));
 			//vehicle->ego.radian.set(0.0f);
 
 			vehicle->ego.turn_x.set(0.0f);
@@ -1299,6 +1299,7 @@ void Motion::SetIdeal_stop_brake	( )
 		vehicle->ego.turn_x.set(0.0f);
 		vehicle->ego.turn_y.set(0.0f);
 		vehicle->ego.x_point.set(0.0f);
+
 		vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
 		vehicle->Vehicle_controller.omega_ctrl.I_param_reset();
 		//Init_Motion_stop_brake(200);
