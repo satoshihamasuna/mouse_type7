@@ -743,7 +743,7 @@ void Motion::Init_Motion_long_turn	(const t_param *turn_param,t_run_pattern run_
 				float fixed_rad_max = turn_param->param->velo/((turn_param->param->r_min + r_min_fix)/1000.0f);
 				motion_plan.rad_max_velo.set(fixed_rad_max);
 				motion_plan.turn_r_min.set((turn_param->param->r_min + r_min_fix));
-
+				motion_plan.turn_time_ms.set( ABS(DEG2RAD(turn_param->param->degree)/(accel_Integral*motion_plan.rad_max_velo.get()))*1000.0f);
 				if(r_min_fix > 0.0)
 				{
 					motion_plan.fix_prev_run.set((1.0f)*ABS(diff));
@@ -764,7 +764,7 @@ void Motion::Init_Motion_long_turn	(const t_param *turn_param,t_run_pattern run_
 				float fixed_rad_max = turn_param->param->velo/((turn_param->param->r_min + r_min_fix)/1000.0f);
 				motion_plan.rad_max_velo.set(fixed_rad_max);
 				motion_plan.turn_r_min.set((turn_param->param->r_min + r_min_fix));
-
+				motion_plan.turn_time_ms.set( ABS(DEG2RAD(turn_param->param->degree)/(accel_Integral*motion_plan.rad_max_velo.get()))*1000.0f);
 				if(r_min_fix > 0.0)
 				{
 					motion_plan.fix_prev_run.set((-1.0f)*ABS(diff));

@@ -313,6 +313,10 @@ t_position Search::search_adachi(	t_position start_pos,t_position goal_pos,int g
 				break;
 		}
 		my_position = tmp_my_pos;
+		if(full_search == True)
+		{
+			if(return_search_time() >= END_TIME_LIMIT) full_search = False;
+		}
 	}
 	if(motion->motion_exeStatus_get() != error)
 	{
@@ -445,6 +449,10 @@ t_position Search::search_adachi_acc(	t_position start_pos,t_position goal_pos,i
 				break;
 		}
 		my_position = tmp_my_pos;
+		if(full_search == True)
+		{
+			if(return_search_time() >= END_TIME_LIMIT) full_search = False;
+		}
 	}
 	if(motion->motion_exeStatus_get() != error)
 	{

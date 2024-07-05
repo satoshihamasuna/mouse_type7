@@ -14,17 +14,18 @@ ctrl_task.h:165:24:t_exeStatus Motion::motion_exeStatus_get()	16	static
 ctrl_task.h:257:15:IrSensTask* Motion::return_irObj()	16	static
 ctrl_task.h:270:3:CtrlTask::CtrlTask(Vehicle*, IrSensTask*, int)	24	static
 ctrl_task.h:288:3:CtrlTask_type7::CtrlTask_type7(Vehicle*, IrSensTask*)	24	static
-search_class.h:56:14:t_position Search::search_adachi_1(t_position, t_position, int, wall_class*, make_map*, Motion*)	48	static
-search_class.h:63:14:t_position Search::search_adachi_1_acc(t_position, t_position, int, wall_class*, make_map*, Motion*)	48	static
-search_class.h:81:14:t_position Search::search_adachi_2_acc(t_position, t_position, int, wall_class*, make_map*, Motion*)	48	static
-search_class.h:98:14:t_position Search::search_adachi_3_acc(t_position, t_position, int, wall_class*, make_map*, Motion*)	48	static
+interrupt.h:32:12:uint32_t Interrupt::return_time_count()	16	static
+search_class.h:57:8:void Search::reset_search_time()	16	static
+search_class.h:64:14:t_position Search::search_adachi_1(t_position, t_position, int, wall_class*, make_map*, Motion*)	48	static
+search_class.h:72:14:t_position Search::search_adachi_1_acc(t_position, t_position, int, wall_class*, make_map*, Motion*)	48	static
+search_class.h:91:14:t_position Search::search_adachi_2_acc(t_position, t_position, int, wall_class*, make_map*, Motion*)	48	static
+search_class.h:109:14:t_position Search::search_adachi_3_acc(t_position, t_position, int, wall_class*, make_map*, Motion*)	48	static
 make_path.h:94:3:calcRunTime::calcRunTime()	16	static
 make_path.h:145:3:Dijkstra::Dijkstra(wall_class*)	16	static
 path_follow.h:34:8:void path_follow_class::set_path_follow_gain(float, float)	24	static
-interrupt.h:32:12:uint32_t Interrupt::return_time_count()	16	static
 mode.cpp:43:7:void Mode::indicate_error()	8	static
 mode.cpp:54:10:uint8_t Mode::Select(uint8_t, uint8_t, t_encoder)	24	static
-search_class.h:24:7:Search::Search()	16	static
+search_class.h:27:7:Search::Search()	16	static
 mode.cpp:69:7:void Mode::Demo()	30344	static
 mode.cpp:453:7:void Mode::Select_Mode()	448	static
 controller.h:19:7:constexpr PID_Controller::PID_Controller()	16	static

@@ -84,15 +84,6 @@ namespace Mode
 						  }
 						  KalmanFilter::getInstance().filter_init();
 						  motion->Motion_start();
-						  /*
-							motion->Init_Motion_suction_start( 200/5*3+200);
-							for(int i = 5; i <= 200; i = i + 5)
-							{
-								FAN_Motor_SetDuty(i);;
-								HAL_Delay(3);
-							}
-							motion->execute_Motion();
-							+*/
 						  float suction_value = 250.0/1000.0f*7.20;
 						  int stay_time 	= (int)(suction_value/0.05) + 300;
 						  motion->exe_Motion_suction_start(suction/1000.0f*7.20, stay_time);
@@ -143,17 +134,14 @@ namespace Mode
 						  KalmanFilter::getInstance().filter_init();
 
 						  motion->Motion_start();
-						  motion->Init_Motion_fix_wall(400);
-						  for(int i = 50; i <= suction; i = i + 50)
-						  {
-							  FAN_Motor_SetDuty(i);;
-							  HAL_Delay(5);
-						  }
-						  motion->execute_Motion();
-
+						  float suction_value = 250.0/1000.0f*7.20;
+						  int stay_time 	= (int)(suction_value/0.05) + 300;
+						  motion->exe_Motion_suction_start(suction/1000.0f*7.20, stay_time);
 						  LogData::getInstance().data_count = 0;
 						  LogData::getInstance().log_enable = True;
 						  motion->exe_Motion_straight(SECTION,st_param->param->acc,st_param->param->max_velo,st_param->param->max_velo,st_param->sp_gain,st_param->om_gain);
+						  motion->exe_Motion_long_turn(turn_mode[Long_turnR180],Long_turnR180,st_param->sp_gain,st_param->om_gain);
+						  motion->exe_Motion_long_turn(turn_mode[Long_turnL180],Long_turnL180,st_param->sp_gain,st_param->om_gain);
 						  motion->exe_Motion_long_turn(turn_mode[Long_turnR180],Long_turnR180,st_param->sp_gain,st_param->om_gain);
 						  motion->exe_Motion_straight(SECTION,st_param->param->acc,st_param->param->max_velo,0.0,st_param->sp_gain,st_param->om_gain);
 						  HAL_Delay(200);
