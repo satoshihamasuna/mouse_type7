@@ -1,6 +1,8 @@
 gthr-default.h:229:1:int __gthread_key_delete(__gthread_key_t)	16	static
 vehicle.h:57:16:float param_element::get()	16	static
 wall_class.h:24:15:IrSensTask* wall_class::return_irObj()	16	static
+wall_class.h:29:8:void wall_class::goal_set_vwall(int, int, int)	32	static
+wall_class.h:37:8:void wall_class::goal_clear_vwall(int, int, int)	32	static
 adachi_class.h:22:3:adachi::adachi(wall_class*, make_map*)	24	static
 ctrl_task.h:165:24:t_exeStatus Motion::motion_exeStatus_get()	16	static
 ctrl_task.h:191:22:t_exeStatus Motion::execute_Motion()	16	static
@@ -22,10 +24,10 @@ search.cpp:107:13:t_exeStatus Search::turn_right_process(t_position, t_position,
 search.cpp:149:13:t_exeStatus Search::turn_left_process(t_position, t_position, t_position, int, int, wall_class*, make_map*, Motion*)	56	static
 search.cpp:190:13:t_exeStatus Search::turn_rear_process(t_position, t_position, t_position, int, int, wall_class*, make_map*, Motion*)	48	static
 search.cpp:228:12:t_position Search::search_adachi(t_position, t_position, int, wall_class*, make_map*, Motion*)	72	static
-search.cpp:332:12:t_position Search::search_adachi_acc(t_position, t_position, int, wall_class*, make_map*, Motion*)	88	static
+search.cpp:334:12:t_position Search::search_adachi_acc(t_position, t_position, int, wall_class*, make_map*, Motion*)	88	static
 singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = Interrupt]	4	static
 Kalman_filter.h:13:7:KalmanFilter::KalmanFilter()	16	static
 singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = KalmanFilter]	8	static
-search.cpp:465:1:void __static_initialization_and_destruction_0(int, int)	16	static
-search.cpp:465:1:cpp)	8	static
-search.cpp:465:1:cpp)	8	static
+search.cpp:469:1:void __static_initialization_and_destruction_0(int, int)	16	static
+search.cpp:469:1:cpp)	8	static
+search.cpp:469:1:cpp)	8	static

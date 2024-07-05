@@ -352,6 +352,29 @@ namespace Mode
 
 				  		run_path.turn_time_set(mode_1400);
 						run_path.run_Dijkstra_suction(		start, Dir_None, goal, MAZE_GOAL_SIZE,400,
+															st_mode_1200_v1, (int)(sizeof(st_mode_1200_v1)/sizeof(t_straight_param *const)),
+															di_mode_1200_v1, (int)(sizeof(di_mode_1200_v1)/sizeof(t_straight_param *const)), mode_1200,motion);
+						if(motion->motion_exeStatus_get() == error)
+						{
+							Mode::indicate_error();
+							enable = 0x00;
+							break;
+						}
+						enable = 0x00;
+					}
+					break;
+				case ENABLE|0x0C:
+				   if(irsens->IrSensor_Avg() > 2500)
+				   {
+						for(int i = 0;i < 11;i++)
+						{
+							(i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
+							HAL_Delay(50);
+						}
+
+
+				  		run_path.turn_time_set(mode_1400);
+						run_path.run_Dijkstra_suction(		start, Dir_None, goal, MAZE_GOAL_SIZE,400,
 															st_mode_1400_v0, (int)(sizeof(st_mode_1400_v0)/sizeof(t_straight_param *const)),
 															di_mode_1400_v0, (int)(sizeof(di_mode_1400_v0)/sizeof(t_straight_param *const)), mode_1400,motion);
 						if(motion->motion_exeStatus_get() == error)
@@ -363,7 +386,7 @@ namespace Mode
 						enable = 0x00;
 					}
 					break;
-				case ENABLE|0x0C:
+				case ENABLE|0x0D:
 				   if(irsens->IrSensor_Avg() > 2500)
 				   {
 						for(int i = 0;i < 11;i++)
@@ -387,7 +410,7 @@ namespace Mode
 						enable = 0x00;
 					}
 					break;
-				case ENABLE|0x0D:
+				case ENABLE|0x0E:
 				   if(irsens->IrSensor_Avg() > 2500)
 				   {
 						for(int i = 0;i < 11;i++)
@@ -399,8 +422,8 @@ namespace Mode
 
 				  		run_path.turn_time_set(mode_1400);
 						run_path.run_Dijkstra_suction(		start, Dir_None, goal, MAZE_GOAL_SIZE,400,
-															st_mode_1500_v0, (int)(sizeof(st_mode_1500_v0)/sizeof(t_straight_param *const)),
-															di_mode_1500_v0, (int)(sizeof(di_mode_1500_v0)/sizeof(t_straight_param *const)), mode_1500,motion);
+															st_mode_1400_v2, (int)(sizeof(st_mode_1400_v2)/sizeof(t_straight_param *const)),
+															di_mode_1400_v1, (int)(sizeof(di_mode_1400_v1)/sizeof(t_straight_param *const)), mode_1400,motion);
 
 						if(motion->motion_exeStatus_get() == error)
 						{
@@ -410,8 +433,8 @@ namespace Mode
 						}
 						enable = 0x00;
 					}
-					break;
-				case ENABLE|0x0E:
+
+				   /*
 				   if(irsens->IrSensor_Avg() > 2500)
 				   {
 						for(int i = 0;i < 11;i++)
@@ -429,6 +452,7 @@ namespace Mode
 
 						Mode_Disable();
 					}
+					*/
 					break;
 				case ENABLE|0x0F:
 					if(irsens->IrSensor_Avg() > 2500){

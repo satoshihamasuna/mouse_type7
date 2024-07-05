@@ -77,7 +77,7 @@ extern "C" {
 
 #define MAZE_GOAL_X  1
 #define MAZE_GOAL_Y  0
-#define MAZE_GOAL_SIZE  2
+#define MAZE_GOAL_SIZE  3
 #define MAP_MAX_VALUE 1024
 
 #ifdef __cplusplus

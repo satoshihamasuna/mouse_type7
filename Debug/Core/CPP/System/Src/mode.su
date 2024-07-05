@@ -26,8 +26,8 @@ path_follow.h:34:8:void path_follow_class::set_path_follow_gain(float, float)	24
 mode.cpp:43:7:void Mode::indicate_error()	8	static
 mode.cpp:54:10:uint8_t Mode::Select(uint8_t, uint8_t, t_encoder)	24	static
 search_class.h:27:7:Search::Search()	16	static
-mode.cpp:69:7:void Mode::Demo()	30344	static
-mode.cpp:453:7:void Mode::Select_Mode()	448	static
+mode.cpp:69:7:void Mode::Demo()	30336	static
+mode.cpp:477:7:void Mode::Select_Mode()	448	static
 controller.h:19:7:constexpr PID_Controller::PID_Controller()	16	static
 controller.h:37:7:constexpr mouse_Controller::mouse_Controller()	16	static
 vehicle.h:90:7:Vehicle::Vehicle()	16	static
@@ -41,6 +41,6 @@ singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = CtrlTask_type7
 queue_class.h:22:3:ring_queue<SIZE, T>::ring_queue() [with unsigned int SIZE = 1024; T = t_MapNode]	16	static
 path_follow.h:15:7:path_follow_class::path_follow_class()	16	static
 singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = path_follow_class]	8	static
-mode.cpp:491:1:void __static_initialization_and_destruction_0(int, int)	16	static
-mode.cpp:491:1:cpp)	8	static
-mode.cpp:491:1:cpp)	8	static
+mode.cpp:515:1:void __static_initialization_and_destruction_0(int, int)	16	static
+mode.cpp:515:1:cpp)	8	static
+mode.cpp:515:1:cpp)	8	static
