@@ -165,7 +165,7 @@ int shell_debug_straight(int argc, char **argv)
 	}
 	if (ntlibc_strcmp(argv[2], "exe") == 0) {
 		printf("execute!\r\n");
-		for(int i = 0;irsens->IrSensor_Avg() < 2500;i++)
+		for(int i = 0;irsens->IrSensor_Avg() < 2000;i++)
 		{
 			(i%2 == 0) ? Indicate_LED(0xff):Indicate_LED(0x00|0x00);
 			HAL_Delay(200);
@@ -235,7 +235,7 @@ int shell_debug_diagonal(int argc, char **argv)
 	}
 	if (ntlibc_strcmp(argv[2], "exe") == 0) {
 		printf("execute!\r\n");
-		for(int i = 0;irsens->IrSensor_Avg() < 2500;i++)
+		for(int i = 0;irsens->IrSensor_Avg() < 2000;i++)
 		{
 			(i%2 == 0) ? Indicate_LED(0xff):Indicate_LED(0x00|0x00);
 			HAL_Delay(200);
@@ -344,7 +344,7 @@ int shell_debug_turn(int argc, char **argv)
 
 	if (ntlibc_strcmp(argv[2], "exe") == 0) {
 		printf("execute!\r\n");
-		for(int i = 0;irsens->IrSensor_Avg() < 2500;i++)
+		for(int i = 0;irsens->IrSensor_Avg() < 2000;i++)
 		{
 			(i%2 == 0) ? Indicate_LED(0xff):Indicate_LED(0x00|0x00);
 			HAL_Delay(200);

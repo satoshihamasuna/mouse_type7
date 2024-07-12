@@ -17,7 +17,7 @@
 #include "../../Task/Inc/ctrl_task.h"
 //#include "glob_var_machine.h"
 
-#define ALLOW_SIDE_DIFF 8.0
+#define ALLOW_SIDE_DIFF 15.0
 
 const  t_straight_param *search_st_param = &st_param_320;
 
@@ -73,7 +73,7 @@ t_exeStatus Search::updateMap_half_straight(int x, int y,t_position expand_end,i
 t_exeStatus Search::updateMap_half_straight_and_stop(int x, int y,t_position expand_end,int size,int mask,make_map *_map,Motion *motion)
 {
 	t_exeStatus result;
-	motion->Init_Motion_search_straight(45.0, search_st_param->param->acc, search_st_param->param->max_velo, 0.0f);
+	motion->Init_Motion_straight(45.0, search_st_param->param->acc, search_st_param->param->max_velo, 0.0f);
 	update_map(x, y, expand_end, size, mask,_map);
 	result = motion->execute_Motion();
 	return result;
@@ -190,16 +190,32 @@ t_exeStatus Search::turn_left_process (	t_position my_position,t_position tmp_my
 t_exeStatus Search::turn_rear_process (	t_position my_position,t_position tmp_my_pos,t_position goal_pos,int goal_size,int mask,
 										wall_class *_wall,make_map *_map,Motion *motion)
 {
+//	t_exeStatus result;
+//	result = updateMap_half_straight_and_stop(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01,_map,motion);
+	IrSensTask *ir_sens = (_wall->return_irObj());
+	float length = 45.0;
+	if(_wall->get_WallState(my_position) == WALL)
+	{
+		length = length + ((ir_sens->sen_fr.distance + ir_sens->sen_fl.distance)/2.0 - 90.0f);
+	}
+
 	t_exeStatus result;
-	result = updateMap_half_straight_and_stop(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01,_map,motion);
+	motion->Init_Motion_straight(length , search_st_param->param->acc, search_st_param->param->max_velo, 0.0f);
+	update_map(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01,_map);
+	result = motion->execute_Motion();
+
+
 
 	if(_wall->get_WallState(my_position) == WALL)
 	{
 		result = motion->exe_Motion_fix_wall( 500);
 
 	}
+
 	t_position r_pos = my_position;	r_pos.dir = (t_direction)(((int)(r_pos.dir) + 1) % 4);
 	t_position l_pos = my_position; l_pos.dir = (t_direction)(((int)(l_pos.dir) + 3) % 4);
+
+
 	if(_wall->get_WallState(r_pos) == WALL)
 	{
 		result = motion->exe_Motion_pivot_turn( DEG2RAD(-90.0f), -40.0*PI, -4.0*PI);
@@ -218,6 +234,7 @@ t_exeStatus Search::turn_rear_process (	t_position my_position,t_position tmp_my
 
 	}
 	else{
+
 		result = motion->exe_Motion_pivot_turn( DEG2RAD(180.0f), 40.0*PI, 4.0*PI);
 	}
 

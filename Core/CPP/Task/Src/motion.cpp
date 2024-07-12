@@ -365,7 +365,7 @@ void  Motion::SetIdeal_search_turn()
 
 			vehicle->Vehicle_controller.speed_ctrl.Gain_Set(*straight_motion_param.sp_gain);
 			vehicle->Vehicle_controller.omega_ctrl.Gain_Set(*straight_motion_param.om_gain);
-			//vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
+			vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
 			//vehicle->Vehicle_controller.omega_ctrl.I_param_reset();
 		}
 	}
@@ -388,7 +388,7 @@ void  Motion::SetIdeal_search_turn()
 			vehicle->ideal.radian.set(0.0f);
 
 
-			vehicle->ego.length.set(0.0f);
+			vehicle->ego.length.set(-((turn_motion_param.param->Lend + motion_plan.fix_post_run.get()) - vehicle->ego.length.get()));
 			//vehicle->ego.radian.set(0.0f);
 
 			vehicle->ego.turn_x.set(0.0f);
@@ -1101,13 +1101,13 @@ void Motion::SetIdeal_fix_wall		( )
 				int r_check = 0;
 				int l_check = 0;
 				if((ir_sens->sen_fr.distance > 43.0)
-				&&(ir_sens->sen_r.distance > 36.0 && ir_sens->sen_l.distance > 39.0))
+				&&(ir_sens->sen_r.distance > 33.0 && ir_sens->sen_l.distance > 33.0))
 				{
 					r_err = (ir_sens->sen_fr.distance - 45.0);
 					r_check = 1;
 				}
 				if((ir_sens->sen_fl.distance > 43.0)
-				&&(ir_sens->sen_r.distance > 36.0 && ir_sens->sen_l.distance > 39.0))
+				&&(ir_sens->sen_r.distance > 33.0 && ir_sens->sen_l.distance > 33.0))
 				{
 					l_err = (ir_sens->sen_fl.distance - 45.0);
 					l_check = 1;

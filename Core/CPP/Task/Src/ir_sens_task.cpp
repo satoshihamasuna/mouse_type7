@@ -18,6 +18,7 @@
 #include "../../Params/sens_table.h"
 #include "../../Pheripheral/Include/typedef.h"
 #include "../../Pheripheral/Include/index.h"
+#include <math.h>
 
 
 t_wall_state IrSensTask::conv_Sensin2Wall(t_sensor_dir sens_dir)
@@ -89,6 +90,7 @@ float IrSensTask::Sensor_CalcDistance(t_sensor_dir dir,int16_t value)
 			if(value >= sens_fr_table[0]) distance = (float)sens_front_length_table[0];
 			else if (value <= sens_fr_table[array_length-1]) distance = (float)sens_front_length_table[array_length-1];
 			else{
+				/*
 				for(count = 0; count < array_length-1;count++)
 				{
 					if(value <=sens_fr_table[count] && value > sens_fr_table[count+1]) break;
@@ -96,6 +98,11 @@ float IrSensTask::Sensor_CalcDistance(t_sensor_dir dir,int16_t value)
 				m = (float)(sens_fr_table[count] - value);
 				n = (float)(value - sens_fr_table[count+1]);
 				distance = (n*(float)sens_front_length_table[count] + m*(float)sens_front_length_table[count+1])/(m+n);
+				*/
+				float ln_distance = -0.33476*logf((float)(value)) + 6.361278;
+				distance = expf(ln_distance);
+				if(distance < 40.0) distance = 40.0;
+				else if(distance > 125.0) distance = 125.0;
 			}
 			break;
 		case sensor_fl:
@@ -104,6 +111,7 @@ float IrSensTask::Sensor_CalcDistance(t_sensor_dir dir,int16_t value)
 			else if (value <= sens_fl_table[array_length-1]) distance = (float)sens_front_length_table[array_length-1];
 			else
 			{
+				/*
 				for(count = 0; count < array_length-1;count++)
 				{
 					if(value <=sens_fl_table[count] && value > sens_fl_table[count+1]) break;
@@ -111,6 +119,11 @@ float IrSensTask::Sensor_CalcDistance(t_sensor_dir dir,int16_t value)
 				m = (float)(sens_fl_table[count] - value);
 				n = (float)(value - sens_fl_table[count+1]);
 				distance = (n*(float)sens_front_length_table[count] + m*(float)sens_front_length_table[count+1])/(m+n);
+				*/
+				float ln_distance = -0.35381*logf((float)(value)) + 6.47021;
+				distance = expf(ln_distance);
+				if(distance < 40.0) distance = 40.0;
+				else if(distance > 125.0) distance = 125.0;
 			}
 			break;
 		case sensor_sr:
@@ -119,6 +132,7 @@ float IrSensTask::Sensor_CalcDistance(t_sensor_dir dir,int16_t value)
 			else if (value <= sens_sr_table[array_length-1]) distance = (float)sens_side_length_table[array_length-1];
 			else
 			{
+				/*
 				for(count = 0; count < array_length-1;count++)
 				{
 					if(value <=sens_sr_table[count] && value > sens_sr_table[count+1]) break;
@@ -126,6 +140,10 @@ float IrSensTask::Sensor_CalcDistance(t_sensor_dir dir,int16_t value)
 				m = (float)(sens_sr_table[count] - value);
 				n = (float)(value - sens_sr_table[count+1]);
 				distance = (n*(float)sens_side_length_table[count] + m*(float)sens_side_length_table[count+1])/(m+n);
+				*/
+				distance = -18.12*logf((float)(value)) + 168.41;
+				if(distance < 25.0) distance = 25.0;
+				else if(distance > 80.0) distance = 80.0;
 			}
 			break;
 		case sensor_sl:
@@ -134,6 +152,7 @@ float IrSensTask::Sensor_CalcDistance(t_sensor_dir dir,int16_t value)
 			else if (value <= sens_sl_table[array_length-1]) distance = (float)sens_side_length_table[array_length-1];
 			else
 			{
+				/*
 				for(count = 0; count < array_length-1;count++)
 				{
 					if(value <=sens_sl_table[count] && value > sens_sl_table[count+1]) break;
@@ -141,6 +160,10 @@ float IrSensTask::Sensor_CalcDistance(t_sensor_dir dir,int16_t value)
 				m = (float)(sens_sl_table[count] - value);
 				n = (float)(value - sens_sl_table[count+1]);
 				distance = (n*(float)sens_side_length_table[count] + m*(float)sens_side_length_table[count+1])/(m+n);
+				*/
+				distance = -17.04*logf((float)(value)) + 161.91;
+				if(distance < 25.0) distance = 25.0;
+				else if(distance > 80.0) distance = 80.0;
 			}
 			break;
 	}

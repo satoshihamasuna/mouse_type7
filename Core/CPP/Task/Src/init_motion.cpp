@@ -143,6 +143,7 @@ void Motion::Init_Motion_search_straight(float len_target,float acc,float max_sp
 	//vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
 	vehicle->Vehicle_controller.omega_ctrl.I_param_reset();
 
+	/*
 	vehicle->ego.length.init();
 	vehicle->ego.radian.init();
 	//vehicle->ego.x_point.init();
@@ -156,6 +157,7 @@ void Motion::Init_Motion_search_straight(float len_target,float acc,float max_sp
 	vehicle->ideal.turn_x.init();
 	vehicle->ideal.turn_y.init();
 	vehicle->ideal.turn_slip_theta.init();
+	*/
 
 	motion_pattern_set(Search_st_section);
 	motion_exeStatus_set(execute);
@@ -208,6 +210,7 @@ void Motion::Init_Motion_search_turn	(const t_param *turn_param,const t_pid_gain
 	//vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
 	vehicle->Vehicle_controller.omega_ctrl.I_param_reset();
 
+	/*
 	vehicle->ego.length.init();
 	vehicle->ego.radian.init();
 	//vehicle->ego.x_point.init();
@@ -221,26 +224,22 @@ void Motion::Init_Motion_search_turn	(const t_param *turn_param,const t_pid_gain
 	vehicle->ideal.turn_x.init();
 	vehicle->ideal.turn_y.init();
 	vehicle->ideal.turn_slip_theta.init();
+	*/
 
 	motion_plan.fix_prev_run.init();
 	motion_plan.fix_post_run.init();
-	/*
-	if(turn_motion_param.param->turn_dir == Turn_L)
-	{
-		if(ir_sens->sen_r.is_wall == True)
-			motion_plan.fix_post_run.set(45.0 - ir_sens->sen_r.distance);
-	}
-	else if(turn_motion_param.param->turn_dir  == Turn_R)
-	{
-		if(ir_sens->sen_l.is_wall == True)
-			motion_plan.fix_post_run.set(45.0 - ir_sens->sen_l.distance);
-	}
-	*/
+
 	if(ir_sens->sen_fr.is_wall == True && ir_sens->sen_fl.is_wall == True)
 	{
 		float avg_distance = (ir_sens->sen_fr.distance + ir_sens->sen_fl.distance)/2.0f;
-		//if(ABS(90.0 - avg_distance) < 5.0)
+
 		motion_plan.fix_prev_run.set((-1.0)*(90.0 - avg_distance));
+
+		vehicle->ego.length.init();
+		vehicle->ego.radian.init();
+
+		vehicle->ideal.length.init();
+		vehicle->ideal.radian.init();
 	}
 
 	float diff = vehicle->ego.x_point.get();

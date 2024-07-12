@@ -74,7 +74,7 @@ namespace Mode
 			switch((enable<<4)|param)
 			{
 				case ENABLE|0x00:
-				   if(irsens->IrSensor_Avg() > 2500){
+				   if(irsens->IrSensor_Avg() > 2000){
 					      const static t_pid_gain debug_sp_gain = {16.0,0.1,0.2};
 					      const static t_pid_gain debug_om_gain = {0.60f, 0.01f, 0.00f};
 						  for(int i = 0;i < 11;i++)
@@ -102,7 +102,7 @@ namespace Mode
 					}
 					break;
 				case ENABLE|0x01:
-				   if(irsens->IrSensor_Avg() > 2500){
+				   if(irsens->IrSensor_Avg() > 2000){
 					      const static t_pid_gain debug_sp_gain = {16.0,0.1,0.2};
 					      const static t_pid_gain debug_om_gain = {0.60f, 0.01f, 0.00f};
 						  for(int i = 0;i < 11;i++)
@@ -124,7 +124,7 @@ namespace Mode
 					}
 					break;
 				case ENABLE|0x02:
-					if(irsens->IrSensor_Avg() > 2500){
+					if(irsens->IrSensor_Avg() > 2000){
 						  for(int i = 0;i < 11;i++)
 						  {
 							  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
@@ -154,7 +154,7 @@ namespace Mode
 					}
 					break;
 				case ENABLE|0x03:
-					if(irsens->IrSensor_Avg() > 2500){
+					if(irsens->IrSensor_Avg() > 2000){
 						  for(int i = 0;i < 11;i++)
 						  {
 							  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
@@ -190,7 +190,7 @@ namespace Mode
 					}
 					break;
 				case ENABLE|0x04:
-					if(irsens->IrSensor_Avg() > 2500){
+					if(irsens->IrSensor_Avg() > 2000){
 						  for(int i = 0;i < 11;i++)
 						  {
 							  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
@@ -224,7 +224,7 @@ namespace Mode
 					}
 					break;
 				case ENABLE|0x05:
-					if(irsens->IrSensor_Avg() > 2500){
+					if(irsens->IrSensor_Avg() > 2000){
 						  for(int i = 0;i < 11;i++)
 						  {
 							  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
@@ -260,7 +260,7 @@ namespace Mode
 					}
 					break;
 				case ENABLE|0x06:
-					if(irsens->IrSensor_Avg() > 2500){
+					if(irsens->IrSensor_Avg() > 2000){
 						  for(int i = 0;i < 11;i++)
 						  {
 							  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
@@ -295,7 +295,7 @@ namespace Mode
 					}
 					break;
 				case ENABLE|0x07:
-					if(irsens->IrSensor_Avg() > 2500){
+					if(irsens->IrSensor_Avg() > 2000){
 						  for(int i = 0;i < 11;i++)
 						  {
 							  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
@@ -331,7 +331,7 @@ namespace Mode
 					}
 					break;
 				case ENABLE|0x08:
-					if(irsens->IrSensor_Avg() > 2500){
+					if(irsens->IrSensor_Avg() > 2000){
 						  for(int i = 0;i < 11;i++)
 						  {
 							  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
@@ -367,7 +367,7 @@ namespace Mode
 					}
 					break;
 				case ENABLE|0x09:
-					if(irsens->IrSensor_Avg() > 2500){
+					if(irsens->IrSensor_Avg() > 2000){
 						  for(int i = 0;i < 11;i++)
 						  {
 							  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
@@ -403,7 +403,7 @@ namespace Mode
 					}
 					break;
 				case ENABLE|0x0A:
-					if(irsens->IrSensor_Avg() > 2500){
+					if(irsens->IrSensor_Avg() > 2000){
 						  for(int i = 0;i < 11;i++)
 						  {
 							  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
@@ -439,7 +439,7 @@ namespace Mode
 					}
 					break;
 				case ENABLE|0x0B:
-					if(irsens->IrSensor_Avg() > 2500){
+					if(irsens->IrSensor_Avg() > 2000){
 						  for(int i = 0;i < 11;i++)
 						  {
 							  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
@@ -475,7 +475,7 @@ namespace Mode
 					}
 					break;
 				case ENABLE|0x0C:
-					if(irsens->IrSensor_Avg() > 2500){
+					if(irsens->IrSensor_Avg() > 2000){
 						  for(int i = 0;i < 11;i++)
 						  {
 							  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
@@ -511,7 +511,7 @@ namespace Mode
 					}
 					break;
 				case ENABLE|0x0D:
-					if(irsens->IrSensor_Avg() > 2500){
+					if(irsens->IrSensor_Avg() > 2000){
 						  for(int i = 0;i < 11;i++)
 						  {
 							  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
@@ -546,7 +546,7 @@ namespace Mode
 					}
 					break;
 				case ENABLE|0x0E:
-					if(irsens->IrSensor_Avg() > 2500){
+					if(irsens->IrSensor_Avg() > 2000){
 						for(int i = 0;i < 11;i++)
 						{
 						  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
@@ -557,7 +557,7 @@ namespace Mode
 					}
 					break;
 				case ENABLE|0x0F:
-					if(irsens->IrSensor_Avg() > 2500){
+					if(irsens->IrSensor_Avg() > 2000){
 						for(int i = 0;i < 11;i++)
 						{
 						  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
