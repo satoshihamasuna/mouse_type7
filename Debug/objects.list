@@ -25,6 +25,7 @@
 "Core/CPP/System/Src/debug.o"
 "Core/CPP/System/Src/debug2.o"
 "Core/CPP/System/Src/debug3.o"
+"Core/CPP/System/Src/demo.o"
 "Core/CPP/System/Src/interface_check.o"
 "Core/CPP/System/Src/main.o"
 "Core/CPP/System/Src/mode.o"

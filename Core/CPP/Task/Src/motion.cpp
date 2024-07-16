@@ -1100,18 +1100,29 @@ void Motion::SetIdeal_fix_wall		( )
 			{
 				int r_check = 0;
 				int l_check = 0;
-				if((ir_sens->sen_fr.distance > 43.0)
-				&&(ir_sens->sen_r.distance > 33.0 && ir_sens->sen_l.distance > 33.0))
+				if((ir_sens->sen_fr.distance > 40.0)&&(ir_sens->sen_r.distance > 32.0&&ir_sens->sen_l.distance > 32.0) )
 				{
 					r_err = (ir_sens->sen_fr.distance - 45.0);
 					r_check = 1;
 				}
-				if((ir_sens->sen_fl.distance > 43.0)
-				&&(ir_sens->sen_r.distance > 33.0 && ir_sens->sen_l.distance > 33.0))
+				else if(ir_sens->sen_r.distance < 29.0)
+				{
+					r_err = (ir_sens->sen_r.distance*1.414 - 45.0);
+					r_check = 1;
+				}
+
+
+				if((ir_sens->sen_fl.distance > 40.0)&&(ir_sens->sen_r.distance > 32.0&&ir_sens->sen_l.distance > 32.0))
 				{
 					l_err = (ir_sens->sen_fl.distance - 45.0);
 					l_check = 1;
 				}
+				else if(ir_sens->sen_l.distance < 29.0)
+				{
+					l_err = (ir_sens->sen_l.distance*1.414 - 45.0);
+					l_check = 1;
+				}
+
 				if(r_check == 1 || r_check == 1)
 				{
 					if(r_check == 1) r_err = (ir_sens->sen_fr.distance - 45.0);
@@ -1121,8 +1132,8 @@ void Motion::SetIdeal_fix_wall		( )
 				}
 				else
 				{
-					r_err = -10.0f;
-					l_err = -10.0f;
+					r_err = -7.0f;
+					l_err = -7.0f;
 					//run_time_ms_set(run_time_limit_ms_get() - 0.50f);
 				}
 			}

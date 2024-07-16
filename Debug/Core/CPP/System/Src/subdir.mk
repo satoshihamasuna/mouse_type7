@@ -7,6 +7,7 @@ CPP_SRCS += \
 ../Core/CPP/System/Src/debug.cpp \
 ../Core/CPP/System/Src/debug2.cpp \
 ../Core/CPP/System/Src/debug3.cpp \
+../Core/CPP/System/Src/demo.cpp \
 ../Core/CPP/System/Src/interface_check.cpp \
 ../Core/CPP/System/Src/main.cpp \
 ../Core/CPP/System/Src/mode.cpp \
@@ -16,6 +17,7 @@ OBJS += \
 ./Core/CPP/System/Src/debug.o \
 ./Core/CPP/System/Src/debug2.o \
 ./Core/CPP/System/Src/debug3.o \
+./Core/CPP/System/Src/demo.o \
 ./Core/CPP/System/Src/interface_check.o \
 ./Core/CPP/System/Src/main.o \
 ./Core/CPP/System/Src/mode.o \
@@ -25,6 +27,7 @@ CPP_DEPS += \
 ./Core/CPP/System/Src/debug.d \
 ./Core/CPP/System/Src/debug2.d \
 ./Core/CPP/System/Src/debug3.d \
+./Core/CPP/System/Src/demo.d \
 ./Core/CPP/System/Src/interface_check.d \
 ./Core/CPP/System/Src/main.d \
 ./Core/CPP/System/Src/mode.d \
@@ -38,6 +41,8 @@ Core/CPP/System/Src/debug2.o: ../Core/CPP/System/Src/debug2.cpp
 	arm-none-eabi-g++ "$<" -mcpu=cortex-m4 -std=gnu++14 -g3 -DUSE_HAL_DRIVER -DSTM32F411xE -DDEBUG -c -I../Drivers/CMSIS/Include -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Core/Inc -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I"C:/Users/sato1/Documents/git/mouse_type7_program/mouse_type7/Drivers/ntshell-v0.3.1/src/lib" -O0 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-threadsafe-statics -fno-use-cxa-atexit -Wall -fstack-usage -MMD -MP -MF"Core/CPP/System/Src/debug2.d" -MT"$@" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "$@"
 Core/CPP/System/Src/debug3.o: ../Core/CPP/System/Src/debug3.cpp
 	arm-none-eabi-g++ "$<" -mcpu=cortex-m4 -std=gnu++14 -g3 -DUSE_HAL_DRIVER -DSTM32F411xE -DDEBUG -c -I../Drivers/CMSIS/Include -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Core/Inc -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I"C:/Users/sato1/Documents/git/mouse_type7_program/mouse_type7/Drivers/ntshell-v0.3.1/src/lib" -O0 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-threadsafe-statics -fno-use-cxa-atexit -Wall -fstack-usage -MMD -MP -MF"Core/CPP/System/Src/debug3.d" -MT"$@" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "$@"
+Core/CPP/System/Src/demo.o: ../Core/CPP/System/Src/demo.cpp
+	arm-none-eabi-g++ "$<" -mcpu=cortex-m4 -std=gnu++14 -g3 -DUSE_HAL_DRIVER -DSTM32F411xE -DDEBUG -c -I../Drivers/CMSIS/Include -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Core/Inc -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I"C:/Users/sato1/Documents/git/mouse_type7_program/mouse_type7/Drivers/ntshell-v0.3.1/src/lib" -O0 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-threadsafe-statics -fno-use-cxa-atexit -Wall -fstack-usage -MMD -MP -MF"Core/CPP/System/Src/demo.d" -MT"$@" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "$@"
 Core/CPP/System/Src/interface_check.o: ../Core/CPP/System/Src/interface_check.cpp
 	arm-none-eabi-g++ "$<" -mcpu=cortex-m4 -std=gnu++14 -g3 -DUSE_HAL_DRIVER -DSTM32F411xE -DDEBUG -c -I../Drivers/CMSIS/Include -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Core/Inc -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I"C:/Users/sato1/Documents/git/mouse_type7_program/mouse_type7/Drivers/ntshell-v0.3.1/src/lib" -O0 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-threadsafe-statics -fno-use-cxa-atexit -Wall -fstack-usage -MMD -MP -MF"Core/CPP/System/Src/interface_check.d" -MT"$@" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "$@"
 Core/CPP/System/Src/main.o: ../Core/CPP/System/Src/main.cpp

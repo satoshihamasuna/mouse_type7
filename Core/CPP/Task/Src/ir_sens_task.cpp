@@ -99,8 +99,16 @@ float IrSensTask::Sensor_CalcDistance(t_sensor_dir dir,int16_t value)
 				n = (float)(value - sens_fr_table[count+1]);
 				distance = (n*(float)sens_front_length_table[count] + m*(float)sens_front_length_table[count+1])/(m+n);
 				*/
-				float ln_distance = -0.33476*logf((float)(value)) + 6.361278;
-				distance = expf(ln_distance);
+				if (value < sens_fr_table[1]){
+					float ln_distance = -0.31684*logf((float)(value)) + 6.266493;
+					distance = expf(ln_distance);
+				}
+				else
+				{
+					m = (float)(sens_fr_table[0] - value);
+					n = (float)(value - sens_fr_table[1]);
+					distance = (n*(float)sens_front_length_table[0] + m*(float)sens_front_length_table[1])/(m+n);
+				}
 				if(distance < 40.0) distance = 40.0;
 				else if(distance > 125.0) distance = 125.0;
 			}
@@ -120,8 +128,18 @@ float IrSensTask::Sensor_CalcDistance(t_sensor_dir dir,int16_t value)
 				n = (float)(value - sens_fl_table[count+1]);
 				distance = (n*(float)sens_front_length_table[count] + m*(float)sens_front_length_table[count+1])/(m+n);
 				*/
-				float ln_distance = -0.35381*logf((float)(value)) + 6.47021;
-				distance = expf(ln_distance);
+				if (value < sens_fl_table[1]){
+					float ln_distance = -0.33611*logf((float)(value)) + 6.356542;
+					distance = expf(ln_distance);
+				}
+				else
+				{
+					m = (float)(sens_fl_table[0] - value);
+					n = (float)(value - sens_fl_table[1]);
+					distance = (n*(float)sens_front_length_table[0] + m*(float)sens_front_length_table[1])/(m+n);
+				}
+
+
 				if(distance < 40.0) distance = 40.0;
 				else if(distance > 125.0) distance = 125.0;
 			}
@@ -132,6 +150,7 @@ float IrSensTask::Sensor_CalcDistance(t_sensor_dir dir,int16_t value)
 			else if (value <= sens_sr_table[array_length-1]) distance = (float)sens_side_length_table[array_length-1];
 			else
 			{
+
 				/*
 				for(count = 0; count < array_length-1;count++)
 				{
@@ -141,7 +160,8 @@ float IrSensTask::Sensor_CalcDistance(t_sensor_dir dir,int16_t value)
 				n = (float)(value - sens_sr_table[count+1]);
 				distance = (n*(float)sens_side_length_table[count] + m*(float)sens_side_length_table[count+1])/(m+n);
 				*/
-				distance = -18.12*logf((float)(value)) + 168.41;
+				float ln_value = logf((float) value);
+				distance = 1.574075*ln_value * ln_value -38.56 * ln_value + 233.3134;
 				if(distance < 25.0) distance = 25.0;
 				else if(distance > 80.0) distance = 80.0;
 			}
@@ -152,6 +172,7 @@ float IrSensTask::Sensor_CalcDistance(t_sensor_dir dir,int16_t value)
 			else if (value <= sens_sl_table[array_length-1]) distance = (float)sens_side_length_table[array_length-1];
 			else
 			{
+
 				/*
 				for(count = 0; count < array_length-1;count++)
 				{
@@ -161,7 +182,9 @@ float IrSensTask::Sensor_CalcDistance(t_sensor_dir dir,int16_t value)
 				n = (float)(value - sens_sl_table[count+1]);
 				distance = (n*(float)sens_side_length_table[count] + m*(float)sens_side_length_table[count+1])/(m+n);
 				*/
-				distance = -17.04*logf((float)(value)) + 161.91;
+
+				float ln_value = logf((float) value);
+				distance = 1.5581*ln_value * ln_value -37.400 * ln_value + 226.7995;
 				if(distance < 25.0) distance = 25.0;
 				else if(distance > 80.0) distance = 80.0;
 			}
