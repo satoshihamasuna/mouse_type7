@@ -85,13 +85,13 @@ namespace Mode
 
 						  motion->Motion_start();
 
-						  float suction_value = 250.0/1000.0f*7.20;
-						  int stay_time 	= (int)(suction_value/0.05) + 300;
-						  motion->exe_Motion_suction_start(suction/1000.0f*7.20, stay_time);
+						  //float suction_value = 250.0/1000.0f*7.20;
+						  //int stay_time 	= (int)(suction_value/0.05) + 300;
+						  //motion->exe_Motion_suction_start(suction/1000.0f*7.20, stay_time);
 
 						  LogData::getInstance().data_count = 0;
 						  LogData::getInstance().log_enable = True;
-						  motion->Init_Motion_straight(90.0*7.0,8.0,2.0,0.0,&debug_sp_gain,&debug_om_gain);
+						  motion->Init_Motion_straight(90.0*7.0,6.0,0.4,0.0,&debug_sp_gain,&debug_om_gain);
 						  motion->execute_Motion();
 
 						  LogData::getInstance().log_enable = False;
@@ -137,7 +137,7 @@ namespace Mode
 						  KalmanFilter::getInstance().filter_init();
 
 						  motion->Motion_start();
-						  float suction_value = 250.0/1000.0f*7.20;
+						  float suction_value = suction/1000.0f*7.20;
 						  int stay_time 	= (int)(suction_value/0.05) + 300;
 						  motion->exe_Motion_suction_start(suction/1000.0f*7.20, stay_time);
 						  LogData::getInstance().data_count = 0;
@@ -167,7 +167,7 @@ namespace Mode
 						  KalmanFilter::getInstance().filter_init();
 
 						  motion->Motion_start();
-						  float suction_value = 250.0/1000.0f*7.20;
+						  float suction_value = suction/1000.0f*7.20;
 						  int stay_time 	= (int)(suction_value/0.05) + 300;
 						  motion->exe_Motion_suction_start(suction/1000.0f*7.20, stay_time);
 
@@ -198,7 +198,7 @@ namespace Mode
 						  }
 
 						  motion->Motion_start();
-						  float suction_value = 250.0/1000.0f*7.20;
+						  float suction_value = suction/1000.0f*7.20;
 						  int stay_time 	= (int)(suction_value/0.05) + 300;
 						  motion->exe_Motion_suction_start(suction/1000.0f*7.20, stay_time);
 
@@ -230,7 +230,7 @@ namespace Mode
 
 
 						  motion->Motion_start();
-						  float suction_value = 250.0/1000.0f*7.20;
+						  float suction_value = suction/1000.0f*7.20;
 						  int stay_time 	= (int)(suction_value/0.05) + 300;
 						  motion->exe_Motion_suction_start(suction/1000.0f*7.20, stay_time);
 
@@ -261,7 +261,7 @@ namespace Mode
 						  }
 
 						  motion->Motion_start();
-						  float suction_value = 250.0/1000.0f*7.20;
+						  float suction_value = suction/1000.0f*7.20;
 						  int stay_time 	= (int)(suction_value/0.05) + 300;
 						  motion->exe_Motion_suction_start(suction/1000.0f*7.20, stay_time);
 
@@ -292,7 +292,7 @@ namespace Mode
 						  }
 
 						  motion->Motion_start();
-						  float suction_value = 250.0/1000.0f*7.20;
+						  float suction_value = suction/1000.0f*7.20;
 						  int stay_time 	= (int)(suction_value/0.05) + 300;
 						  motion->exe_Motion_suction_start(suction/1000.0f*7.20, stay_time);
 
@@ -324,7 +324,7 @@ namespace Mode
 						  }
 
 						  motion->Motion_start();
-						  float suction_value = 250.0/1000.0f*7.20;
+						  float suction_value = suction/1000.0f*7.20;
 						  int stay_time 	= (int)(suction_value/0.05) + 300;
 						  motion->exe_Motion_suction_start(suction/1000.0f*7.20, stay_time);
 
@@ -356,7 +356,7 @@ namespace Mode
 						  }
 
 						  motion->Motion_start();
-						  float suction_value = 250.0/1000.0f*7.20;
+						  float suction_value = suction/1000.0f*7.20;
 						  int stay_time 	= (int)(suction_value/0.05) + 300;
 						  motion->exe_Motion_suction_start(suction/1000.0f*7.20, stay_time);
 
@@ -388,7 +388,7 @@ namespace Mode
 						  }
 
 						  motion->Motion_start();
-						  float suction_value = 250.0/1000.0f*7.20;
+						  float suction_value = suction/1000.0f*7.20;
 						  int stay_time 	= (int)(suction_value/0.05) + 300;
 						  motion->exe_Motion_suction_start(suction/1000.0f*7.20, stay_time);
 
@@ -420,7 +420,7 @@ namespace Mode
 						  }
 
 						  motion->Motion_start();
-						  float suction_value = 250.0/1000.0f*7.20;
+						  float suction_value = suction/1000.0f*7.20;
 						  int stay_time 	= (int)(suction_value/0.05) + 300;
 						  motion->exe_Motion_suction_start(suction/1000.0f*7.20, stay_time);
 
@@ -452,7 +452,7 @@ namespace Mode
 						  }
 
 						  motion->Motion_start();
-						  float suction_value = 250.0/1000.0f*7.20;
+						  float suction_value = suction/1000.0f*7.20;
 						  int stay_time 	= (int)(suction_value/0.05) + 300;
 						  motion->exe_Motion_suction_start(suction/1000.0f*7.20, stay_time);
 
@@ -484,7 +484,7 @@ namespace Mode
 						  }
 
 						  motion->Motion_start();
-						  float suction_value = 250.0/1000.0f*7.20;
+						  float suction_value = suction/1000.0f*7.20;
 						  int stay_time 	= (int)(suction_value/0.05) + 300;
 						  motion->exe_Motion_suction_start(suction/1000.0f*7.20, stay_time);
 

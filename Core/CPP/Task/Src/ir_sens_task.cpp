@@ -151,7 +151,7 @@ float IrSensTask::Sensor_CalcDistance(t_sensor_dir dir,int16_t value)
 			else
 			{
 
-				/*
+
 				for(count = 0; count < array_length-1;count++)
 				{
 					if(value <=sens_sr_table[count] && value > sens_sr_table[count+1]) break;
@@ -159,9 +159,9 @@ float IrSensTask::Sensor_CalcDistance(t_sensor_dir dir,int16_t value)
 				m = (float)(sens_sr_table[count] - value);
 				n = (float)(value - sens_sr_table[count+1]);
 				distance = (n*(float)sens_side_length_table[count] + m*(float)sens_side_length_table[count+1])/(m+n);
-				*/
-				float ln_value = logf((float) value);
-				distance = 1.574075*ln_value * ln_value -38.56 * ln_value + 233.3134;
+
+				//float ln_value = logf((float) value);
+				//distance = 1.574075*ln_value * ln_value -38.56 * ln_value + 233.3134;
 				if(distance < 25.0) distance = 25.0;
 				else if(distance > 80.0) distance = 80.0;
 			}
@@ -173,7 +173,7 @@ float IrSensTask::Sensor_CalcDistance(t_sensor_dir dir,int16_t value)
 			else
 			{
 
-				/*
+
 				for(count = 0; count < array_length-1;count++)
 				{
 					if(value <=sens_sl_table[count] && value > sens_sl_table[count+1]) break;
@@ -181,10 +181,10 @@ float IrSensTask::Sensor_CalcDistance(t_sensor_dir dir,int16_t value)
 				m = (float)(sens_sl_table[count] - value);
 				n = (float)(value - sens_sl_table[count+1]);
 				distance = (n*(float)sens_side_length_table[count] + m*(float)sens_side_length_table[count+1])/(m+n);
-				*/
 
-				float ln_value = logf((float) value);
-				distance = 1.5581*ln_value * ln_value -37.400 * ln_value + 226.7995;
+
+				//float ln_value = logf((float) value);
+				//distance = 1.5581*ln_value * ln_value -37.400 * ln_value + 226.7995;
 				if(distance < 25.0) distance = 25.0;
 				else if(distance > 80.0) distance = 80.0;
 			}
@@ -268,6 +268,8 @@ void IrSensTask::IrSensorWallSet()
 	sen_r.control_cnt = (sen_r.is_wall == True && ABS(sen_r.distance - sen_r.avg_distance) < 1.0) ? sen_r.control_cnt + 1 : 0;
 	sen_l.control_cnt = (sen_l.is_wall == True && ABS(sen_l.distance - sen_l.avg_distance) < 1.0) ? sen_l.control_cnt + 1 : 0;
 
+	//sen_r.control_cnt = (sen_r.is_wall == True ) ? sen_r.control_cnt + 1 : 0;
+	//sen_l.control_cnt = (sen_l.is_wall == True ) ? sen_l.control_cnt + 1 : 0;
 
 	sen_fr.control_th = (sen_fr.control_cnt > 10) ? FRONT_THRESHOLD : 90.0;
 	sen_fl.control_th = (sen_fl.control_cnt > 10) ? FRONT_THRESHOLD : 90.0;
@@ -420,12 +422,16 @@ void IrSensTask::SetWallControl_RadVelo(Vehicle *vehicle,float delta_tms)
 	{
 		s 		= ir_rad_acc_control;
 		s_dot 	= k1*vehicle->ideal.velo.get()*1000.0*vehicle->ideal.radian.get()*1.0 + k2*vehicle->ideal.rad_velo.get();
+
+		//s_dot 	= k1*vehicle->ideal.velo.get()*1000.0*vehicle->ego.radian.get()*1.0 + k2*vehicle->ideal.rad_velo.get();
 	}
 
 	else
 	{
 		s 		= k1*vehicle->ego.x_point.get()+k2*vehicle->ego.radian.get()*1.0;//k2*machine_->radian;//
 		s_dot 	= k1*vehicle->ideal.velo.get()*1000.0*vehicle->ideal.radian.get()*1.0 + k2*vehicle->ideal.rad_velo.get();
+		//s_dot 	= k1*vehicle->ideal.velo.get()*1000.0*vehicle->ego.radian.get()*1.0 + k2*vehicle->ideal.rad_velo.get();
+
 	}
 
 	float target_rad_acc	= 	(-1.0)*300.0*s/k2 - 60.0*1.0/k2*s_dot

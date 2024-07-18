@@ -15,6 +15,7 @@
 namespace Mode
 {
 	void Demo();
+	void Demo2();
 	void Debug(const  t_straight_param *st_param,const t_param *const *turn_mode,int suction);
 	void Debug2(const  t_straight_param *st_param,const t_param *const *turn_mode,int suction);
 	void Debug3();

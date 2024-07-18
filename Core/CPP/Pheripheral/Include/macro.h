@@ -20,7 +20,7 @@ extern "C" {
 
 #define ENC_RESOLUTION	(200)
 
-#define TIRE_DIAMETER	(13.8f)							//mm
+#define TIRE_DIAMETER	(13.95f)							//mm
 #define TIRE_RADIUS		(TIRE_DIAMETER/2.0f)			//mm
 #define MMPP			(TIRE_DIAMETER*PI/ENC_RESOLUTION)	//mm
 #define TREAD_WIDTH		((18.0-2.0)*2)
