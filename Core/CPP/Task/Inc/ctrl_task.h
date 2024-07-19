@@ -101,6 +101,7 @@ class Motion
 
 		void SetIdeal_straight		();
 		void SetIdeal_diagonal		();
+		void SetIdeal_backward		();
 
 		void SetIdeal_pivot_turn	();
 
@@ -176,6 +177,7 @@ class Motion
 
 		void Init_Motion_straight		(float len_target,float acc,float max_sp,float end_sp,const t_pid_gain *sp_gain = &basic_sp_gain,const t_pid_gain *om_gain = &basic_om_gain);
 		void Init_Motion_diagonal		(float len_target,float acc,float max_sp,float end_sp,const t_pid_gain *sp_gain = &basic_sp_gain,const t_pid_gain *om_gain = &basic_om_gain);
+		void Init_Motion_backward		(const t_pid_gain *sp_gain = &basic_sp_gain,const t_pid_gain *om_gain = &basic_om_gain);
 
 		void Init_Motion_pivot_turn		(float rad_target,float rad_acc,float rad_velo,const t_pid_gain *sp_gain = &basic_sp_gain,const t_pid_gain *om_gain = &basic_om_gain);
 
@@ -206,11 +208,19 @@ class Motion
 			return execute_Motion();
 		}
 
+		inline t_exeStatus exe_Motion_backward		(const t_pid_gain *sp_gain = &basic_sp_gain,const t_pid_gain *om_gain = &basic_om_gain)
+		{
+			Init_Motion_backward(sp_gain,om_gain);
+			return execute_Motion();
+		}
+
 		inline t_exeStatus exe_Motion_diagonal		(float len_target,float acc,float max_sp,float end_sp,const t_pid_gain *sp_gain = &basic_sp_gain,const t_pid_gain *om_gain = &basic_om_gain)
 		{
 			Init_Motion_diagonal(len_target,acc,max_sp,end_sp,sp_gain,om_gain);
 			return execute_Motion();
 		}
+
+
 
 		inline t_exeStatus exe_Motion_pivot_turn		(float rad_target,float rad_acc,float rad_velo,const t_pid_gain *sp_gain = &basic_sp_gain,const t_pid_gain *om_gain = &basic_om_gain)
 		{

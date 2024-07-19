@@ -77,12 +77,16 @@ void CtrlTask::motion_ideal_param_set()
 			break;
 		case Fix_wall:
 			SetIdeal_fix_wall( );
-				break;
+			break;
 		case Suction_start:
 			SetIdeal_suction_start( );
-				break;
+			break;
 		case run_brake:
 			SetIdeal_stop_brake( );
+			break;
+		case Backward:
+			SetIdeal_backward();
+			break;
 		case No_run:
 			break;
 	}

@@ -91,8 +91,9 @@ namespace Mode
 
 						  LogData::getInstance().data_count = 0;
 						  LogData::getInstance().log_enable = True;
-						  motion->Init_Motion_straight(90.0*7.0,6.0,0.4,0.0,&debug_sp_gain,&debug_om_gain);
-						  motion->execute_Motion();
+						  //motion->Init_Motion_straight(90.0*7.0,6.0,0.4,0.0,&debug_sp_gain,&debug_om_gain);
+						  motion->exe_Motion_backward();
+						  //motion->execute_Motion();
 
 						  LogData::getInstance().log_enable = False;
 						  motion->Motion_end();
@@ -348,7 +349,7 @@ namespace Mode
 					}
 					break;
 				case ENABLE|0x09:
-					if(irsens->IrSensor_Avg() > 2000){
+				if(irsens->IrSensor_Avg() > 2000){
 						  for(int i = 0;i < 11;i++)
 						  {
 							  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
@@ -359,14 +360,13 @@ namespace Mode
 						  float suction_value = suction/1000.0f*7.20;
 						  int stay_time 	= (int)(suction_value/0.05) + 300;
 						  motion->exe_Motion_suction_start(suction/1000.0f*7.20, stay_time);
-
-						  motion->exe_Motion_straight(SECTION,st_param->param->acc,st_param->param->max_velo,st_param->param->max_velo,st_param->sp_gain,st_param->om_gain);
+						  motion->exe_Motion_diagonal(DIAG_SECTION*2,st_param->param->acc,st_param->param->max_velo,st_param->param->max_velo,st_param->sp_gain,st_param->om_gain);
 
 						  LogData::getInstance().data_count = 0;
 						  LogData::getInstance().log_enable = True;
-						  motion->exe_Motion_long_turn(turn_mode[Long_turnL180],Long_turnL180,st_param->sp_gain,st_param->om_gain);
+						  motion->exe_Motion_turn_in(turn_mode[Turn_out_L135],Turn_out_L135,st_param->sp_gain,st_param->om_gain);
 
-						  motion->exe_Motion_straight( SECTION,st_param->param->acc,st_param->param->max_velo,0.0,st_param->sp_gain,st_param->om_gain);
+						  motion->exe_Motion_straight(SECTION,st_param->param->acc,st_param->param->max_velo,0.0f,st_param->sp_gain,st_param->om_gain);
 
 						  motion->Motion_end();
 						  HAL_Delay(200);
@@ -396,7 +396,7 @@ namespace Mode
 
 						  LogData::getInstance().data_count = 0;
 						  LogData::getInstance().log_enable = True;
-						  motion->exe_Motion_turn_in(turn_mode[Turn_in_L45],Turn_in_L45,st_param->sp_gain,st_param->om_gain);
+						  motion->exe_Motion_turn_in(turn_mode[Turn_in_L135],Turn_in_L135,st_param->sp_gain,st_param->om_gain);
 
 						  motion->exe_Motion_diagonal( DIAG_SECTION*2,st_param->param->acc,st_param->param->max_velo,0.0,st_param->sp_gain,st_param->om_gain);
 
