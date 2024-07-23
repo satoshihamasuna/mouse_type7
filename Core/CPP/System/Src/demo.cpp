@@ -208,6 +208,18 @@ void Demo()
 			case ENABLE|0x04:
 				break;
 			case ENABLE|0x05:
+			if(irsens->IrSensor_Avg() > 2000){
+				for(int i = 0;i < 11;i++)
+				{
+					(i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
+					HAL_Delay(50);
+				}
+
+				Indicate_LED(mode|param);
+				write_save_data(&wall_data);
+				enable = 0x00;
+			}
+
 				break;
 			case ENABLE|0x06:
 			   if(irsens->IrSensor_Avg() > 2000)
@@ -232,6 +244,7 @@ void Demo()
 					}
 					enable = 0x00;
 				}
+
 				break;
 			case ENABLE|0x07:
 				if(irsens->IrSensor_Avg() > 2000)

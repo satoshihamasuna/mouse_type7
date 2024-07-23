@@ -410,9 +410,23 @@ void Motion::SetIdeal_straight()
 {
 	motion_state_set(STRAIGHT_STATE);
 	float offset = 0.0f;
+	static t_bool angle_reset = False;
 	if(motion_plan.max_velo.get() > motion_plan.end_velo.get())
 	{
 		offset = 10.0f;
+	}
+
+	if(fmod(vehicle->ideal.length.get(),SECTION * 2.0) < 2.0)
+	{
+		if(angle_reset == False)
+		{
+			angle_reset = True;
+			vehicle->ideal.radian.init();
+		}
+	}
+	else
+	{
+		angle_reset = False;
 	}
 
 	if((motion_plan.length_deccel.get()+offset) < ( motion_plan.end_length.get() - vehicle->ego.length.get()))
