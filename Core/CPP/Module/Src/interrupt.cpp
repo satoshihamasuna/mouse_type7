@@ -135,12 +135,25 @@ void Interrupt::preprocess()
 	Vehicle_type7::getInstance().ego.rad_velo.set(rad_velo);
 	Vehicle_type7::getInstance().ego.radian.set(rad);
 
-	Vehicle_type7::getInstance().ego.turn_slip_dot.set(0.0f);
-	Vehicle_type7::getInstance().ego.turn_slip_theta.set(0.0f);
 
-	float estimate_theta = Vehicle_type7::getInstance().ego.radian.get() + Vehicle_type7::getInstance().ego.turn_slip_theta.get();
-	float turn_x_dot = enc_velo*sin(estimate_theta);
-	float turn_y_dot = enc_velo*cos(estimate_theta);
+	float set_velo = velo;
+	if(set_velo == 0.0f) set_velo = 0.001;
+	float slip_theta = (Vehicle_type7::getInstance().ego.turn_slip_theta.get()*1000.0f - rad_velo)
+						/(1000.0f + Vehicle_type7::getInstance().turn_slip_k.get()/(set_velo));
+
+	Vehicle_type7::getInstance().ego.turn_slip_theta.set(slip_theta);
+	float slip_theta_dot = -Vehicle_type7::getInstance().turn_slip_k.get()*slip_theta/set_velo - rad_velo;
+	Vehicle_type7::getInstance().ego.turn_slip_dot.set(slip_theta_dot);
+
+	float horizon_velo = velo*slip_theta;
+	float horizon_acc  =  -Vehicle_type7::getInstance().turn_slip_k.get()*slip_theta - rad_velo*velo;
+	Vehicle_type7::getInstance().ego.horizon_accel.set(horizon_acc);
+	Vehicle_type7::getInstance().ego.horizon_velo.set(horizon_velo);
+
+
+	float estimate_theta = Vehicle_type7::getInstance().ego.radian.get();
+	float turn_x_dot = velo*sin(estimate_theta);// + horizon_velo*cos(estimate_theta);
+	float turn_y_dot = velo*cos(estimate_theta);// - horizon_velo*sin(estimate_theta);
 
 	Vehicle_type7::getInstance().ego.turn_x_dash.set(turn_x_dot);
 	Vehicle_type7::getInstance().ego.turn_y_dash.set(turn_y_dot);

@@ -31,7 +31,7 @@ static int usrcmd_info(int argc, char **argv);
 static int usrcmd_disp(int argc, char **argv);
 static int usrcmd_end(int argc, char **argv);
 static int usrcmd_debug(int argc, char **argv);
-
+static int usrcmd_log(int argc, char **argv);
 typedef struct {
 	const char *cmd;
 	const char *desc;
@@ -44,6 +44,7 @@ static const cmd_table_t cmdlist[] = {
 	{ "disp", "This is a description text string for disp command.", usrcmd_disp },
 	{ "end",  "This is a description text string for end command.", usrcmd_end },
 	{ "debug","This is a description text string for debug command.", usrcmd_debug },
+	{ "log"  ,"This is a description text string for debug command.", usrcmd_log }
 };
 
 static ntshell_t nts;
@@ -121,9 +122,29 @@ static int usrcmd_end(int argc, char **argv)
     return -1;
 }
 
+static int usrcmd_log(int argc, char **argv)
+{
+    if (argc != 2) {
+    	printf("end exe\r\n");
+    	return 0;
+    }
+    if (ntlibc_strcmp(argv[1], "mode0") == 0) {
+    	LogData::getInstance().set_logmode(0);
+        return 0;
+    }
+    if (ntlibc_strcmp(argv[1], "mode1") == 0) {
+        	LogData::getInstance().set_logmode(1);
+            return 0;
+    }
+
+    printf("Unknown sub command found\r\n");
+    return -1;
+}
+
+
 int shell_debug_straight(int argc, char **argv)
 {
-	static t_pid_gain debug_sp_gain = {12.0,0.04,0.0};
+	static t_pid_gain debug_sp_gain = {15.0,0.04,0.0};
 	static t_pid_gain debug_om_gain = {0.60f, 0.01f, 0.00f};
 
 	Motion *motion = &(CtrlTask_type7::getInstance());

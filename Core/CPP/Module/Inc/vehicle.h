@@ -16,37 +16,6 @@
 
 #include "../../Task/Inc/run_typedef.h"
 
-typedef struct{
-	float velo;
-	float accel;
-	float length;
-	float rad_accel;
-	float rad_velo;
-	float radian;
-	float x_point;
-	float turn_x;
-	float turn_x_dash;
-	float turn_y;
-	float turn_y_dash;
-	float turn_slip_theta;
-	float turn_slip_dot;
-}t_machine_param;
-
-typedef struct{
-	float velo;
-	float max_velo;
-	float end_velo;
-	float accel;
-	float deccel;
-	float length;
-	float rad_accel;
-	float rad_deccel;
-	float rad_max_velo;
-	float radian;
-	t_turn_dir turn_d;
-}t_motion_param;
-
-
 class param_element
 {
 	private:
@@ -72,6 +41,7 @@ struct machine_params
 		param_element velo;
 		param_element accel;
 		param_element horizon_accel;
+		param_element horizon_velo;
 		param_element z_accel;
 		param_element length;
 		param_element rad_accel;
@@ -100,6 +70,7 @@ class Vehicle
 			ego.velo.init();
 			ego.accel.init();
 			ego.horizon_accel.init();
+			ego.horizon_velo.init();
 			ego.z_accel.init();
 			ego.length.init();
 			ego.rad_accel.init();
@@ -133,6 +104,7 @@ class Vehicle
 			ideal.velo.init();
 			ideal.accel.init();
 			ideal.horizon_accel.init();
+			ideal.horizon_velo.init();
 			ideal.z_accel.init();
 			ideal.length.init();
 			ideal.rad_accel.init();
@@ -179,6 +151,7 @@ class Vehicle
 
 
 		param_element  V_suction;
+		param_element  turn_slip_k;
 		int suction_out	= 0;
 		void suction_flag_set(t_bool flag)
 		{
@@ -193,6 +166,7 @@ class Vehicle
 		virtual void suctionSetDuty(int out_s)
 		{
 			suction_duty = out_s;
+			turn_slip_k.set(250.0f);
 		}
 
 		virtual void suctionStop()
@@ -200,6 +174,7 @@ class Vehicle
 			suction_flag = False;
 			suction_duty = 0;
 			FAN_Motor_SetDuty(suction_duty);
+			turn_slip_k.set(75.0f);
 		}
 };
 
@@ -221,6 +196,7 @@ class Vehicle_type7:public Vehicle,public Singleton<Vehicle_type7>{
 	{
 		suction_duty = out_s;
 		FAN_Motor_SetDuty(suction_duty);
+		turn_slip_k.set(250.0f);
 	}
 
 	void suctionStop() override
@@ -228,6 +204,7 @@ class Vehicle_type7:public Vehicle,public Singleton<Vehicle_type7>{
 		suction_flag = False;
 		suction_duty = 0;
 		FAN_Motor_SetDuty(suction_duty);
+		turn_slip_k.set(75.0f);
 	}
 
 };

@@ -145,8 +145,8 @@ namespace Mode
 						  LogData::getInstance().log_enable = True;
 						  motion->exe_Motion_straight(SECTION,st_param->param->acc,st_param->param->max_velo,st_param->param->max_velo,st_param->sp_gain,st_param->om_gain);
 						  motion->exe_Motion_long_turn(turn_mode[Long_turnR180],Long_turnR180,st_param->sp_gain,st_param->om_gain);
-						  motion->exe_Motion_long_turn(turn_mode[Long_turnL180],Long_turnL180,st_param->sp_gain,st_param->om_gain);
-						  motion->exe_Motion_long_turn(turn_mode[Long_turnR180],Long_turnR180,st_param->sp_gain,st_param->om_gain);
+						  //motion->exe_Motion_long_turn(turn_mode[Long_turnL180],Long_turnL180,st_param->sp_gain,st_param->om_gain);
+						  //motion->exe_Motion_long_turn(turn_mode[Long_turnR180],Long_turnR180,st_param->sp_gain,st_param->om_gain);
 						  motion->exe_Motion_straight(SECTION,st_param->param->acc,st_param->param->max_velo,0.0,st_param->sp_gain,st_param->om_gain);
 						  motion->Motion_end();
 						  HAL_Delay(200);
@@ -172,13 +172,13 @@ namespace Mode
 						  int stay_time 	= (int)(suction_value/0.05) + 300;
 						  motion->exe_Motion_suction_start(suction/1000.0f*7.20, stay_time);
 
-						  motion->exe_Motion_straight(SECTION,st_param->param->acc,st_param->param->max_velo,st_param->param->max_velo,st_param->sp_gain,st_param->om_gain);
+						  motion->exe_Motion_straight(SECTION*2,st_param->param->acc,st_param->param->max_velo,st_param->param->max_velo,st_param->sp_gain,st_param->om_gain);
 
 						  LogData::getInstance().data_count = 0;
 						  LogData::getInstance().log_enable = True;
 						  motion->exe_Motion_long_turn(turn_mode[Long_turnR90],Long_turnR90,st_param->sp_gain,st_param->om_gain);
 
-						  motion->exe_Motion_straight( SECTION,st_param->param->acc,st_param->param->max_velo,0.0,st_param->sp_gain,st_param->om_gain);
+						  motion->exe_Motion_straight( SECTION*2,st_param->param->acc,st_param->param->max_velo,0.0,st_param->sp_gain,st_param->om_gain);
 
 						  motion->Motion_end();
 						  HAL_Delay(200);
@@ -202,11 +202,11 @@ namespace Mode
 						  float suction_value = suction/1000.0f*7.20;
 						  int stay_time 	= (int)(suction_value/0.05) + 300;
 						  motion->exe_Motion_suction_start(suction/1000.0f*7.20, stay_time);
+						  LogData::getInstance().data_count = 0;
+						  LogData::getInstance().log_enable = True;
 
 						  motion->exe_Motion_straight(SECTION,st_param->param->acc,st_param->param->max_velo,st_param->param->max_velo,st_param->sp_gain,st_param->om_gain);
 
-						  LogData::getInstance().data_count = 0;
-						  LogData::getInstance().log_enable = True;
 						  motion->exe_Motion_turn_in(turn_mode[Turn_in_R45],Turn_in_R45,st_param->sp_gain,st_param->om_gain);
 
 						  motion->exe_Motion_diagonal( DIAG_SECTION*2,st_param->param->acc,st_param->param->max_velo,0.0,st_param->sp_gain,st_param->om_gain);
@@ -336,7 +336,7 @@ namespace Mode
 						  motion->exe_Motion_turn_v90(turn_mode[Turn_RV90],Turn_RV90,st_param->sp_gain,st_param->om_gain);
 						  motion->exe_Motion_turn_v90(turn_mode[Turn_LV90],Turn_LV90,st_param->sp_gain,st_param->om_gain);
 						  //motion->exe_Motion_turn_v90(turn_mode[Turn_RV90],Turn_RV90,st_param->sp_gain,st_param->om_gain);
-						  motion->exe_Motion_diagonal( DIAG_SECTION*2,st_param->param->acc,st_param->param->max_velo,0.0,st_param->sp_gain,st_param->om_gain);
+						  motion->exe_Motion_diagonal( DIAG_SECTION*1,st_param->param->acc,st_param->param->max_velo,0.0,st_param->sp_gain,st_param->om_gain);
 
 						  motion->Motion_end();
 						  HAL_Delay(200);

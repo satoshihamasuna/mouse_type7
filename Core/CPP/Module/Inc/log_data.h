@@ -38,6 +38,17 @@ class LogData:public Singleton<LogData>
 			}
 		}
 
+		void set_logmode(uint8_t _mode)
+		{
+			switch(_mode)
+			{
+			case 0:
+			case 1:
+				 mode = _mode;	break;
+			default :
+				 mode = 0; 		break;
+			}
+		}
 		void logging();
 };
 

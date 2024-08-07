@@ -32,6 +32,25 @@ float get_turn_table_value(float time_period_ms,float time_ms)
 	return turn_table_value;
 }
 
+float get_turn2_table_value(float time_period_ms,float time_ms)
+{
+	float turn_table_value = 0.0f;
+	if(time_ms <= time_period_ms)
+	{
+		//calc array position
+		int std_a = (int)((time_ms*1000.0f/time_period_ms));
+		int std_b = std_a + 1;
+		//
+		float m = ((time_ms*1000.0f/time_period_ms)) - (float)(std_a);
+		float n = (float)(std_b) -((time_ms*1000.0f/time_period_ms));
+		turn_table_value =  (n*accel2_table[std_a] + m*accel2_table[std_b]);
+		return turn_table_value;
+	}
+	else	;
+
+	return turn_table_value;
+}
+
 void Motion::SetIdeal_wall_control()
 {
 	if(motion_state_get() == STRAIGHT_STATE || motion_state_get() == DIAGONAL_STATE)
@@ -515,9 +534,9 @@ void Motion::SetIdeal_backward()
 	{
 		vehicle->ideal.accel.set(motion_plan.deccel.get());
 		vehicle->ideal.velo.set( vehicle->ideal.velo.get() + vehicle->ideal.accel.get()*(float)deltaT_ms/1000.0f);
-		if(ABS(vehicle->ideal.velo.get()) < 0.10)
+		if(ABS(vehicle->ideal.velo.get()) < 0.120)
 		{
-				vehicle->ideal.velo.set( -0.100f);		vehicle->ideal.accel.set(0.0f);
+				vehicle->ideal.velo.set( -0.1200f);		vehicle->ideal.accel.set(0.0f);
 				vehicle->ideal.rad_velo.set( 0.0f);	vehicle->ideal.rad_accel.set(0.0f);
 		}
 	}
@@ -739,6 +758,12 @@ void Motion::SetIdeal_turn_in		( )
 			float rad_acc			= (next_rad_velo - rad_velo)*1000.0f/(float)deltaT_ms;
 			vehicle->ideal.rad_velo.set(rad_velo);
 			vehicle->ideal.rad_accel.set(rad_acc);
+			float beta = vehicle->ideal.turn_slip_theta.get();
+			float alpha_r = vehicle->ideal.velo.get()*beta/(vehicle->ideal.velo.get() + TREAD_WIDTH_M/2*vehicle->ideal.rad_velo.get());
+			float alpha_l = vehicle->ideal.velo.get()*beta/(vehicle->ideal.velo.get() - TREAD_WIDTH_M/2*vehicle->ideal.rad_velo.get());
+			float acc = -vehicle->ideal.horizon_velo.get()*(vehicle->ideal.rad_velo.get()+vehicle->ideal.turn_slip_dot.get())
+						+vehicle->turn_slip_k.get()*(alpha_r*alpha_r + alpha_l *alpha_l)/2;
+			vehicle->ideal.accel.set(acc);
 		}
 		else
 		{
@@ -772,7 +797,7 @@ void Motion::SetIdeal_turn_in		( )
 
 			vehicle->Vehicle_controller.speed_ctrl.Gain_Set(*straight_motion_param.sp_gain);
 			vehicle->Vehicle_controller.omega_ctrl.Gain_Set(*straight_motion_param.om_gain);
-			vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
+			//vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
 			//vehicle->Vehicle_controller.omega_ctrl.I_param_reset();
 		}
 	}
@@ -794,6 +819,14 @@ void Motion::SetIdeal_turn_in		( )
 			//vehicle->ideal.rad_velo.set(0.0f);
 			vehicle->ideal.radian.set(0.0f);
 			vehicle->ideal.turn_slip_theta.set(0.0f);
+			vehicle->ideal.turn_slip_dot.set(0.0f);
+			vehicle->ideal.horizon_accel.set(0.0f);
+			vehicle->ideal.horizon_velo.set(0.0f);
+
+			vehicle->ego.turn_slip_theta.set(0.0f);
+			vehicle->ego.turn_slip_dot.set(0.0f);
+			vehicle->ego.horizon_accel.set(0.0f);
+			vehicle->ego.horizon_velo.set(0.0f);
 
 			vehicle->ego.length.set(-((turn_motion_param.param->Lend + motion_plan.fix_post_run.get()) - vehicle->ego.length.get()));
 			//vehicle->ego.radian.set(0.0f);
@@ -808,6 +841,22 @@ void Motion::SetIdeal_turn_in		( )
 	}
 	SetIdeal_wall_control();
 	run_time_ms_update();
+
+	float set_velo = vehicle->ideal.velo.get();
+	if(set_velo == 0.0f) set_velo = 0.001;
+
+	float prev_slip_theta = vehicle->ideal.turn_slip_theta.get();
+	float slip_theta = (prev_slip_theta*1000.0f - vehicle->ideal.rad_velo.get())
+						/(1000.0f + vehicle->turn_slip_k.get()/(set_velo*(1+prev_slip_theta*prev_slip_theta/2)));
+	vehicle->ideal.turn_slip_dot.set(-vehicle->turn_slip_k.get()*(slip_theta)/(set_velo*(1+slip_theta*slip_theta/2))-vehicle->ideal.rad_velo.get());
+	vehicle->ideal.turn_slip_theta.set(slip_theta )	;
+
+
+	float horizon_velo = vehicle->ideal.velo.get()*slip_theta;
+	float horizon_acc  = -vehicle->turn_slip_k.get()*(slip_theta) - vehicle->ideal.rad_velo.get()*vehicle->ideal.velo.get();
+	vehicle->ideal.horizon_accel.set(horizon_acc);
+	vehicle->ideal.horizon_velo.set(horizon_velo);
+
 	vehicle->ideal.length.set(vehicle->ideal.length.get() + vehicle->ideal.velo.get()*(float)deltaT_ms);
 	vehicle->ideal.radian.set(vehicle->ideal.radian.get() + vehicle->ideal.rad_velo.get()*(float)deltaT_ms/1000.0f);
 }
@@ -846,6 +895,12 @@ void Motion::SetIdeal_turn_out		( ){
 			float rad_acc			= (next_rad_velo - rad_velo)*1000.0f/(float)deltaT_ms;
 			vehicle->ideal.rad_velo.set(rad_velo);
 			vehicle->ideal.rad_accel.set(rad_acc);
+			float beta = vehicle->ideal.turn_slip_theta.get();
+			float alpha_r = vehicle->ideal.velo.get()*beta/(vehicle->ideal.velo.get() + TREAD_WIDTH_M/2*vehicle->ideal.rad_velo.get());
+			float alpha_l = vehicle->ideal.velo.get()*beta/(vehicle->ideal.velo.get() - TREAD_WIDTH_M/2*vehicle->ideal.rad_velo.get());
+			float acc = -vehicle->ideal.horizon_velo.get()*(vehicle->ideal.rad_velo.get()+vehicle->ideal.turn_slip_dot.get())
+						+vehicle->turn_slip_k.get()*(alpha_r*alpha_r + alpha_l *alpha_l)/2;
+			vehicle->ideal.accel.set(acc);
 		}
 		else
 		{
@@ -879,7 +934,7 @@ void Motion::SetIdeal_turn_out		( ){
 
 			vehicle->Vehicle_controller.speed_ctrl.Gain_Set(*straight_motion_param.sp_gain);
 			vehicle->Vehicle_controller.omega_ctrl.Gain_Set(*straight_motion_param.om_gain);
-			vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
+			//vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
 			//vehicle->Vehicle_controller.omega_ctrl.I_param_reset();
 		}
 	}
@@ -901,6 +956,14 @@ void Motion::SetIdeal_turn_out		( ){
 			//vehicle->ideal.rad_velo.set(0.0f);
 			vehicle->ideal.radian.set(0.0f);
 			vehicle->ideal.turn_slip_theta.set(0.0f);
+			vehicle->ideal.turn_slip_dot.set(0.0f);
+			vehicle->ideal.horizon_accel.set(0.0f);
+			vehicle->ideal.horizon_velo.set(0.0f);
+
+			vehicle->ego.turn_slip_theta.set(0.0f);
+			vehicle->ego.turn_slip_dot.set(0.0f);
+			vehicle->ego.horizon_accel.set(0.0f);
+			vehicle->ego.horizon_velo.set(0.0f);
 
 			vehicle->ego.length.set(-((turn_motion_param.param->Lend + motion_plan.fix_post_run.get()) - vehicle->ego.length.get()));
 			//vehicle->ego.radian.set(0.0f);
@@ -915,6 +978,22 @@ void Motion::SetIdeal_turn_out		( ){
 	}
 	SetIdeal_wall_control();
 	run_time_ms_update();
+
+	float set_velo = vehicle->ideal.velo.get();
+	if(set_velo == 0.0f) set_velo = 0.001;
+
+	float prev_slip_theta = vehicle->ideal.turn_slip_theta.get();
+	float slip_theta = (prev_slip_theta*1000.0f - vehicle->ideal.rad_velo.get())
+						/(1000.0f + vehicle->turn_slip_k.get()/(set_velo*(1+prev_slip_theta*prev_slip_theta/2)));
+	vehicle->ideal.turn_slip_dot.set(-vehicle->turn_slip_k.get()*(slip_theta)/(set_velo*(1+slip_theta*slip_theta/2))-vehicle->ideal.rad_velo.get());
+	vehicle->ideal.turn_slip_theta.set(slip_theta )	;
+
+
+	float horizon_velo = vehicle->ideal.velo.get()*slip_theta;
+	float horizon_acc  = -vehicle->turn_slip_k.get()*(slip_theta) - vehicle->ideal.rad_velo.get()*vehicle->ideal.velo.get();
+	vehicle->ideal.horizon_accel.set(horizon_acc);
+	vehicle->ideal.horizon_velo.set(horizon_velo);
+
 	vehicle->ideal.length.set(vehicle->ideal.length.get() + vehicle->ideal.velo.get()*(float)deltaT_ms);
 	vehicle->ideal.radian.set(vehicle->ideal.radian.get() + vehicle->ideal.rad_velo.get()*(float)deltaT_ms/1000.0f);
 }
@@ -954,6 +1033,12 @@ void Motion::SetIdeal_long_turn		( )
 			float rad_acc			= (next_rad_velo - rad_velo)*1000.0f/(float)deltaT_ms;
 			vehicle->ideal.rad_velo.set(rad_velo);
 			vehicle->ideal.rad_accel.set(rad_acc);
+			float beta = vehicle->ideal.turn_slip_theta.get();
+			float alpha_r = vehicle->ideal.velo.get()*beta/(vehicle->ideal.velo.get() + TREAD_WIDTH_M/2*vehicle->ideal.rad_velo.get());
+			float alpha_l = vehicle->ideal.velo.get()*beta/(vehicle->ideal.velo.get() - TREAD_WIDTH_M/2*vehicle->ideal.rad_velo.get());
+			float acc = -vehicle->ideal.horizon_velo.get()*(vehicle->ideal.rad_velo.get()+vehicle->ideal.turn_slip_dot.get())
+						+vehicle->turn_slip_k.get()*(alpha_r*alpha_r + alpha_l *alpha_l)/2;
+			vehicle->ideal.accel.set(acc);
 		}
 		else
 		{
@@ -987,7 +1072,7 @@ void Motion::SetIdeal_long_turn		( )
 
 			vehicle->Vehicle_controller.speed_ctrl.Gain_Set(*straight_motion_param.sp_gain);
 			vehicle->Vehicle_controller.omega_ctrl.Gain_Set(*straight_motion_param.om_gain);
-			vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
+			//vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
 			//vehicle->Vehicle_controller.omega_ctrl.I_param_reset();
 		}
 	}
@@ -1009,6 +1094,14 @@ void Motion::SetIdeal_long_turn		( )
 			//vehicle->ideal.rad_velo.set(0.0f);
 			vehicle->ideal.radian.set(0.0f);
 			vehicle->ideal.turn_slip_theta.set(0.0f);
+			vehicle->ideal.turn_slip_dot.set(0.0f);
+			vehicle->ideal.horizon_accel.set(0.0f);
+			vehicle->ideal.horizon_velo.set(0.0f);
+
+			vehicle->ego.turn_slip_theta.set(0.0f);
+			vehicle->ego.turn_slip_dot.set(0.0f);
+			vehicle->ego.horizon_accel.set(0.0f);
+			vehicle->ego.horizon_velo.set(0.0f);
 
 			vehicle->ego.length.set(-((turn_motion_param.param->Lend + motion_plan.fix_post_run.get()) - vehicle->ego.length.get()));
 			//vehicle->ego.radian.set(0.0f);
@@ -1023,6 +1116,23 @@ void Motion::SetIdeal_long_turn		( )
 	}
 	SetIdeal_wall_control();
 	run_time_ms_update();
+
+
+	float set_velo = vehicle->ideal.velo.get();
+	if(set_velo == 0.0f) set_velo = 0.001;
+
+	float prev_slip_theta = vehicle->ideal.turn_slip_theta.get();
+	float slip_theta = (prev_slip_theta*1000.0f - vehicle->ideal.rad_velo.get())
+						/(1000.0f + vehicle->turn_slip_k.get()/(set_velo*(1+prev_slip_theta*prev_slip_theta/2)));
+	vehicle->ideal.turn_slip_dot.set(-vehicle->turn_slip_k.get()*(slip_theta)/(set_velo*(1+slip_theta*slip_theta/2))-vehicle->ideal.rad_velo.get());
+	vehicle->ideal.turn_slip_theta.set(slip_theta )	;
+
+
+	float horizon_velo = vehicle->ideal.velo.get()*slip_theta;
+	float horizon_acc  = -vehicle->turn_slip_k.get()*(slip_theta) - vehicle->ideal.rad_velo.get()*vehicle->ideal.velo.get();
+	vehicle->ideal.horizon_accel.set(horizon_acc);
+	vehicle->ideal.horizon_velo.set(horizon_velo);
+
 	vehicle->ideal.length.set(vehicle->ideal.length.get() + vehicle->ideal.velo.get()*(float)deltaT_ms);
 	vehicle->ideal.radian.set(vehicle->ideal.radian.get() + vehicle->ideal.rad_velo.get()*(float)deltaT_ms/1000.0f);
 }
@@ -1062,6 +1172,12 @@ void Motion::SetIdeal_turn_v90		( )
 			float rad_acc			= (next_rad_velo - rad_velo)*1000.0f/(float)deltaT_ms;
 			vehicle->ideal.rad_velo.set(rad_velo);
 			vehicle->ideal.rad_accel.set(rad_acc);
+			float beta = vehicle->ideal.turn_slip_theta.get();
+			float alpha_r = vehicle->ideal.velo.get()*beta/(vehicle->ideal.velo.get() + TREAD_WIDTH_M/2*vehicle->ideal.rad_velo.get());
+			float alpha_l = vehicle->ideal.velo.get()*beta/(vehicle->ideal.velo.get() - TREAD_WIDTH_M/2*vehicle->ideal.rad_velo.get());
+			float acc = -vehicle->ideal.horizon_velo.get()*(vehicle->ideal.rad_velo.get()+vehicle->ideal.turn_slip_dot.get())*0.0
+						+vehicle->turn_slip_k.get()*(alpha_r*alpha_r + alpha_l *alpha_l)/2;
+			vehicle->ideal.accel.set(acc);
 		}
 		else
 		{
@@ -1076,7 +1192,15 @@ void Motion::SetIdeal_turn_v90		( )
 
 			vehicle->ego.length.set(0.0f);
 			vehicle->ego.radian.set(0.0f);
+			vehicle->ideal.turn_slip_theta.set(0.0f);
+			vehicle->ideal.turn_slip_dot.set(0.0f);
+			vehicle->ideal.horizon_accel.set(0.0f);
+			vehicle->ideal.horizon_velo.set(0.0f);
+
 			vehicle->ego.turn_slip_theta.set(0.0f);
+			vehicle->ego.turn_slip_dot.set(0.0f);
+			vehicle->ego.horizon_accel.set(0.0f);
+			vehicle->ego.horizon_velo.set(0.0f);
 
 			vehicle->ideal.turn_x_dash.set(0.0f);
 			vehicle->ideal.turn_y_dash.set(0.0f);
@@ -1095,7 +1219,7 @@ void Motion::SetIdeal_turn_v90		( )
 
 			vehicle->Vehicle_controller.speed_ctrl.Gain_Set(*straight_motion_param.sp_gain);
 			vehicle->Vehicle_controller.omega_ctrl.Gain_Set(*straight_motion_param.om_gain);
-			vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
+			//vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
 			//vehicle->Vehicle_controller.omega_ctrl.I_param_reset();
 		}
 	}
@@ -1131,6 +1255,22 @@ void Motion::SetIdeal_turn_v90		( )
 	}
 	SetIdeal_wall_control();
 	run_time_ms_update();
+
+	float set_velo = vehicle->ideal.velo.get();
+	if(set_velo == 0.0f) set_velo = 0.001;
+
+	float prev_slip_theta = vehicle->ideal.turn_slip_theta.get();
+	float slip_theta = (prev_slip_theta*1000.0f - vehicle->ideal.rad_velo.get())
+						/(1000.0f + vehicle->turn_slip_k.get()/(set_velo*(1+prev_slip_theta*prev_slip_theta/2)));
+	vehicle->ideal.turn_slip_dot.set(-vehicle->turn_slip_k.get()*(slip_theta)/(set_velo*(1+slip_theta*slip_theta/2))-vehicle->ideal.rad_velo.get());
+	vehicle->ideal.turn_slip_theta.set(slip_theta )	;
+
+
+	float horizon_velo = vehicle->ideal.velo.get()*slip_theta;
+	float horizon_acc  = -vehicle->turn_slip_k.get()*(slip_theta) - vehicle->ideal.rad_velo.get()*vehicle->ideal.velo.get();
+	vehicle->ideal.horizon_accel.set(horizon_acc);
+	vehicle->ideal.horizon_velo.set(horizon_velo);
+
 	vehicle->ideal.length.set(vehicle->ideal.length.get() + vehicle->ideal.velo.get()*(float)deltaT_ms);
 	vehicle->ideal.radian.set(vehicle->ideal.radian.get() + vehicle->ideal.rad_velo.get()*(float)deltaT_ms/1000.0f);
 }

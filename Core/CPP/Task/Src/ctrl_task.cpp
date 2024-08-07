@@ -142,6 +142,18 @@ void CtrlTask::motion_control()
 			vehicle->sp_feedforward.set((sp_FF_control_r + sp_FF_control_l)/2.0);
 			vehicle->om_feedforward.set((sp_FF_control_r - sp_FF_control_l)/2.0);
 
+			//feedforward
+			float om_feedforward_corr_R = 0.0f;
+			float om_feedforward_corr_L = 0.0f;
+			if(vehicle->om_feedforward.get() > vehicle->battery.get())
+			{
+				om_feedforward_corr_L = vehicle->om_feedforward.get() - vehicle->battery.get();
+			}
+			else if(vehicle->om_feedforward.get() < -(vehicle->battery.get()))
+			{
+				om_feedforward_corr_R =  vehicle->battery.get() + vehicle->om_feedforward.get() ;
+			}
+
 			//calc anti windup
 			float ctrl_battery = vehicle->battery.get();
 			if(ctrl_battery < 3.30f) ctrl_battery = 3.30f;
@@ -166,8 +178,8 @@ void CtrlTask::motion_control()
 			vehicle->om_feedback.set( om_antiwindup );
 
 			//set & supply voltage
-			vehicle->V_r =  vehicle->sp_feedforward.get() + vehicle->om_feedforward.get() + vehicle->sp_feedback.get() + vehicle->om_feedback.get();
-			vehicle->V_l = -vehicle->sp_feedforward.get() + vehicle->om_feedforward.get() - vehicle->sp_feedback.get() + vehicle->om_feedback.get();
+			vehicle->V_r =  vehicle->sp_feedforward.get() + (vehicle->om_feedforward.get() + om_feedforward_corr_R) + vehicle->sp_feedback.get() + vehicle->om_feedback.get();
+			vehicle->V_l = -vehicle->sp_feedforward.get() + (vehicle->om_feedforward.get() + om_feedforward_corr_L) - vehicle->sp_feedback.get() + vehicle->om_feedback.get();
 
 			float duty_r = vehicle->V_r/vehicle->battery.get();
 			float duty_l = vehicle->V_l/vehicle->battery.get();

@@ -15,6 +15,7 @@ void Motion::Motion_start()
 	vehicle->ego_initialize();
 	vehicle->ideal_initialize();
 	vehicle->suctionStop();
+	vehicle->turn_slip_k.set(75.0);
 	motion_enable_set();
 	motion_pattern_set(No_run);
 	motion_exeStatus_set(complete);
@@ -30,6 +31,7 @@ void Motion::Motion_end()
 	vehicle->ego_initialize();
 	vehicle->ideal_initialize();
 	vehicle->suctionStop();
+	vehicle->turn_slip_k.set(75.0);
 	motion_disable_set();
 	motion_pattern_set(No_run);
 	//motion_exeStatus_set(complete);
@@ -1077,7 +1079,7 @@ void Motion::Init_Motion_suction_start	(float suction_voltage,float set_time,con
 
 	vehicle->V_suction.init();
 	vehicle->suction_flag_set(True);
-
+	vehicle->turn_slip_k.set(250.0);
 	motion_pattern_set(Suction_start);
 	motion_exeStatus_set(execute);
 	motion_state_set(BRAKE_STATE);
