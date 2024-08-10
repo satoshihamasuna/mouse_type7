@@ -934,18 +934,19 @@ void Motion::Init_Motion_turn_v90		(const t_param *turn_param,t_run_pattern run_
 	vehicle->ideal.turn_y.init();
 	vehicle->ideal.turn_slip_theta.init();
 	*/
+
 	float diff = vehicle->ego.x_point.get();
 	if(ABS(diff) < 10.0)
 	{
 		if(turn_param->param->turn_dir == Turn_R)
 		{
 			motion_plan.fix_prev_run.set(0.0);
-			motion_plan.fix_post_run.set(diff);
+			motion_plan.fix_post_run.set(diff*0.0);
 		}
 		else if(turn_param->param->turn_dir == Turn_L)
 		{
 			motion_plan.fix_prev_run.set(0.0);
-			motion_plan.fix_post_run.set((-1.0)*diff);
+			motion_plan.fix_post_run.set((-1.0)*diff*0.0);
 		}
 	}
 

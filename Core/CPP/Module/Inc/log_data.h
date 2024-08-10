@@ -24,7 +24,7 @@ class LogData:public Singleton<LogData>
 		const int data_size = LOG_DATA_SIZE;
 		const int data_num  = LOG_DATA_NUM;
 		int data_count = 0;
-		uint8_t mode = 0;
+		uint8_t mode = 2;
 		half_float data[LOG_DATA_NUM][LOG_DATA_SIZE];
 		void indicate_data();
 		void init_log()
@@ -44,6 +44,7 @@ class LogData:public Singleton<LogData>
 			{
 			case 0:
 			case 1:
+			case 2:
 				 mode = _mode;	break;
 			default :
 				 mode = 0; 		break;

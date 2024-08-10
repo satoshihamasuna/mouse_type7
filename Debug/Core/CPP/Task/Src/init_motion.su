@@ -34,7 +34,7 @@ init_motion.cpp:479:6:void Motion::Init_Motion_pivot_turn(float, float, float, c
 init_motion.cpp:546:6:void Motion::Init_Motion_turn_in(const t_param*, t_run_pattern, const t_pid_gain*, const t_pid_gain*)	64	static
 init_motion.cpp:646:6:void Motion::Init_Motion_turn_out(const t_param*, t_run_pattern, const t_pid_gain*, const t_pid_gain*)	64	static
 init_motion.cpp:746:6:void Motion::Init_Motion_long_turn(const t_param*, t_run_pattern, const t_pid_gain*, const t_pid_gain*)	64	static
-init_motion.cpp:883:6:void Motion::Init_Motion_turn_v90(const t_param*, t_run_pattern, const t_pid_gain*, const t_pid_gain*)	48	static
-init_motion.cpp:964:6:void Motion::Init_Motion_fix_wall(float, const t_pid_gain*, const t_pid_gain*)	24	static
-init_motion.cpp:1027:6:void Motion::Init_Motion_suction_start(float, float, const t_pid_gain*, const t_pid_gain*)	32	static
-init_motion.cpp:1095:6:void Motion::Init_Motion_stop_brake(float, const t_pid_gain*, const t_pid_gain*)	24	static
+init_motion.cpp:883:6:void Motion::Init_Motion_turn_v90(const t_param*, t_run_pattern, const t_pid_gain*, const t_pid_gain*)	56	static
+init_motion.cpp:965:6:void Motion::Init_Motion_fix_wall(float, const t_pid_gain*, const t_pid_gain*)	24	static
+init_motion.cpp:1028:6:void Motion::Init_Motion_suction_start(float, float, const t_pid_gain*, const t_pid_gain*)	32	static
+init_motion.cpp:1096:6:void Motion::Init_Motion_stop_brake(float, const t_pid_gain*, const t_pid_gain*)	24	static

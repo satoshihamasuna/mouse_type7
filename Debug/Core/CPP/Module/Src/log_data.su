@@ -10,7 +10,7 @@ vehicle.h:195:7:virtual void Vehicle_type7::suctionSetDuty(int)	16	static
 vehicle.h:202:7:virtual void Vehicle_type7::suctionStop()	16	static
 sensing_task.h:117:8:virtual void IrSensTask_type7::IrSensorSet()	16	static
 log_data.cpp:23:6:void LogData::indicate_data()	72	static
-log_data.cpp:143:6:void LogData::logging()	312	static
+log_data.cpp:180:6:void LogData::logging()	600	static
 controller.h:19:7:constexpr PID_Controller::PID_Controller()	16	static
 controller.h:37:7:constexpr mouse_Controller::mouse_Controller()	16	static
 vehicle.h:60:7:Vehicle::Vehicle()	16	static
