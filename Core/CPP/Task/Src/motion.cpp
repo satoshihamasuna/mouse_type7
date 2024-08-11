@@ -448,6 +448,8 @@ void Motion::SetIdeal_straight()
 	}
 	else if(vehicle->ego.length.get() < motion_plan.end_length.get())
 	{
+		if(ABS((motion_plan.length_deccel.get()+offset) - ( motion_plan.end_length.get() - vehicle->ego.length.get())) < motion_plan.max_velo.get())
+			vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
 		vehicle->ideal.accel.set(motion_plan.deccel.get());
 		vehicle->ideal.velo.set( vehicle->ideal.velo.get() + vehicle->ideal.accel.get()*(float)deltaT_ms/1000.0f);
 		if(motion_plan.end_velo.get() == 0.0f)

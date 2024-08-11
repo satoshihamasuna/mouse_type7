@@ -12,4 +12,4 @@ ctrl_task.h:290:17:t_bool CtrlTask::is_control_enable()	16	static
 ctrl_task.cpp:28:6:void CtrlTask::motion_ideal_param_set()	16	static
 ctrl_task.cpp:95:6:void CtrlTask::motion_prev_control()	16	static
 ctrl_task.cpp:103:6:void CtrlTask::motion_control()	96	static
-ctrl_task.cpp:235:6:void CtrlTask::motion_post_control()	48	static
+ctrl_task.cpp:237:6:void CtrlTask::motion_post_control()	48	static

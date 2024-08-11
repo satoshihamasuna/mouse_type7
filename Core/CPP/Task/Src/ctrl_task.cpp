@@ -145,13 +145,13 @@ void CtrlTask::motion_control()
 			//feedforward
 			float om_feedforward_corr_R = 0.0f;
 			float om_feedforward_corr_L = 0.0f;
-			if(vehicle->om_feedforward.get() > vehicle->battery.get())
+			if((vehicle->om_feedforward.get()+vehicle->om_feedback.get()) > vehicle->battery.get())
 			{
-				om_feedforward_corr_L = vehicle->om_feedforward.get() - vehicle->battery.get();
+				om_feedforward_corr_L = (vehicle->om_feedforward.get()+vehicle->om_feedback.get()) - vehicle->battery.get();
 			}
-			else if(vehicle->om_feedforward.get() < -(vehicle->battery.get()))
+			else if((vehicle->om_feedforward.get()+vehicle->om_feedback.get()) < -(vehicle->battery.get()))
 			{
-				om_feedforward_corr_R =  vehicle->battery.get() + vehicle->om_feedforward.get() ;
+				om_feedforward_corr_R =  vehicle->battery.get() + (vehicle->om_feedforward.get()+vehicle->om_feedback.get()) ;
 			}
 
 			//calc anti windup
@@ -167,15 +167,17 @@ void CtrlTask::motion_control()
 			if( ctrl_limit < ctrl_battery )
 			{
 				//sp_antiwindup = vehicle->Vehicle_controller.speed_ctrl.Anti_windup_1( vehicle->sp_feedback.get(),ctrl_battery - ctrl_limit);
-				//om_antiwindup = vehicle->Vehicle_controller.omega_ctrl.Anti_windup_2( vehicle->om_feedback.get(),ctrl_battery - ctrl_limit);
+				om_antiwindup = vehicle->Vehicle_controller.omega_ctrl.Anti_windup_2( vehicle->om_feedback.get(),ctrl_battery - ctrl_limit);
+			    //vehicle->Vehicle_controller.omega_ctrl.Anti_windup_2(vehicle->om_feedback.get() + vehicle->om_feedforward.get(),ctrl_battery) - vehicle->om_feedforward.get();
 			}
 			else
 			{
 				//sp_antiwindup = vehicle->Vehicle_controller.speed_ctrl.Anti_windup_1(vehicle->sp_feedback.get() + vehicle->sp_feedforward.get(),ctrl_battery) - vehicle->sp_feedforward.get();
-				//om_antiwindup = vehicle->Vehicle_controller.omega_ctrl.Anti_windup_2(vehicle->om_feedback.get() + vehicle->om_feedforward.get(),ctrl_battery) - vehicle->om_feedforward.get();
+				om_antiwindup = vehicle->Vehicle_controller.omega_ctrl.Anti_windup_2( vehicle->om_feedback.get(),0.0);
+				//vehicle->Vehicle_controller.omega_ctrl.Anti_windup_2(vehicle->om_feedback.get() + vehicle->om_feedforward.get(),ctrl_battery) - vehicle->om_feedforward.get();
 			}
 			vehicle->sp_feedback.set( sp_antiwindup );
-			vehicle->om_feedback.set( om_antiwindup );
+			//vehicle->om_feedback.set( om_antiwindup );
 
 			//set & supply voltage
 			vehicle->V_r =  vehicle->sp_feedforward.get() + (vehicle->om_feedforward.get() + om_feedforward_corr_R-om_feedforward_corr_L) + vehicle->sp_feedback.get() + vehicle->om_feedback.get();

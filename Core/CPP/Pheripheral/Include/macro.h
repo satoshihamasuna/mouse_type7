@@ -26,8 +26,8 @@ extern "C" {
 #define TREAD_WIDTH		((18.0-2.0)*2)
 
 #define WEIGHT			(18.0)					//g
-#define MOTOR_K_ER		(0.057)					//mV/rpm
-#define MOTOR_K_TR		(0.54)	//0.4//0.594				//mNm/A
+#define MOTOR_K_ER		(0.074)					//mV/rpm
+#define MOTOR_K_TR		(0.707)	//0.4//0.594				//mNm/A
 #define MOTOR_R			(5.0)//6.0
 #define GEAR_N			(40.0/9.0)
 #define MOUSE_INERTIA	(0.0023f*1.5)//0.001f//0.003,0.0022				//g・m^2
