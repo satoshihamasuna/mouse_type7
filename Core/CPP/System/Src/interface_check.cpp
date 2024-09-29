@@ -102,7 +102,7 @@ namespace Mode
 					}
 						break;
 				case ENABLE|0x04:
-					if(irsens->IrSensor_Avg() > 2500){
+					if(irsens->IrSensor_Avg() > 1500){
 						  for(int i = 0;i < 11;i++)
 						  {
 							  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
