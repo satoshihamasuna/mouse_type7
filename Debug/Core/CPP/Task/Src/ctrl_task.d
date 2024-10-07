@@ -36,21 +36,21 @@ Core/CPP/Task/Src/ctrl_task.o: ../Core/CPP/Task/Src/ctrl_task.cpp \
  ../Core/CPP/Task/Src/../../Pheripheral/Include/typedef.h \
  ../Core/CPP/Task/Src/../../Pheripheral/Include/macro.h \
  ../Core/CPP/Task/Src/../../Pheripheral/Include/ir_sensor.h \
- ../Core/CPP/Task/Src/../../Pheripheral/Include/../../Component/Inc/maze_typedef.h \
+ d:\mouse_type7_kai\mouse_type7\core\cpp\component\inc\maze_typedef.h \
  ../Core/CPP/Task/Src/../../Pheripheral/Include/lsm6dsr_reg.h \
  ../Core/CPP/Task/Src/../../Pheripheral/Include/typedef.h \
  ../Core/CPP/Task/Src/../../Component/Inc/singleton.h \
  ../Core/CPP/Task/Src/../../Component/Inc/controller.h \
  ../Core/CPP/Task/Src/../../Component/Inc/path_follow.h \
- ../Core/CPP/Task/Src/../../Component/Inc/../../Component/Inc/singleton.h \
- ../Core/CPP/Task/Src/../../Component/Inc/../../Pheripheral/Include/typedef.h \
+ d:\mouse_type7_kai\mouse_type7\core\cpp\component\inc\singleton.h \
+ d:\mouse_type7_kai\mouse_type7\core\cpp\pheripheral\include\typedef.h \
  ../Core/CPP/Task/Src/../../Module/Inc/vehicle.h \
- ../Core/CPP/Task/Src/../../Module/Inc/../../Pheripheral/Include/typedef.h \
- ../Core/CPP/Task/Src/../../Module/Inc/../../Pheripheral/Include/index.h \
- ../Core/CPP/Task/Src/../../Module/Inc/../../Component/Inc/singleton.h \
- ../Core/CPP/Task/Src/../../Module/Inc/../../Component/Inc/controller.h \
- ../Core/CPP/Task/Src/../../Module/Inc/../../Task/Inc/run_typedef.h \
- ../Core/CPP/Task/Src/../../Module/Inc/../../Task/Inc/../../Pheripheral/Include/typedef.h \
+ d:\mouse_type7_kai\mouse_type7\core\cpp\pheripheral\include\typedef.h \
+ d:\mouse_type7_kai\mouse_type7\core\cpp\pheripheral\include\index.h \
+ d:\mouse_type7_kai\mouse_type7\core\cpp\component\inc\singleton.h \
+ d:\mouse_type7_kai\mouse_type7\core\cpp\component\inc\controller.h \
+ d:\mouse_type7_kai\mouse_type7\core\cpp\task\inc\run_typedef.h \
+ d:\mouse_type7_kai\mouse_type7\core\cpp\pheripheral\include\typedef.h \
  ../Core/CPP/Task/Src/../../Params/run_param.h \
  ../Core/CPP/Task/Src/../../Params/../Component/Inc/controller.h \
  ../Core/CPP/Task/Src/../../Params/../Module/Inc/vehicle.h \
@@ -151,7 +151,7 @@ Core/CPP/Task/Src/ctrl_task.o: ../Core/CPP/Task/Src/ctrl_task.cpp \
 
 ../Core/CPP/Task/Src/../../Pheripheral/Include/ir_sensor.h:
 
-../Core/CPP/Task/Src/../../Pheripheral/Include/../../Component/Inc/maze_typedef.h:
+d:\mouse_type7_kai\mouse_type7\core\cpp\component\inc\maze_typedef.h:
 
 ../Core/CPP/Task/Src/../../Pheripheral/Include/lsm6dsr_reg.h:
 
@@ -163,23 +163,23 @@ Core/CPP/Task/Src/ctrl_task.o: ../Core/CPP/Task/Src/ctrl_task.cpp \
 
 ../Core/CPP/Task/Src/../../Component/Inc/path_follow.h:
 
-../Core/CPP/Task/Src/../../Component/Inc/../../Component/Inc/singleton.h:
+d:\mouse_type7_kai\mouse_type7\core\cpp\component\inc\singleton.h:
 
-../Core/CPP/Task/Src/../../Component/Inc/../../Pheripheral/Include/typedef.h:
+d:\mouse_type7_kai\mouse_type7\core\cpp\pheripheral\include\typedef.h:
 
 ../Core/CPP/Task/Src/../../Module/Inc/vehicle.h:
 
-../Core/CPP/Task/Src/../../Module/Inc/../../Pheripheral/Include/typedef.h:
+d:\mouse_type7_kai\mouse_type7\core\cpp\pheripheral\include\typedef.h:
 
-../Core/CPP/Task/Src/../../Module/Inc/../../Pheripheral/Include/index.h:
+d:\mouse_type7_kai\mouse_type7\core\cpp\pheripheral\include\index.h:
 
-../Core/CPP/Task/Src/../../Module/Inc/../../Component/Inc/singleton.h:
+d:\mouse_type7_kai\mouse_type7\core\cpp\component\inc\singleton.h:
 
-../Core/CPP/Task/Src/../../Module/Inc/../../Component/Inc/controller.h:
+d:\mouse_type7_kai\mouse_type7\core\cpp\component\inc\controller.h:
 
-../Core/CPP/Task/Src/../../Module/Inc/../../Task/Inc/run_typedef.h:
+d:\mouse_type7_kai\mouse_type7\core\cpp\task\inc\run_typedef.h:
 
-../Core/CPP/Task/Src/../../Module/Inc/../../Task/Inc/../../Pheripheral/Include/typedef.h:
+d:\mouse_type7_kai\mouse_type7\core\cpp\pheripheral\include\typedef.h:
 
 ../Core/CPP/Task/Src/../../Params/run_param.h:
 

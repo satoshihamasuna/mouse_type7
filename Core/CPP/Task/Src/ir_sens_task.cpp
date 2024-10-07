@@ -100,7 +100,7 @@ float IrSensTask::Sensor_CalcDistance(t_sensor_dir dir,int16_t value)
 				distance = (n*(float)sens_front_length_table[count] + m*(float)sens_front_length_table[count+1])/(m+n);
 				*/
 				if (value < sens_fr_table[1]){
-					float ln_distance = -0.31684*logf((float)(value)) + 6.266493;
+					float ln_distance = -0.36605*logf((float)(value)) + 6.629735;
 					distance = expf(ln_distance);
 				}
 				else
@@ -129,7 +129,7 @@ float IrSensTask::Sensor_CalcDistance(t_sensor_dir dir,int16_t value)
 				distance = (n*(float)sens_front_length_table[count] + m*(float)sens_front_length_table[count+1])/(m+n);
 				*/
 				if (value < sens_fl_table[1]){
-					float ln_distance = -0.33611*logf((float)(value)) + 6.356542;
+					float ln_distance = -0.34692*logf((float)(value)) + 6.39695;
 					distance = expf(ln_distance);
 				}
 				else

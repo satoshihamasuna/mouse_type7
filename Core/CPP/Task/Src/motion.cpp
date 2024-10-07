@@ -765,8 +765,8 @@ void Motion::SetIdeal_turn_in		( )
 			float alpha_l = vehicle->ideal.velo.get()*beta/(vehicle->ideal.velo.get() - TREAD_WIDTH_M/2*vehicle->ideal.rad_velo.get());
 			float acc = -vehicle->ideal.horizon_velo.get()*(vehicle->ideal.rad_velo.get()+vehicle->ideal.turn_slip_dot.get())*0.0
 						+vehicle->turn_slip_k.get()*(alpha_r*alpha_r + alpha_l *alpha_l)/2;
-			if( ABS(turn_motion_param.param->degree) == 135.0)
-				vehicle->ideal.accel.set(acc);
+			//if( ABS(turn_motion_param.param->degree) == 135.0)
+				//vehicle->ideal.accel.set(acc);
 		}
 		else
 		{
@@ -903,8 +903,8 @@ void Motion::SetIdeal_turn_out		( ){
 			float alpha_l = vehicle->ideal.velo.get()*beta/(vehicle->ideal.velo.get() - TREAD_WIDTH_M/2*vehicle->ideal.rad_velo.get());
 			float acc = -vehicle->ideal.horizon_velo.get()*(vehicle->ideal.rad_velo.get()+vehicle->ideal.turn_slip_dot.get())*0.0
 						+vehicle->turn_slip_k.get()*(alpha_r*alpha_r + alpha_l *alpha_l)/2;
-			if( ABS(turn_motion_param.param->degree) == 135.0)
-				vehicle->ideal.accel.set(acc);
+			//if( ABS(turn_motion_param.param->degree) == 135.0)
+				//vehicle->ideal.accel.set(acc);
 		}
 		else
 		{
@@ -1042,8 +1042,8 @@ void Motion::SetIdeal_long_turn		( )
 			float alpha_l = vehicle->ideal.velo.get()*beta/(vehicle->ideal.velo.get() - TREAD_WIDTH_M/2*vehicle->ideal.rad_velo.get());
 			float acc = -vehicle->ideal.horizon_velo.get()*(vehicle->ideal.rad_velo.get()+vehicle->ideal.turn_slip_dot.get())
 						+vehicle->turn_slip_k.get()*(alpha_r*alpha_r + alpha_l *alpha_l)/2;
-			if( ABS(turn_motion_param.param->degree) == 180.0)
-				vehicle->ideal.accel.set(acc);
+			//if( ABS(turn_motion_param.param->degree) == 180.0)
+				//vehicle->ideal.accel.set(acc);
 		}
 		else
 		{
