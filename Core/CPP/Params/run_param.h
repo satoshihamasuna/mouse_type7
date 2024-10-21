@@ -749,6 +749,16 @@ const static t_param *const mode_1400[] = 	{	&param_dummy,		&param_dummy,		&para
 												&param_RV90_1400,	&param_LV90_1400
 											};
 
+const static t_param *const mode_1400_acc[] = 	{	NULL,					NULL,			NULL,
+												&param_R90_1400,		&param_L90_1400,
+												&param_R180_1400,	&param_L180_1400,
+												&param_inR45_1400,	&param_inL45_1400,
+												&param_outR45_1400,	&param_outL45_1400,
+												&param_inR135_1400,	&param_inL135_1400,
+												&param_outR135_1400,	&param_outL135_1400,
+												&param_RV90_1400,	&param_LV90_1400,
+												NULL,					NULL
+											};
 
 
 
@@ -893,5 +903,20 @@ const static t_param *const mode_1600[] = 	{	&param_dummy,		&param_dummy,		&para
 												&param_outR135_1600,	&param_outL135_1600,
 												&param_RV90_1600,	&param_LV90_1600
 											};
+
+const static t_param *const mode_1600_acc[] = 	{	NULL,					NULL,			NULL,
+												&param_R90_1600,		&param_L90_1600,
+												&param_R180_1600,	&param_L180_1600,
+												NULL,					NULL	,
+												NULL,					NULL	,
+												&param_inR135_1600,	&param_inL135_1600,
+												&param_outR135_1600,	&param_outL135_1600,
+												&param_RV90_1600,	&param_LV90_1600,
+												NULL,					NULL
+											};
+
+
+const static t_param *const *const acc_mode_1400[] = {mode_1400_acc,mode_1600_acc};
+
 
 #endif /* CPP_INC_RUN_PARAM_H_ */
