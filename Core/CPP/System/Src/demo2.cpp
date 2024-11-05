@@ -240,9 +240,9 @@ void Demo2()
 
 
 			  		run_path.turn_time_set(mode_1500);
-					run_path.run_Dijkstra_suction(		start, Dir_None, goal, MAZE_GOAL_SIZE,500,
-														st_mode_1500_v0, (int)(sizeof(st_mode_1500_v0)/sizeof(t_straight_param *const)),
-														di_mode_1500_v0, (int)(sizeof(di_mode_1500_v0)/sizeof(t_straight_param *const)), mode_1500,motion);
+					run_path.run_Dijkstra_suction(		start, Dir_None, goal, MAZE_GOAL_SIZE,550,
+														st_mode_1400_v3, (int)(sizeof(st_mode_1400_v3)/sizeof(t_straight_param *const)),
+														di_mode_1400_v2, (int)(sizeof(di_mode_1400_v2)/sizeof(t_straight_param *const)), mode_1400,motion);
 
 					if(motion->motion_exeStatus_get() == error)
 					{
