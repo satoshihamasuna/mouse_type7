@@ -5,6 +5,10 @@
  *      Author: sato1
  */
 
+
+/*
+ * fix wallがtype7とproto-type7で違うので注意
+ */
 #include "../Inc/ctrl_task.h"
 #include "../Inc/run_typedef.h"
 #include "../../Params/turn_table.h"
@@ -31,7 +35,7 @@ float get_turn_table_value(float time_period_ms,float time_ms)
 
 	return turn_table_value;
 }
-
+/*
 float get_turn2_table_value(float time_period_ms,float time_ms)
 {
 	float turn_table_value = 0.0f;
@@ -50,9 +54,10 @@ float get_turn2_table_value(float time_period_ms,float time_ms)
 
 	return turn_table_value;
 }
-
+*/
 void Motion::SetIdeal_wall_control()
 {
+	//ir_sens->set_sidewall_control_cnt(vehicle->ideal.velo.get());
 	if(motion_state_get() == STRAIGHT_STATE || motion_state_get() == DIAGONAL_STATE)
 	{
 		if(motion_state_get() == STRAIGHT_STATE) ir_sens->EnableIrSensStraight();
@@ -84,8 +89,8 @@ void Motion::Adjust_wall_corner()
 		{
 			//ir_sens->Division_Wall_Correction();
 
-			if(ir_sens->r_wall_corner == True)	{		Indicate_LED(0x10|Return_LED_Status());		}
-			if(ir_sens->l_wall_corner == True)	{		Indicate_LED(0x20|Return_LED_Status());		}
+			if(ir_sens->r_wall_corner == True)	{		Indicate_LED(0x01|Return_LED_Status());		}
+			if(ir_sens->l_wall_corner == True)	{		Indicate_LED(0x08|Return_LED_Status());		}
 
 			if(ABS(ir_sens->r_corner_time - ir_sens->l_corner_time) < (int)((8.0)/vehicle->ideal.velo.get())
 						&& motion_plan.end_length.get() >= 90.0f)
@@ -104,11 +109,11 @@ void Motion::Adjust_wall_corner()
 		{
 			if(ir_sens->r_corner_time > (int)((8.0)/vehicle->ideal.velo.get()) )
 			{
-				Indicate_LED((~0x10)&Return_LED_Status());
+				Indicate_LED((~0x01)&Return_LED_Status());
 			}
 			if(ir_sens->l_corner_time > (int)((8.0)/vehicle->ideal.velo.get()) )
 			{
-				Indicate_LED((~0x20)&Return_LED_Status());
+				Indicate_LED((~0x08)&Return_LED_Status());
 			}
 			if(ir_sens->r_corner_time > (int)((8.0)/vehicle->ideal.velo.get())
 					&& ir_sens->l_corner_time > (int)((8.0)/vehicle->ideal.velo.get()) )
@@ -120,11 +125,11 @@ void Motion::Adjust_wall_corner()
 		{
 			if(ir_sens->r_corner_time > 40 )
 			{
-				Indicate_LED((~0x10)&Return_LED_Status());
+				Indicate_LED((~0x01)&Return_LED_Status());
 			}
 			if(ir_sens->l_corner_time > 40 )
 			{
-				Indicate_LED((~0x20)&Return_LED_Status());
+				Indicate_LED((~0x08)&Return_LED_Status());
 			}
 
 			if(ir_sens->l_corner_time > 40 && ir_sens->r_corner_time > 40 )
@@ -139,8 +144,8 @@ void Motion::Adjust_wall_corner()
 		{
 			//ir_sens->Division_Wall_Correction();
 
-			if(ir_sens->r_wall_corner == True)	{		Indicate_LED(0x10|Return_LED_Status());		}
-			if(ir_sens->l_wall_corner == True)	{		Indicate_LED(0x20|Return_LED_Status());		}
+			if(ir_sens->r_wall_corner == True)	{		Indicate_LED(0x01|Return_LED_Status());		}
+			if(ir_sens->l_wall_corner == True)	{		Indicate_LED(0x08|Return_LED_Status());		}
 
 
 			int time_diff = ABS(ir_sens->r_corner_time - ir_sens->l_corner_time);
@@ -182,11 +187,11 @@ void Motion::Adjust_wall_corner()
 		{
 			if(ir_sens->r_corner_time > (int)((8.0)/vehicle->ideal.velo.get()) )
 			{
-				Indicate_LED((~0x10)&Return_LED_Status());
+				Indicate_LED((~0x01)&Return_LED_Status());
 			}
 			if(ir_sens->l_corner_time > (int)((8.0)/vehicle->ideal.velo.get()) )
 			{
-				Indicate_LED((~0x20)&Return_LED_Status());
+				Indicate_LED((~0x08)&Return_LED_Status());
 			}
 			if(ir_sens->r_corner_time > (int)((8.0)/vehicle->ideal.velo.get())
 					&& ir_sens->l_corner_time > (int)((8.0)/vehicle->ideal.velo.get()) )
@@ -198,11 +203,11 @@ void Motion::Adjust_wall_corner()
 		{
 			if(ir_sens->r_corner_time > 40 )
 			{
-				Indicate_LED((~0x10)&Return_LED_Status());
+				Indicate_LED((~0x01)&Return_LED_Status());
 			}
 			if(ir_sens->l_corner_time > 40 )
 			{
-				Indicate_LED((~0x20)&Return_LED_Status());
+				Indicate_LED((~0x08)&Return_LED_Status());
 			}
 
 			if(ir_sens->l_corner_time > 40 && ir_sens->r_corner_time > 40 )
@@ -289,6 +294,8 @@ void  Motion::SetIdeal_search_straight(){
 			vehicle->ego.radian.set(0.0f);
 			vehicle->ego.turn_slip_theta.set(0.0f);
 
+			motion_pattern_set(Run_Pause);
+			motion_state_set(STRAIGHT_STATE);
 			Init_Motion_stop_brake(400);
 			return;
 		}
@@ -300,7 +307,7 @@ void  Motion::SetIdeal_search_straight(){
 
 			//vehicle->ideal.rad_accel.set(0.0f);
 			//vehicle->ideal.rad_velo.set(0.0f);
-			vehicle->ideal.radian.set(0.0f);
+			//vehicle->ideal.radian.set(0.0f);
 
 			vehicle->ego.length.set(0.0f);
 			vehicle->ego.radian.set(0.0f);
@@ -310,6 +317,8 @@ void  Motion::SetIdeal_search_straight(){
 			vehicle->ideal.turn_x.set(0.0f);
 			vehicle->ideal.turn_y.set(0.0f);
 
+			motion_pattern_set(Run_Pause);
+			motion_state_set(STRAIGHT_STATE);
 			motion_exeStatus_set(complete);
 		}
 	}
@@ -404,7 +413,7 @@ void  Motion::SetIdeal_search_turn()
 
 			//vehicle->ideal.rad_accel.set(0.0f);
 			//vehicle->ideal.rad_velo.set(0.0f);
-			vehicle->ideal.radian.set(0.0f);
+			//vehicle->ideal.radian.set(0.0f);
 
 
 			vehicle->ego.length.set(-((turn_motion_param.param->Lend + motion_plan.fix_post_run.get()) - vehicle->ego.length.get()));
@@ -415,6 +424,8 @@ void  Motion::SetIdeal_search_turn()
 			vehicle->ideal.turn_x.set(0.0f);
 			vehicle->ideal.turn_y.set(0.0f);
 
+			motion_pattern_set(Run_Pause);
+			motion_state_set(STRAIGHT_STATE);
 			motion_exeStatus_set(complete);
 		}
 	}
@@ -443,16 +454,14 @@ void Motion::SetIdeal_straight()
 		{
 			vehicle->ideal.velo.set( motion_plan.max_velo.get());
 			vehicle->ideal.accel.set(0.0f);
+
 		}
 
+		if(ABS(motion_plan.length_deccel.get()+offset) - ( motion_plan.end_length.get() - vehicle->ego.length.get()) < 5.0)
+			vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
 	}
 	else if(vehicle->ego.length.get() < motion_plan.end_length.get())
 	{
-		if(ABS((motion_plan.length_deccel.get()+offset) - ( motion_plan.end_length.get() - vehicle->ego.length.get())) < motion_plan.max_velo.get())
-		{
-			vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
-			vehicle->Vehicle_controller.omega_ctrl.I_param_reset();
-		}
 		vehicle->ideal.accel.set(motion_plan.deccel.get());
 		vehicle->ideal.velo.set( vehicle->ideal.velo.get() + vehicle->ideal.accel.get()*(float)deltaT_ms/1000.0f);
 		if(motion_plan.end_velo.get() == 0.0f)
@@ -486,6 +495,10 @@ void Motion::SetIdeal_straight()
 			vehicle->ego.radian.set(0.0f);
 			vehicle->ego.turn_slip_theta.set(0.0f);
 
+			vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
+			//vehicle->Vehicle_controller.omega_ctrl.I_param_reset();
+			motion_pattern_set(Run_Pause);
+			motion_state_set(STRAIGHT_STATE);
 			Init_Motion_stop_brake(400);
 			return;
 		}
@@ -507,6 +520,10 @@ void Motion::SetIdeal_straight()
 			vehicle->ideal.turn_x.set(0.0f);
 			vehicle->ideal.turn_y.set(0.0f);
 
+			vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
+			//vehicle->Vehicle_controller.omega_ctrl.I_param_reset();
+			motion_pattern_set(Run_Pause);
+			motion_state_set(STRAIGHT_STATE);
 			motion_exeStatus_set(complete);
 		}
 	}
@@ -516,6 +533,7 @@ void Motion::SetIdeal_straight()
 	run_time_ms_update();
 	vehicle->ideal.length.set(vehicle->ideal.length.get() + vehicle->ideal.velo.get()*(float)deltaT_ms);
 	vehicle->ideal.radian.set(vehicle->ideal.radian.get() + vehicle->ideal.rad_velo.get()*(float)deltaT_ms/1000.0f);
+	//vehicle->ideal.radian.set(0.0);
 }
 
 
@@ -532,6 +550,7 @@ void Motion::SetIdeal_backward()
 		{
 			vehicle->ideal.velo.set( motion_plan.max_velo.get());
 			vehicle->ideal.accel.set(0.0f);
+			vehicle->ideal.rad_velo.set( 0.0f);	vehicle->ideal.rad_accel.set(0.0f);
 		}
 
 	}
@@ -560,11 +579,27 @@ void Motion::SetIdeal_backward()
 			vehicle->ego.radian.set(0.0f);
 			vehicle->ego.turn_slip_theta.set(0.0f);
 
+
+			vehicle->ideal.turn_x_dash.set(0.0f);
+			vehicle->ideal.turn_y_dash.set(0.0f);
+			vehicle->ideal.turn_x.set(0.0f);
+			vehicle->ideal.turn_y.set(0.0f);
+			vehicle->ideal.x_point.set(0.0f);
+
+			vehicle->ego.turn_x_dash.set(0.0f);
+			vehicle->ego.turn_y_dash.set(0.0f);
+			vehicle->ego.turn_x.set(0.0f);
+			vehicle->ego.turn_y.set(0.0f);
+			vehicle->ego.x_point.set(0.0f);
+
+
+			motion_pattern_set(Run_Pause);
+			motion_state_set(STRAIGHT_STATE);
 			Init_Motion_stop_brake(200);
 			return;
 	}
 	Adjust_wall_corner();
-	SetIdeal_wall_control();
+	//SetIdeal_wall_control();
 	run_time_ms_update();
 	vehicle->ideal.length.set(vehicle->ideal.length.get() + vehicle->ideal.velo.get()*(float)deltaT_ms);
 	vehicle->ideal.radian.set(vehicle->ideal.radian.get() + vehicle->ideal.rad_velo.get()*(float)deltaT_ms/1000.0f);
@@ -627,7 +662,8 @@ void Motion::SetIdeal_diagonal		( )
 			vehicle->ego.length.set(0.0f);
 			vehicle->ego.radian.set(0.0f);
 			vehicle->ego.turn_slip_theta.set(0.0f);
-
+			motion_pattern_set(Run_Pause);
+			motion_state_set(DIAGONAL_STATE);
 			Init_Motion_stop_brake(400);
 			return;
 		}
@@ -649,6 +685,8 @@ void Motion::SetIdeal_diagonal		( )
 			vehicle->ideal.turn_x.set(0.0f);
 			vehicle->ideal.turn_y.set(0.0f);
 
+			motion_pattern_set(Run_Pause);
+			motion_state_set(DIAGONAL_STATE);
 			motion_exeStatus_set(complete);
 		}
 	}
@@ -717,7 +755,8 @@ void Motion::SetIdeal_pivot_turn()
 		vehicle->ego.turn_x.set(0.0f);
 		vehicle->ego.turn_y.set(0.0f);
 		vehicle->ego.x_point.set(0.0f);
-
+		motion_pattern_set(Run_Pause);
+		motion_state_set(PIVTURN_STATE);
 		Init_Motion_stop_brake(400);
 		return;
 	}
@@ -730,8 +769,8 @@ void Motion::SetIdeal_pivot_turn()
 void Motion::SetIdeal_turn_in		( )
 {
 	static float turn_start_time_ms;
-	vehicle->ideal.velo.set(motion_plan.velo.get());
-	vehicle->ideal.accel.set(0.0f);
+	//vehicle->ideal.velo.set(motion_plan.velo.get());
+	//vehicle->ideal.accel.set(0.0f);
 	if(motion_plan.turn_state.get() == Prev_Turn)
 	{
 		motion_state_set(STRAIGHT_STATE);
@@ -741,13 +780,42 @@ void Motion::SetIdeal_turn_in		( )
 			{
 				vehicle->ego.length.set((vehicle->ego.length.get() + detect_wall_edge_st)/2.0f);
 			}
+
+			vehicle->ideal.accel.set(motion_plan.accel.get());
+			vehicle->ideal.velo.set( vehicle->ideal.velo.get() + vehicle->ideal.accel.get()*(float)deltaT_ms/1000.0f);
+
+			if(motion_plan.accel.get() > 0.0f)
+			{
+				if(vehicle->ideal.velo.get() > turn_motion_param.param->velo)
+				{
+					vehicle->ideal.velo.set( turn_motion_param.param->velo);
+					vehicle->ideal.accel.set(0.0f);
+				}
+			}
+			else if(motion_plan.accel.get() < 0.0f)
+			{
+				if(vehicle->ideal.velo.get() < turn_motion_param.param->velo)
+				{
+					vehicle->ideal.velo.set( turn_motion_param.param->velo);
+					vehicle->ideal.accel.set(0.0f);
+				}
+			}
+			else
+			{
+				vehicle->ideal.velo.set(turn_motion_param.param->velo);
+				vehicle->ideal.accel.set(0.0f);
+			}
 		}
 		else
 		{
+			vehicle->ideal.velo.set(turn_motion_param.param->velo);
+			vehicle->ideal.accel.set(0.0f);
+
 			motion_plan.turn_state.set(turn_motion_param.param->turn_dir);
 			turn_start_time_ms = run_time_ms_get();
 			vehicle->Vehicle_controller.speed_ctrl.Gain_Set(*turn_motion_param.sp_gain);
 			vehicle->Vehicle_controller.omega_ctrl.Gain_Set(*turn_motion_param.om_gain);
+
 			//vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
 			//vehicle->Vehicle_controller.omega_ctrl.I_param_reset();
 		}
@@ -758,6 +826,9 @@ void Motion::SetIdeal_turn_in		( )
 		motion_state_set(SLATURN_STATE);
 		if((run_time_ms_get() - turn_start_time_ms) < motion_plan.turn_time_ms.get())
 		{
+			vehicle->ideal.velo.set(turn_motion_param.param->velo);
+			vehicle->ideal.accel.set(0.0f);
+
 			float rad_velo 		 	= motion_plan.rad_max_velo.get()*get_turn_table_value(motion_plan.turn_time_ms.get(), (run_time_ms_get() - turn_start_time_ms));
 			float next_rad_velo  	= motion_plan.rad_max_velo.get()*get_turn_table_value(motion_plan.turn_time_ms.get(), (run_time_ms_get() - turn_start_time_ms) + (float)deltaT_ms);
 			float rad_acc			= (next_rad_velo - rad_velo)*1000.0f/(float)deltaT_ms;
@@ -813,12 +884,38 @@ void Motion::SetIdeal_turn_in		( )
 		motion_state_set(DIAGONAL_STATE);
 		if(vehicle->ego.length.get() <=  (turn_motion_param.param->Lend + motion_plan.fix_post_run.get()))
 		{
+			vehicle->ideal.accel.set(motion_plan.deccel.get());
+			vehicle->ideal.velo.set( vehicle->ideal.velo.get() + vehicle->ideal.accel.get()*(float)deltaT_ms/1000.0f);
 
+			if(motion_plan.deccel.get() > 0.0f)
+			{
+				if(vehicle->ideal.velo.get() > motion_plan.end_velo.get())
+				{
+					vehicle->ideal.velo.set( motion_plan.end_velo.get());
+					vehicle->ideal.accel.set(0.0f);
+				}
+			}
+			else if(motion_plan.deccel.get() < 0.0f)
+			{
+				if(vehicle->ideal.velo.get() < motion_plan.end_velo.get())
+				{
+					vehicle->ideal.velo.set( motion_plan.end_velo.get());
+					vehicle->ideal.accel.set(0.0f);
+				}
+			}
+			else
+			{
+				vehicle->ideal.velo.set(motion_plan.end_velo.get());
+				vehicle->ideal.accel.set(0.0f);
+			}
 		}
 		else
 		{
-			vehicle->ideal.accel.set(0.0f);
+			//vehicle->ideal.accel.set(0.0f);
 			//vehicle->ideal.velo.set(0.0f);
+			//vehicle->ideal.velo.set(motion_plan.end_velo.get());
+			//vehicle->ideal.accel.set(0.0f);
+
 			vehicle->ideal.length.set(0.0f);
 
 			//vehicle->ideal.rad_accel.set(0.0f);
@@ -841,7 +938,7 @@ void Motion::SetIdeal_turn_in		( )
 			vehicle->ego.turn_y.set(0.0f);
 			vehicle->ideal.turn_x.set(0.0f);
 			vehicle->ideal.turn_y.set(0.0f);
-
+			motion_pattern_set(Run_Pause);
 			motion_exeStatus_set(complete);
 		}
 	}
@@ -866,10 +963,11 @@ void Motion::SetIdeal_turn_in		( )
 	vehicle->ideal.length.set(vehicle->ideal.length.get() + vehicle->ideal.velo.get()*(float)deltaT_ms);
 	vehicle->ideal.radian.set(vehicle->ideal.radian.get() + vehicle->ideal.rad_velo.get()*(float)deltaT_ms/1000.0f);
 }
+
 void Motion::SetIdeal_turn_out		( ){
 	static float turn_start_time_ms;
-	vehicle->ideal.velo.set(motion_plan.velo.get());
-	vehicle->ideal.accel.set(0.0f);
+	//vehicle->ideal.velo.set(motion_plan.velo.get());
+	//vehicle->ideal.accel.set(0.0f);
 	if(motion_plan.turn_state.get() == Prev_Turn)
 	{
 		motion_state_set(DIAGONAL_STATE);
@@ -879,9 +977,37 @@ void Motion::SetIdeal_turn_out		( ){
 			{
 				vehicle->ego.length.set((vehicle->ego.length.get() + detect_wall_edge_di)/2.0f);
 			}
+
+			vehicle->ideal.accel.set(motion_plan.accel.get());
+			vehicle->ideal.velo.set( vehicle->ideal.velo.get() + vehicle->ideal.accel.get()*(float)deltaT_ms/1000.0f);
+
+			if(motion_plan.accel.get() > 0.0f)
+			{
+				if(vehicle->ideal.velo.get() > turn_motion_param.param->velo)
+				{
+					vehicle->ideal.velo.set( turn_motion_param.param->velo);
+					vehicle->ideal.accel.set(0.0f);
+				}
+			}
+			else if(motion_plan.accel.get() < 0.0f)
+			{
+				if(vehicle->ideal.velo.get() < turn_motion_param.param->velo)
+				{
+					vehicle->ideal.velo.set( turn_motion_param.param->velo);
+					vehicle->ideal.accel.set(0.0f);
+				}
+			}
+			else
+			{
+				vehicle->ideal.velo.set(turn_motion_param.param->velo);
+				vehicle->ideal.accel.set(0.0f);
+			}
 		}
 		else
 		{
+			vehicle->ideal.velo.set(turn_motion_param.param->velo);
+			vehicle->ideal.accel.set(0.0f);
+
 			motion_plan.turn_state.set(turn_motion_param.param->turn_dir);
 			turn_start_time_ms = run_time_ms_get();
 			vehicle->Vehicle_controller.speed_ctrl.Gain_Set(*turn_motion_param.sp_gain);
@@ -896,6 +1022,9 @@ void Motion::SetIdeal_turn_out		( ){
 		motion_state_set(SLATURN_STATE);
 		if((run_time_ms_get() - turn_start_time_ms) < motion_plan.turn_time_ms.get())
 		{
+			vehicle->ideal.velo.set(turn_motion_param.param->velo);
+			vehicle->ideal.accel.set(0.0f);
+
 			float rad_velo 		 	= motion_plan.rad_max_velo.get()*get_turn_table_value(motion_plan.turn_time_ms.get(), (run_time_ms_get() - turn_start_time_ms));
 			float next_rad_velo  	= motion_plan.rad_max_velo.get()*get_turn_table_value(motion_plan.turn_time_ms.get(), (run_time_ms_get() - turn_start_time_ms) + (float)deltaT_ms);
 			float rad_acc			= (next_rad_velo - rad_velo)*1000.0f/(float)deltaT_ms;
@@ -951,11 +1080,35 @@ void Motion::SetIdeal_turn_out		( ){
 		motion_state_set(STRAIGHT_STATE);
 		if(vehicle->ego.length.get() <=  (turn_motion_param.param->Lend + motion_plan.fix_post_run.get()))
 		{
+			vehicle->ideal.accel.set(motion_plan.deccel.get());
+			vehicle->ideal.velo.set( vehicle->ideal.velo.get() + vehicle->ideal.accel.get()*(float)deltaT_ms/1000.0f);
 
+			if(motion_plan.deccel.get() > 0.0f)
+			{
+				if(vehicle->ideal.velo.get() > motion_plan.end_velo.get())
+				{
+					vehicle->ideal.velo.set( motion_plan.end_velo.get());
+					vehicle->ideal.accel.set(0.0f);
+				}
+			}
+			else if(motion_plan.deccel.get() < 0.0f)
+			{
+				if(vehicle->ideal.velo.get() < motion_plan.end_velo.get())
+				{
+					vehicle->ideal.velo.set( motion_plan.end_velo.get());
+					vehicle->ideal.accel.set(0.0f);
+				}
+			}
+			else
+			{
+				vehicle->ideal.velo.set(motion_plan.end_velo.get());
+				vehicle->ideal.accel.set(0.0f);
+			}
 		}
 		else
 		{
-			vehicle->ideal.accel.set(0.0f);
+			//vehicle->ideal.accel.set(0.0f);
+			//vehicle->ideal.velo.set( motion_plan.end_velo.get());
 			//vehicle->ideal.velo.set(0.0f);
 			vehicle->ideal.length.set(0.0f);
 
@@ -979,7 +1132,7 @@ void Motion::SetIdeal_turn_out		( ){
 			vehicle->ego.turn_y.set(0.0f);
 			vehicle->ideal.turn_x.set(0.0f);
 			vehicle->ideal.turn_y.set(0.0f);
-
+			motion_pattern_set(Run_Pause);
 			motion_exeStatus_set(complete);
 		}
 	}
@@ -1004,11 +1157,12 @@ void Motion::SetIdeal_turn_out		( ){
 	vehicle->ideal.length.set(vehicle->ideal.length.get() + vehicle->ideal.velo.get()*(float)deltaT_ms);
 	vehicle->ideal.radian.set(vehicle->ideal.radian.get() + vehicle->ideal.rad_velo.get()*(float)deltaT_ms/1000.0f);
 }
+
 void Motion::SetIdeal_long_turn		( )
 {
 	static float turn_start_time_ms;
-	vehicle->ideal.velo.set(motion_plan.velo.get());
-	vehicle->ideal.accel.set(0.0f);
+	//vehicle->ideal.velo.set(motion_plan.velo.get());
+	//vehicle->ideal.accel.set(0.0f);
 	if(motion_plan.turn_state.get() == Prev_Turn)
 	{
 		motion_state_set(STRAIGHT_STATE);
@@ -1018,9 +1172,37 @@ void Motion::SetIdeal_long_turn		( )
 			{
 				vehicle->ego.length.set((vehicle->ego.length.get() + detect_wall_edge_st)/2.0f);
 			}
+
+			vehicle->ideal.accel.set(motion_plan.accel.get());
+			vehicle->ideal.velo.set( vehicle->ideal.velo.get() + vehicle->ideal.accel.get()*(float)deltaT_ms/1000.0f);
+
+			if(motion_plan.accel.get() > 0.0f)
+			{
+				if(vehicle->ideal.velo.get() > turn_motion_param.param->velo)
+				{
+					vehicle->ideal.velo.set( turn_motion_param.param->velo);
+					vehicle->ideal.accel.set(0.0f);
+				}
+			}
+			else if(motion_plan.accel.get() < 0.0f)
+			{
+				if(vehicle->ideal.velo.get() < turn_motion_param.param->velo)
+				{
+					vehicle->ideal.velo.set( turn_motion_param.param->velo);
+					vehicle->ideal.accel.set(0.0f);
+				}
+			}
+			else
+			{
+				vehicle->ideal.velo.set(turn_motion_param.param->velo);
+				vehicle->ideal.accel.set(0.0f);
+			}
 		}
 		else
 		{
+			vehicle->ideal.velo.set(turn_motion_param.param->velo);
+			vehicle->ideal.accel.set(0.0f);
+
 			motion_plan.turn_state.set(turn_motion_param.param->turn_dir);
 			turn_start_time_ms = run_time_ms_get();
 			vehicle->Vehicle_controller.speed_ctrl.Gain_Set(*turn_motion_param.sp_gain);
@@ -1035,6 +1217,9 @@ void Motion::SetIdeal_long_turn		( )
 		motion_state_set(SLATURN_STATE);
 		if((run_time_ms_get() - turn_start_time_ms) < motion_plan.turn_time_ms.get())
 		{
+			vehicle->ideal.velo.set(turn_motion_param.param->velo);
+			vehicle->ideal.accel.set(0.0f);
+
 			float rad_velo 		 	= motion_plan.rad_max_velo.get()*get_turn_table_value(motion_plan.turn_time_ms.get(), (run_time_ms_get() - turn_start_time_ms));
 			float next_rad_velo  	= motion_plan.rad_max_velo.get()*get_turn_table_value(motion_plan.turn_time_ms.get(), (run_time_ms_get() - turn_start_time_ms) + (float)deltaT_ms);
 			float rad_acc			= (next_rad_velo - rad_velo)*1000.0f/(float)deltaT_ms;
@@ -1090,11 +1275,34 @@ void Motion::SetIdeal_long_turn		( )
 		motion_state_set(STRAIGHT_STATE);
 		if(vehicle->ego.length.get() <=  (turn_motion_param.param->Lend + motion_plan.fix_post_run.get()))
 		{
+			vehicle->ideal.accel.set(motion_plan.deccel.get());
+			vehicle->ideal.velo.set( vehicle->ideal.velo.get() + vehicle->ideal.accel.get()*(float)deltaT_ms/1000.0f);
 
+			if(motion_plan.deccel.get() > 0.0f)
+			{
+				if(vehicle->ideal.velo.get() > motion_plan.end_velo.get())
+				{
+					vehicle->ideal.velo.set( motion_plan.end_velo.get());
+					vehicle->ideal.accel.set(0.0f);
+				}
+			}
+			else if(motion_plan.deccel.get() < 0.0f)
+			{
+				if(vehicle->ideal.velo.get() < motion_plan.end_velo.get())
+				{
+					vehicle->ideal.velo.set( motion_plan.end_velo.get());
+					vehicle->ideal.accel.set(0.0f);
+				}
+			}
+			else
+			{
+				vehicle->ideal.velo.set(motion_plan.end_velo.get());
+				vehicle->ideal.accel.set(0.0f);
+			}
 		}
 		else
 		{
-			vehicle->ideal.accel.set(0.0f);
+			//vehicle->ideal.accel.set(0.0f);
 			//vehicle->ideal.velo.set(0.0f);
 			vehicle->ideal.length.set(0.0f);
 
@@ -1119,6 +1327,7 @@ void Motion::SetIdeal_long_turn		( )
 			vehicle->ideal.turn_x.set(0.0f);
 			vehicle->ideal.turn_y.set(0.0f);
 
+			motion_pattern_set(Run_Pause);
 			motion_exeStatus_set(complete);
 		}
 	}
@@ -1144,11 +1353,12 @@ void Motion::SetIdeal_long_turn		( )
 	vehicle->ideal.length.set(vehicle->ideal.length.get() + vehicle->ideal.velo.get()*(float)deltaT_ms);
 	vehicle->ideal.radian.set(vehicle->ideal.radian.get() + vehicle->ideal.rad_velo.get()*(float)deltaT_ms/1000.0f);
 }
+
 void Motion::SetIdeal_turn_v90		( )
 {
 	static float turn_start_time_ms;
-	vehicle->ideal.velo.set(motion_plan.velo.get());
-	vehicle->ideal.accel.set(0.0f);
+	//vehicle->ideal.velo.set(motion_plan.velo.get());
+	//vehicle->ideal.accel.set(0.0f);
 	if(motion_plan.turn_state.get() == Prev_Turn)
 	{
 		motion_state_set(DIAGONAL_STATE);
@@ -1158,9 +1368,38 @@ void Motion::SetIdeal_turn_v90		( )
 			{
 				vehicle->ego.length.set((vehicle->ego.length.get() + detect_wall_edge_di)/2.0f);
 			}
+
+			vehicle->ideal.accel.set(motion_plan.accel.get());
+			vehicle->ideal.velo.set( vehicle->ideal.velo.get() + vehicle->ideal.accel.get()*(float)deltaT_ms/1000.0f);
+
+			if(motion_plan.accel.get() > 0.0f)
+			{
+				if(vehicle->ideal.velo.get() > turn_motion_param.param->velo)
+				{
+					vehicle->ideal.velo.set( turn_motion_param.param->velo);
+					vehicle->ideal.accel.set(0.0f);
+				}
+			}
+			else if(motion_plan.accel.get() < 0.0f)
+			{
+				if(vehicle->ideal.velo.get() < turn_motion_param.param->velo)
+				{
+					vehicle->ideal.velo.set( turn_motion_param.param->velo);
+					vehicle->ideal.accel.set(0.0f);
+				}
+			}
+			else
+			{
+				vehicle->ideal.velo.set(turn_motion_param.param->velo);
+				vehicle->ideal.accel.set(0.0f);
+			}
+
 		}
 		else
 		{
+			vehicle->ideal.velo.set(turn_motion_param.param->velo);
+			vehicle->ideal.accel.set(0.0f);
+
 			motion_plan.turn_state.set(turn_motion_param.param->turn_dir);
 			turn_start_time_ms = run_time_ms_get();
 			vehicle->Vehicle_controller.speed_ctrl.Gain_Set(*turn_motion_param.sp_gain);
@@ -1175,6 +1414,9 @@ void Motion::SetIdeal_turn_v90		( )
 		motion_state_set(SLATURN_STATE);
 		if((run_time_ms_get() - turn_start_time_ms) < motion_plan.turn_time_ms.get())
 		{
+			vehicle->ideal.velo.set(turn_motion_param.param->velo);
+			vehicle->ideal.accel.set(0.0f);
+
 			float rad_velo 		 	= motion_plan.rad_max_velo.get()*get_turn_table_value(motion_plan.turn_time_ms.get(), (run_time_ms_get() - turn_start_time_ms));
 			float next_rad_velo  	= motion_plan.rad_max_velo.get()*get_turn_table_value(motion_plan.turn_time_ms.get(), (run_time_ms_get() - turn_start_time_ms) + (float)deltaT_ms);
 			float rad_acc			= (next_rad_velo - rad_velo)*1000.0f/(float)deltaT_ms;
@@ -1243,10 +1485,35 @@ void Motion::SetIdeal_turn_v90		( )
 			float acc = -vehicle->ideal.horizon_velo.get()*(vehicle->ideal.rad_velo.get()+vehicle->ideal.turn_slip_dot.get())*1.0
 						+vehicle->turn_slip_k.get()*(alpha_r*alpha_r + alpha_l *alpha_l)/2;
 			//vehicle->ideal.accel.set(acc);
+
+			vehicle->ideal.accel.set(motion_plan.deccel.get());
+			vehicle->ideal.velo.set( vehicle->ideal.velo.get() + vehicle->ideal.accel.get()*(float)deltaT_ms/1000.0f);
+
+			if(motion_plan.deccel.get() > 0.0f)
+			{
+				if(vehicle->ideal.velo.get() > motion_plan.end_velo.get())
+				{
+					vehicle->ideal.velo.set( motion_plan.end_velo.get());
+					vehicle->ideal.accel.set(0.0f);
+				}
+			}
+			else if(motion_plan.deccel.get() < 0.0f)
+			{
+				if(vehicle->ideal.velo.get() < motion_plan.end_velo.get())
+				{
+					vehicle->ideal.velo.set( motion_plan.end_velo.get());
+					vehicle->ideal.accel.set(0.0f);
+				}
+			}
+			else
+			{
+				vehicle->ideal.velo.set(motion_plan.end_velo.get());
+				vehicle->ideal.accel.set(0.0f);
+			}
 		}
 		else
 		{
-			vehicle->ideal.accel.set(0.0f);
+			//vehicle->ideal.accel.set(0.0f);
 			//vehicle->ideal.velo.set(0.0f);
 			vehicle->ideal.length.set(0.0f);
 
@@ -1263,6 +1530,208 @@ void Motion::SetIdeal_turn_v90		( )
 			vehicle->ideal.turn_x.set(0.0f);
 			vehicle->ideal.turn_y.set(0.0f);
 
+			motion_state_set(DIAGONAL_STATE);
+			motion_pattern_set(Run_Pause);
+			motion_exeStatus_set(complete);
+		}
+	}
+	SetIdeal_wall_control();
+	run_time_ms_update();
+
+	float set_velo = vehicle->ideal.velo.get();
+	if(set_velo == 0.0f) set_velo = 0.001;
+
+	float prev_slip_theta = vehicle->ideal.turn_slip_theta.get();
+	float slip_theta = (prev_slip_theta*1000.0f - vehicle->ideal.rad_velo.get())
+						/(1000.0f + vehicle->turn_slip_k.get()/(set_velo*(1+prev_slip_theta*prev_slip_theta/2)));
+	vehicle->ideal.turn_slip_dot.set(-vehicle->turn_slip_k.get()*(slip_theta)/(set_velo*(1+slip_theta*slip_theta/2))-vehicle->ideal.rad_velo.get());
+	vehicle->ideal.turn_slip_theta.set(slip_theta )	;
+
+
+	float horizon_velo = vehicle->ideal.velo.get()*slip_theta;
+	float horizon_acc  = -vehicle->turn_slip_k.get()*(slip_theta) - vehicle->ideal.rad_velo.get()*vehicle->ideal.velo.get();
+	vehicle->ideal.horizon_accel.set(horizon_acc);
+	vehicle->ideal.horizon_velo.set(horizon_velo);
+
+	vehicle->ideal.length.set(vehicle->ideal.length.get() + vehicle->ideal.velo.get()*(float)deltaT_ms);
+	vehicle->ideal.radian.set(vehicle->ideal.radian.get() + vehicle->ideal.rad_velo.get()*(float)deltaT_ms/1000.0f);
+}
+
+void Motion::SetIdeal_long_turn_v90		( )
+{
+	static float turn_start_time_ms;
+	//vehicle->ideal.velo.set(motion_plan.velo.get());
+	//vehicle->ideal.accel.set(0.0f);
+	if(motion_plan.turn_state.get() == Prev_Turn)
+	{
+		motion_state_set(DIAGONAL_STATE);
+		if(vehicle->ego.length.get() <= (turn_motion_param.param->Lstart + motion_plan.fix_prev_run.get()))
+		{
+			if(ir_sens->Division_Wall_Correction() == True && vehicle->ego.length.get() < 10.0)
+			{
+				vehicle->ego.length.set((vehicle->ego.length.get() + detect_wall_edge_di)/2.0f);
+			}
+
+			vehicle->ideal.accel.set(motion_plan.accel.get());
+			vehicle->ideal.velo.set( vehicle->ideal.velo.get() + vehicle->ideal.accel.get()*(float)deltaT_ms/1000.0f);
+
+			if(motion_plan.accel.get() > 0.0f)
+			{
+				if(vehicle->ideal.velo.get() > turn_motion_param.param->velo)
+				{
+					vehicle->ideal.velo.set( turn_motion_param.param->velo);
+					vehicle->ideal.accel.set(0.0f);
+				}
+			}
+			else if(motion_plan.accel.get() < 0.0f)
+			{
+				if(vehicle->ideal.velo.get() < turn_motion_param.param->velo)
+				{
+					vehicle->ideal.velo.set( turn_motion_param.param->velo);
+					vehicle->ideal.accel.set(0.0f);
+				}
+			}
+			else
+			{
+				vehicle->ideal.velo.set(turn_motion_param.param->velo);
+				vehicle->ideal.accel.set(0.0f);
+			}
+		}
+		else
+		{
+			vehicle->ideal.velo.set(turn_motion_param.param->velo);
+			vehicle->ideal.accel.set(0.0f);
+
+			motion_plan.turn_state.set(turn_motion_param.param->turn_dir);
+			turn_start_time_ms = run_time_ms_get();
+			vehicle->Vehicle_controller.speed_ctrl.Gain_Set(*turn_motion_param.sp_gain);
+			vehicle->Vehicle_controller.omega_ctrl.Gain_Set(*turn_motion_param.om_gain);
+			//vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
+			//vehicle->Vehicle_controller.omega_ctrl.I_param_reset();
+		}
+	}
+
+	if(motion_plan.turn_state.get() == turn_motion_param.param->turn_dir)
+	{
+		motion_state_set(SLATURN_STATE);
+		if((run_time_ms_get() - turn_start_time_ms) < motion_plan.turn_time_ms.get())
+		{
+			vehicle->ideal.velo.set(turn_motion_param.param->velo);
+			vehicle->ideal.accel.set(0.0f);
+
+			float rad_velo 		 	= motion_plan.rad_max_velo.get()*get_turn_table_value(motion_plan.turn_time_ms.get(), (run_time_ms_get() - turn_start_time_ms));
+			float next_rad_velo  	= motion_plan.rad_max_velo.get()*get_turn_table_value(motion_plan.turn_time_ms.get(), (run_time_ms_get() - turn_start_time_ms) + (float)deltaT_ms);
+			float rad_acc			= (next_rad_velo - rad_velo)*1000.0f/(float)deltaT_ms;
+			vehicle->ideal.rad_velo.set(rad_velo);
+			vehicle->ideal.rad_accel.set(rad_acc);
+			float beta = vehicle->ideal.turn_slip_theta.get();
+			float alpha_r = vehicle->ideal.velo.get()*beta/(vehicle->ideal.velo.get() + TREAD_WIDTH_M/2*vehicle->ideal.rad_velo.get());
+			float alpha_l = vehicle->ideal.velo.get()*beta/(vehicle->ideal.velo.get() - TREAD_WIDTH_M/2*vehicle->ideal.rad_velo.get());
+			float acc = -vehicle->ideal.horizon_velo.get()*(vehicle->ideal.rad_velo.get()+vehicle->ideal.turn_slip_dot.get())*0.0
+						+vehicle->turn_slip_k.get()*(alpha_r*alpha_r + alpha_l *alpha_l)/2;
+			//vehicle->ideal.accel.set(acc);
+		}
+		else
+		{
+			//vehicle->ideal.accel.set(0.0f);
+			//vehicle->ideal.velo.set(0.0f);
+			vehicle->ideal.length.set(0.0f);
+
+			//vehicle->ideal.rad_accel.set(0.0f);
+			vehicle->ideal.rad_velo.set(0.0f);
+			vehicle->ideal.radian.set(0.0f);
+			//vehicle->ideal.turn_slip_theta.set(0.0f);
+
+			vehicle->ego.length.set(0.0f);
+			vehicle->ego.radian.set(0.0f);
+			//vehicle->ideal.turn_slip_theta.set(0.0f);
+			//vehicle->ideal.turn_slip_dot.set(0.0f);
+			vehicle->ideal.horizon_accel.set(0.0f);
+			vehicle->ideal.horizon_velo.set(0.0f);
+
+			vehicle->ego.turn_slip_theta.set(0.0f);
+			vehicle->ego.turn_slip_dot.set(0.0f);
+			vehicle->ego.horizon_accel.set(0.0f);
+			vehicle->ego.horizon_velo.set(0.0f);
+
+			vehicle->ideal.turn_x_dash.set(0.0f);
+			vehicle->ideal.turn_y_dash.set(0.0f);
+			vehicle->ideal.turn_x.set(0.0f);
+			vehicle->ideal.turn_y.set(0.0f);
+			vehicle->ideal.x_point.set(0.0f);
+
+			vehicle->ego.turn_x_dash.set(0.0f);
+			vehicle->ego.turn_y_dash.set(0.0f);
+			vehicle->ego.turn_x.set(0.0f);
+			vehicle->ego.turn_y.set(0.0f);
+			vehicle->ego.x_point.set(0.0f);
+
+			motion_plan.turn_state.set(Post_Turn);
+			turn_start_time_ms = 0.0f;
+
+			vehicle->Vehicle_controller.speed_ctrl.Gain_Set(*straight_motion_param.sp_gain);
+			vehicle->Vehicle_controller.omega_ctrl.Gain_Set(*straight_motion_param.om_gain);
+			//vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
+			//vehicle->Vehicle_controller.omega_ctrl.I_param_reset();
+		}
+	}
+
+	if(motion_plan.turn_state.get() == Post_Turn)
+	{
+		motion_state_set(DIAGONAL_STATE);
+		if(vehicle->ego.length.get() <=  (turn_motion_param.param->Lend + motion_plan.fix_post_run.get()))
+		{
+			float beta = vehicle->ideal.turn_slip_theta.get();
+			float alpha_r = vehicle->ideal.velo.get()*beta/(vehicle->ideal.velo.get() + TREAD_WIDTH_M/2*vehicle->ideal.rad_velo.get());
+			float alpha_l = vehicle->ideal.velo.get()*beta/(vehicle->ideal.velo.get() - TREAD_WIDTH_M/2*vehicle->ideal.rad_velo.get());
+			float acc = -vehicle->ideal.horizon_velo.get()*(vehicle->ideal.rad_velo.get()+vehicle->ideal.turn_slip_dot.get())*1.0
+						+vehicle->turn_slip_k.get()*(alpha_r*alpha_r + alpha_l *alpha_l)/2;
+			//vehicle->ideal.accel.set(acc);
+
+			vehicle->ideal.accel.set(motion_plan.deccel.get());
+			vehicle->ideal.velo.set( vehicle->ideal.velo.get() + vehicle->ideal.accel.get()*(float)deltaT_ms/1000.0f);
+
+			if(motion_plan.deccel.get() > 0.0f)
+			{
+				if(vehicle->ideal.velo.get() > motion_plan.end_velo.get())
+				{
+					vehicle->ideal.velo.set( motion_plan.end_velo.get());
+					vehicle->ideal.accel.set(0.0f);
+				}
+			}
+			else if(motion_plan.deccel.get() < 0.0f)
+			{
+				if(vehicle->ideal.velo.get() < motion_plan.end_velo.get())
+				{
+					vehicle->ideal.velo.set( motion_plan.end_velo.get());
+					vehicle->ideal.accel.set(0.0f);
+				}
+			}
+			else
+			{
+				vehicle->ideal.velo.set(motion_plan.end_velo.get());
+				vehicle->ideal.accel.set(0.0f);
+			}
+		}
+		else
+		{
+			//vehicle->ideal.accel.set(0.0f);
+			//vehicle->ideal.velo.set(0.0f);
+			vehicle->ideal.length.set(0.0f);
+
+			//vehicle->ideal.rad_accel.set(0.0f);
+			//vehicle->ideal.rad_velo.set(0.0f);
+			vehicle->ideal.radian.set(0.0f);
+			vehicle->ideal.turn_slip_theta.set(0.0f);
+			vehicle->ideal.turn_slip_dot.set(0.0f);
+			vehicle->ego.length.set(-((turn_motion_param.param->Lend + motion_plan.fix_post_run.get()) - vehicle->ego.length.get()));
+			//vehicle->ego.radian.set(0.0f);
+
+			vehicle->ego.turn_x.set(0.0f);
+			vehicle->ego.turn_y.set(0.0f);
+			vehicle->ideal.turn_x.set(0.0f);
+			vehicle->ideal.turn_y.set(0.0f);
+			motion_pattern_set(Run_Pause);
 			motion_exeStatus_set(complete);
 		}
 	}
@@ -1298,36 +1767,68 @@ void Motion::SetIdeal_fix_wall		( )
 			float r_err = 0.0;			float l_err = 0.0;
 			if(ir_sens->sen_fr.distance > 50.0 && ir_sens->sen_fl.distance > 50.0 )
 			{
-				r_err = (ir_sens->sen_fr.distance - 45.0);
-				l_err = (ir_sens->sen_fl.distance - 45.0);
+				r_err = (ir_sens->sen_fr.distance - 50.0);
+				l_err = (ir_sens->sen_fl.distance - 50.0);
 			}
 			else
 			{
+
 				int r_check = 0;
 				int l_check = 0;
-				if((ir_sens->sen_fr.distance > 40.0)&&(ir_sens->sen_r.distance > 32.0&&ir_sens->sen_l.distance > 32.0) )
+
+
+
+
+				if((ir_sens->sen_fr.distance < 50.0)  )
+				{
+					float diff = ir_sens->sen_fr.avg_distance - ir_sens->sen_fr.distance;
+					float rwheel = vehicle->ideal.velo.get() - TREAD_WIDTH/1000.0*vehicle->ideal.rad_velo.get();
+					if(SIGN(diff) == SIGN(rwheel) && ABS(rwheel) > 0.02)
+					{
+						r_err = (ir_sens->sen_fr.distance - 45.0);
+					}
+					else if(SIGN(diff) == SIGN(rwheel))
+					{
+						r_err = - 1.0;
+					}
+					else
+					{
+						float distance = ir_sens->sen_fr.distance-40.0;
+						r_err =  -5.0f;//((40.0-distance) -45.0);
+					}
+				}
+
+				else
 				{
 					r_err = (ir_sens->sen_fr.distance - 45.0);
-					r_check = 1;
 				}
-				else if(ir_sens->sen_r.distance < 29.0)
+
+
+				if((ir_sens->sen_fl.distance < 50.0)  )
 				{
-					r_err = (ir_sens->sen_r.distance*1.414 - 45.0);
-					r_check = 1;
+					float diff = ir_sens->sen_fl.avg_distance - ir_sens->sen_fl.distance;
+					float lwheel = vehicle->ideal.velo.get() + TREAD_WIDTH/1000.0*vehicle->ideal.rad_velo.get();
+					if(SIGN(diff) == SIGN(lwheel) && ABS(lwheel) > 0.02 )
+					{
+						l_err = (ir_sens->sen_fl.distance -45.0);
+					}
+					else if(SIGN(diff) == SIGN(lwheel))
+					{
+						l_err = - 1.0;
+					}
+					else
+					{
+						float distance = ir_sens->sen_fl.distance-40.0;
+						l_err = -5.0;//((40.0-distance*3.0/7.0) -45.0);
+					}
 				}
 
-
-				if((ir_sens->sen_fl.distance > 40.0)&&(ir_sens->sen_r.distance > 32.0&&ir_sens->sen_l.distance > 32.0))
+				else
 				{
 					l_err = (ir_sens->sen_fl.distance - 45.0);
-					l_check = 1;
-				}
-				else if(ir_sens->sen_l.distance < 29.0)
-				{
-					l_err = (ir_sens->sen_l.distance*1.414 - 45.0);
-					l_check = 1;
 				}
 
+				/*
 				if(r_check == 1 || r_check == 1)
 				{
 					if(r_check == 1) r_err = (ir_sens->sen_fr.distance - 45.0);
@@ -1341,6 +1842,9 @@ void Motion::SetIdeal_fix_wall		( )
 					l_err = -7.0f;
 					//run_time_ms_set(run_time_limit_ms_get() - 0.50f);
 				}
+				*/
+
+
 			}
 
 			sp_err = (r_err+ l_err)/2.0f;
@@ -1409,7 +1913,7 @@ void Motion::SetIdeal_fix_wall		( )
 		vehicle->ego.turn_x.set(0.0f);
 		vehicle->ego.turn_y.set(0.0f);
 		vehicle->ego.x_point.set(0.0f);
-
+		motion_pattern_set(Run_Pause);
 		Init_Motion_stop_brake(100);
 		return;
 

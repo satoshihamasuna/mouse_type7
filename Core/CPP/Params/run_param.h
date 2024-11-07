@@ -885,8 +885,8 @@ const static t_param param_R90_1600 = {&slalom_R90_1600_table,&sp_gain_turn90_16
 
 const static t_pid_gain sp_gain_turn180_1600 = {15.0, 0.05, 0.00};
 const static t_pid_gain om_gain_turn180_1600 = {0.8, 0.1, 0.0};
-const static t_turn_param_table slalom_L180_1600_table = {1.60f, 50.50f,8.80,30.10, 180.0f,Turn_L};
-const static t_turn_param_table slalom_R180_1600_table = {1.60f,-50.50f,8.80,30.10,-180.0f,Turn_R};
+const static t_turn_param_table slalom_L180_1600_table = {1.60f, 50.50f,8.80,35.10, 180.0f,Turn_L};
+const static t_turn_param_table slalom_R180_1600_table = {1.60f,-50.50f,8.80,35.10,-180.0f,Turn_R};
 const static t_param param_L180_1600 = {&slalom_L180_1600_table,&sp_gain_turn180_1600,&om_gain_turn180_1600};
 const static t_param param_R180_1600 = {&slalom_R180_1600_table,&sp_gain_turn180_1600,&om_gain_turn180_1600};
 //k = 300
@@ -944,5 +944,31 @@ const static t_param *const mode_1600[] = 	{	&param_dummy,		&param_dummy,		&para
 												&param_outR135_1600,	&param_outL135_1600,
 												&param_RV90_1600,	&param_LV90_1600
 											};
+
+
+const static t_param *const mode_1400_acc[] = 	{	NULL,					NULL,			NULL,
+												&param_R90_1400,		&param_L90_1400,
+												&param_R180_1400,	&param_L180_1400,
+												&param_inR45_1400,	&param_inL45_1400,
+												&param_outR45_1400,	&param_outL45_1400,
+												&param_inR135_1400,	&param_inL135_1400,
+												&param_outR135_1400,	&param_outL135_1400,
+												&param_RV90_1400,	&param_LV90_1400,
+												NULL,					NULL
+											};
+
+const static t_param *const mode_1600_acc[] = 	{	NULL,					NULL,			NULL,
+												&param_R90_1600,		&param_L90_1600,
+												&param_R180_1600,	&param_L180_1600,
+												NULL,					NULL	,
+												NULL,					NULL	,
+												&param_inR135_1600,	&param_inL135_1600,
+												&param_outR135_1600,	&param_outL135_1600,
+												&param_RV90_1600,	&param_LV90_1600,
+												NULL,					NULL
+											};
+
+
+const static t_param *const *const acc_mode_1400[] = {mode_1400_acc,mode_1600_acc};
 
 #endif /* CPP_INC_RUN_PARAM_H_ */

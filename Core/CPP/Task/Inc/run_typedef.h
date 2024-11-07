@@ -30,8 +30,8 @@ typedef enum{
 	Turn_out_L135		= 14,
 	Turn_RV90			= 15,
 	Turn_LV90			= 16,
-	Diagonal_R			= 17,
-	Diagonal_L			= 18,
+	Long_turn_RV90		= 17,
+	Long_turn_LV90		= 18,
 	Search_st_section	= 19,
 	Search_st_half		= 20,
 	Pivot_turn_R		= 21,
@@ -43,6 +43,7 @@ typedef enum{
 	Fix_wall			= 27,
 	Suction_start		= 28,
 	Backward			= 29,
+	Run_Pause			= 30,
 }t_run_pattern;
 
 typedef enum{
