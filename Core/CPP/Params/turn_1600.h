@@ -80,4 +80,18 @@ const static t_param *const mode_1600[] = 	{	NULL,					NULL,			NULL,
 											};
 
 
+
+const static t_param *const mode_1600_acc[] = 	{	NULL,					NULL,			NULL,
+												&param_R90_1600,		&param_L90_1600,
+												&param_R180_1600,	&param_L180_1600,
+												NULL,					NULL	,
+												NULL,					NULL	,
+												&param_inR135_1600,	&param_inL135_1600,
+												&param_outR135_1600,	&param_outL135_1600,
+												&param_RV90_1600,	&param_LV90_1600,
+												NULL,					NULL
+											};
+
+
+
 #endif /* CPP_PARAMS_TURN_1600_H_ */

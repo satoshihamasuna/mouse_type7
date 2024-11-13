@@ -86,7 +86,6 @@ const static t_param *const mode_1400[] = 	{	NULL,					NULL,			NULL,
 												&param_RV90_1400,	&param_LV90_1400
 											};
 
-/*
 const static t_param *const mode_1400_acc[] = 	{	NULL,					NULL,			NULL,
 												&param_R90_1400,		&param_L90_1400,
 												&param_R180_1400,	&param_L180_1400,
@@ -95,9 +94,6 @@ const static t_param *const mode_1400_acc[] = 	{	NULL,					NULL,			NULL,
 												&param_inR135_1400,	&param_inL135_1400,
 												&param_outR135_1400,	&param_outL135_1400,
 												&param_RV90_1400,	&param_LV90_1400,
-												NULL,					NULL
+												NULL,				NULL
 											};
-
-*/
-
 #endif /* CPP_PARAMS_TURN_1400_H_ */
