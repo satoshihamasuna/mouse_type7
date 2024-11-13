@@ -303,7 +303,7 @@ void  Motion::SetIdeal_search_straight(){
 
 			//vehicle->ideal.rad_accel.set(0.0f);
 			//vehicle->ideal.rad_velo.set(0.0f);
-			vehicle->ideal.radian.set(0.0f);
+			//vehicle->ideal.radian.set(0.0f);
 
 			vehicle->ego.length.set(0.0f);
 			vehicle->ego.radian.set(0.0f);
@@ -409,7 +409,7 @@ void  Motion::SetIdeal_search_turn()
 
 			//vehicle->ideal.rad_accel.set(0.0f);
 			//vehicle->ideal.rad_velo.set(0.0f);
-			vehicle->ideal.radian.set(0.0f);
+			//vehicle->ideal.radian.set(0.0f);
 
 
 			vehicle->ego.length.set(-((turn_motion_param.param->Lend + motion_plan.fix_post_run.get()) - vehicle->ego.length.get()));

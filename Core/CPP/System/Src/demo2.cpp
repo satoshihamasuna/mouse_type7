@@ -238,14 +238,7 @@ void Demo2()
 						HAL_Delay(50);
 					}
 
-			  		run_path.turn_time_set(mode_1400);
 
-					if(motion->motion_exeStatus_get() == error)
-					{
-						Mode::indicate_error();
-						enable = 0x00;
-						break;
-					}
 
 			  		run_path.turn_time_set(mode_1400);
 					run_path.run_Dijkstra_suction_acc(	start, Dir_None, goal, MAZE_GOAL_SIZE,430,

@@ -13,4 +13,4 @@ ir_sens_task.cpp:229:6:void IrSensTask::IrSensorWallSet()	16	static
 ir_sens_task.cpp:335:6:void IrSensTask::IrSensorReferenceSet(float)	16	static
 ir_sens_task.cpp:340:7:float IrSensTask::IrSensorMaxValueFromLog(t_sensor_dir)	40	static
 ir_sens_task.cpp:389:6:void IrSensTask::SetWallControl_RadVelo(Vehicle*, float)	80	static
-ir_sens_task.cpp:449:9:int16_t IrSensTask::IrSensor_Avg()	16	static
+ir_sens_task.cpp:453:9:int16_t IrSensTask::IrSensor_Avg()	16	static
