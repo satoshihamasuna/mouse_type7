@@ -305,9 +305,9 @@ void  Motion::SetIdeal_search_straight(){
 			//vehicle->ideal.velo.set(0.0f);
 			vehicle->ideal.length.set(0.0f);
 
-			//vehicle->ideal.rad_accel.set(0.0f);
+			vehicle->ideal.rad_accel.set(0.0f);
 			//vehicle->ideal.rad_velo.set(0.0f);
-			//vehicle->ideal.radian.set(0.0f);
+			vehicle->ideal.radian.set(0.0f);
 
 			vehicle->ego.length.set(0.0f);
 			vehicle->ego.radian.set(0.0f);
