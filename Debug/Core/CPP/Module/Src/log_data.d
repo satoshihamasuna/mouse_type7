@@ -72,6 +72,8 @@ Core/CPP/Module/Src/log_data.o: ../Core/CPP/Module/Src/log_data.cpp \
  d:\mouse_type7_kai\mouse_type7\core\cpp\params\turn_1400.h \
  d:\mouse_type7_kai\mouse_type7\core\cpp\params\turn_1500.h \
  d:\mouse_type7_kai\mouse_type7\core\cpp\params\turn_1600.h \
+ d:\mouse_type7_kai\mouse_type7\core\cpp\params\turn_1800.h \
+ d:\mouse_type7_kai\mouse_type7\core\cpp\params\turn_2000.h \
  d:\mouse_type7_kai\mouse_type7\core\cpp\component\inc\controller.h \
  ../Core/CPP/Module/Src/../../Component/Inc/controller.h \
  ../Core/CPP/Module/Src/../../Component/Inc/half_float.h \
@@ -233,6 +235,10 @@ d:\mouse_type7_kai\mouse_type7\core\cpp\params\turn_1400.h:
 d:\mouse_type7_kai\mouse_type7\core\cpp\params\turn_1500.h:
 
 d:\mouse_type7_kai\mouse_type7\core\cpp\params\turn_1600.h:
+
+d:\mouse_type7_kai\mouse_type7\core\cpp\params\turn_1800.h:
+
+d:\mouse_type7_kai\mouse_type7\core\cpp\params\turn_2000.h:
 
 d:\mouse_type7_kai\mouse_type7\core\cpp\component\inc\controller.h:
 

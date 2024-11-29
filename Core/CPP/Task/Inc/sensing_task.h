@@ -87,8 +87,9 @@ class IrSensTask
 				{
 					wall_correction = True;
 					flag = True;
+					Indicate_LED(0x10|Return_LED_Status());
 				}
-				Indicate_LED(0x10|Return_LED_Status());
+				//Indicate_LED(0x10|Return_LED_Status());
 			}
 			if(l_wall_corner == True)
 			{
@@ -96,8 +97,9 @@ class IrSensTask
 				{
 					wall_correction = True;
 					flag = True;
+					Indicate_LED(0x20|Return_LED_Status());
 				}
-				Indicate_LED(0x20|Return_LED_Status());
+				//Indicate_LED(0x20|Return_LED_Status());
 			}
 
 

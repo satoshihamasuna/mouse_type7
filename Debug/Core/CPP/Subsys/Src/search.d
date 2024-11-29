@@ -76,6 +76,8 @@ Core/CPP/Subsys/Src/search.o: ../Core/CPP/Subsys/Src/search.cpp \
  d:\mouse_type7_kai\mouse_type7\core\cpp\params\turn_1400.h \
  d:\mouse_type7_kai\mouse_type7\core\cpp\params\turn_1500.h \
  d:\mouse_type7_kai\mouse_type7\core\cpp\params\turn_1600.h \
+ d:\mouse_type7_kai\mouse_type7\core\cpp\params\turn_1800.h \
+ d:\mouse_type7_kai\mouse_type7\core\cpp\params\turn_2000.h \
  d:\mouse_type7_kai\mouse_type7\core\cpp\component\inc\controller.h \
  ../Core/CPP/Subsys/Src/../Inc/../../Module/Inc/interrupt.h \
  d:\mouse_type7_kai\mouse_type7\core\cpp\component\inc\singleton.h \
@@ -250,6 +252,10 @@ d:\mouse_type7_kai\mouse_type7\core\cpp\params\turn_1400.h:
 d:\mouse_type7_kai\mouse_type7\core\cpp\params\turn_1500.h:
 
 d:\mouse_type7_kai\mouse_type7\core\cpp\params\turn_1600.h:
+
+d:\mouse_type7_kai\mouse_type7\core\cpp\params\turn_1800.h:
+
+d:\mouse_type7_kai\mouse_type7\core\cpp\params\turn_2000.h:
 
 d:\mouse_type7_kai\mouse_type7\core\cpp\component\inc\controller.h:
 

@@ -72,6 +72,8 @@ Core/CPP/System/Src/interface_check.o: \
  d:\mouse_type7_kai\mouse_type7\core\cpp\params\turn_1400.h \
  d:\mouse_type7_kai\mouse_type7\core\cpp\params\turn_1500.h \
  d:\mouse_type7_kai\mouse_type7\core\cpp\params\turn_1600.h \
+ d:\mouse_type7_kai\mouse_type7\core\cpp\params\turn_1800.h \
+ d:\mouse_type7_kai\mouse_type7\core\cpp\params\turn_2000.h \
  d:\mouse_type7_kai\mouse_type7\core\cpp\component\inc\controller.h \
  d:\mouse_type7_kai\mouse_type7\core\cpp\module\inc\interrupt.h \
  d:\mouse_type7_kai\mouse_type7\core\cpp\pheripheral\include\macro.h \
@@ -266,6 +268,10 @@ d:\mouse_type7_kai\mouse_type7\core\cpp\params\turn_1400.h:
 d:\mouse_type7_kai\mouse_type7\core\cpp\params\turn_1500.h:
 
 d:\mouse_type7_kai\mouse_type7\core\cpp\params\turn_1600.h:
+
+d:\mouse_type7_kai\mouse_type7\core\cpp\params\turn_1800.h:
+
+d:\mouse_type7_kai\mouse_type7\core\cpp\params\turn_2000.h:
 
 d:\mouse_type7_kai\mouse_type7\core\cpp\component\inc\controller.h:
 

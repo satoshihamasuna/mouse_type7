@@ -63,6 +63,8 @@ Core/CPP/Task/Src/ctrl_task.o: ../Core/CPP/Task/Src/ctrl_task.cpp \
  ../Core/CPP/Task/Src/../../Params/turn_1400.h \
  ../Core/CPP/Task/Src/../../Params/turn_1500.h \
  ../Core/CPP/Task/Src/../../Params/turn_1600.h \
+ ../Core/CPP/Task/Src/../../Params/turn_1800.h \
+ ../Core/CPP/Task/Src/../../Params/turn_2000.h \
  ../Core/CPP/Task/Src/../Inc/ctrl_task.h \
  ../Core/CPP/Task/Src/../Inc/sensing_task.h \
  ../Core/CPP/Task/Src/../Inc/../../Module/Inc/vehicle.h \
@@ -213,6 +215,10 @@ d:\mouse_type7_kai\mouse_type7\core\cpp\pheripheral\include\typedef.h:
 ../Core/CPP/Task/Src/../../Params/turn_1500.h:
 
 ../Core/CPP/Task/Src/../../Params/turn_1600.h:
+
+../Core/CPP/Task/Src/../../Params/turn_1800.h:
+
+../Core/CPP/Task/Src/../../Params/turn_2000.h:
 
 ../Core/CPP/Task/Src/../Inc/ctrl_task.h:
 

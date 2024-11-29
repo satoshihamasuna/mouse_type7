@@ -65,6 +65,8 @@ Core/CPP/Subsys/Src/make_path.o: ../Core/CPP/Subsys/Src/make_path.cpp \
  d:\mouse_type7_kai\mouse_type7\core\cpp\params\turn_1400.h \
  d:\mouse_type7_kai\mouse_type7\core\cpp\params\turn_1500.h \
  d:\mouse_type7_kai\mouse_type7\core\cpp\params\turn_1600.h \
+ d:\mouse_type7_kai\mouse_type7\core\cpp\params\turn_1800.h \
+ d:\mouse_type7_kai\mouse_type7\core\cpp\params\turn_2000.h \
  d:\mouse_type7_kai\mouse_type7\core\cpp\component\inc\controller.h \
  ../Core/CPP/Subsys/Src/../../Module/Inc/log_data.h \
  d:\mouse_type7_kai\mouse_type7\core\cpp\pheripheral\include\typedef.h \
@@ -226,6 +228,10 @@ d:\mouse_type7_kai\mouse_type7\core\cpp\params\turn_1400.h:
 d:\mouse_type7_kai\mouse_type7\core\cpp\params\turn_1500.h:
 
 d:\mouse_type7_kai\mouse_type7\core\cpp\params\turn_1600.h:
+
+d:\mouse_type7_kai\mouse_type7\core\cpp\params\turn_1800.h:
+
+d:\mouse_type7_kai\mouse_type7\core\cpp\params\turn_2000.h:
 
 d:\mouse_type7_kai\mouse_type7\core\cpp\component\inc\controller.h:
 

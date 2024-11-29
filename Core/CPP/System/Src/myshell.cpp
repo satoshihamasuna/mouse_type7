@@ -144,8 +144,8 @@ static int usrcmd_log(int argc, char **argv)
 
 int shell_debug_straight(int argc, char **argv)
 {
-	static t_pid_gain debug_sp_gain = {15.0,0.04,0.0};
-	static t_pid_gain debug_om_gain = {0.60f, 0.01f, 0.00f};
+	static t_pid_gain debug_sp_gain = {10.0,0.04,0.0};
+	static t_pid_gain debug_om_gain = {0.30f, 0.01f, 0.00f};
 
 	Motion *motion = &(CtrlTask_type7::getInstance());
 	IrSensTask *irsens = (CtrlTask_type7::getInstance().return_irObj());

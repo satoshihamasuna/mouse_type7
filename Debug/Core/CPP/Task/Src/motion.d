@@ -61,6 +61,8 @@ Core/CPP/Task/Src/motion.o: ../Core/CPP/Task/Src/motion.cpp \
  ../Core/CPP/Task/Src/../Inc/../../Params/turn_1400.h \
  ../Core/CPP/Task/Src/../Inc/../../Params/turn_1500.h \
  ../Core/CPP/Task/Src/../Inc/../../Params/turn_1600.h \
+ ../Core/CPP/Task/Src/../Inc/../../Params/turn_1800.h \
+ ../Core/CPP/Task/Src/../Inc/../../Params/turn_2000.h \
  ../Core/CPP/Task/Src/../Inc/../../Component/Inc/controller.h \
  ../Core/CPP/Task/Src/../Inc/run_typedef.h \
  ../Core/CPP/Task/Src/../../Params/turn_table.h
@@ -200,6 +202,10 @@ d:\mouse_type7_kai\mouse_type7\core\cpp\module\inc\vehicle.h:
 ../Core/CPP/Task/Src/../Inc/../../Params/turn_1500.h:
 
 ../Core/CPP/Task/Src/../Inc/../../Params/turn_1600.h:
+
+../Core/CPP/Task/Src/../Inc/../../Params/turn_1800.h:
+
+../Core/CPP/Task/Src/../Inc/../../Params/turn_2000.h:
 
 ../Core/CPP/Task/Src/../Inc/../../Component/Inc/controller.h:
 

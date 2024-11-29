@@ -81,6 +81,8 @@ Core/CPP/System/Src/myshell.o: ../Core/CPP/System/Src/myshell.cpp \
  d:\mouse_type7_kai\mouse_type7\core\cpp\params\turn_1400.h \
  d:\mouse_type7_kai\mouse_type7\core\cpp\params\turn_1500.h \
  d:\mouse_type7_kai\mouse_type7\core\cpp\params\turn_1600.h \
+ d:\mouse_type7_kai\mouse_type7\core\cpp\params\turn_1800.h \
+ d:\mouse_type7_kai\mouse_type7\core\cpp\params\turn_2000.h \
  d:\mouse_type7_kai\mouse_type7\core\cpp\component\inc\controller.h \
  ../Core/CPP/System/Src/../../Params/run_param.h
 
@@ -257,6 +259,10 @@ d:\mouse_type7_kai\mouse_type7\core\cpp\params\turn_1400.h:
 d:\mouse_type7_kai\mouse_type7\core\cpp\params\turn_1500.h:
 
 d:\mouse_type7_kai\mouse_type7\core\cpp\params\turn_1600.h:
+
+d:\mouse_type7_kai\mouse_type7\core\cpp\params\turn_1800.h:
+
+d:\mouse_type7_kai\mouse_type7\core\cpp\params\turn_2000.h:
 
 d:\mouse_type7_kai\mouse_type7\core\cpp\component\inc\controller.h:
 

@@ -11,18 +11,21 @@
 #include "typedef_run_param.h"
 
 const static t_pid_gain sp_gain_turn90_2000 = {10.0, 0.05, 0.00};
-const static t_pid_gain om_gain_turn90_2000 = {0.4, 0.05, 0.0};
-const static t_turn_param_table slalom_L90_2000_table = {2.00f, 50.50f,19.56,38.43, 90.0f,Turn_L};
-const static t_turn_param_table slalom_R90_2000_table = {2.00f,-50.50f,19.56,38.43,-90.0f,Turn_R};
+const static t_pid_gain om_gain_turn90_2000 = {0.6, 0.06, 0.0};
+const static t_turn_param_table slalom_L90_2000_table = {2.00f, 52.0f,12.57,42.89, 90.0f,Turn_L};
+const static t_turn_param_table slalom_R90_2000_table = {2.00f,-52.0f,12.57,42.89,-90.0f,Turn_R};
 const static t_param param_L90_2000 = {&slalom_L90_2000_table,&sp_gain_turn90_2000,&om_gain_turn90_2000};
 const static t_param param_R90_2000 = {&slalom_R90_2000_table,&sp_gain_turn90_2000,&om_gain_turn90_2000};
 
 const static t_pid_gain sp_gain_turn180_2000 = {10.0, 0.05, 0.00};
 const static t_pid_gain om_gain_turn180_2000 = {0.4, 0.05, 0.0};
-const static t_turn_param_table slalom_L180_2000_table = {1.60f, 50.50f,8.80,30.10, 180.0f,Turn_L};
-const static t_turn_param_table slalom_R180_2000_table = {1.60f,-50.50f,8.80,30.10,-180.0f,Turn_R};
+const static t_turn_param_table slalom_L180_2000_table = {2.00f, 50.0f,5.28,41.08, 180.0f,Turn_L};
+const static t_turn_param_table slalom_R180_2000_table = {2.00f,-50.0f,5.28,41.08,-180.0f,Turn_R};
 const static t_param param_L180_2000 = {&slalom_L180_2000_table,&sp_gain_turn180_2000,&om_gain_turn180_2000};
 const static t_param param_R180_2000 = {&slalom_R180_2000_table,&sp_gain_turn180_2000,&om_gain_turn180_2000};
+
+
+
 //k = 300
 //not adjust
 const static t_pid_gain sp_gain_turnV90_2000 = {10.0, 0.05, 0.00};
@@ -71,6 +74,17 @@ const static t_param *const mode_2000[] = 	{	NULL,					NULL,			NULL,
 												&param_inR135_2000,	&param_inL135_2000,
 												&param_outR135_2000,	&param_outL135_2000,
 												&param_RV90_2000,	&param_LV90_2000
+											};
+
+const static t_param *const mode_2000_acc[] = 	{	NULL,					NULL,			NULL,
+												&param_R90_2000,		&param_L90_2000,
+												&param_R180_2000,		&param_L180_2000,
+												NULL,					NULL	,
+												NULL,					NULL	,
+												NULL,					NULL	,
+												NULL,					NULL	,
+												NULL,					NULL	,
+												NULL,					NULL
 											};
 
 

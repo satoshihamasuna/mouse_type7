@@ -67,6 +67,8 @@ Core/CPP/Subsys/Src/calcRunTime.o: ../Core/CPP/Subsys/Src/calcRunTime.cpp \
  ../Core/CPP/Subsys/Src/../Inc/../../Params/turn_1400.h \
  ../Core/CPP/Subsys/Src/../Inc/../../Params/turn_1500.h \
  ../Core/CPP/Subsys/Src/../Inc/../../Params/turn_1600.h \
+ ../Core/CPP/Subsys/Src/../Inc/../../Params/turn_1800.h \
+ ../Core/CPP/Subsys/Src/../Inc/../../Params/turn_2000.h \
  ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/ctrl_task.h \
  ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/sensing_task.h \
  d:\mouse_type7_kai\mouse_type7\core\cpp\params\run_param.h \
@@ -225,6 +227,10 @@ d:\mouse_type7_kai\mouse_type7\core\cpp\module\inc\vehicle.h:
 ../Core/CPP/Subsys/Src/../Inc/../../Params/turn_1500.h:
 
 ../Core/CPP/Subsys/Src/../Inc/../../Params/turn_1600.h:
+
+../Core/CPP/Subsys/Src/../Inc/../../Params/turn_1800.h:
+
+../Core/CPP/Subsys/Src/../Inc/../../Params/turn_2000.h:
 
 ../Core/CPP/Subsys/Src/../Inc/../../Task/Inc/ctrl_task.h:
 
