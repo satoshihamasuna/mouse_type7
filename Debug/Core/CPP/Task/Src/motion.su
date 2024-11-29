@@ -8,6 +8,7 @@ sensing_task.h:76:15:void IrSensTask::DisableIrSens()	16	static
 sensing_task.h:77:8:void IrSensTask::EnableIrSensStraight()	16	static
 sensing_task.h:78:8:void IrSensTask::EnableIrSensDiagonal()	16	static
 sensing_task.h:81:10:t_bool IrSensTask::Division_Wall_Correction()	24	static
+sensing_task.h:106:8:void IrSensTask::Division_Wall_Correction_Reset()	16	static
 ctrl_task.h:127:15:void Motion::run_time_ms_update()	16	static
 ctrl_task.h:128:16:float Motion::run_time_ms_get()	16	static
 ctrl_task.h:133:16:float Motion::run_time_limit_ms_get()	16	static
@@ -25,11 +26,11 @@ motion.cpp:540:6:void Motion::SetIdeal_backward()	32	static
 motion.cpp:608:6:void Motion::SetIdeal_diagonal()	40	static
 motion.cpp:701:6:void Motion::SetIdeal_pivot_turn()	32	static
 motion.cpp:769:6:void Motion::SetIdeal_turn_in()	88	static
-motion.cpp:967:6:void Motion::SetIdeal_turn_out()	88	static
-motion.cpp:1161:6:void Motion::SetIdeal_long_turn()	88	static
-motion.cpp:1357:6:void Motion::SetIdeal_turn_v90()	104	static
-motion.cpp:1560:6:void Motion::SetIdeal_long_turn_v90()	104	static
-motion.cpp:1760:6:void Motion::SetIdeal_fix_wall()	104	static
-motion.cpp:1929:6:void Motion::SetIdeal_suction_start()	32	static
-motion.cpp:1984:6:void Motion::SetIdeal_stop_brake()	32	static
-motion.cpp:2038:6:void Motion::SetIdeal_free_rotation_set()	24	static
+motion.cpp:996:6:void Motion::SetIdeal_turn_out()	88	static
+motion.cpp:1220:6:void Motion::SetIdeal_long_turn()	96	static
+motion.cpp:1429:6:void Motion::SetIdeal_turn_v90()	104	static
+motion.cpp:1682:6:void Motion::SetIdeal_long_turn_v90()	104	static
+motion.cpp:1882:6:void Motion::SetIdeal_fix_wall()	104	static
+motion.cpp:2051:6:void Motion::SetIdeal_suction_start()	32	static
+motion.cpp:2106:6:void Motion::SetIdeal_stop_brake()	32	static
+motion.cpp:2160:6:void Motion::SetIdeal_free_rotation_set()	24	static

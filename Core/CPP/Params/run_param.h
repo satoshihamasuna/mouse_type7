@@ -234,6 +234,7 @@ const static t_velo_param param_2900 = {2.9f,15.0f};
 const static t_velo_param param_2900_acc2G = {2.9f,20.0f};
 const static t_velo_param param_2900_acc3G = {2.9f,27.5f};
 const static t_straight_param st_param_2900 = {&param_2900,&sp_gain_2900,&om_gain_2900};
+const static t_straight_param st_param_2900_acc2G = {&param_2900_acc2G,&sp_gain_2900,&om_gain_2900};
 const static t_straight_param st_param_2900_acc3G = {&param_2900_acc3G,&sp_gain_2900,&om_gain_2900};
 
 const static t_pid_gain sp_gain_3000 = {15.0,0.15,0.0};
@@ -394,5 +395,5 @@ const static t_straight_param *const di_mode_1600_v1[] =  {	&st_param_1600_acc2G
 
 
 const static t_param *const *const acc_mode_1400[] = {mode_1400_acc,mode_1600_acc};
-
+const static t_param *const *const acc_mode_1400_v2[] = {mode_1400_acc,mode_1600_acc2,mode_1800_acc};
 #endif /* CPP_INC_RUN_PARAM_H_ */

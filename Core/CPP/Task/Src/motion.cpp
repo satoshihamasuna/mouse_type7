@@ -778,7 +778,7 @@ void Motion::SetIdeal_turn_in		( )
 		{
 			if(ir_sens->Division_Wall_Correction() == True)
 			{
-				vehicle->ego.length.set((vehicle->ego.length.get() + detect_wall_edge_st)/2.0f);
+				vehicle->ego.length.set((vehicle->ego.length.get() + (motion_plan.fix_prev_run.get() + detect_wall_edge_st))/2.0f);
 			}
 
 			vehicle->ideal.accel.set(motion_plan.accel.get());
@@ -839,8 +839,8 @@ void Motion::SetIdeal_turn_in		( )
 			float alpha_l = vehicle->ideal.velo.get()*beta/(vehicle->ideal.velo.get() - TREAD_WIDTH_M/2*vehicle->ideal.rad_velo.get());
 			float acc = -vehicle->ideal.horizon_velo.get()*(vehicle->ideal.rad_velo.get()+vehicle->ideal.turn_slip_dot.get())*0.0
 						+vehicle->turn_slip_k.get()*(alpha_r*alpha_r + alpha_l *alpha_l)/2;
-			if( ABS(turn_motion_param.param->degree) == 135.0)
-				vehicle->ideal.accel.set(acc);
+			//if( ABS(turn_motion_param.param->degree) == 135.0)
+				//vehicle->ideal.accel.set(acc);
 		}
 		else
 		{
@@ -874,6 +874,8 @@ void Motion::SetIdeal_turn_in		( )
 
 			vehicle->Vehicle_controller.speed_ctrl.Gain_Set(*straight_motion_param.sp_gain);
 			vehicle->Vehicle_controller.omega_ctrl.Gain_Set(*straight_motion_param.om_gain);
+
+			ir_sens->Division_Wall_Correction_Reset();
 			//vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
 			//vehicle->Vehicle_controller.omega_ctrl.I_param_reset();
 		}
@@ -886,6 +888,33 @@ void Motion::SetIdeal_turn_in		( )
 		{
 			vehicle->ideal.accel.set(motion_plan.deccel.get());
 			vehicle->ideal.velo.set( vehicle->ideal.velo.get() + vehicle->ideal.accel.get()*(float)deltaT_ms/1000.0f);
+
+			if(ir_sens->Division_Wall_Correction() == True)
+			{
+				if(ir_sens->r_wall_corner == True)
+				{
+					if(turn_motion_param.param->turn_dir == Turn_L)
+					{
+						vehicle->ego.length.set((vehicle->ego.length.get() + (turn_motion_param.param->Lend +  motion_plan.fix_post_run.get() +detect_wall_edge_di))/2.0f);
+					}
+					else
+					{
+						ir_sens->wall_correction = False;
+					}
+
+				}
+				if(ir_sens->l_wall_corner == True)
+				{
+					if(turn_motion_param.param->turn_dir == Turn_R)
+					{
+						vehicle->ego.length.set((vehicle->ego.length.get() +  (turn_motion_param.param->Lend +  motion_plan.fix_post_run.get() +detect_wall_edge_di))/2.0f);
+					}
+					else
+					{
+						ir_sens->wall_correction = False;
+					}
+				}
+			}
 
 			if(motion_plan.deccel.get() > 0.0f)
 			{
@@ -932,7 +961,7 @@ void Motion::SetIdeal_turn_in		( )
 			vehicle->ego.horizon_velo.set(0.0f);
 
 			vehicle->ego.length.set(-((turn_motion_param.param->Lend + motion_plan.fix_post_run.get()) - vehicle->ego.length.get()));
-			//vehicle->ego.radian.set(0.0f);
+			vehicle->ego.radian.set(0.0f);
 
 			vehicle->ego.turn_x.set(0.0f);
 			vehicle->ego.turn_y.set(0.0f);
@@ -975,7 +1004,29 @@ void Motion::SetIdeal_turn_out		( ){
 		{
 			if(ir_sens->Division_Wall_Correction() == True)
 			{
-				vehicle->ego.length.set((vehicle->ego.length.get() + detect_wall_edge_di)/2.0f);
+				if(ir_sens->r_wall_corner == True)
+				{
+					if(turn_motion_param.param->turn_dir == Turn_R)
+					{
+						vehicle->ego.length.set((vehicle->ego.length.get() + (detect_wall_edge_di))/2.0f);
+					}
+					else
+					{
+						ir_sens->wall_correction = False;
+					}
+
+				}
+				if(ir_sens->l_wall_corner == True)
+				{
+					if(turn_motion_param.param->turn_dir == Turn_L)
+					{
+						vehicle->ego.length.set((vehicle->ego.length.get() + (detect_wall_edge_di))/2.0f);
+					}
+					else
+					{
+						ir_sens->wall_correction = False;
+					}
+				}
 			}
 
 			vehicle->ideal.accel.set(motion_plan.accel.get());
@@ -1035,8 +1086,8 @@ void Motion::SetIdeal_turn_out		( ){
 			float alpha_l = vehicle->ideal.velo.get()*beta/(vehicle->ideal.velo.get() - TREAD_WIDTH_M/2*vehicle->ideal.rad_velo.get());
 			float acc = -vehicle->ideal.horizon_velo.get()*(vehicle->ideal.rad_velo.get()+vehicle->ideal.turn_slip_dot.get())*0.0
 						+vehicle->turn_slip_k.get()*(alpha_r*alpha_r + alpha_l *alpha_l)/2;
-			if( ABS(turn_motion_param.param->degree) == 135.0)
-				vehicle->ideal.accel.set(acc);
+			//if( ABS(turn_motion_param.param->degree) == 135.0)
+				//vehicle->ideal.accel.set(acc);
 		}
 		else
 		{
@@ -1070,6 +1121,8 @@ void Motion::SetIdeal_turn_out		( ){
 
 			vehicle->Vehicle_controller.speed_ctrl.Gain_Set(*straight_motion_param.sp_gain);
 			vehicle->Vehicle_controller.omega_ctrl.Gain_Set(*straight_motion_param.om_gain);
+
+			ir_sens->Division_Wall_Correction_Reset();
 			//vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
 			//vehicle->Vehicle_controller.omega_ctrl.I_param_reset();
 		}
@@ -1082,6 +1135,12 @@ void Motion::SetIdeal_turn_out		( ){
 		{
 			vehicle->ideal.accel.set(motion_plan.deccel.get());
 			vehicle->ideal.velo.set( vehicle->ideal.velo.get() + vehicle->ideal.accel.get()*(float)deltaT_ms/1000.0f);
+
+			if(ir_sens->Division_Wall_Correction() == True)
+			{
+				vehicle->ego.length.set((vehicle->ego.length.get() + (turn_motion_param.param->Lend + motion_plan.fix_post_run.get() + detect_wall_edge_st))/2.0f);
+			}
+
 
 			if(motion_plan.deccel.get() > 0.0f)
 			{
@@ -1126,7 +1185,7 @@ void Motion::SetIdeal_turn_out		( ){
 			vehicle->ego.horizon_velo.set(0.0f);
 
 			vehicle->ego.length.set(-((turn_motion_param.param->Lend + motion_plan.fix_post_run.get()) - vehicle->ego.length.get()));
-			//vehicle->ego.radian.set(0.0f);
+			vehicle->ego.radian.set(0.0f);
 
 			vehicle->ego.turn_x.set(0.0f);
 			vehicle->ego.turn_y.set(0.0f);
@@ -1171,6 +1230,11 @@ void Motion::SetIdeal_long_turn		( )
 			if(ir_sens->Division_Wall_Correction() == True)
 			{
 				vehicle->ego.length.set((vehicle->ego.length.get() + detect_wall_edge_st)/2.0f);
+				if(ABS(turn_motion_param.param->degree) == 180.0f)
+				{
+					float length = (detect_wall_edge_st - turn_motion_param.param->Lstart);
+					if(length > 0.0f)	motion_plan.fix_post_run.set(length);
+				}
 			}
 
 			vehicle->ideal.accel.set(motion_plan.accel.get());
@@ -1230,7 +1294,7 @@ void Motion::SetIdeal_long_turn		( )
 			float alpha_l = vehicle->ideal.velo.get()*beta/(vehicle->ideal.velo.get() - TREAD_WIDTH_M/2*vehicle->ideal.rad_velo.get());
 			float acc = -vehicle->ideal.horizon_velo.get()*(vehicle->ideal.rad_velo.get()+vehicle->ideal.turn_slip_dot.get())
 						+vehicle->turn_slip_k.get()*(alpha_r*alpha_r + alpha_l *alpha_l)/2;
-			if( ABS(turn_motion_param.param->degree) == 180.0)
+			//if( ABS(turn_motion_param.param->degree) == 180.0)
 				vehicle->ideal.accel.set(acc);
 		}
 		else
@@ -1263,8 +1327,11 @@ void Motion::SetIdeal_long_turn		( )
 			motion_plan.turn_state.set(Post_Turn);
 			turn_start_time_ms = 0.0f;
 
+
 			vehicle->Vehicle_controller.speed_ctrl.Gain_Set(*straight_motion_param.sp_gain);
 			vehicle->Vehicle_controller.omega_ctrl.Gain_Set(*straight_motion_param.om_gain);
+
+			ir_sens->Division_Wall_Correction_Reset();
 			//vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
 			//vehicle->Vehicle_controller.omega_ctrl.I_param_reset();
 		}
@@ -1277,6 +1344,11 @@ void Motion::SetIdeal_long_turn		( )
 		{
 			vehicle->ideal.accel.set(motion_plan.deccel.get());
 			vehicle->ideal.velo.set( vehicle->ideal.velo.get() + vehicle->ideal.accel.get()*(float)deltaT_ms/1000.0f);
+
+			if(ir_sens->Division_Wall_Correction() == True)
+			{
+				vehicle->ego.length.set((vehicle->ego.length.get() + (turn_motion_param.param->Lend + motion_plan.fix_post_run.get() + detect_wall_edge_st))/2.0f);
+			}
 
 			if(motion_plan.deccel.get() > 0.0f)
 			{
@@ -1320,7 +1392,7 @@ void Motion::SetIdeal_long_turn		( )
 			vehicle->ego.horizon_velo.set(0.0f);
 
 			vehicle->ego.length.set(-((turn_motion_param.param->Lend + motion_plan.fix_post_run.get()) - vehicle->ego.length.get()));
-			//vehicle->ego.radian.set(0.0f);
+			vehicle->ego.radian.set(0.0f);
 
 			vehicle->ego.turn_x.set(0.0f);
 			vehicle->ego.turn_y.set(0.0f);
@@ -1366,9 +1438,30 @@ void Motion::SetIdeal_turn_v90		( )
 		{
 			if(ir_sens->Division_Wall_Correction() == True)
 			{
-				vehicle->ego.length.set((vehicle->ego.length.get() + detect_wall_edge_di)/2.0f);
-			}
+				if(ir_sens->r_wall_corner == True)
+				{
+					if(turn_motion_param.param->turn_dir == Turn_R)
+					{
+						vehicle->ego.length.set((vehicle->ego.length.get() + ( detect_wall_edge_di))/2.0f);
+					}
+					else
+					{
+						ir_sens->wall_correction = False;
+					}
 
+				}
+				if(ir_sens->l_wall_corner == True)
+				{
+					if(turn_motion_param.param->turn_dir == Turn_L)
+					{
+						vehicle->ego.length.set((vehicle->ego.length.get() + (detect_wall_edge_di))/2.0f);
+					}
+					else
+					{
+						ir_sens->wall_correction = False;
+					}
+				}
+			}
 			vehicle->ideal.accel.set(motion_plan.accel.get());
 			vehicle->ideal.velo.set( vehicle->ideal.velo.get() + vehicle->ideal.accel.get()*(float)deltaT_ms/1000.0f);
 
@@ -1431,7 +1524,7 @@ void Motion::SetIdeal_turn_v90		( )
 		}
 		else
 		{
-			//vehicle->ideal.accel.set(0.0f);
+			vehicle->ideal.accel.set(0.0f);
 			//vehicle->ideal.velo.set(0.0f);
 			vehicle->ideal.length.set(0.0f);
 
@@ -1469,6 +1562,8 @@ void Motion::SetIdeal_turn_v90		( )
 
 			vehicle->Vehicle_controller.speed_ctrl.Gain_Set(*straight_motion_param.sp_gain);
 			vehicle->Vehicle_controller.omega_ctrl.Gain_Set(*straight_motion_param.om_gain);
+
+			ir_sens->Division_Wall_Correction_Reset();
 			//vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
 			//vehicle->Vehicle_controller.omega_ctrl.I_param_reset();
 		}
@@ -1488,6 +1583,33 @@ void Motion::SetIdeal_turn_v90		( )
 
 			vehicle->ideal.accel.set(motion_plan.deccel.get());
 			vehicle->ideal.velo.set( vehicle->ideal.velo.get() + vehicle->ideal.accel.get()*(float)deltaT_ms/1000.0f);
+
+			if(ir_sens->Division_Wall_Correction() == True)
+			{
+				if(ir_sens->r_wall_corner == True)
+				{
+					if(turn_motion_param.param->turn_dir == Turn_L)
+					{
+						vehicle->ego.length.set((vehicle->ego.length.get() + (turn_motion_param.param->Lend + detect_wall_edge_di))/2.0f);
+					}
+					else
+					{
+						ir_sens->wall_correction = False;
+					}
+
+				}
+				if(ir_sens->l_wall_corner == True)
+				{
+					if(turn_motion_param.param->turn_dir == Turn_R)
+					{
+						vehicle->ego.length.set((vehicle->ego.length.get() + (turn_motion_param.param->Lend + detect_wall_edge_di))/2.0f);
+					}
+					else
+					{
+						ir_sens->wall_correction = False;
+					}
+				}
+			}
 
 			if(motion_plan.deccel.get() > 0.0f)
 			{
@@ -1523,7 +1645,7 @@ void Motion::SetIdeal_turn_v90		( )
 			vehicle->ideal.turn_slip_theta.set(0.0f);
 			vehicle->ideal.turn_slip_dot.set(0.0f);
 			vehicle->ego.length.set(-((turn_motion_param.param->Lend + motion_plan.fix_post_run.get()) - vehicle->ego.length.get()));
-			//vehicle->ego.radian.set(0.0f);
+			vehicle->ego.radian.set(0.0f);
 
 			vehicle->ego.turn_x.set(0.0f);
 			vehicle->ego.turn_y.set(0.0f);
@@ -1725,7 +1847,7 @@ void Motion::SetIdeal_long_turn_v90		( )
 			vehicle->ideal.turn_slip_theta.set(0.0f);
 			vehicle->ideal.turn_slip_dot.set(0.0f);
 			vehicle->ego.length.set(-((turn_motion_param.param->Lend + motion_plan.fix_post_run.get()) - vehicle->ego.length.get()));
-			//vehicle->ego.radian.set(0.0f);
+			vehicle->ego.radian.set(0.0f);
 
 			vehicle->ego.turn_x.set(0.0f);
 			vehicle->ego.turn_y.set(0.0f);
