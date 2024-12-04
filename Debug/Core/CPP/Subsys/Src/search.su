@@ -23,12 +23,12 @@ search.cpp:90:13:t_exeStatus Search::updateMap_left_turn(int, int, t_position, i
 search.cpp:98:13:t_exeStatus Search::updateMap_right_turn(int, int, t_position, int, int, make_map*, Motion*)	48	static
 search.cpp:107:13:t_exeStatus Search::turn_right_process(t_position, t_position, t_position, int, int, wall_class*, make_map*, Motion*)	56	static
 search.cpp:149:13:t_exeStatus Search::turn_left_process(t_position, t_position, t_position, int, int, wall_class*, make_map*, Motion*)	56	static
-search.cpp:190:13:t_exeStatus Search::turn_rear_process(t_position, t_position, t_position, int, int, wall_class*, make_map*, Motion*)	64	static
-search.cpp:247:12:t_position Search::search_adachi(t_position, t_position, int, wall_class*, make_map*, Motion*)	72	static
-search.cpp:353:12:t_position Search::search_adachi_acc(t_position, t_position, int, wall_class*, make_map*, Motion*)	88	static
+search.cpp:190:13:t_exeStatus Search::turn_rear_process(t_position, t_position, t_position, int, int, wall_class*, make_map*, Motion*)	72	static
+search.cpp:253:12:t_position Search::search_adachi(t_position, t_position, int, wall_class*, make_map*, Motion*)	72	static
+search.cpp:359:12:t_position Search::search_adachi_acc(t_position, t_position, int, wall_class*, make_map*, Motion*)	88	static
 singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = Interrupt]	4	static
 Kalman_filter.h:13:7:KalmanFilter::KalmanFilter()	16	static
 singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = KalmanFilter]	8	static
-search.cpp:488:1:void __static_initialization_and_destruction_0(int, int)	16	static
-search.cpp:488:1:cpp)	8	static
-search.cpp:488:1:cpp)	8	static
+search.cpp:494:1:void __static_initialization_and_destruction_0(int, int)	16	static
+search.cpp:494:1:cpp)	8	static
+search.cpp:494:1:cpp)	8	static
