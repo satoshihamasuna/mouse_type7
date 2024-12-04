@@ -599,7 +599,7 @@ void Motion::SetIdeal_backward()
 			return;
 	}
 	Adjust_wall_corner();
-	//SetIdeal_wall_control();
+	SetIdeal_wall_control();
 	run_time_ms_update();
 	vehicle->ideal.length.set(vehicle->ideal.length.get() + vehicle->ideal.velo.get()*(float)deltaT_ms);
 	vehicle->ideal.radian.set(vehicle->ideal.radian.get() + vehicle->ideal.rad_velo.get()*(float)deltaT_ms/1000.0f);

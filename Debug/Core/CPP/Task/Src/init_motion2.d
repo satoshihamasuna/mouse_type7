@@ -5,7 +5,7 @@ Core/CPP/Task/Src/init_motion2.o: ../Core/CPP/Task/Src/init_motion2.cpp \
  ../Core/CPP/Task/Src/../Inc/../../Module/Inc/../../Pheripheral/Include/typedef.h \
  ../Core/CPP/Task/Src/../Inc/../../Module/Inc/../../Pheripheral/Include/macro.h \
  ../Core/CPP/Task/Src/../Inc/../../Module/Inc/../../Pheripheral/Include/ir_sensor.h \
- c:\users\sato1\documents\git\mouse_type7_program\mouse_type7\core\cpp\component\inc\maze_typedef.h \
+ c:\users\sato1\documents\git\stm32\program_mouse_type7\mouse_type7\core\cpp\component\inc\maze_typedef.h \
  ../Core/CPP/Task/Src/../Inc/../../Module/Inc/../../Pheripheral/Include/index.h \
  ../Core/Inc/main.h ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
  ../Core/Inc/stm32f4xx_hal_conf.h \
@@ -79,7 +79,7 @@ Core/CPP/Task/Src/init_motion2.o: ../Core/CPP/Task/Src/init_motion2.cpp \
 
 ../Core/CPP/Task/Src/../Inc/../../Module/Inc/../../Pheripheral/Include/ir_sensor.h:
 
-c:\users\sato1\documents\git\mouse_type7_program\mouse_type7\core\cpp\component\inc\maze_typedef.h:
+c:\users\sato1\documents\git\stm32\program_mouse_type7\mouse_type7\core\cpp\component\inc\maze_typedef.h:
 
 ../Core/CPP/Task/Src/../Inc/../../Module/Inc/../../Pheripheral/Include/index.h:
 
