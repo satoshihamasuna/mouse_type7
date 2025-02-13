@@ -51,10 +51,12 @@ t_bool Search::i_am_goal(t_position pos,t_position g_pos,int goal_size)
 
 void Search::update_map(int x, int y,t_position expand_end,int size,int mask,make_map *_map)
 {
+	_map->make_map_queue_closeWall();
 	if(full_search == True)
 		_map->make_map_queue_zenmen(x, y, expand_end, size, mask);
 	else
 		_map->make_map_queue(x, y, expand_end, size, mask);
+
 }
 
 t_exeStatus Search::updateMap_half_straight(int x, int y,t_position expand_end,int size,int mask,make_map *_map,Motion *motion)
@@ -62,10 +64,11 @@ t_exeStatus Search::updateMap_half_straight(int x, int y,t_position expand_end,i
 	t_exeStatus result;
 	if(expand_end.x == 0 && expand_end.y == 0)
 		motion->Init_Motion_search_straight(45.0+15.0, search_st_param->param->acc, search_st_param->param->max_velo, search_st_param->param->max_velo);
+
 	else
 		motion->Init_Motion_search_straight(45.0, search_st_param->param->acc, search_st_param->param->max_velo, search_st_param->param->max_velo);
 
-
+	update_map(x, y, expand_end, size, mask,_map);
 	result = motion->execute_Motion();
 	return result;
 }
@@ -128,7 +131,7 @@ t_exeStatus Search::turn_right_process(t_position my_position,t_position tmp_my_
 	}
 	else if(_wall->get_WallState(my_position) == WALL && ABS(ir_sens->sen_fr.distance - ir_sens->sen_fl.distance) >= ALLOW_SIDE_DIFF)
 	{
-		result = updateMap_half_straight_and_stop(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01,_map,motion);
+		result = updateMap_half_straight_and_stop(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, mask,_map,motion);
 
 		if(_wall->get_WallState(my_position) == WALL)
 		{
@@ -141,7 +144,7 @@ t_exeStatus Search::turn_right_process(t_position my_position,t_position tmp_my_
 	}
 	else
 	{
-		result = updateMap_right_turn(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01,_map,motion);
+		result = updateMap_right_turn(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, mask,_map,motion);
 	}
 	return result;
 }
@@ -153,7 +156,7 @@ t_exeStatus Search::turn_left_process (	t_position my_position,t_position tmp_my
 	t_exeStatus result;
 	if(ir_sens->sen_r.is_wall == True && ABS(ir_sens->sen_r.distance - 45.0) >= ALLOW_SIDE_DIFF)
 	{
-		result = updateMap_half_straight_and_stop(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01,_map,motion);
+		result = updateMap_half_straight_and_stop(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, mask,_map,motion);
 
 		if(_wall->get_WallState(my_position) == WALL)
 		{
@@ -170,7 +173,7 @@ t_exeStatus Search::turn_left_process (	t_position my_position,t_position tmp_my
 	}
 	else if(_wall->get_WallState(my_position) == WALL && ABS(ir_sens->sen_fr.distance - ir_sens->sen_fl.distance) >= ALLOW_SIDE_DIFF)
 	{
-		result = updateMap_half_straight_and_stop(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01,_map,motion);
+		result = updateMap_half_straight_and_stop(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, mask,_map,motion);
 
 		if(_wall->get_WallState(my_position) == WALL)
 		{
@@ -182,7 +185,7 @@ t_exeStatus Search::turn_left_process (	t_position my_position,t_position tmp_my
 	}
 	else
 	{
-		result = updateMap_left_turn(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01,_map,motion);
+		result = updateMap_left_turn(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, mask,_map,motion);
 	}
 	return result;
 }
@@ -201,7 +204,7 @@ t_exeStatus Search::turn_rear_process (	t_position my_position,t_position tmp_my
 
 	t_exeStatus result;
 	motion->Init_Motion_straight(length , search_st_param->param->acc, search_st_param->param->max_velo, 0.0f);
-	update_map(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01,_map);
+	update_map(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, mask,_map);
 	result = motion->execute_Motion();
 
 
@@ -259,9 +262,9 @@ t_position Search::search_adachi(	t_position start_pos,t_position goal_pos,int g
 	adachi search_algolithm(_wall,_map);
 	_wall->goal_set_vwall(goal_pos.x, goal_pos.y, goal_size);
 	//IrSensTask *ir_sens = (_wall->return_irObj());
-
+	uint8_t mask = 0x01;
 	_map->init_map(goal_pos.x, goal_pos.y, goal_size);
-	update_map(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01,_map);
+	update_map(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, mask,_map);
 
 	KalmanFilter::getInstance().filter_init();
 
@@ -272,30 +275,30 @@ t_position Search::search_adachi(	t_position start_pos,t_position goal_pos,int g
 	switch(search_priority)
 	{
 		case priority_first:
-			direction = search_algolithm.get_next_dir(my_position, 0x01, &tmp_my_pos);
+			direction = search_algolithm.get_next_dir(my_position, mask, &tmp_my_pos);
 			break;
 		case priority_second:
-			direction = search_algolithm.get_next_dir2(my_position,goal_pos, 0x01, &tmp_my_pos);
+			direction = search_algolithm.get_next_dir2(my_position,goal_pos, mask, &tmp_my_pos);
 			break;
 	}
 
 	switch(direction)
 	{
 		case Front:
-			updateMap_half_straight(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01,_map,motion);
+			updateMap_half_straight(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, mask,_map,motion);
 			break;
 		case Right:
 			motion->exe_Motion_pivot_turn(DEG2RAD(-90.0f), -40.0*PI, -4.0*PI);
-			updateMap_half_straight(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01,_map,motion);
+			updateMap_half_straight(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, mask,_map,motion);
 			break;
 		case Left:
 			motion->exe_Motion_pivot_turn(DEG2RAD(90.0f), 40.0*PI, 4.0*PI);
-			updateMap_half_straight(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01,_map,motion);
+			updateMap_half_straight(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, mask,_map,motion);
 
 			break;
 		case Rear:
 			motion->exe_Motion_pivot_turn(DEG2RAD(180.0f), 40.0*PI, 4.0*PI);
-			updateMap_half_straight(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01,_map,motion);
+			updateMap_half_straight(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, mask,_map,motion);
 			break;
 
 	}
@@ -303,6 +306,15 @@ t_position Search::search_adachi(	t_position start_pos,t_position goal_pos,int g
 
 	while(i_am_goal(my_position, goal_pos, goal_size) != True)
 	{
+
+		if(goal_pos.x == 0 && goal_pos.y == 0)
+		{
+			if(return_search_time() >= END_TIME_LIMIT)
+			{
+				full_search = False;
+				mask = 0x03;
+			}
+		}
 
 		if(motion->motion_exeStatus_get() == error)
 		{
@@ -316,33 +328,29 @@ t_position Search::search_adachi(	t_position start_pos,t_position goal_pos,int g
 		switch(search_priority)
 		{
 			case priority_first:
-				direction = search_algolithm.get_next_dir(my_position, 0x01, &tmp_my_pos);
+				direction = search_algolithm.get_next_dir(my_position, mask, &tmp_my_pos);
 				break;
 			case priority_second:
-				direction = search_algolithm.get_next_dir2(my_position,goal_pos, 0x01, &tmp_my_pos);
+				direction = search_algolithm.get_next_dir2(my_position,goal_pos, mask, &tmp_my_pos);
 				break;
 		}
 
 		switch(direction)
 		{
 			case Front:
-				updateMap_straight(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01,_map,motion);
+				updateMap_straight(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, mask,_map,motion);
 				break;
 			case Right:
-				turn_right_process(my_position,tmp_my_pos,goal_pos,goal_size,0x01,_wall,_map,motion);
+				turn_right_process(my_position,tmp_my_pos,goal_pos,goal_size,mask,_wall,_map,motion);
 		  	    break;
 			case Left:
-				turn_left_process(my_position,tmp_my_pos,goal_pos,goal_size,0x01,_wall,_map,motion);
+				turn_left_process(my_position,tmp_my_pos,goal_pos,goal_size,mask,_wall,_map,motion);
 				break;
 			case Rear:
-				turn_rear_process(my_position,tmp_my_pos,goal_pos,goal_size,0x01,_wall,_map,motion);
+				turn_rear_process(my_position,tmp_my_pos,goal_pos,goal_size,mask,_wall,_map,motion);
 				break;
 		}
 		my_position = tmp_my_pos;
-		if(full_search == True)
-		{
-			if(return_search_time() >= END_TIME_LIMIT) full_search = False;
-		}
 	}
 	if(motion->motion_exeStatus_get() != error)
 	{
@@ -364,9 +372,10 @@ t_position Search::search_adachi_acc(	t_position start_pos,t_position goal_pos,i
 	adachi search_algolithm(_wall,_map);
 	_wall->goal_set_vwall(goal_pos.x, goal_pos.y, goal_size);
 	//IrSensTask *ir_sens = (_wall->return_irObj());
+	uint8_t mask = 0x01;
 
 	_map->init_map(goal_pos.x, goal_pos.y, goal_size);
-	update_map(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01,_map);
+	update_map(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, mask,_map);
 
 	motion->Motion_start();
 
@@ -374,30 +383,30 @@ t_position Search::search_adachi_acc(	t_position start_pos,t_position goal_pos,i
 	switch(search_priority)
 	{
 		case priority_first:
-			direction = search_algolithm.get_next_dir(my_position, 0x01, &tmp_my_pos);
+			direction = search_algolithm.get_next_dir(my_position, mask, &tmp_my_pos);
 			break;
 		case priority_second:
-			direction = search_algolithm.get_next_dir2(my_position,goal_pos, 0x01, &tmp_my_pos);
+			direction = search_algolithm.get_next_dir2(my_position,goal_pos, mask, &tmp_my_pos);
 			break;
 	}
 
 	switch(direction)
 	{
 		case Front:
-			updateMap_half_straight(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01,_map,motion);
+			updateMap_half_straight(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, mask,_map,motion);
 			break;
 		case Right:
 			motion->exe_Motion_pivot_turn(DEG2RAD(-90.0f), -40.0*PI, -4.0*PI);
-			updateMap_half_straight(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01,_map,motion);
+			updateMap_half_straight(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, mask,_map,motion);
 			break;
 		case Left:
 			motion->exe_Motion_pivot_turn(DEG2RAD(90.0f), 40.0*PI, 4.0*PI);
-			updateMap_half_straight(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01,_map,motion);
+			updateMap_half_straight(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, mask,_map,motion);
 
 			break;
 		case Rear:
 			motion->exe_Motion_pivot_turn(DEG2RAD(180.0f), 40.0*PI, 4.0*PI);
-			updateMap_half_straight(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01,_map,motion);
+			updateMap_half_straight(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, mask,_map,motion);
 			break;
 
 	}
@@ -405,6 +414,15 @@ t_position Search::search_adachi_acc(	t_position start_pos,t_position goal_pos,i
 
 	while(i_am_goal(my_position, goal_pos, goal_size) != True)
 	{
+		if(goal_pos.x == 0 && goal_pos.y == 0)
+		{
+			if(return_search_time() >= END_TIME_LIMIT)
+			{
+				full_search = False;
+				mask = 0x03;
+			}
+		}
+
 		if(motion->motion_exeStatus_get() == error)
 		{
 			break;
@@ -418,10 +436,10 @@ t_position Search::search_adachi_acc(	t_position start_pos,t_position goal_pos,i
 		switch(search_priority)
 		{
 			case priority_first:
-				direction = search_algolithm.get_next_dir(my_position, 0x01, &tmp_my_pos);
+				direction = search_algolithm.get_next_dir(my_position, mask, &tmp_my_pos);
 				break;
 			case priority_second:
-				direction = search_algolithm.get_next_dir2(my_position,goal_pos, 0x01, &tmp_my_pos);
+				direction = search_algolithm.get_next_dir2(my_position,goal_pos, mask, &tmp_my_pos);
 				break;
 		}
 
@@ -433,14 +451,14 @@ t_position Search::search_adachi_acc(	t_position start_pos,t_position goal_pos,i
 		{
 			if(i_am_goal(tmp_my_pos,goal_pos,goal_size) == False){
 				next_acc_flag = 0x80;
-				next_acc_dir  = search_algolithm.get_next_dir(tmp_my_pos, 0x01, &next_acc_pos);
+				next_acc_dir  = search_algolithm.get_next_dir(tmp_my_pos, mask, &next_acc_pos);
 				switch(search_priority)
 				{
 					case priority_first:
-						next_acc_dir  = search_algolithm.get_next_dir(tmp_my_pos, 0x01, &next_acc_pos);
+						next_acc_dir  = search_algolithm.get_next_dir(tmp_my_pos, mask, &next_acc_pos);
 						break;
 					case priority_second:
-						next_acc_dir  = search_algolithm.get_next_dir2(tmp_my_pos,goal_pos,0x01, &next_acc_pos);
+						next_acc_dir  = search_algolithm.get_next_dir2(tmp_my_pos,goal_pos,mask, &next_acc_pos);
 						break;
 				}
 			}
@@ -450,7 +468,7 @@ t_position Search::search_adachi_acc(	t_position start_pos,t_position goal_pos,i
 		{
 			case Front:
 				motion->Init_Motion_search_straight(90.0, 6.0, motion->return_vehicleObj()->ideal.velo.get(), search_st_param->param->max_velo);
-				update_map(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01,_map);
+				update_map(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, mask,_map);
 				motion->execute_Motion();
 				break;
 			case Front|0x80:
@@ -460,27 +478,23 @@ t_position Search::search_adachi_acc(	t_position start_pos,t_position goal_pos,i
 				else
 					motion->Init_Motion_search_straight(90.0, 6.0, motion->return_vehicleObj()->ideal.velo.get(), search_st_param->param->max_velo);
 
-				update_map(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01,_map);
+				update_map(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, mask,_map);
 				motion->execute_Motion();
 				break;
 			case Right:
 			case (Right|0x80):
-				turn_right_process(my_position,tmp_my_pos,goal_pos,goal_size,0x01,_wall,_map,motion);
+				turn_right_process(my_position,tmp_my_pos,goal_pos,goal_size,mask,_wall,_map,motion);
 		  	    break;
 			case Left:
 			case (Left|0x80):
-				turn_left_process(my_position,tmp_my_pos,goal_pos,goal_size,0x01,_wall,_map,motion);
+				turn_left_process(my_position,tmp_my_pos,goal_pos,goal_size,mask,_wall,_map,motion);
 				break;
 			case Rear:
 			case (Rear|0x80):
-				turn_rear_process(my_position,tmp_my_pos,goal_pos,goal_size,0x01,_wall,_map,motion);
+				turn_rear_process(my_position,tmp_my_pos,goal_pos,goal_size,mask,_wall,_map,motion);
 				break;
 		}
 		my_position = tmp_my_pos;
-		if(full_search == True)
-		{
-			if(return_search_time() >= END_TIME_LIMIT) full_search = False;
-		}
 	}
 	if(motion->motion_exeStatus_get() != error)
 	{

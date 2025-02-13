@@ -182,3 +182,6 @@ t_wall_state wall_class::get_WallState(t_position pos)
 
 	}
 }
+
+
+

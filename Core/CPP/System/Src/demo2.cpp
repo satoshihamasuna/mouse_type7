@@ -125,6 +125,20 @@ void Demo2()
 				}
 				break;
 			case ENABLE|0x04:
+			   if(irsens->IrSensor_Avg() > 2000)
+			   {
+					for(int i = 0;i < 11;i++)
+					{
+						(i%2 == 0) ? Indicate_LED(Mode_State()):Indicate_LED(0x00|0x00);
+						HAL_Delay(50);
+					}
+					map_data.make_map_queue(goal.x, goal.y, start, goal_size, 0x01);
+					map_data.Display();
+					map_data.make_map_queue_closeWall();
+					map_data.Display();
+
+					Mode_Disable();
+				}
 				break;
 			case ENABLE|0x05:
 			   if(irsens->IrSensor_Avg() > 2000)

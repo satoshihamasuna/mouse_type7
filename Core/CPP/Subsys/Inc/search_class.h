@@ -16,7 +16,7 @@
 #include "../../Task/Inc/ctrl_task.h"
 #include "../../Module/Inc/interrupt.h"
 
-#define END_TIME_LIMIT (5*60*1000)
+#define END_TIME_LIMIT (4*60*1000)
 
 typedef enum
 {

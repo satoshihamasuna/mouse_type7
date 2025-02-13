@@ -30,7 +30,7 @@ motion.cpp:976:6:void Motion::SetIdeal_turn_out()	88	static
 motion.cpp:1199:6:void Motion::SetIdeal_long_turn()	96	static
 motion.cpp:1407:6:void Motion::SetIdeal_turn_v90()	104	static
 motion.cpp:1660:6:void Motion::SetIdeal_long_turn_v90()	104	static
-motion.cpp:1860:6:void Motion::SetIdeal_fix_wall()	72	static
-motion.cpp:1953:6:void Motion::SetIdeal_suction_start()	32	static
-motion.cpp:2008:6:void Motion::SetIdeal_stop_brake()	32	static
-motion.cpp:2062:6:void Motion::SetIdeal_free_rotation_set()	24	static
+motion.cpp:1860:6:void Motion::SetIdeal_fix_wall()	96	static
+motion.cpp:2002:6:void Motion::SetIdeal_suction_start()	32	static
+motion.cpp:2057:6:void Motion::SetIdeal_stop_brake()	32	static
+motion.cpp:2111:6:void Motion::SetIdeal_free_rotation_set()	24	static
