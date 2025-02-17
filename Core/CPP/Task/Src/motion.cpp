@@ -1871,7 +1871,7 @@ void Motion::SetIdeal_fix_wall		( )
 				//l_err = (ir_sens->sen_fl.distance - 45.0);
 			//}
 
-			if((ir_sens->sen_fr.distance < 50.0)  )
+			if((ir_sens->sen_fr.distance < 45.0)  )
 			{
 				float diff = ir_sens->sen_fr.avg_distance - ir_sens->sen_fr.distance;
 				float rwheel = vehicle->ideal.velo.get() - TREAD_WIDTH/1000.0*vehicle->ideal.rad_velo.get();
@@ -1895,7 +1895,7 @@ void Motion::SetIdeal_fix_wall		( )
 			}
 
 
-			if((ir_sens->sen_fl.distance < 50.0)  )
+			if((ir_sens->sen_fl.distance < 45.0)  )
 			{
 				float diff = ir_sens->sen_fl.avg_distance - ir_sens->sen_fl.distance;
 				float lwheel = vehicle->ideal.velo.get() + TREAD_WIDTH/1000.0*vehicle->ideal.rad_velo.get();

@@ -24,6 +24,7 @@ typedef enum
 	priority_second = 1,
 }t_search_priority;
 
+
 class Search
 {
 	private:

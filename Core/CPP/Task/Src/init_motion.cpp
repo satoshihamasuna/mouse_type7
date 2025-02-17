@@ -244,7 +244,11 @@ void Motion::Init_Motion_search_turn	(const t_param *turn_param,const t_pid_gain
 		vehicle->ideal.radian.init();
 	}
 
-	float diff = vehicle->ego.x_point.get();
+	float diff = vehicle->ego.x_point.get()*1.0;
+	if(ABS(diff) > 10.0)
+	{
+		diff = SIGN(diff) * diff;
+	}
 	if(turn_param->param->turn_dir == Turn_R)
 	{
 		motion_plan.fix_post_run.set(diff);

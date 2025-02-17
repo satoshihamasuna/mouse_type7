@@ -13,9 +13,18 @@
 #include "../../Task/Inc/sensing_task.h"
 
 
+typedef struct
+{
+	int8_t x;
+	int8_t y;
+	t_wall wall;
+}t_histry_wall;
+
 class wall_class
 {
 	IrSensTask *ir_sens;
+	uint8_t histry_cnt;
+
 	public:
 		wall_class(IrSensTask *ir_sens_)
 		{
@@ -23,6 +32,7 @@ class wall_class
 		}
 		IrSensTask *return_irObj() {return ir_sens;};
 		t_wall wall[MAZE_SIZE_X][MAZE_SIZE_Y];
+		t_histry_wall histry_wall[MAZE_SIZE];
 		void init_maze();
 		void set_wall(t_position pos);
 		t_bool is_unknown(uint16_t x,uint16_t y);
@@ -42,6 +52,50 @@ class wall_class
 			}
 		}
 		t_wall_state get_WallState(t_position pos);
+
+		void histry_init()
+		{
+			for(int i = 0; i < MAZE_SIZE;i++)
+			{
+				histry_wall[i].x = -1;
+				histry_wall[i].y = -1;
+				histry_wall[i].wall.north = UNKNOWN;
+				histry_wall[i].wall.south = UNKNOWN;
+				histry_wall[i].wall.east = UNKNOWN;
+				histry_wall[i].wall.west = UNKNOWN;
+			}
+			histry_cnt = 0;
+		}
+
+		void histry_set(int x,int y,t_wall wall)
+		{
+			histry_wall[histry_cnt].x = x;
+			histry_wall[histry_cnt].y = y;
+			histry_wall[histry_cnt].wall.north = wall.north;
+			histry_wall[histry_cnt].wall.south = wall.south;
+			histry_wall[histry_cnt].wall.east = wall.east;
+			histry_wall[histry_cnt].wall.west = wall.east;
+			histry_cnt++;
+		}
+
+		void histry_delete(int num)
+		{
+			if(num > histry_cnt) num = histry_cnt;
+			for(int i = 0; i < num; i++)
+			{
+				histry_wall[histry_cnt-i].x = -1;
+				histry_wall[histry_cnt-i].y = -1;
+				histry_wall[histry_cnt-i].wall.north = UNKNOWN;
+				histry_wall[histry_cnt-i].wall.south = UNKNOWN;
+				histry_wall[histry_cnt-i].wall.east = UNKNOWN;
+				histry_wall[histry_cnt-i].wall.west = UNKNOWN;
+			}
+		}
+
+		void histry2wall()
+		{
+
+		}
 
 };
 

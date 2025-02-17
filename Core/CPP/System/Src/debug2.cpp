@@ -79,22 +79,20 @@ namespace Mode
 						  }
 						  KalmanFilter::getInstance().filter_init();
 						  motion->Motion_start();
-						  motion->Init_Motion_fix_wall(400);
-						  for(int i = 50; i <= suction; i = i + 50)
-						  {
-							  FAN_Motor_SetDuty(i);;
-							  HAL_Delay(5);
-						  }
-						  motion->execute_Motion();
-
 						  LogData::getInstance().data_count = 0;
 						  LogData::getInstance().log_enable = True;
-						  const  t_straight_param *debug_st_param = &st_param_2200;
-						  motion->exe_Motion_straight( 90.0*8.0,debug_st_param->param->acc,debug_st_param->param->max_velo,0.0,debug_st_param->sp_gain,debug_st_param->om_gain);
+						  motion->exe_Motion_straight( 45.0,6.0,0.32,0.32,&search_sp_gain,&search_om_gain);
 
+						  for(int i = 0;i < 1;i++)
+						  {
+						  motion->exe_Motion_search_turn( &param_L90_search);
+
+						  }
+						  motion->exe_Motion_straight(45.0,6.0,0.32,0.0,&search_sp_gain,&search_om_gain);
+
+						  motion->Motion_end();
 						  HAL_Delay(200);
-						  FAN_Motor_SetDuty(0);;
-						  HAL_Delay(200);
+
 						  LogData::getInstance().log_enable = False;
 						  enable = 0x00;
 						  HAL_Delay(500);
@@ -113,16 +111,20 @@ namespace Mode
 						  LogData::getInstance().log_enable = True;
 						  motion->exe_Motion_straight( 45.0,6.0,0.32,0.32,&search_sp_gain,&search_om_gain);
 
-						  for(int i = 0;i < 8;i++)
+						  for(int i = 0;i < 1;i++)
 						  {
 						  motion->exe_Motion_search_turn( &param_R90_search);
 
 						  }
 						  motion->exe_Motion_straight(45.0,6.0,0.32,0.0,&search_sp_gain,&search_om_gain);
 
+						  motion->Motion_end();
+						  HAL_Delay(200);
+
 						  LogData::getInstance().log_enable = False;
 						  enable = 0x00;
 						  HAL_Delay(500);
+
 					}
 					break;
 				case ENABLE|0x02:
@@ -155,9 +157,12 @@ namespace Mode
 						  }
 						  motion->exe_Motion_straight(SECTION,st_param->param->acc,st_param->param->max_velo,0.0,st_param->sp_gain,st_param->om_gain);
 
+						  motion->Motion_end();
 						  HAL_Delay(200);
-						  FAN_Motor_SetDuty(0);;
+						  FAN_Motor_SetDuty(0);
 						  HAL_Delay(200);
+
+
 						  LogData::getInstance().log_enable = False;
 						  enable = 0x00;
 						  HAL_Delay(500);
@@ -192,9 +197,12 @@ namespace Mode
 						  }
 						  motion->exe_Motion_straight( SECTION,st_param->param->acc,st_param->param->max_velo,0.0,st_param->sp_gain,st_param->om_gain);
 
+						  motion->Motion_end();
 						  HAL_Delay(200);
-						  FAN_Motor_SetDuty(0);;
+						  FAN_Motor_SetDuty(0);
 						  HAL_Delay(200);
+
+
 						  LogData::getInstance().log_enable = False;
 						  enable = 0x00;
 						  HAL_Delay(500);
@@ -227,12 +235,15 @@ namespace Mode
 
 						  motion->exe_Motion_straight(SECTION,st_param->param->acc,st_param->param->max_velo,0.0,st_param->sp_gain,st_param->om_gain);
 
+						  motion->Motion_end();
 						  HAL_Delay(200);
-						  FAN_Motor_SetDuty(0);;
+						  FAN_Motor_SetDuty(0);
 						  HAL_Delay(200);
+
 						  LogData::getInstance().log_enable = False;
 						  enable = 0x00;
 						  HAL_Delay(500);
+
 					}
 					break;
 				case ENABLE|0x05:
@@ -262,9 +273,11 @@ namespace Mode
 
 						  motion->exe_Motion_straight(SECTION,st_param->param->acc,st_param->param->max_velo,0.0,st_param->sp_gain,st_param->om_gain);
 
+						  motion->Motion_end();
 						  HAL_Delay(200);
-						  FAN_Motor_SetDuty(0);;
+						  FAN_Motor_SetDuty(0);
 						  HAL_Delay(200);
+
 						  LogData::getInstance().log_enable = False;
 						  enable = 0x00;
 						  HAL_Delay(500);
@@ -297,9 +310,11 @@ namespace Mode
 
 						  motion->exe_Motion_straight(SECTION,st_param->param->acc,st_param->param->max_velo,0.0,st_param->sp_gain,st_param->om_gain);
 
+						  motion->Motion_end();
 						  HAL_Delay(200);
-						  FAN_Motor_SetDuty(0);;
+						  FAN_Motor_SetDuty(0);
 						  HAL_Delay(200);
+
 						  LogData::getInstance().log_enable = False;
 						  enable = 0x00;
 						  HAL_Delay(500);
@@ -332,9 +347,11 @@ namespace Mode
 
 						  motion->exe_Motion_straight(SECTION,st_param->param->acc,st_param->param->max_velo,0.0,st_param->sp_gain,st_param->om_gain);
 
+						  motion->Motion_end();
 						  HAL_Delay(200);
-						  FAN_Motor_SetDuty(0);;
+						  FAN_Motor_SetDuty(0);
 						  HAL_Delay(200);
+
 						  LogData::getInstance().log_enable = False;
 						  enable = 0x00;
 						  HAL_Delay(500);
@@ -368,9 +385,11 @@ namespace Mode
 
 						  motion->exe_Motion_diagonal( DIAG_SECTION,st_param->param->acc,st_param->param->max_velo,0.0,st_param->sp_gain,st_param->om_gain);
 
+						  motion->Motion_end();
 						  HAL_Delay(200);
-						  FAN_Motor_SetDuty(0);;
+						  FAN_Motor_SetDuty(0);
 						  HAL_Delay(200);
+
 						  LogData::getInstance().log_enable = False;
 						  enable = 0x00;
 						  HAL_Delay(500);
@@ -404,9 +423,11 @@ namespace Mode
 
 						  motion->exe_Motion_diagonal( DIAG_SECTION,st_param->param->acc,st_param->param->max_velo,0.0,st_param->sp_gain,st_param->om_gain);
 
+						  motion->Motion_end();
 						  HAL_Delay(200);
-						  FAN_Motor_SetDuty(0);;
+						  FAN_Motor_SetDuty(0);
 						  HAL_Delay(200);
+
 						  LogData::getInstance().log_enable = False;
 						  enable = 0x00;
 						  HAL_Delay(500);
@@ -438,9 +459,11 @@ namespace Mode
 
 						  motion->exe_Motion_diagonal( DIAG_SECTION*2,st_param->param->acc,st_param->param->max_velo,0.0,st_param->sp_gain,st_param->om_gain);
 
+						  motion->Motion_end();
 						  HAL_Delay(200);
-						  FAN_Motor_SetDuty(0);;
+						  FAN_Motor_SetDuty(0);
 						  HAL_Delay(200);
+
 						  LogData::getInstance().log_enable = False;
 						  enable = 0x00;
 						  HAL_Delay(500);
@@ -472,9 +495,11 @@ namespace Mode
 
 						  motion->exe_Motion_straight( SECTION,st_param->param->acc,st_param->param->max_velo,0.0,st_param->sp_gain,st_param->om_gain);
 
+						  motion->Motion_end();
 						  HAL_Delay(200);
-						  FAN_Motor_SetDuty(0);;
+						  FAN_Motor_SetDuty(0);
 						  HAL_Delay(200);
+
 						  LogData::getInstance().log_enable = False;
 						  enable = 0x00;
 						  HAL_Delay(500);
@@ -506,9 +531,11 @@ namespace Mode
 
 						  motion->exe_Motion_straight( SECTION,st_param->param->acc,st_param->param->max_velo,0.0,st_param->sp_gain,st_param->om_gain);
 
+						  motion->Motion_end();
 						  HAL_Delay(200);
-						  FAN_Motor_SetDuty(0);;
+						  FAN_Motor_SetDuty(0);
 						  HAL_Delay(200);
+
 						  LogData::getInstance().log_enable = False;
 						  enable = 0x00;
 						  HAL_Delay(500);
@@ -539,9 +566,11 @@ namespace Mode
 
 						  motion->exe_Motion_diagonal( SECTION,st_param->param->acc,st_param->param->max_velo,0.0,st_param->sp_gain,st_param->om_gain);
 
+						  motion->Motion_end();
 						  HAL_Delay(200);
-						  FAN_Motor_SetDuty(0);;
+						  FAN_Motor_SetDuty(0);
 						  HAL_Delay(200);
+
 						  LogData::getInstance().log_enable = False;
 						  enable = 0x00;
 						  HAL_Delay(500);
