@@ -12,23 +12,23 @@ ctrl_task.h:234:22:t_exeStatus Motion::exe_Motion_pivot_turn(float, float, float
 ctrl_task.h:241:22:t_exeStatus Motion::exe_Motion_fix_wall(float, const t_pid_gain*, const t_pid_gain*)	24	static
 ctrl_task.h:317:12:Vehicle* Motion::return_vehicleObj()	16	static
 interrupt.h:32:12:uint32_t Interrupt::return_time_count()	16	static
-search_class.h:57:11:int32_t Search::return_search_time()	16	static
-search.cpp:24:8:t_bool Search::i_am_goal(int, int, int, int, int)	32	static
-search.cpp:36:8:t_bool Search::i_am_goal(t_position, t_position, int)	48	static
-search.cpp:52:6:void Search::update_map(int, int, t_position, int, int, make_map*)	32	static
-search.cpp:62:13:t_exeStatus Search::updateMap_half_straight(int, int, t_position, int, int, make_map*, Motion*)	48	static
-search.cpp:76:13:t_exeStatus Search::updateMap_half_straight_and_stop(int, int, t_position, int, int, make_map*, Motion*)	48	static
-search.cpp:85:13:t_exeStatus Search::updateMap_straight(int, int, t_position, int, int, make_map*, Motion*)	48	static
-search.cpp:93:13:t_exeStatus Search::updateMap_left_turn(int, int, t_position, int, int, make_map*, Motion*)	48	static
+search_class.h:59:11:int32_t Search::return_search_time()	16	static
+search.cpp:23:8:t_bool Search::i_am_goal(int, int, int, int, int)	32	static
+search.cpp:35:8:t_bool Search::i_am_goal(t_position, t_position, int)	48	static
+search.cpp:51:6:void Search::update_map(int, int, t_position, int, int, make_map*)	32	static
+search.cpp:61:13:t_exeStatus Search::updateMap_half_straight(int, int, t_position, int, int, make_map*, Motion*)	48	static
+search.cpp:75:13:t_exeStatus Search::updateMap_half_straight_and_stop(int, int, t_position, int, int, make_map*, Motion*)	48	static
+search.cpp:84:13:t_exeStatus Search::updateMap_straight(int, int, t_position, int, int, make_map*, Motion*)	48	static
+search.cpp:92:13:t_exeStatus Search::updateMap_left_turn(int, int, t_position, int, int, make_map*, Motion*)	48	static
 search.cpp:101:13:t_exeStatus Search::updateMap_right_turn(int, int, t_position, int, int, make_map*, Motion*)	48	static
-search.cpp:110:13:t_exeStatus Search::turn_right_process(t_position, t_position, t_position, int, int, wall_class*, make_map*, Motion*)	56	static
-search.cpp:152:13:t_exeStatus Search::turn_left_process(t_position, t_position, t_position, int, int, wall_class*, make_map*, Motion*)	56	static
-search.cpp:193:13:t_exeStatus Search::turn_rear_process(t_position, t_position, t_position, int, int, wall_class*, make_map*, Motion*)	72	static
-search.cpp:256:12:t_position Search::search_adachi(t_position, t_position, int, wall_class*, make_map*, Motion*)	80	static
-search.cpp:367:12:t_position Search::search_adachi_acc(t_position, t_position, int, wall_class*, make_map*, Motion*)	88	static
+search.cpp:111:13:t_exeStatus Search::turn_right_process(t_position, t_position, t_position, int, int, wall_class*, make_map*, Motion*)	56	static
+search.cpp:153:13:t_exeStatus Search::turn_left_process(t_position, t_position, t_position, int, int, wall_class*, make_map*, Motion*)	56	static
+search.cpp:194:13:t_exeStatus Search::turn_rear_process(t_position, t_position, t_position, int, int, wall_class*, make_map*, Motion*)	72	static
+search.cpp:255:12:t_position Search::search_adachi(t_position, t_position, int, wall_class*, make_map*, Motion*)	80	static
+search.cpp:366:12:t_position Search::search_adachi_acc(t_position, t_position, int, wall_class*, make_map*, Motion*)	96	static
 singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = Interrupt]	4	static
 Kalman_filter.h:13:7:KalmanFilter::KalmanFilter()	16	static
 singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = KalmanFilter]	8	static
-search.cpp:508:1:void __static_initialization_and_destruction_0(int, int)	16	static
-search.cpp:508:1:cpp)	8	static
-search.cpp:508:1:cpp)	8	static
+search.cpp:526:1:void __static_initialization_and_destruction_0(int, int)	16	static
+search.cpp:526:1:cpp)	8	static
+search.cpp:526:1:cpp)	8	static

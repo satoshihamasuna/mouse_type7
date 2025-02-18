@@ -85,7 +85,7 @@ namespace Mode
 
 						  for(int i = 0;i < 1;i++)
 						  {
-						  motion->exe_Motion_search_turn( &param_L90_search);
+						  motion->exe_Motion_search_turn( &param_L90_search_320);
 
 						  }
 						  motion->exe_Motion_straight(45.0,6.0,0.32,0.0,&search_sp_gain,&search_om_gain);
@@ -113,7 +113,7 @@ namespace Mode
 
 						  for(int i = 0;i < 1;i++)
 						  {
-						  motion->exe_Motion_search_turn( &param_R90_search);
+						  motion->exe_Motion_search_turn( &param_R90_search_320);
 
 						  }
 						  motion->exe_Motion_straight(45.0,6.0,0.32,0.0,&search_sp_gain,&search_om_gain);

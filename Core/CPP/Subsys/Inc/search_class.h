@@ -51,7 +51,9 @@ class Search
 		t_bool full_search			= False;
 		t_search_priority search_priority = priority_first;
 
-
+		t_straight_param search_st_param = st_param_320;
+		t_param param_L90_search = param_L90_search_320;
+		t_param param_R90_search = param_R90_search_320;
 
 	public:
 		int32_t return_search_time()	{		return Interrupt::getInstance().return_time_count() - search_start_time;	    };
@@ -114,6 +116,13 @@ class Search
 			search_priority     = priority_second;
 			reset_search_time();
 			return search_adachi_acc(start_pos,goal_pos,goal_size,_wall,_map,motion );
+		}
+
+		void search_param_init()
+		{
+			search_st_param = st_param_320;
+			param_L90_search = param_L90_search_320;
+			param_R90_search = param_R90_search_320;
 		}
 
 		t_bool i_am_goal(int x,int y,int gx,int gy,int goal_size);

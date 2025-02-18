@@ -19,7 +19,6 @@
 
 #define ALLOW_SIDE_DIFF 15.0
 
-const  t_straight_param *search_st_param = &st_param_320;
 
 t_bool Search::i_am_goal(int x,int y,int gx,int gy,int goal_size){
 	t_bool flag = False;
@@ -63,10 +62,10 @@ t_exeStatus Search::updateMap_half_straight(int x, int y,t_position expand_end,i
 {
 	t_exeStatus result;
 	if(expand_end.x == 0 && expand_end.y == 0)
-		motion->Init_Motion_search_straight(45.0+15.0, search_st_param->param->acc, search_st_param->param->max_velo, search_st_param->param->max_velo);
+		motion->Init_Motion_search_straight(45.0+15.0, search_st_param.param->acc, search_st_param.param->max_velo, search_st_param.param->max_velo);
 
 	else
-		motion->Init_Motion_search_straight(45.0, search_st_param->param->acc, search_st_param->param->max_velo, search_st_param->param->max_velo);
+		motion->Init_Motion_search_straight(45.0, search_st_param.param->acc, search_st_param.param->max_velo, search_st_param.param->max_velo);
 
 	update_map(x, y, expand_end, size, mask,_map);
 	result = motion->execute_Motion();
@@ -76,7 +75,7 @@ t_exeStatus Search::updateMap_half_straight(int x, int y,t_position expand_end,i
 t_exeStatus Search::updateMap_half_straight_and_stop(int x, int y,t_position expand_end,int size,int mask,make_map *_map,Motion *motion)
 {
 	t_exeStatus result;
-	motion->Init_Motion_straight(45.0, search_st_param->param->acc, search_st_param->param->max_velo, 0.0f);
+	motion->Init_Motion_straight(45.0, search_st_param.param->acc, search_st_param.param->max_velo, 0.0f);
 	update_map(x, y, expand_end, size, mask,_map);
 	result = motion->execute_Motion();
 	return result;
@@ -85,7 +84,7 @@ t_exeStatus Search::updateMap_half_straight_and_stop(int x, int y,t_position exp
 t_exeStatus Search::updateMap_straight(int x, int y,t_position expand_end,int size,int mask,make_map *_map,Motion *motion)
 {
 	t_exeStatus result;
-	motion->Init_Motion_search_straight(90.0, search_st_param->param->acc, search_st_param->param->max_velo, search_st_param->param->max_velo);
+	motion->Init_Motion_search_straight(90.0, search_st_param.param->acc, search_st_param.param->max_velo, search_st_param.param->max_velo);
 	update_map(x, y, expand_end, size, mask,_map);
 	result = motion->execute_Motion();
 	return result;
@@ -93,6 +92,7 @@ t_exeStatus Search::updateMap_straight(int x, int y,t_position expand_end,int si
 t_exeStatus Search::updateMap_left_turn(int x, int y,t_position expand_end,int size,int mask,make_map *_map,Motion *motion)
 {
 	t_exeStatus result;
+	//motion->Init_Motion_search_turn(&param_L90_search_320);
 	motion->Init_Motion_search_turn(&param_L90_search);
 	update_map(x, y, expand_end, size, mask,_map);
 	result = motion->execute_Motion();
@@ -101,6 +101,7 @@ t_exeStatus Search::updateMap_left_turn(int x, int y,t_position expand_end,int s
 t_exeStatus Search::updateMap_right_turn(int x, int y,t_position expand_end,int size,int mask,make_map *_map,Motion *motion)
 {
 	t_exeStatus result;
+	//motion->Init_Motion_search_turn(&param_R90_search_320);
 	motion->Init_Motion_search_turn(&param_R90_search);
 	update_map(x, y, expand_end, size, mask,_map);
 	result = motion->execute_Motion();
@@ -127,7 +128,7 @@ t_exeStatus Search::turn_right_process(t_position my_position,t_position tmp_my_
 
 		result = motion->exe_Motion_pivot_turn(DEG2RAD(-180.0f), -40.0*PI, -4.0*PI);
 
-		result = motion->exe_Motion_straight(45.0, search_st_param->param->acc, search_st_param->param->max_velo, search_st_param->param->max_velo);
+		result = motion->exe_Motion_straight(45.0, search_st_param.param->acc, search_st_param.param->max_velo, search_st_param.param->max_velo);
 	}
 	else if(_wall->get_WallState(my_position) == WALL && ABS(ir_sens->sen_fr.distance - ir_sens->sen_fl.distance) >= ALLOW_SIDE_DIFF)
 	{
@@ -140,7 +141,7 @@ t_exeStatus Search::turn_right_process(t_position my_position,t_position tmp_my_
 
 		result = motion->exe_Motion_pivot_turn(DEG2RAD(-90.0f), -40.0*PI, -4.0*PI);
 
-		result = motion->exe_Motion_straight(45.0, search_st_param->param->acc, search_st_param->param->max_velo, search_st_param->param->max_velo);
+		result = motion->exe_Motion_straight(45.0, search_st_param.param->acc, search_st_param.param->max_velo, search_st_param.param->max_velo);
 	}
 	else
 	{
@@ -169,7 +170,7 @@ t_exeStatus Search::turn_left_process (	t_position my_position,t_position tmp_my
 
 		result = motion->exe_Motion_pivot_turn( DEG2RAD(180.0f), 40.0*PI, 4.0*PI);
 
-		result = motion->exe_Motion_straight(45.0, search_st_param->param->acc, search_st_param->param->max_velo, search_st_param->param->max_velo);
+		result = motion->exe_Motion_straight(45.0, search_st_param.param->acc, search_st_param.param->max_velo, search_st_param.param->max_velo);
 	}
 	else if(_wall->get_WallState(my_position) == WALL && ABS(ir_sens->sen_fr.distance - ir_sens->sen_fl.distance) >= ALLOW_SIDE_DIFF)
 	{
@@ -181,7 +182,7 @@ t_exeStatus Search::turn_left_process (	t_position my_position,t_position tmp_my
 		}
 		result = motion->exe_Motion_pivot_turn(DEG2RAD(90.0f), 40.0*PI, 4.0*PI);
 
-		result = motion->exe_Motion_straight(45.0, search_st_param->param->acc, search_st_param->param->max_velo, search_st_param->param->max_velo);
+		result = motion->exe_Motion_straight(45.0, search_st_param.param->acc, search_st_param.param->max_velo, search_st_param.param->max_velo);
 	}
 	else
 	{
@@ -193,8 +194,6 @@ t_exeStatus Search::turn_left_process (	t_position my_position,t_position tmp_my
 t_exeStatus Search::turn_rear_process (	t_position my_position,t_position tmp_my_pos,t_position goal_pos,int goal_size,int mask,
 										wall_class *_wall,make_map *_map,Motion *motion)
 {
-//	t_exeStatus result;
-//	result = updateMap_half_straight_and_stop(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, 0x01,_map,motion);
 	IrSensTask *ir_sens = (_wall->return_irObj());
 	float length = 45.0;
 	if(_wall->get_WallState(my_position) == WALL)
@@ -203,7 +202,7 @@ t_exeStatus Search::turn_rear_process (	t_position my_position,t_position tmp_my
 	}
 
 	t_exeStatus result;
-	motion->Init_Motion_straight(length , search_st_param->param->acc, search_st_param->param->max_velo, 0.0f);
+	motion->Init_Motion_straight(length , search_st_param.param->acc, search_st_param.param->max_velo, 0.0f);
 	update_map(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, mask,_map);
 	result = motion->execute_Motion();
 
@@ -244,11 +243,11 @@ t_exeStatus Search::turn_rear_process (	t_position my_position,t_position tmp_my
 	if(_wall->get_WallState(r_pos) == WALL && _wall->get_WallState(l_pos) == WALL)
 	{
 		result = motion->exe_Motion_backward();
-		result = motion->exe_Motion_straight(45.0 + 15.0, search_st_param->param->acc, search_st_param->param->max_velo, search_st_param->param->max_velo);
+		result = motion->exe_Motion_straight(45.0 + 15.0, search_st_param.param->acc, search_st_param.param->max_velo, search_st_param.param->max_velo);
 	}
 	else
 	{
-		result = motion->exe_Motion_straight(45.0 + 0.0, search_st_param->param->acc, search_st_param->param->max_velo, search_st_param->param->max_velo);
+		result = motion->exe_Motion_straight(45.0 + 0.0, search_st_param.param->acc, search_st_param.param->max_velo, search_st_param.param->max_velo);
 	}
 	return result;
 }
@@ -355,7 +354,7 @@ t_position Search::search_adachi(	t_position start_pos,t_position goal_pos,int g
 	if(motion->motion_exeStatus_get() != error)
 	{
 		_wall->set_wall(my_position);
-		motion->exe_Motion_straight( 45.0, search_st_param->param->acc, search_st_param->param->max_velo, 0.0f);
+		motion->exe_Motion_straight( 45.0, search_st_param.param->acc, search_st_param.param->max_velo, 0.0f);
 	}
 	HAL_Delay(100);
 	motion->Motion_end();
@@ -467,16 +466,34 @@ t_position Search::search_adachi_acc(	t_position start_pos,t_position goal_pos,i
 		switch(direction | next_acc_flag)
 		{
 			case Front:
-				motion->Init_Motion_search_straight(90.0, 6.0, motion->return_vehicleObj()->ideal.velo.get(), search_st_param->param->max_velo);
+				if(goal_pos.x == 0 && goal_pos.y == 0)
+				{
+					if(return_search_time() >= 0)
+					{
+						search_st_param = st_param_280;
+						param_L90_search = param_L90_search_280;
+						param_R90_search = param_R90_search_280;
+					}
+				}
+
+				motion->Init_Motion_search_straight(90.0, 6.0, motion->return_vehicleObj()->ideal.velo.get(), search_st_param.param->max_velo);
 				update_map(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, mask,_map);
 				motion->execute_Motion();
 				break;
 			case Front|0x80:
-
+				if(goal_pos.x == 0 && goal_pos.y == 0)
+				{
+					if(return_search_time() >= 0)
+					{
+						search_st_param = st_param_280;
+						param_L90_search = param_L90_search_280;
+						param_R90_search = param_R90_search_280;
+					}
+				}
 				if(next_acc_dir == Front)
 					motion->Init_Motion_search_straight(90.0, 6.0, 0.60, 0.60f);
 				else
-					motion->Init_Motion_search_straight(90.0, 6.0, motion->return_vehicleObj()->ideal.velo.get(), search_st_param->param->max_velo);
+					motion->Init_Motion_search_straight(90.0, 6.0, motion->return_vehicleObj()->ideal.velo.get(), search_st_param.param->max_velo);
 
 				update_map(goal_pos.x, goal_pos.y, tmp_my_pos, goal_size, mask,_map);
 				motion->execute_Motion();
@@ -499,7 +516,8 @@ t_position Search::search_adachi_acc(	t_position start_pos,t_position goal_pos,i
 	if(motion->motion_exeStatus_get() != error)
 	{
 		_wall->set_wall(my_position);
-		motion->exe_Motion_straight( 45.0, search_st_param->param->acc, search_st_param->param->max_velo, 0.0f);
+		//motion->exe_Motion_straight( 45.0, search_st_param.param->acc, search_st_param.param->max_velo, 0.0f);
+		motion->exe_Motion_straight( 45.0, search_st_param.param->acc, motion->return_vehicleObj()->ideal.velo.get(), 0.0f);
 	}
 	HAL_Delay(100);
 	motion->Motion_end();

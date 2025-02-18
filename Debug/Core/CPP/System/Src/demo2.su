@@ -16,13 +16,14 @@ ctrl_task.h:318:15:IrSensTask* Motion::return_irObj()	16	static
 ctrl_task.h:331:3:CtrlTask::CtrlTask(Vehicle*, IrSensTask*, int)	24	static
 ctrl_task.h:349:3:CtrlTask_type7::CtrlTask_type7(Vehicle*, IrSensTask*)	24	static
 interrupt.h:32:12:uint32_t Interrupt::return_time_count()	16	static
-search_class.h:58:8:void Search::reset_search_time()	16	static
-search_class.h:110:14:t_position Search::search_adachi_3_acc(t_position, t_position, int, wall_class*, make_map*, Motion*)	48	static
+search_class.h:60:8:void Search::reset_search_time()	16	static
+search_class.h:112:14:t_position Search::search_adachi_3_acc(t_position, t_position, int, wall_class*, make_map*, Motion*)	48	static
+search_class.h:121:8:void Search::search_param_init()	16	static
 make_path.h:95:3:calcRunTime::calcRunTime()	16	static
 make_path.h:146:3:Dijkstra::Dijkstra(wall_class*)	16	static
 path_follow.h:34:8:void path_follow_class::set_path_follow_gain(float, float)	24	static
 search_class.h:28:7:Search::Search()	16	static
-demo2.cpp:42:6:void Mode::Demo2()	35440	static
+demo2.cpp:42:6:void Mode::Demo2()	35480	static
 controller.h:19:7:constexpr PID_Controller::PID_Controller()	16	static
 controller.h:37:7:constexpr mouse_Controller::mouse_Controller()	16	static
 vehicle.h:60:7:Vehicle::Vehicle()	16	static

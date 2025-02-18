@@ -104,7 +104,7 @@ void Demo2()
 					}
 
 					Indicate_LED(mode|param);
-
+					solve_maze.search_param_init();
 					t_position return_pos = solve_maze.search_adachi_3_acc(start, goal, goal_size, &wall_data, &map_data,motion);
 					if(motion->motion_exeStatus_get() == error)
 					{
