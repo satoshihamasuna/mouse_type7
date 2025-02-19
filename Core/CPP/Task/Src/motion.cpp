@@ -523,6 +523,13 @@ void Motion::SetIdeal_straight()
 			motion_exeStatus_set(complete);
 		}
 	}
+
+	//if(motion_plan.end_length.get() > 50.0f)
+	//{
+		vehicle->ideal.radian.set(0.0f);
+	//	vehicle->ego.radian.set(0.0f);
+	//}
+
 	Adjust_wall_corner();
 	if(motion_plan.end_length.get() < 50.0f) ir_sens->DisableIrSens();
 	else									 SetIdeal_wall_control();
@@ -588,6 +595,7 @@ void Motion::SetIdeal_backward()
 void Motion::SetIdeal_diagonal		( )
 {
 	motion_state_set(DIAGONAL_STATE);
+
 	float offset = 0.0f;
 	if(motion_plan.max_velo.get() > motion_plan.end_velo.get())
 	{
@@ -754,6 +762,7 @@ void Motion::SetIdeal_turn_in		( )
 	if(motion_plan.turn_state.get() == Prev_Turn)
 	{
 		motion_state_set(STRAIGHT_STATE);
+		;
 		if(vehicle->ego.length.get() <= (turn_motion_param.param->Lstart + motion_plan.fix_prev_run.get()))
 		{
 			if(ir_sens->Division_Wall_Correction() == True)
@@ -864,6 +873,7 @@ void Motion::SetIdeal_turn_in		( )
 	if(motion_plan.turn_state.get() == Post_Turn)
 	{
 		motion_state_set(DIAGONAL_STATE);
+
 		if(vehicle->ego.length.get() <=  (turn_motion_param.param->Lend + motion_plan.fix_post_run.get()))
 		{
 			vehicle->ideal.accel.set(motion_plan.deccel.get());
@@ -980,6 +990,7 @@ void Motion::SetIdeal_turn_out		( ){
 	if(motion_plan.turn_state.get() == Prev_Turn)
 	{
 		motion_state_set(DIAGONAL_STATE);
+
 		if(vehicle->ego.length.get() <= (turn_motion_param.param->Lstart + motion_plan.fix_prev_run.get()))
 		{
 			if(ir_sens->Division_Wall_Correction() == True)
@@ -1204,6 +1215,7 @@ void Motion::SetIdeal_long_turn		( )
 	if(motion_plan.turn_state.get() == Prev_Turn)
 	{
 		motion_state_set(STRAIGHT_STATE);
+		;
 		if(vehicle->ego.length.get() <= (turn_motion_param.param->Lstart + motion_plan.fix_prev_run.get()))
 		{
 			if(ir_sens->Division_Wall_Correction() == True)
@@ -1318,6 +1330,7 @@ void Motion::SetIdeal_long_turn		( )
 	if(motion_plan.turn_state.get() == Post_Turn)
 	{
 		motion_state_set(STRAIGHT_STATE);
+		;
 		if(vehicle->ego.length.get() <=  (turn_motion_param.param->Lend + motion_plan.fix_post_run.get()))
 		{
 			vehicle->ideal.accel.set(motion_plan.deccel.get());
@@ -1412,6 +1425,7 @@ void Motion::SetIdeal_turn_v90		( )
 	if(motion_plan.turn_state.get() == Prev_Turn)
 	{
 		motion_state_set(DIAGONAL_STATE);
+
 		if(vehicle->ego.length.get() <= (turn_motion_param.param->Lstart + motion_plan.fix_prev_run.get()))
 		{
 			if(ir_sens->Division_Wall_Correction() == True)
@@ -1484,6 +1498,7 @@ void Motion::SetIdeal_turn_v90		( )
 	if(motion_plan.turn_state.get() == turn_motion_param.param->turn_dir)
 	{
 		motion_state_set(SLATURN_STATE);
+
 		if((run_time_ms_get() - turn_start_time_ms) < motion_plan.turn_time_ms.get())
 		{
 			vehicle->ideal.velo.set(turn_motion_param.param->velo);
@@ -1550,6 +1565,7 @@ void Motion::SetIdeal_turn_v90		( )
 	if(motion_plan.turn_state.get() == Post_Turn)
 	{
 		motion_state_set(DIAGONAL_STATE);
+
 		if(vehicle->ego.length.get() <=  (turn_motion_param.param->Lend + motion_plan.fix_post_run.get()))
 		{
 			float beta = vehicle->ideal.turn_slip_theta.get();
@@ -1665,6 +1681,7 @@ void Motion::SetIdeal_long_turn_v90		( )
 	if(motion_plan.turn_state.get() == Prev_Turn)
 	{
 		motion_state_set(DIAGONAL_STATE);
+
 		if(vehicle->ego.length.get() <= (turn_motion_param.param->Lstart + motion_plan.fix_prev_run.get()))
 		{
 			if(ir_sens->Division_Wall_Correction() == True && vehicle->ego.length.get() < 10.0)
@@ -1779,6 +1796,7 @@ void Motion::SetIdeal_long_turn_v90		( )
 	if(motion_plan.turn_state.get() == Post_Turn)
 	{
 		motion_state_set(DIAGONAL_STATE);
+
 		if(vehicle->ego.length.get() <=  (turn_motion_param.param->Lend + motion_plan.fix_post_run.get()))
 		{
 			float beta = vehicle->ideal.turn_slip_theta.get();

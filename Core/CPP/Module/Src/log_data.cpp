@@ -41,8 +41,8 @@ void LogData::indicate_data()
 		printf("%s,","om_feedback");
 		printf("%s,","om_feedforward");
 
-		printf("%s,","sen_fl.distance");
-		printf("%s,","sen_fr.distance");
+		printf("%s,","sen_l.avg_distance");
+		printf("%s,","sen_r.avg_distance");
 		printf("%s,","sen_l.distance");
 		printf("%s,","sen_r.distance");
 
@@ -200,8 +200,8 @@ void LogData::logging()
 
 		if(mode == 0)
 		{
-			data[14][(data_count/LOG_DATA_PRIOD)%data_size] =  float_to_half(IrSensTask_type7::getInstance().sen_fl.distance);
-			data[15][(data_count/LOG_DATA_PRIOD)%data_size] =  float_to_half(IrSensTask_type7::getInstance().sen_fr.distance);
+			data[14][(data_count/LOG_DATA_PRIOD)%data_size] =  float_to_half(IrSensTask_type7::getInstance().sen_l.avg_distance);
+			data[15][(data_count/LOG_DATA_PRIOD)%data_size] =  float_to_half(IrSensTask_type7::getInstance().sen_r.avg_distance);
 			data[16][(data_count/LOG_DATA_PRIOD)%data_size] =  float_to_half(IrSensTask_type7::getInstance().sen_l.distance);
 			data[17][(data_count/LOG_DATA_PRIOD)%data_size] =  float_to_half(IrSensTask_type7::getInstance().sen_r.distance);
 			data[18][(data_count/LOG_DATA_PRIOD)%data_size] =  float_to_half(Vehicle_type7::getInstance().ego.x_point.get());

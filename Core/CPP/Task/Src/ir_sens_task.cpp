@@ -224,6 +224,17 @@ void IrSensTask::IrSensorDistanceSet()
 	sen_fr.avg_distance = Sensor_CalcDistance(sensor_fr,(int16_t)(sen_fr.value_sum/20));
 	sen_l.avg_distance = Sensor_CalcDistance(sensor_sl,(int16_t)(sen_l.value_sum/20));
 	sen_r.avg_distance = Sensor_CalcDistance(sensor_sr,(int16_t)(sen_r.value_sum/20));
+
+	sen_fl.prev_diff = sen_fl.diff;
+	sen_fr.prev_diff = sen_fr.diff;
+	sen_l.prev_diff = sen_l.diff;
+	sen_r.prev_diff = sen_r.diff;
+
+	sen_fl.diff = sen_fl.distance - sen_fl.avg_distance;
+	sen_fr.diff = sen_fr.distance - sen_fr.avg_distance;
+	sen_l.diff = sen_l.distance - sen_l.avg_distance;
+	sen_r.diff = sen_r.distance - sen_r.avg_distance;
+
 }
 
 void IrSensTask::IrSensorWallSet()
@@ -243,6 +254,15 @@ void IrSensTask::IrSensorWallSet()
 		r_wall_corner = True;
 		r_corner_time = 0;
 	}
+	else if(sen_r.is_wall == False && sen_r.prev_is_wall == True
+		&& (sen_r.prev_diff) < 2.0 && (sen_r.diff) > 2.0)
+	{
+		if(irsens_motion == STRAIGHT_IRSENS)
+		{
+			r_wall_corner = True;
+			r_corner_time = 0;
+		}
+	}
 	else
 	{
 		r_wall_corner = False;
@@ -256,6 +276,15 @@ void IrSensTask::IrSensorWallSet()
 		l_wall_corner = True;
 		l_corner_time = 0;
 	}
+	else if(sen_l.is_wall == False && sen_l.prev_is_wall == True
+		&& (sen_l.prev_diff) < 2.0 && (sen_l.diff) > 2.0)
+	{
+		if(irsens_motion == STRAIGHT_IRSENS)
+		{
+			l_wall_corner = True;
+			l_corner_time = 0;
+		}
+	}
 	else
 	{
 		l_wall_corner = False;
@@ -265,8 +294,8 @@ void IrSensTask::IrSensorWallSet()
 
 	sen_fr.control_cnt = (sen_fr.is_wall == True) ? sen_fr.control_cnt + 1 : 0;
 	sen_fl.control_cnt = (sen_fl.is_wall == True) ? sen_fl.control_cnt + 1 : 0;
-	sen_r.control_cnt = (sen_r.is_wall == True && ABS(sen_r.distance - sen_r.avg_distance) < 1.0) ? sen_r.control_cnt + 1 : 0;
-	sen_l.control_cnt = (sen_l.is_wall == True && ABS(sen_l.distance - sen_l.avg_distance) < 1.0) ? sen_l.control_cnt + 1 : 0;
+	sen_r.control_cnt = (sen_r.is_wall == True && ABS(sen_r.distance - sen_r.avg_distance) < 0.5) ? sen_r.control_cnt + 1 : 0;
+	sen_l.control_cnt = (sen_l.is_wall == True && ABS(sen_l.distance - sen_l.avg_distance) < 0.5) ? sen_l.control_cnt + 1 : 0;
 
 	//sen_r.control_cnt = (sen_r.is_wall == True ) ? sen_r.control_cnt + 1 : 0;
 	//sen_l.control_cnt = (sen_l.is_wall == True ) ? sen_l.control_cnt + 1 : 0;

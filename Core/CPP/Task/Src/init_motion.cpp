@@ -644,6 +644,7 @@ void Motion::Init_Motion_turn_in		(const t_param *turn_param,t_run_pattern run_p
 	run_time_ms_reset();
 	run_time_limit_ms_reset();
 
+	ir_sens->EnableIrSensStraight();
 	ir_sens->Division_Wall_Correction_Reset();
 
 	error_counter_reset();
@@ -744,7 +745,8 @@ void Motion::Init_Motion_turn_out		(const t_param *turn_param,t_run_pattern run_
 	run_time_ms_reset();
 	run_time_limit_ms_reset();
 
-	ir_sens->EnableIrSensStraight();
+	//ir_sens->EnableIrSensStraight();
+	ir_sens->EnableIrSensDiagonal();
 	ir_sens->Division_Wall_Correction_Reset();
 
 	error_counter_reset();
@@ -965,7 +967,8 @@ void Motion::Init_Motion_turn_v90		(const t_param *turn_param,t_run_pattern run_
 	run_time_ms_reset();
 	run_time_limit_ms_reset();
 
-	ir_sens->EnableIrSensStraight();
+	//ir_sens->EnableIrSensStraight();
+	ir_sens->EnableIrSensDiagonal();
 	ir_sens->Division_Wall_Correction_Reset();
 
 	error_counter_reset();
@@ -1242,6 +1245,9 @@ void Motion::Init_Motion_stop_brake	(float set_time,const t_pid_gain *sp_gain  ,
 	motion_state_set(BRAKE_STATE);
 	run_time_ms_reset();
 	run_time_limit_ms_set(set_time);
+
+	ir_sens->EnableIrSensStraight();
+	ir_sens->Division_Wall_Correction_Reset();
 
 	error_counter_reset();
 }

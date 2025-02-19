@@ -36,6 +36,8 @@ typedef struct{
 	int16_t value_log[20];
 	int value_sum;
 	float avg_distance;
+	float diff;
+	float prev_diff;
 }t_sensor;
 
 

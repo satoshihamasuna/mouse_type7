@@ -128,6 +128,7 @@ namespace Mode
 					}
 					break;
 				case ENABLE|0x02:
+				/*
 					if(irsens->IrSensor_Avg() > 2500){
 						  for(int i = 0;i < 11;i++)
 						  {
@@ -167,6 +168,28 @@ namespace Mode
 						  enable = 0x00;
 						  HAL_Delay(500);
 					}
+					*/
+				   if(irsens->IrSensor_Avg() > 2500){
+						  for(int i = 0;i < 11;i++)
+						  {
+							  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
+							  HAL_Delay(50);
+						  }
+						  KalmanFilter::getInstance().filter_init();
+						  motion->Motion_start();
+						  LogData::getInstance().data_count = 0;
+						  LogData::getInstance().log_enable = True;
+						  motion->exe_Motion_straight( 270.0,6.0,0.32,0.0,&search_sp_gain,&search_om_gain);
+
+						  motion->Motion_end();
+						  HAL_Delay(200);
+
+						  LogData::getInstance().log_enable = False;
+						  enable = 0x00;
+						  HAL_Delay(500);
+
+					}
+
 					break;
 				case ENABLE|0x03:
 					if(irsens->IrSensor_Avg() > 2500){
