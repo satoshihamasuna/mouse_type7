@@ -32,6 +32,8 @@ void wall_class::init_maze(){
 
 			wall[0][0].east = wall[1][0].west = WALL;				//スタートの東側の壁を追加
 
+	wall_histry.histry_init();
+
 }
 
 t_bool wall_class::is_unknown(uint16_t x,uint16_t y)
@@ -54,6 +56,9 @@ void wall_class::set_wall(t_position pos)
     e_write = 0;
     w_write = 0;
 	//自分の方向に応じて書き込むデータを生成
+
+    t_bool set_histry = is_unknown(pos.x, pos.y);
+
 	//CONV_SEN2WALL()はmacro.hを参照
 	switch(pos.dir){
 		case North:	//北を向いている時
@@ -137,7 +142,10 @@ void wall_class::set_wall(t_position pos)
 		w_write			 = VWALL;
 	}
 
-
+	if(set_histry == True)
+	{
+		wall_histry.histry_set(pos.x, pos.y, wall[pos.x][pos.y]);
+	}
 	//wall[x][y].north = n_write;
 	//wall[x][y].south = s_write;	//実際に壁情報を書き込み
 	//wall[x][y].east  = e_write;	//実際に壁情報を書き込み

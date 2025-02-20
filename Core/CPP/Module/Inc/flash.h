@@ -17,4 +17,9 @@ void write_save_data(wall_class *wall_property);
 void read_save_data(wall_class *wall_property);
 //ここをポインタのポインタに変更する
 
+void read_histry_flash(wall_histry_class *_wall_histry);
+
+void write_histry_flash(wall_histry_class *_wall_histry);
+
+
 #endif /* CPP_INC_FLASH_H_ */
