@@ -12,7 +12,9 @@ CPP_SRCS += \
 ../Core/CPP/System/Src/interface_check.cpp \
 ../Core/CPP/System/Src/main.cpp \
 ../Core/CPP/System/Src/mode.cpp \
-../Core/CPP/System/Src/myshell.cpp 
+../Core/CPP/System/Src/myshell.cpp \
+../Core/CPP/System/Src/search_time_select.cpp \
+../Core/CPP/System/Src/wall_histry_check.cpp 
 
 OBJS += \
 ./Core/CPP/System/Src/debug.o \
@@ -23,7 +25,9 @@ OBJS += \
 ./Core/CPP/System/Src/interface_check.o \
 ./Core/CPP/System/Src/main.o \
 ./Core/CPP/System/Src/mode.o \
-./Core/CPP/System/Src/myshell.o 
+./Core/CPP/System/Src/myshell.o \
+./Core/CPP/System/Src/search_time_select.o \
+./Core/CPP/System/Src/wall_histry_check.o 
 
 CPP_DEPS += \
 ./Core/CPP/System/Src/debug.d \
@@ -34,7 +38,9 @@ CPP_DEPS += \
 ./Core/CPP/System/Src/interface_check.d \
 ./Core/CPP/System/Src/main.d \
 ./Core/CPP/System/Src/mode.d \
-./Core/CPP/System/Src/myshell.d 
+./Core/CPP/System/Src/myshell.d \
+./Core/CPP/System/Src/search_time_select.d \
+./Core/CPP/System/Src/wall_histry_check.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
@@ -56,4 +62,8 @@ Core/CPP/System/Src/mode.o: ../Core/CPP/System/Src/mode.cpp
 	arm-none-eabi-g++ "$<" -mcpu=cortex-m4 -std=gnu++14 -g3 -DUSE_HAL_DRIVER -DSTM32F411xE -DDEBUG -c -I../Drivers/CMSIS/Include -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Core/Inc -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I"D:/mouse_type7_kai/mouse_type7/Drivers/ntshell-v0.3.1/src/lib" -O0 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-threadsafe-statics -fno-use-cxa-atexit -Wall -fstack-usage -MMD -MP -MF"Core/CPP/System/Src/mode.d" -MT"$@" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "$@"
 Core/CPP/System/Src/myshell.o: ../Core/CPP/System/Src/myshell.cpp
 	arm-none-eabi-g++ "$<" -mcpu=cortex-m4 -std=gnu++14 -g3 -DUSE_HAL_DRIVER -DSTM32F411xE -DDEBUG -c -I../Drivers/CMSIS/Include -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Core/Inc -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I"D:/mouse_type7_kai/mouse_type7/Drivers/ntshell-v0.3.1/src/lib" -O0 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-threadsafe-statics -fno-use-cxa-atexit -Wall -fstack-usage -MMD -MP -MF"Core/CPP/System/Src/myshell.d" -MT"$@" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "$@"
+Core/CPP/System/Src/search_time_select.o: ../Core/CPP/System/Src/search_time_select.cpp
+	arm-none-eabi-g++ "$<" -mcpu=cortex-m4 -std=gnu++14 -g3 -DUSE_HAL_DRIVER -DSTM32F411xE -DDEBUG -c -I../Drivers/CMSIS/Include -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Core/Inc -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I"D:/mouse_type7_kai/mouse_type7/Drivers/ntshell-v0.3.1/src/lib" -O0 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-threadsafe-statics -fno-use-cxa-atexit -Wall -fstack-usage -MMD -MP -MF"Core/CPP/System/Src/search_time_select.d" -MT"$@" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "$@"
+Core/CPP/System/Src/wall_histry_check.o: ../Core/CPP/System/Src/wall_histry_check.cpp
+	arm-none-eabi-g++ "$<" -mcpu=cortex-m4 -std=gnu++14 -g3 -DUSE_HAL_DRIVER -DSTM32F411xE -DDEBUG -c -I../Drivers/CMSIS/Include -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Core/Inc -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I"D:/mouse_type7_kai/mouse_type7/Drivers/ntshell-v0.3.1/src/lib" -O0 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-threadsafe-statics -fno-use-cxa-atexit -Wall -fstack-usage -MMD -MP -MF"Core/CPP/System/Src/wall_histry_check.d" -MT"$@" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "$@"
 

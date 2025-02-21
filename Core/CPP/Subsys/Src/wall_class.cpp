@@ -191,5 +191,82 @@ t_wall_state wall_class::get_WallState(t_position pos)
 	}
 }
 
+void wall_class::histry2wall_append()
+{
+	for(int i = 0; i < MAZE_SIZE;i++)
+	{
+		if(i < wall_histry.get_histry_cnt())
+		{
+			if(wall_histry.histry_wall[i].x >= 0 && wall_histry.histry_wall[i].y >= 0)
+			{
+				uint16_t x = (uint16_t)(wall_histry.histry_wall[i].x);
+				uint16_t y = (uint16_t)(wall_histry.histry_wall[i].y);
+				if(is_unknown(x, y) == True)
+				{
+					wall[x][y].north = wall_histry.histry_wall[i].wall.north;
+					wall[x][y].east = wall_histry.histry_wall[i].wall.east;
+					wall[x][y].south = wall_histry.histry_wall[i].wall.south;
+					wall[x][y].west = wall_histry.histry_wall[i].wall.west;
+
+
+					if(y< MAZE_SIZE_Y-1)	//範囲チェック
+					{
+						wall[x][y+1].south =  wall_histry.histry_wall[i].wall.north;	//反対側から見た壁を書き込み
+					}
+
+					if(x < MAZE_SIZE_X-1)	//範囲チェック
+					{
+						wall[x+1][y].west = wall_histry.histry_wall[i].wall.east;	//反対側から見た壁を書き込み
+					}
+
+					if(y > 0)	//範囲チェック
+					{
+				        wall[x][y-1].north = wall_histry.histry_wall[i].wall.south;	//反対側から見た壁を書き込み
+					}
+
+					if(x > 0)	//範囲チェック
+					{
+						wall[x-1][y].east =  wall_histry.histry_wall[i].wall.west;	//反対側から見た壁を書き込み
+					}
+				}
+			}
+		}
+	}
+}
+
+void wall_class::indicate_wall()
+{
+	for( int y = MAZE_SIZE_Y - 1 ; y >= 0 ; y-- ){
+		for(int x = 0; x < MAZE_SIZE_X ; x++ ){
+			if(wall[x][y].north == WALL)// || wall_property->wall[x][y].north == VWALL)
+			{	printf("+---");	HAL_Delay(10);	}
+			else if(wall[x][y].north == VWALL)
+			{
+				printf("\x1b[31m");
+				printf("+---");	HAL_Delay(10);
+				printf("\x1b[39m");
+			}
+			else							{	printf("+   "); HAL_Delay(10);	}
+			//if(x == MAZE_SIZE_X - 1)		{	printf("+\n");	HAL_Delay(5);	}
+		}
+		printf("+\n");	HAL_Delay(10);
+
+		for(int x = 0; x < MAZE_SIZE_X ; x++ ){
+			if(wall[x][y].west == WALL) //|| wall_property->wall[x][y].west == VWALL)
+			{	printf("|   ");	HAL_Delay(10);	}
+			else if(wall[x][y].west == VWALL)
+			{
+				printf("\x1b[31m");
+				printf("|   ");	HAL_Delay(10);
+				printf("\x1b[39m");
+			}
+			else							{	printf("    ");	HAL_Delay(10);	}
+			//if(x == MAZE_SIZE_X - 1)		{	printf("|\n");				HAL_Delay(5);	}
+		}
+		printf("|\n");				HAL_Delay(5);
+	}
+	for(int x = 0; x < MAZE_SIZE_X ; x++)	{	printf("+---"); HAL_Delay(5);	}	printf("+\n");
+}
+
 
 

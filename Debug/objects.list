@@ -31,6 +31,8 @@
 "Core/CPP/System/Src/main.o"
 "Core/CPP/System/Src/mode.o"
 "Core/CPP/System/Src/myshell.o"
+"Core/CPP/System/Src/search_time_select.o"
+"Core/CPP/System/Src/wall_histry_check.o"
 "Core/CPP/Task/Src/ctrl_task.o"
 "Core/CPP/Task/Src/init_motion.o"
 "Core/CPP/Task/Src/init_motion2.o"

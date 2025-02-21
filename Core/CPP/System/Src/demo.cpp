@@ -38,6 +38,22 @@
 
 #define ENABLE (0x01 << 4)
 
+void search_error_process(int init_histry_cnt, wall_class *wall_data)
+{
+	if(wall_data->wall_histry.get_histry_cnt() > init_histry_cnt + 10)
+	{
+		wall_data->wall_histry.histry_delete(0x0A);
+		write_histry_flash(&(wall_data->wall_histry));
+	}
+	else if(wall_data->wall_histry.get_histry_cnt() - init_histry_cnt > 0)
+	{
+		int delete_num = wall_data->wall_histry.get_histry_cnt() - init_histry_cnt;
+		wall_data->wall_histry.histry_delete(delete_num);
+		write_histry_flash(&(wall_data->wall_histry));
+	}
+	Mode::indicate_error();
+}
+
 namespace Mode
 {
 void Demo()
@@ -53,8 +69,15 @@ void Demo()
 	IrSensTask *irsens = (CtrlTask_type7::getInstance().return_irObj());
 
 	Search solve_maze;
+	solve_maze.set_search_limit_time((6*60*1000));
+
 	wall_class wall_data(irsens);
 	wall_data.init_maze();
+	wall_data.wall_histry.histry_init();
+	write_wall_WorkRam(&wall_data);
+	write_histry_WorkRam(&(wall_data.wall_histry));
+	int init_histry_cnt = 0;
+
 
 	ring_queue<1024,t_MapNode> maze_q;
 	make_map map_data(&wall_data,&maze_q);
@@ -96,20 +119,27 @@ void Demo()
 					}
 
 					Indicate_LED(mode|param);
+
+					//outward
+					init_histry_cnt =  wall_data.wall_histry.get_histry_cnt();
 					solve_maze.search_param_init();
+					solve_maze.reset_search_time();
 					t_position return_pos = solve_maze.search_adachi_1_acc(start, goal, goal_size, &wall_data, &map_data,motion);
 					if(motion->motion_exeStatus_get() == error)
 					{
-						Mode::indicate_error();
+						search_error_process(init_histry_cnt, &wall_data);
 						enable = 0x00;
 						break;
 					}
 					motion->Motion_end();
 					write_save_data(&wall_data);
+
+					//return
+					init_histry_cnt =  wall_data.wall_histry.get_histry_cnt();
 					solve_maze.search_adachi_2_acc(return_pos, start, 1, &wall_data, &map_data,motion);
 					if(motion->motion_exeStatus_get() == error)
 					{
-						Mode::indicate_error();
+						search_error_process(init_histry_cnt, &wall_data);
 						enable = 0x00;
 						break;
 					}
@@ -125,21 +155,27 @@ void Demo()
 						(i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
 						HAL_Delay(50);
 					}
-
 					Indicate_LED(mode|param);
+
+					//outward
+					init_histry_cnt =  wall_data.wall_histry.get_histry_cnt();
 					solve_maze.search_param_init();
+					solve_maze.reset_search_time();
 					t_position return_pos = solve_maze.search_adachi_1(start, goal, goal_size, &wall_data, &map_data,motion);
 					if(motion->motion_exeStatus_get() == error)
 					{
-						Mode::indicate_error();
+						search_error_process(init_histry_cnt, &wall_data);
 						enable = 0x00;
 						break;
 					}
 					write_save_data(&wall_data);
+
+					//return
+					init_histry_cnt =  wall_data.wall_histry.get_histry_cnt();
 					solve_maze.search_adachi_1(return_pos, start, 1, &wall_data, &map_data,motion);
 					if(motion->motion_exeStatus_get() == error)
 					{
-						Mode::indicate_error();
+						search_error_process(init_histry_cnt, &wall_data);
 						enable = 0x00;
 						break;
 					}
@@ -156,19 +192,27 @@ void Demo()
 					}
 
 					Indicate_LED(mode|param);
+
+					//outward
+					init_histry_cnt =  wall_data.wall_histry.get_histry_cnt();
 					solve_maze.search_param_init();
+					solve_maze.reset_search_time();
 					t_position return_pos = solve_maze.search_adachi_3_acc(start, goal, goal_size, &wall_data, &map_data,motion);
 					if(motion->motion_exeStatus_get() == error)
 					{
-						Mode::indicate_error();
+						search_error_process(init_histry_cnt, &wall_data);
 						enable = 0x00;
 						break;
 					}
 					write_save_data(&wall_data);
+
+					//return
+					init_histry_cnt =  wall_data.wall_histry.get_histry_cnt();
+					solve_maze.reset_search_time();
 					solve_maze.search_adachi_2_acc(return_pos, start, 1, &wall_data, &map_data,motion);
 					if(motion->motion_exeStatus_get() == error)
 					{
-						Mode::indicate_error();
+						search_error_process(init_histry_cnt, &wall_data);
 						enable = 0x00;
 						break;
 					}
@@ -185,19 +229,26 @@ void Demo()
 					}
 
 					Indicate_LED(mode|param);
+
+					//outward
+					init_histry_cnt =  wall_data.wall_histry.get_histry_cnt();
 					solve_maze.search_param_init();
+					solve_maze.reset_search_time();
 					t_position return_pos = solve_maze.search_adachi_3_acc(start, goal, goal_size, &wall_data, &map_data,motion);
 					if(motion->motion_exeStatus_get() == error)
 					{
-						Mode::indicate_error();
+						search_error_process(init_histry_cnt, &wall_data);
 						enable = 0x00;
 						break;
 					}
 					write_save_data(&wall_data);
+
+					//return
+					init_histry_cnt =  wall_data.wall_histry.get_histry_cnt();
 					solve_maze.search_adachi_3_acc(return_pos, start, 1, &wall_data, &map_data,motion);
 					if(motion->motion_exeStatus_get() == error)
 					{
-						Mode::indicate_error();
+						search_error_process(init_histry_cnt, &wall_data);
 						enable = 0x00;
 						break;
 					}
@@ -213,13 +264,32 @@ void Demo()
 						(i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
 						HAL_Delay(50);
 					}
-					wall_data.wall_histry.histry_indicate();
+					Indicate_LED(mode|param);
+
+					run_path.turn_time_set(mode_1000);
+					t_bool flag = False;
+					flag = run_path.check_DijkstraPath(start, Dir_None, goal, MAZE_GOAL_SIZE);
+					if(flag == True)
+					{
+						for(int j = 0;j < 2;j++)
+						{
+						  uint8_t setup = 0x01;
+						  for (int i = 0;i < 8; i++)
+						  {
+							  Indicate_LED(setup << i);
+							  HAL_Delay(50);
+						  }
+						}
+					}
+					else
+					{
+						Mode::indicate_error();
+					}
+					Indicate_LED(mode|param);
 					enable = 0x00;
 			   }
 				break;
 			case ENABLE|0x05:
-				break;
-			case ENABLE|0x06:
 			   if(irsens->IrSensor_Avg() > 2000)
 			   {
 					for(int i = 0;i < 11;i++)
@@ -243,6 +313,19 @@ void Demo()
 					enable = 0x00;
 				}
 				break;
+			case ENABLE|0x06:
+			   if(irsens->IrSensor_Avg() > 2000)
+			   {
+					for(int i = 0;i < 11;i++)
+					{
+						(i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
+						HAL_Delay(50);
+					}
+					int32_t time = Mode::Seach_Time_Select();
+					solve_maze.set_search_limit_time(time);
+					enable = 0x00;
+				}
+				break;
 			case ENABLE|0x07:
 				if(irsens->IrSensor_Avg() > 2000)
 				{
@@ -251,7 +334,7 @@ void Demo()
 						(i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
 						HAL_Delay(50);
 					}
-					read_save_data(&wall_data);
+					Mode::Wall_Histry_Check(&wall_data);
 					enable = 0x00;
 				}
 				break;
@@ -298,6 +381,7 @@ void Demo()
 						enable = 0x00;
 						break;
 					}
+
 					enable = 0x00;
 				}
 				break;

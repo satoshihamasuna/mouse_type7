@@ -17,8 +17,17 @@ void write_save_data(wall_class *wall_property);
 void read_save_data(wall_class *wall_property);
 //ここをポインタのポインタに変更する
 
-void read_histry_flash(wall_histry_class *_wall_histry);
+void write_wall_WorkRam(wall_class *wall_property);
+void read_wall_WorkRam(wall_class *wall_property);
 
+//void read_wall_flash(wall_class *wall_property);
+void write_wall_flash(wall_class *wall_property);
+
+void write_histry_WorkRam(wall_histry_class *_wall_histry);
+void read_histry_WorkRam(wall_histry_class *_wall_histry);
+
+
+//void read_histry_flash(wall_histry_class *_wall_histry);
 void write_histry_flash(wall_histry_class *_wall_histry);
 
 

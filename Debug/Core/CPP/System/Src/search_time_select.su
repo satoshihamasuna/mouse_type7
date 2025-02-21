@@ -8,30 +8,13 @@ vehicle.h:189:7:virtual void Vehicle_type7::motorSetDuty_r(int)	16	static
 vehicle.h:195:7:virtual void Vehicle_type7::suctionSetDuty(int)	16	static
 vehicle.h:202:7:virtual void Vehicle_type7::suctionStop()	16	static
 sensing_task.h:121:8:virtual void IrSensTask_type7::IrSensorSet()	16	static
-wall_class.h:29:8:void wall_histry_class::histry_init()	24	static
-wall_class.h:44:11:int16_t wall_histry_class::get_histry_cnt()	16	static
-wall_class.h:69:8:void wall_histry_class::histry_delete(int)	24	static
-wall_class.h:104:3:wall_class::wall_class(IrSensTask*)	16	static
 gthr-default.h:229:1:int __gthread_key_delete(__gthread_key_t)	16	static
 ctrl_task.h:158:3:Motion::Motion(Vehicle*, IrSensTask*, int)	24	static
-ctrl_task.h:167:24:t_exeStatus Motion::motion_exeStatus_get()	16	static
 ctrl_task.h:318:15:IrSensTask* Motion::return_irObj()	16	static
 ctrl_task.h:331:3:CtrlTask::CtrlTask(Vehicle*, IrSensTask*, int)	24	static
 ctrl_task.h:349:3:CtrlTask_type7::CtrlTask_type7(Vehicle*, IrSensTask*)	24	static
 interrupt.h:32:12:uint32_t Interrupt::return_time_count()	16	static
-search_class.h:61:8:void Search::reset_search_time()	16	static
-search_class.h:64:8:void Search::set_search_limit_time(int32_t)	16	static
-search_class.h:71:14:t_position Search::search_adachi_1(t_position, t_position, int, wall_class*, make_map*, Motion*)	48	static
-search_class.h:78:14:t_position Search::search_adachi_1_acc(t_position, t_position, int, wall_class*, make_map*, Motion*)	48	static
-search_class.h:96:14:t_position Search::search_adachi_2_acc(t_position, t_position, int, wall_class*, make_map*, Motion*)	48	static
-search_class.h:114:14:t_position Search::search_adachi_3_acc(t_position, t_position, int, wall_class*, make_map*, Motion*)	48	static
-search_class.h:123:8:void Search::search_param_init()	16	static
-make_path.h:95:3:calcRunTime::calcRunTime()	16	static
-make_path.h:146:3:Dijkstra::Dijkstra(wall_class*)	16	static
-path_follow.h:34:8:void path_follow_class::set_path_follow_gain(float, float)	24	static
-demo.cpp:41:6:void search_error_process(int, wall_class*)	24	static
-search_class.h:28:7:Search::Search()	16	static
-demo.cpp:59:6:void Mode::Demo()	35536	static
+search_time_select.cpp:53:10:int32_t Mode::Seach_Time_Select()	528	static
 controller.h:19:7:constexpr PID_Controller::PID_Controller()	16	static
 controller.h:37:7:constexpr mouse_Controller::mouse_Controller()	16	static
 vehicle.h:60:7:Vehicle::Vehicle()	16	static
@@ -42,9 +25,6 @@ sensing_task.h:118:7:IrSensTask_type7::IrSensTask_type7()	16	static
 singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = IrSensTask_type7]	8	static
 singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = Interrupt]	4	static
 singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = CtrlTask_type7]	16	static
-queue_class.h:22:3:ring_queue<SIZE, T>::ring_queue() [with unsigned int SIZE = 1024; T = t_MapNode]	16	static
-path_follow.h:15:7:path_follow_class::path_follow_class()	16	static
-singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = path_follow_class]	8	static
-demo.cpp:540:1:void __static_initialization_and_destruction_0(int, int)	16	static
-demo.cpp:540:1:cpp)	8	static
-demo.cpp:540:1:cpp)	8	static
+search_time_select.cpp:289:1:void __static_initialization_and_destruction_0(int, int)	16	static
+search_time_select.cpp:289:1:cpp)	8	static
+search_time_select.cpp:289:1:cpp)	8	static

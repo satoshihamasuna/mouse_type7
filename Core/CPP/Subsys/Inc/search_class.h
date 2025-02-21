@@ -16,7 +16,7 @@
 #include "../../Task/Inc/ctrl_task.h"
 #include "../../Module/Inc/interrupt.h"
 
-#define END_TIME_LIMIT (4*60*1000)
+#define END_TIME_LIMIT (6*60*1000)
 
 typedef enum
 {
@@ -32,6 +32,7 @@ class Search
 		make_map   *map_property;
 		Motion *motion;
 		int32_t search_start_time;
+		int32_t search_limit_time = END_TIME_LIMIT;
 
 		t_exeStatus updateMap_half_straight	(int x, int y,t_position expand_end,int size,int mask,make_map *_map,Motion *motion);
 		t_exeStatus updateMap_half_straight_and_stop(int x, int y,t_position expand_end,int size,int mask,make_map *_map,Motion *motion);
@@ -59,6 +60,9 @@ class Search
 		int32_t return_search_time()	{		return Interrupt::getInstance().return_time_count() - search_start_time;	    };
 		void reset_search_time()		{		search_start_time = Interrupt::getInstance().return_time_count(); 		};
 
+		int32_t return_search_limit_time()			{		return search_limit_time;	    };
+		void set_search_limit_time(int32_t time)	{		search_limit_time = time; 		};
+
 		t_position search_adachi	(	t_position start_pos,	t_position goal_pos,	int goal_size,
 										wall_class *_wall,		make_map *_map,			Motion *motion );
 		t_position search_adachi_acc(	t_position start_pos,	t_position goal_pos,	int goal_size,
@@ -69,7 +73,6 @@ class Search
 		{
 			full_search			= False;
 			search_priority     = priority_first;
-			reset_search_time();
 			return search_adachi	(start_pos,goal_pos,goal_size,_wall,_map,motion );
 		}
 		t_position search_adachi_1_acc(	t_position start_pos,	t_position goal_pos,	int goal_size,
@@ -86,7 +89,6 @@ class Search
 		{
 			full_search			= True;
 			search_priority     = priority_first;
-			reset_search_time();
 			return search_adachi	(start_pos,goal_pos,goal_size,_wall,_map,motion );
 		}
 
@@ -96,7 +98,7 @@ class Search
 		{
 			full_search			= True;
 			search_priority     = priority_first;
-			reset_search_time();
+			//reset_search_time();
 			return search_adachi_acc	(start_pos,goal_pos,goal_size,_wall,_map,motion );
 		}
 
@@ -114,7 +116,7 @@ class Search
 		{
 			full_search			= False;
 			search_priority     = priority_second;
-			reset_search_time();
+			//reset_search_time();
 			return search_adachi_acc(start_pos,goal_pos,goal_size,_wall,_map,motion );
 		}
 

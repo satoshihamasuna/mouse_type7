@@ -88,7 +88,18 @@ void Demo2()
 		{
 			case ENABLE|0x00:
 				if(irsens->IrSensor_Avg() > 2000){
+					for(int i = 0;i < 11;i++)
+					{
+						(i%2 == 0) ? Indicate_LED(mode):Indicate_LED(0x00|0x00);
+						HAL_Delay(50);
+					}
+					map_data.make_map_queue(goal.x, goal.y, start, goal_size, 0x01);
+					map_data.Display();
+					map_data.make_map_queue_closeWall();
+					map_data.Display();
 
+					//Mode_Disable();
+					enable = 0x00;
 				}
 				break;
 			case ENABLE|0x01:
@@ -102,25 +113,6 @@ void Demo2()
 						(i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
 						HAL_Delay(50);
 					}
-
-					Indicate_LED(mode|param);
-					solve_maze.search_param_init();
-					t_position return_pos = solve_maze.search_adachi_3_acc(start, goal, goal_size, &wall_data, &map_data,motion);
-					if(motion->motion_exeStatus_get() == error)
-					{
-						Mode::indicate_error();
-						enable = 0x00;
-						break;
-					}
-					write_save_data(&wall_data);
-					solve_maze.search_adachi_3_acc(return_pos, start, 1, &wall_data, &map_data,motion);
-					if(motion->motion_exeStatus_get() == error)
-					{
-						Mode::indicate_error();
-						enable = 0x00;
-						break;
-					}
-					write_save_data(&wall_data);
 					enable = 0x00;
 				}
 				break;
@@ -129,23 +121,42 @@ void Demo2()
 			   {
 					for(int i = 0;i < 11;i++)
 					{
-						(i%2 == 0) ? Indicate_LED(Mode_State()):Indicate_LED(0x00|0x00);
+						(i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
 						HAL_Delay(50);
 					}
-					map_data.make_map_queue(goal.x, goal.y, start, goal_size, 0x01);
-					map_data.Display();
-					map_data.make_map_queue_closeWall();
-					map_data.Display();
+					Indicate_LED(mode|param);
 
-					Mode_Disable();
+					run_path.turn_time_set(mode_1000);
+					t_bool flag = False;
+					flag = run_path.check_DijkstraPath(start, Dir_None, goal, MAZE_GOAL_SIZE);
+					if(flag == True)
+					{
+						for(int j = 0;j < 2;j++)
+						{
+						  uint8_t setup = 0x01;
+						  for (int i = 0;i < 8; i++)
+						  {
+							  Indicate_LED(setup << i);
+							  HAL_Delay(50);
+						  }
+						}
+					}
+					else
+					{
+						Mode::indicate_error();
+					}
+					Indicate_LED(mode|param);
+					enable = 0x00;
+
 				}
+
 				break;
 			case ENABLE|0x05:
 			   if(irsens->IrSensor_Avg() > 2000)
 			   {
 					for(int i = 0;i < 11;i++)
 					{
-						(i%2 == 0) ? Indicate_LED(Mode_State()):Indicate_LED(0x00|0x00);
+						(i%2 == 0) ? Indicate_LED(mode):Indicate_LED(0x00|0x00);
 						HAL_Delay(50);
 					}
 					t_position start,goal;
@@ -156,7 +167,8 @@ void Demo2()
 			  		run_path.turn_time_set(mode_1000);
 					run_path.check_run_Dijkstra(start, Dir_None, goal, 2);
 
-					Mode_Disable();
+					//Mode_Disable();
+					enable = 0x00;
 				}
 				break;
 			case ENABLE|0x06:
@@ -191,7 +203,7 @@ void Demo2()
 						(i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
 						HAL_Delay(50);
 					}
-					read_save_data(&wall_data);
+					Mode::Wall_Histry_Check(&wall_data);
 					enable = 0x00;
 				}
 				break;

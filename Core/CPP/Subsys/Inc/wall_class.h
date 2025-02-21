@@ -41,6 +41,16 @@ class wall_histry_class
 			histry_tail =- 1;
 		}
 
+		int16_t get_histry_cnt()
+		{
+			return histry_cnt;
+		}
+
+		int16_t get_histry_tail()
+		{
+			return histry_tail;
+		}
+
 		void histry_set(int x,int y,t_wall wall)
 		{
 			if(histry_cnt < MAZE_SIZE)
@@ -61,6 +71,7 @@ class wall_histry_class
 			if(num > histry_cnt) num = histry_cnt;
 			for(int i = 0; i < num; i++)
 			{
+				if(histry_tail == -1) break;
 				histry_wall[histry_tail].x = -1;
 				histry_wall[histry_tail].y = -1;
 				histry_wall[histry_tail].wall.north = UNKNOWN;
@@ -115,6 +126,8 @@ class wall_class
 			}
 		}
 		t_wall_state get_WallState(t_position pos);
+		void indicate_wall();
+		void histry2wall_append();
 
 
 };

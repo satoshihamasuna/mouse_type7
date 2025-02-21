@@ -34,10 +34,10 @@ void CPP_Main();
 void Indicate_LED(uint8_t led_num);
 uint8_t Return_LED_Status();
 //interface
-void Mode_Change_ENC();
-void Mode_Init();
-void Mode_Disable();
-uint8_t Mode_State();
+//void Mode_Change_ENC();
+//void Mode_Init();
+//void Mode_Disable();
+//uint8_t Mode_State();
 t_bool button_status();
 
 

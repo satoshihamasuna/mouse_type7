@@ -1,6 +1,9 @@
 wall_class.h:29:8:void wall_histry_class::histry_init()	24	static
-wall_class.h:44:8:void wall_histry_class::histry_set(int, int, t_wall)	24	static
+wall_class.h:44:11:int16_t wall_histry_class::get_histry_cnt()	16	static
+wall_class.h:54:8:void wall_histry_class::histry_set(int, int, t_wall)	24	static
 wall_class.cpp:13:6:void wall_class::init_maze()	32	static
 wall_class.cpp:39:8:t_bool wall_class::is_unknown(uint16_t, uint16_t)	16	static
 wall_class.cpp:51:6:void wall_class::set_wall(t_position)	48	static
 wall_class.cpp:176:14:t_wall_state wall_class::get_WallState(t_position)	16	static
+wall_class.cpp:194:6:void wall_class::histry2wall_append()	32	static
+wall_class.cpp:237:6:void wall_class::indicate_wall()	32	static

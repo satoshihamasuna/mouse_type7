@@ -308,7 +308,7 @@ t_position Search::search_adachi(	t_position start_pos,t_position goal_pos,int g
 
 		if(goal_pos.x == 0 && goal_pos.y == 0)
 		{
-			if(return_search_time() >= END_TIME_LIMIT)
+			if(return_search_time() >= search_limit_time)
 			{
 				full_search = False;
 				mask = 0x03;
@@ -415,7 +415,7 @@ t_position Search::search_adachi_acc(	t_position start_pos,t_position goal_pos,i
 	{
 		if(goal_pos.x == 0 && goal_pos.y == 0)
 		{
-			if(return_search_time() >= END_TIME_LIMIT)
+			if(return_search_time() >= search_limit_time)
 			{
 				full_search = False;
 				mask = 0x03;
@@ -468,11 +468,17 @@ t_position Search::search_adachi_acc(	t_position start_pos,t_position goal_pos,i
 			case Front:
 				if(goal_pos.x == 0 && goal_pos.y == 0)
 				{
-					if(return_search_time() >= 0)
+					if(return_search_time() >= (5*60*1000))
 					{
 						search_st_param = st_param_280;
 						param_L90_search = param_L90_search_280;
 						param_R90_search = param_R90_search_280;
+					}
+					else if(return_search_time() >= (3*60*1000))
+					{
+						search_st_param = st_param_300;
+						param_L90_search = param_L90_search_300;
+						param_R90_search = param_R90_search_300;
 					}
 				}
 
@@ -483,11 +489,17 @@ t_position Search::search_adachi_acc(	t_position start_pos,t_position goal_pos,i
 			case Front|0x80:
 				if(goal_pos.x == 0 && goal_pos.y == 0)
 				{
-					if(return_search_time() >= 0)
+					if(return_search_time() >= (5*60*1000))
 					{
 						search_st_param = st_param_280;
 						param_L90_search = param_L90_search_280;
 						param_R90_search = param_R90_search_280;
+					}
+					else if(return_search_time() >= (3*60*1000))
+					{
+						search_st_param = st_param_300;
+						param_L90_search = param_L90_search_300;
+						param_R90_search = param_R90_search_300;
 					}
 				}
 				if(next_acc_dir == Front)

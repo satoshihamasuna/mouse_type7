@@ -11,6 +11,7 @@ const uint16_t  MAX_MODE_NUM =  0x0f;
 uint16_t mouse_mode;
 uint16_t is_mode_enable;
 
+/*
 void Mode_Change_ENC()
 {
 
@@ -49,7 +50,7 @@ void Mode_Disable()
 {
 	is_mode_enable = DISABLE;
 }
-
+*/
 t_bool button_status()
 {
 	t_bool button_status = False;
