@@ -420,6 +420,14 @@ t_position Search::search_adachi_acc(	t_position start_pos,t_position goal_pos,i
 				full_search = False;
 				mask = 0x03;
 			}
+
+
+			if(return_search_time() >= search_limit_time + (90*1000) )
+			{
+				break;
+			}
+
+
 		}
 
 		if(motion->motion_exeStatus_get() == error)

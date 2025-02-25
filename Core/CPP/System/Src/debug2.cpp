@@ -83,7 +83,7 @@ namespace Mode
 						  LogData::getInstance().log_enable = True;
 						  motion->exe_Motion_straight( 45.0,6.0,0.32,0.32,&search_sp_gain,&search_om_gain);
 
-						  for(int i = 0;i < 1;i++)
+						  for(int i = 0;i < 4;i++)
 						  {
 						  motion->exe_Motion_search_turn( &param_L90_search_320);
 
@@ -111,7 +111,7 @@ namespace Mode
 						  LogData::getInstance().log_enable = True;
 						  motion->exe_Motion_straight( 45.0,6.0,0.32,0.32,&search_sp_gain,&search_om_gain);
 
-						  for(int i = 0;i < 1;i++)
+						  for(int i = 0;i < 4;i++)
 						  {
 						  motion->exe_Motion_search_turn( &param_R90_search_320);
 
@@ -192,39 +192,27 @@ namespace Mode
 
 					break;
 				case ENABLE|0x03:
-					if(irsens->IrSensor_Avg() > 2500){
+				   if(irsens->IrSensor_Avg() > 2000){
 						  for(int i = 0;i < 11;i++)
 						  {
 							  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
 							  HAL_Delay(50);
 						  }
-
 						  KalmanFilter::getInstance().filter_init();
 						  motion->Motion_start();
-						  motion->Init_Motion_fix_wall(400);
-						  for(int i = 50; i <= suction; i = i + 50)
-						  {
-							  FAN_Motor_SetDuty(i);;
-							  HAL_Delay(5);
-						  }
-						  motion->execute_Motion();
-
-						  motion->exe_Motion_straight(SECTION,st_param->param->acc,st_param->param->max_velo,st_param->param->max_velo,st_param->sp_gain,st_param->om_gain);
-
 						  LogData::getInstance().data_count = 0;
 						  LogData::getInstance().log_enable = True;
-						  for(int i = 0; i < 4;i++)
+						  motion->exe_Motion_straight( 45.0,6.0,0.30,0.30,&search_sp_gain,&search_om_gain);
+
+						  for(int i = 0;i < 4;i++)
 						  {
-							  motion->exe_Motion_long_turn(turn_mode[Long_turnR90],Long_turnR90,st_param->sp_gain,st_param->om_gain);
+							  motion->exe_Motion_search_turn( &param_L90_search_300);
 
 						  }
-						  motion->exe_Motion_straight( SECTION,st_param->param->acc,st_param->param->max_velo,0.0,st_param->sp_gain,st_param->om_gain);
+						  motion->exe_Motion_straight(45.0,6.0,0.30,0.0,&search_sp_gain,&search_om_gain);
 
 						  motion->Motion_end();
 						  HAL_Delay(200);
-						  FAN_Motor_SetDuty(0);
-						  HAL_Delay(200);
-
 
 						  LogData::getInstance().log_enable = False;
 						  enable = 0x00;
@@ -232,7 +220,7 @@ namespace Mode
 					}
 					break;
 				case ENABLE|0x04:
-					if(irsens->IrSensor_Avg() > 2500){
+				   if(irsens->IrSensor_Avg() > 2000){
 						  for(int i = 0;i < 11;i++)
 						  {
 							  (i%2 == 0) ? Indicate_LED(mode|param):Indicate_LED(0x00|0x00);
@@ -240,35 +228,25 @@ namespace Mode
 						  }
 						  KalmanFilter::getInstance().filter_init();
 						  motion->Motion_start();
-						  motion->Init_Motion_fix_wall(400);
-						  for(int i = 50; i <= suction; i = i + 50)
-						  {
-							  FAN_Motor_SetDuty(i);;
-							  HAL_Delay(5);
-						  }
-						  motion->execute_Motion();
-
-						  motion->exe_Motion_straight(SECTION,st_param->param->acc,st_param->param->max_velo,st_param->param->max_velo,st_param->sp_gain,st_param->om_gain);
-
 						  LogData::getInstance().data_count = 0;
 						  LogData::getInstance().log_enable = True;
-						  motion->exe_Motion_turn_in(turn_mode[Turn_in_R45],Turn_in_R45,st_param->sp_gain,st_param->om_gain);
+						  motion->exe_Motion_straight( 45.0,6.0,0.28,0.28,&search_sp_gain,&search_om_gain);
 
-						  motion->exe_Motion_turn_out(turn_mode[Turn_out_L45],Turn_out_L45,st_param->sp_gain,st_param->om_gain);
+						  for(int i = 0;i < 4;i++)
+						  {
+							  motion->exe_Motion_search_turn( &param_L90_search_280);
 
-						  motion->exe_Motion_straight(SECTION,st_param->param->acc,st_param->param->max_velo,0.0,st_param->sp_gain,st_param->om_gain);
+						  }
+						  motion->exe_Motion_straight(45.0,6.0,0.28,0.0,&search_sp_gain,&search_om_gain);
 
 						  motion->Motion_end();
-						  HAL_Delay(200);
-						  FAN_Motor_SetDuty(0);
 						  HAL_Delay(200);
 
 						  LogData::getInstance().log_enable = False;
 						  enable = 0x00;
 						  HAL_Delay(500);
-
 					}
-					break;
+				   break;
 				case ENABLE|0x05:
 					if(irsens->IrSensor_Avg() > 2500){
 						  for(int i = 0;i < 11;i++)

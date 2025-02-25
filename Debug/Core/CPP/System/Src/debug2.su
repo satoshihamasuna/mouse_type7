@@ -17,14 +17,13 @@ ctrl_task.h:214:22:t_exeStatus Motion::exe_Motion_straight(float, float, float, 
 ctrl_task.h:226:22:t_exeStatus Motion::exe_Motion_diagonal(float, float, float, float, const t_pid_gain*, const t_pid_gain*)	40	static
 ctrl_task.h:253:22:t_exeStatus Motion::exe_Motion_turn_in(const t_param*, t_run_pattern, const t_pid_gain*, const t_pid_gain*)	32	static
 ctrl_task.h:265:22:t_exeStatus Motion::exe_Motion_turn_out(const t_param*, t_run_pattern, const t_pid_gain*, const t_pid_gain*)	32	static
-ctrl_task.h:277:22:t_exeStatus Motion::exe_Motion_long_turn(const t_param*, t_run_pattern, const t_pid_gain*, const t_pid_gain*)	32	static
 ctrl_task.h:290:22:t_exeStatus Motion::exe_Motion_turn_v90(const t_param*, t_run_pattern, const t_pid_gain*, const t_pid_gain*)	32	static
 ctrl_task.h:318:15:IrSensTask* Motion::return_irObj()	16	static
 ctrl_task.h:331:3:CtrlTask::CtrlTask(Vehicle*, IrSensTask*, int)	24	static
 ctrl_task.h:349:3:CtrlTask_type7::CtrlTask_type7(Vehicle*, IrSensTask*)	24	static
 interrupt.h:32:12:uint32_t Interrupt::return_time_count()	16	static
 path_follow.h:34:8:void path_follow_class::set_path_follow_gain(float, float)	24	static
-debug2.cpp:40:7:void Mode::Debug2(const t_straight_param*, const t_param* const*, int)	600	static
+debug2.cpp:40:7:void Mode::Debug2(const t_straight_param*, const t_param* const*, int)	592	static
 controller.h:19:7:constexpr PID_Controller::PID_Controller()	16	static
 controller.h:37:7:constexpr mouse_Controller::mouse_Controller()	16	static
 vehicle.h:60:7:Vehicle::Vehicle()	16	static
@@ -41,6 +40,6 @@ Kalman_filter.h:13:7:KalmanFilter::KalmanFilter()	16	static
 singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = KalmanFilter]	8	static
 log_data.h:19:7:LogData::LogData()	16	static
 singleton.h:15:12:static T& Singleton<T>::getInstance() [with T = LogData]	8	static
-debug2.cpp:629:1:void __static_initialization_and_destruction_0(int, int)	16	static
-debug2.cpp:629:1:cpp)	8	static
-debug2.cpp:629:1:cpp)	8	static
+debug2.cpp:607:1:void __static_initialization_and_destruction_0(int, int)	16	static
+debug2.cpp:607:1:cpp)	8	static
+debug2.cpp:607:1:cpp)	8	static

@@ -1889,13 +1889,16 @@ void Motion::SetIdeal_fix_wall		( )
 				//l_err = (ir_sens->sen_fl.distance - 45.0);
 			//}
 
-			if((ir_sens->sen_fr.distance < 45.0)  )
+			float r_ref = 44.0;
+			float l_ref = 45.0;
+
+			if((ir_sens->sen_fr.distance < r_ref)  )
 			{
 				float diff = ir_sens->sen_fr.avg_distance - ir_sens->sen_fr.distance;
 				float rwheel = vehicle->ideal.velo.get() - TREAD_WIDTH/1000.0*vehicle->ideal.rad_velo.get();
 				if(SIGN(diff) == SIGN(rwheel) && ABS(rwheel) > 0.02)
 				{
-					r_err = (ir_sens->sen_fr.distance - 45.0);
+					r_err = (ir_sens->sen_fr.distance - r_ref);
 				}
 				else if(SIGN(diff) == SIGN(rwheel))
 				{
@@ -1909,17 +1912,17 @@ void Motion::SetIdeal_fix_wall		( )
 			}
 			else
 			{
-				r_err = (ir_sens->sen_fr.distance - 45.0);
+				r_err = (ir_sens->sen_fr.distance - r_ref);
 			}
 
 
-			if((ir_sens->sen_fl.distance < 45.0)  )
+			if((ir_sens->sen_fl.distance < l_ref)  )
 			{
 				float diff = ir_sens->sen_fl.avg_distance - ir_sens->sen_fl.distance;
 				float lwheel = vehicle->ideal.velo.get() + TREAD_WIDTH/1000.0*vehicle->ideal.rad_velo.get();
 				if(SIGN(diff) == SIGN(lwheel) && ABS(lwheel) > 0.02 )
 				{
-					l_err = (ir_sens->sen_fl.distance -45.0);
+					l_err = (ir_sens->sen_fl.distance - l_ref);
 				}
 				else if(SIGN(diff) == SIGN(lwheel))
 				{
@@ -1934,7 +1937,7 @@ void Motion::SetIdeal_fix_wall		( )
 
 			else
 			{
-				l_err = (ir_sens->sen_fl.distance - 45.0);
+				l_err = (ir_sens->sen_fl.distance - l_ref);
 			}
 
 

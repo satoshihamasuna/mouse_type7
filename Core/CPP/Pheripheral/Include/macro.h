@@ -71,13 +71,15 @@ extern "C" {
 #define DIAGONAL_CORRECTION	(5.0)
 #define STRAIGHT_CORRECTION (10.0)
 
+#define GYRO_OFFSET (-0.01) //rad/s
+
 #define MAZE_SIZE_X  32
 #define MAZE_SIZE_Y  32
 #define MAZE_SIZE  1024
 
-#define MAZE_GOAL_X  7
-#define MAZE_GOAL_Y  7
-#define MAZE_GOAL_SIZE  2
+#define MAZE_GOAL_X  19
+#define MAZE_GOAL_Y  8
+#define MAZE_GOAL_SIZE  3
 #define MAP_MAX_VALUE 1024
 
 #ifdef __cplusplus
