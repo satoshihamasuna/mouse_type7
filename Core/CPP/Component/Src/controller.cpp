@@ -10,6 +10,15 @@
 
 void PID_Controller::Gain_Set(float _Kp,float _Ki,float _Kd)
 {
+    if (Ki != 0.0f && _Ki != 0.0f) {
+    	I_target  *= Ki / _Ki;
+    	I_output  *= Ki / _Ki;
+    }
+    else {
+    	//I_target  = 0.0f;
+    	//I_output  = 0.0f;
+    }
+
 	Kp = _Kp;
 	Ki = _Ki;
 	Kd = _Kd;
@@ -18,11 +27,19 @@ void PID_Controller::Gain_Set(float _Kp,float _Ki,float _Kd)
 
 void PID_Controller::Gain_Set(t_pid_gain gain)
 {
+    if (Ki != 0.0f && gain.Ki != 0.0f) {
+    	I_target  *= Ki / gain.Ki;
+    	I_output  *= Ki / gain.Ki;
+    }
+    else {
+    	//I_target  = 0.0f;
+    	//I_output  = 0.0f;
+    }
+
 	Kp = gain.Kp;
 	Ki = gain.Ki;
 	Kd = gain.Kd;
 }
-
 
 void PID_Controller::I_param_reset()
 {

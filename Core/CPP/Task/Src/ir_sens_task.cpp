@@ -52,30 +52,6 @@ float IrSensTask::IrSensor_adc2voltage(int16_t value)
 	return (float)(value)/4096.0*3.3;
 }
 
-float IrSensTask::IrSensor_Vce(int16_t value)
-{
-	return MAX(0.01,(3.30f - IrSensor_adc2voltage(value)));
-}
-
-float IrSensTask::IrSensor_SensingCurrent(int16_t value)
-{
-	return (IrSensor_adc2voltage(value))/1000.0;
-}
-
-float IrSensTask::IrSensor_RelativeCurrent(int16_t value)
-{
-	return (IrSensor_SensingCurrent(value))/((6.4)/5*IrSensor_Vce(value))*1000.0f;
-}
-
-float IrSensTask::IrSensor_Irradiance(int16_t value)
-{
-	float irradiance = IrSensor_RelativeCurrent(value);
-	if(irradiance > 4.0)
-	{
-		irradiance = irradiance * 2 -4.0f;
-	}
-	return irradiance;
-}
 
 float IrSensTask::Sensor_CalcDistance(t_sensor_dir dir,int16_t value)
 {
@@ -263,6 +239,16 @@ void IrSensTask::IrSensorWallSet()
 			r_corner_time = 0;
 		}
 	}
+	else if( (sen_r.diff > 0.0) && (sen_r.prev_diff < 0.0))
+	{
+
+		if(irsens_motion == DIAGONAL_IRSENS && sen_r.distance < CORNER_R_THRESHOLD	)
+		{
+				r_wall_corner = True;
+				r_corner_time = 0;
+		}
+
+	}
 	else
 	{
 		r_wall_corner = False;
@@ -284,6 +270,16 @@ void IrSensTask::IrSensorWallSet()
 			l_wall_corner = True;
 			l_corner_time = 0;
 		}
+	}
+	else if( (sen_l.diff > 0.0) && (sen_l.prev_diff < 0.0))
+	{
+
+		if(irsens_motion == DIAGONAL_IRSENS && sen_l.distance < CORNER_L_THRESHOLD	)
+		{
+				l_wall_corner = True;
+				l_corner_time = 0;
+		}
+
 	}
 	else
 	{
@@ -414,60 +410,60 @@ float IrSensTask::IrSensorMaxValueFromLog(t_sensor_dir dir)
 	}
 	return Sensor_CalcDistance(dir,value);
 }
-
 void IrSensTask::SetWallControl_RadVelo(Vehicle *vehicle,float delta_tms)
 {
 	float ir_rad_acc_control = 0.0;
 	const float k1 = 1.0;
-	const float k2 = 20.0;
-	float s 	= 0.0f;
-	float s_dot = 0.0f;
+	const float k2 = 19.0;
+	control_ir.init();
+	control_ir_dot.init();
+	float ir_xposition = vehicle->ego.x_point.get();
+	float deviation_rad = 0.0f;
+	float gain = CLAMP(vehicle->ego.velo.get()/0.320f,0,20.0);
 
 	//sensor_output = k1*ydiff/1000.0 + k2/1000.0*theta;
 	if(isEnableIrSens == True)
 	{
 		if(sen_r.is_control == True && sen_l.is_control == True)
 		{
-			ir_rad_acc_control = -(sen_l.error - sen_r.error)/2.0;
+			ir_xposition =  -(sen_l.error - sen_r.error)/2.0;
+			if(irsens_motion == STRAIGHT_IRSENS)
 			{
-				vehicle->ego.x_point.set(ir_rad_acc_control);
-				//if(ABS(ir_rad_acc_control) < 10.0 )
-					//vehicle->ego.radian.set(((-ir_rad_acc_control/20.0) + vehicle->ego.radian.get())/2.0f);
+				vehicle->ego.x_point.set(ir_xposition);
 			}
+
 		}
-		else
+		else if(sen_r.is_control == True || sen_l.is_control == True)
 		{
-			ir_rad_acc_control = -(sen_l.error - sen_r.error);
-			if(sen_r.is_control == True || sen_l.is_control == True)
+			ir_xposition =  -(sen_l.error - sen_r.error);
+			if(irsens_motion == STRAIGHT_IRSENS)
 			{
-				vehicle->ego.x_point.set((ir_rad_acc_control+vehicle->ego.x_point.get())/2.0);
-				//if(ABS(ir_rad_acc_control) < 10.0)
-					//vehicle->ego.radian.set(((-ir_rad_acc_control/20.0) + vehicle->ego.radian.get())/2.0f);
+				vehicle->ego.x_point.set((ir_xposition+vehicle->ego.x_point.get())/2.0);
 			}
+
 		}
 	}
 
-	if(isEnableIrSens == True && (sen_r.is_control == True || sen_l.is_control == True))
+
+
+	if(irsens_motion == STRAIGHT_IRSENS){
+		//deviation_rad = vehicle->ego.radian.get();
+	}
+	else if(irsens_motion == DIAGONAL_IRSENS)
 	{
-
-		s 		= ir_rad_acc_control;
-		s_dot 	= k1*vehicle->ideal.velo.get()*1000.0*(vehicle->ideal.radian.get())*1.0 + k2*vehicle->ideal.rad_velo.get();
-
+		deviation_rad =  vehicle->ideal.radian.get();
 	}
 
-	else
-	{
+	ir_rad_acc_control = ir_xposition + k2*deviation_rad*0.0;
 
-		s 		= k1*vehicle->ego.x_point.get()+k2*vehicle->ego.radian.get()*1.0;//k2*machine_->radian;//
-		s_dot 	= k1*vehicle->ideal.velo.get()*1000.0*(vehicle->ideal.radian.get())*1.0 + k2*vehicle->ideal.rad_velo.get();
-
-
-	}
+	control_ir.set(ir_rad_acc_control );
+	//s_dot 	= k1*vehicle->ideal.velo.get()*1000.0*(vehicle->ideal.radian.get())*1.0 + k2*vehicle->ideal.rad_velo.get();
+	control_ir_dot.set( k1*vehicle->ideal.velo.get()*1000.0*(deviation_rad)*(1.0) + k2*vehicle->ideal.rad_velo.get());
 
 
-	float target_rad_acc	= 	(-1.0)*300.0*s/k2 - 60.0*1.0/k2*s_dot
-							     - k1/k2*(vehicle->ideal.accel.get()*1000.0*vehicle->ideal.radian.get()*0.0
-							    		 + vehicle->ideal.velo.get()*vehicle->ideal.rad_velo.get()*1000.0);
+	float target_rad_acc	= 	(-1.0)*(	300.0*gain*k1/k2*control_ir.get()
+										+ 	60.0*gain*1.0/k2*control_ir_dot.get()
+										+ 	k1/k2*(vehicle->ideal.accel.get()*1000.0*deviation_rad*0.0 + vehicle->ideal.velo.get()*vehicle->ideal.rad_velo.get()*1000.0));
 
 
 
@@ -476,6 +472,7 @@ void IrSensTask::SetWallControl_RadVelo(Vehicle *vehicle,float delta_tms)
 	vehicle->ideal.rad_velo.set(target_rad_velo);
 
 }
+
 
 
 

@@ -180,12 +180,11 @@ void Demo2()
 						HAL_Delay(50);
 					}
 
-			  		run_path.turn_time_set(mode_1000);
-					run_path.run_Dijkstra(		start, Dir_None, goal,MAZE_GOAL_SIZE,
-														st_mode_500_v0, (int)(sizeof(st_mode_500_v0)/sizeof(t_straight_param *const)),
-														di_mode_500_v0, (int)(sizeof(di_mode_500_v0)/sizeof(t_straight_param *const)), mode_500,motion);
-
-
+			  		run_path.turn_time_set(mode_1600);
+					run_path.run_Dijkstra_suction_acc(	start, Dir_None, goal, MAZE_GOAL_SIZE,740,
+														st_mode_1600_v3, (int)(sizeof(st_mode_1600_v3)/sizeof(t_straight_param *const))	,
+														di_mode_1600_v1, (int)(sizeof(di_mode_1600_v1)/sizeof(t_straight_param *const))	,
+														acc_mode_1600_v3,(int)(sizeof(acc_mode_1600_v3)/sizeof(t_param *const*const))	,motion);
 					if(motion->motion_exeStatus_get() == error)
 					{
 						Mode::indicate_error();

@@ -61,6 +61,8 @@ extern "C" {
 #define MIN(a, b) 			((a) < (b) ? (a) : (b))		// 2つのうち小さい方を返します
 #define MAX3(a, b, c) 		((a) > (MAX(b, c)) ? (a) : (MAX(b, c)))
 #define MIN3(a, b, c) 		((a) < (MIN(b, c)) ? (a) : (MIN(b, c)))
+#define CLAMP(x, low, high)  ((x) < (low) ? (low) : ((x) > (high) ? (high) : (x)))
+
 
 //machine parameter
 #define SECTION				(90.0)

@@ -5,6 +5,7 @@
  *      Author: sato1
  */
 
+
 #ifndef CPP_INC_RUN_PARAM_H_
 #define CPP_INC_RUN_PARAM_H_
 
@@ -22,14 +23,14 @@
 #include "turn_1800.h"
 #include "turn_2000.h"
 
-const static t_pid_gain basic_sp_gain = {14.0,0.15,0.0};
+const static t_pid_gain basic_sp_gain = {10.0,0.15,0.0};
 const static t_pid_gain basic_om_gain = {0.50f,0.02f,0.00f};//{0.40f, 0.01f, 0.00f};
 
-const static t_pid_gain search_sp_gain = {15.0,0.1,0.0};
+const static t_pid_gain search_sp_gain = {10.0,0.1,0.0};
 const static t_pid_gain search_om_gain = {0.650f, 0.01f, 0.00f};
 
-const static t_pid_gain sp_gain_search_turn = {15.0,0.1,0.0};//{12.0,0.1,0.0};
-const static t_pid_gain om_gain_search_turn = {0.65, 0.05, 0.001};//{0.50f, 0.0005f, 0.001f};
+const static t_pid_gain sp_gain_search_turn = {10.0,0.1,0.0};//{12.0,0.1,0.0};
+const static t_pid_gain om_gain_search_turn = {0.65, 0.03, 0.001};//{0.50f, 0.0005f, 0.001f};
 const static t_turn_param_table slalom_L90_table_320 = {0.32f, 26.00f,9.46,11.16, 90.0f,Turn_L};
 const static t_turn_param_table slalom_R90_table_320 = {0.32f,-26.00f,9.46,11.16,-90.0f,Turn_R};
 const static t_param param_L90_search_320 = {&slalom_L90_table_320 ,&sp_gain_search_turn,&om_gain_search_turn};
@@ -45,17 +46,17 @@ const static t_turn_param_table slalom_R90_table_280 = {0.28f,-26.00f,9.49,11.16
 const static t_param param_L90_search_280 = {&slalom_L90_table_280 ,&sp_gain_search_turn,&om_gain_search_turn};
 const static t_param param_R90_search_280 = {&slalom_R90_table_280, &sp_gain_search_turn,&om_gain_search_turn};
 
-const static t_pid_gain sp_gain_280 = {15.0,0.1,0.0};
+const static t_pid_gain sp_gain_280 = {10.0,0.1,0.0};
 const static t_pid_gain om_gain_280 = {0.65, 0.01, 0.00};
 const static t_velo_param param_280 = {0.28f,4.0f};
 const static t_straight_param st_param_280 = {&param_280,&sp_gain_280,&om_gain_280};
 
-const static t_pid_gain sp_gain_300 = {15.0,0.1,0.0};
+const static t_pid_gain sp_gain_300 = {10.0,0.1,0.0};
 const static t_pid_gain om_gain_300 = {0.65, 0.01, 0.00};
 const static t_velo_param param_300 = {0.30f,4.0f};
 const static t_straight_param st_param_300 = {&param_300,&sp_gain_300,&om_gain_300};
 
-const static t_pid_gain sp_gain_320 = {15.0,0.1,0.0};
+const static t_pid_gain sp_gain_320 = {10.0,0.1,0.0};
 const static t_pid_gain om_gain_320 = {0.65, 0.01, 0.00};
 const static t_velo_param param_320 = {0.32f,4.0f};
 const static t_straight_param st_param_320 = {&param_320,&sp_gain_320,&om_gain_320};
@@ -335,6 +336,80 @@ const static t_straight_param st_param_4600 = {&param_4600,&sp_gain_4600,&om_gai
 const static t_straight_param st_param_4600_acc2G = {&param_4600_acc2G,&sp_gain_4600,&om_gain_4600};
 const static t_straight_param st_param_4600_acc3G = {&param_4600_acc3G,&sp_gain_4600,&om_gain_4600};
 
+const static t_velo_param param_1400_acc4G = {1.40f, 40.0f};
+const static t_straight_param st_param_1400_acc4G = {&param_1400_acc4G, &sp_gain_1400, &om_gain_1400};
+
+const static t_velo_param param_1500_acc4G = {1.50f, 40.0f};
+const static t_straight_param st_param_1500_acc4G = {&param_1500_acc4G, &sp_gain_1500, &om_gain_1500};
+
+const static t_velo_param param_1600_acc4G = {1.60f, 40.0f};
+const static t_straight_param st_param_1600_acc4G = {&param_1600_acc4G, &sp_gain_1600, &om_gain_1600};
+
+const static t_velo_param param_1700_acc4G = {1.70f, 40.0f};
+const static t_straight_param st_param_1700_acc4G = {&param_1700_acc4G, &sp_gain_1700, &om_gain_1700};
+
+const static t_velo_param param_1800_acc4G = {1.80f, 40.0f};
+const static t_straight_param st_param_1800_acc4G = {&param_1800_acc4G, &sp_gain_1800, &om_gain_1800};
+
+const static t_velo_param param_1900_acc4G = {1.90f, 40.0f};
+const static t_straight_param st_param_1900_acc4G = {&param_1900_acc4G, &sp_gain_1900, &om_gain_1900};
+
+const static t_velo_param param_2000_acc4G = {2.00f, 40.0f};
+const static t_straight_param st_param_2000_acc4G = {&param_2000_acc4G, &sp_gain_2000, &om_gain_2000};
+
+const static t_velo_param param_2100_acc4G = {2.10f, 40.0f};
+const static t_straight_param st_param_2100_acc4G = {&param_2100_acc4G, &sp_gain_2100, &om_gain_2100};
+
+const static t_velo_param param_2200_acc4G = {2.20f, 40.0f};
+const static t_straight_param st_param_2200_acc4G = {&param_2200_acc4G, &sp_gain_2200, &om_gain_2200};
+
+const static t_velo_param param_2300_acc4G = {2.30f, 40.0f};
+const static t_straight_param st_param_2300_acc4G = {&param_2300_acc4G, &sp_gain_2300, &om_gain_2300};
+
+const static t_velo_param param_2400_acc4G = {2.40f, 40.0f};
+const static t_straight_param st_param_2400_acc4G = {&param_2400_acc4G, &sp_gain_2400, &om_gain_2400};
+
+const static t_velo_param param_2500_acc4G = {2.50f, 40.0f};
+const static t_straight_param st_param_2500_acc4G = {&param_2500_acc4G, &sp_gain_2500, &om_gain_2500};
+
+const static t_velo_param param_2600_acc4G = {2.60f, 40.0f};
+const static t_straight_param st_param_2600_acc4G = {&param_2600_acc4G, &sp_gain_2600, &om_gain_2600};
+
+const static t_velo_param param_2700_acc4G = {2.70f, 40.0f};
+const static t_straight_param st_param_2700_acc4G = {&param_2700_acc4G, &sp_gain_2700, &om_gain_2700};
+
+const static t_velo_param param_2800_acc4G = {2.80f, 40.0f};
+const static t_straight_param st_param_2800_acc4G = {&param_2800_acc4G, &sp_gain_2800, &om_gain_2800};
+
+const static t_velo_param param_2900_acc4G = {2.90f, 40.0f};
+const static t_straight_param st_param_2900_acc4G = {&param_2900_acc4G, &sp_gain_2900, &om_gain_2900};
+
+const static t_velo_param param_3000_acc4G = {3.00f, 40.0f};
+const static t_straight_param st_param_3000_acc4G = {&param_3000_acc4G, &sp_gain_3000, &om_gain_3000};
+
+const static t_velo_param param_3200_acc4G = {3.20f, 40.0f};
+const static t_straight_param st_param_3200_acc4G = {&param_3200_acc4G, &sp_gain_3200, &om_gain_3200};
+
+const static t_velo_param param_3400_acc4G = {3.40f, 40.0f};
+const static t_straight_param st_param_3400_acc4G = {&param_3400_acc4G, &sp_gain_3400, &om_gain_3400};
+
+const static t_velo_param param_3600_acc4G = {3.60f, 40.0f};
+const static t_straight_param st_param_3600_acc4G = {&param_3600_acc4G, &sp_gain_3600, &om_gain_3600};
+
+const static t_velo_param param_3800_acc4G = {3.80f, 40.0f};
+const static t_straight_param st_param_3800_acc4G = {&param_3800_acc4G, &sp_gain_3800, &om_gain_3800};
+
+const static t_velo_param param_4000_acc4G = {4.00f, 40.0f};
+const static t_straight_param st_param_4000_acc4G = {&param_4000_acc4G, &sp_gain_4000, &om_gain_4000};
+
+const static t_velo_param param_4200_acc4G = {4.20f, 40.0f};
+const static t_straight_param st_param_4200_acc4G = {&param_4200_acc4G, &sp_gain_4200, &om_gain_4200};
+
+const static t_velo_param param_4400_acc4G = {4.40f, 40.0f};
+const static t_straight_param st_param_4400_acc4G = {&param_4400_acc4G, &sp_gain_4400, &om_gain_4400};
+
+const static t_velo_param param_4600_acc4G = {4.60f, 40.0f};
+const static t_straight_param st_param_4600_acc4G = {&param_4600_acc4G, &sp_gain_4600, &om_gain_4600};
 
 
 
@@ -380,6 +455,13 @@ const static t_straight_param *const st_mode_1600_v2[] = {  &st_param_1600_acc3G
 															&st_param_2600_acc3G,&st_param_2800_acc3G,&st_param_3000_acc3G,&st_param_3200_acc3G,&st_param_3400_acc3G,&st_param_3600_acc3G,
 															&st_param_3800_acc3G,&st_param_4000_acc3G,&st_param_4200_acc3G,&st_param_4400_acc3G,&st_param_4600_acc3G,};
 
+const static t_straight_param *const st_mode_1600_v3[] = {
+    &st_param_1600_acc4G, &st_param_1800_acc4G, &st_param_2000_acc4G, &st_param_2200_acc4G, &st_param_2400_acc4G,
+    &st_param_2600_acc4G, &st_param_2800_acc4G, &st_param_3000_acc4G, &st_param_3200_acc4G, &st_param_3400_acc4G,
+    &st_param_3600_acc4G, &st_param_3800_acc4G, &st_param_4000_acc4G, &st_param_4200_acc4G, &st_param_4400_acc4G,
+    &st_param_4600_acc4G,
+};
+
 const static t_straight_param *const st_mode_1800_v1[] = {  &st_param_1800_acc3G,&st_param_2000_acc3G,&st_param_2200_acc3G,&st_param_2400_acc3G,
 															&st_param_2600_acc3G,&st_param_2800_acc3G,&st_param_3000_acc3G,&st_param_3200_acc3G,&st_param_3400_acc3G,&st_param_3600_acc3G,
 															&st_param_3800_acc3G,&st_param_4000_acc3G,&st_param_4200_acc3G,&st_param_4400_acc3G,&st_param_4600_acc3G,};
@@ -415,6 +497,11 @@ const static t_straight_param *const di_mode_1600_v1[] =  {	&st_param_1600_acc2G
 const static t_straight_param *const di_mode_1800_v1[] =  { &st_param_1800_acc2G,&st_param_2000_acc2G,&st_param_2200_acc2G,&st_param_2400_acc2G,
 															&st_param_2600_acc2G,&st_param_2800_acc2G,&st_param_3000_acc2G,&st_param_3200_acc2G,&st_param_3400_acc2G,&st_param_3600_acc2G,
 															&st_param_3800_acc2G,&st_param_4000_acc2G,&st_param_4200_acc2G,&st_param_4400_acc2G,&st_param_4600_acc2G,};
+
+
+const static t_straight_param *const di_mode_1800_v2[] = {  &st_param_1800_acc3G,&st_param_2000_acc3G,&st_param_2200_acc3G,&st_param_2400_acc3G,
+															&st_param_2600_acc3G,&st_param_2800_acc3G,&st_param_3000_acc3G,&st_param_3200_acc3G,&st_param_3400_acc3G,&st_param_3600_acc3G,
+															&st_param_3800_acc3G,&st_param_4000_acc3G,&st_param_4200_acc3G,&st_param_4400_acc3G,&st_param_4600_acc3G,};
 
 
 

@@ -140,19 +140,42 @@ void Motion::Adjust_wall_corner()
 		{
 			//ir_sens->Division_Wall_Correction();
 
-			if(ir_sens->r_wall_corner == True)	{		Indicate_LED(0x01|Return_LED_Status());		}
-			if(ir_sens->l_wall_corner == True)	{		Indicate_LED(0x08|Return_LED_Status());		}
+			if(ir_sens->r_wall_corner == True)	{
+				Indicate_LED((0x01 << 4)|Return_LED_Status());
+				ir_sens->r_corner_length.set(vehicle->ego.length.get());
+			}
+			if(ir_sens->l_wall_corner == True)	{
+				Indicate_LED((0x01 << 5)|Return_LED_Status());
+				ir_sens->l_corner_length.set(vehicle->ego.length.get());
+			}
 
 
 			int time_diff = ABS(ir_sens->r_corner_time - ir_sens->l_corner_time);
+			float diagonal_diff = ABS(ir_sens->r_corner_length.get() - ir_sens->l_corner_length.get());
+
+			/*
 			if(ABS((time_diff*vehicle->ideal.velo.get())-DIAG_SECTION) < (int)((10.0)) && motion_plan.end_length.get() > DIAG_SECTION)
 			{
+			*/
+			if(ABS(diagonal_diff-DIAG_SECTION) < 20.0f && motion_plan.end_length.get() > DIAG_SECTION)
+			{
 
-				float diff = (time_diff*vehicle->ideal.velo.get())-DIAG_SECTION;
+				//float diff = (time_diff*vehicle->ideal.velo.get())-DIAG_SECTION;
+				float diff = -(diagonal_diff-DIAG_SECTION);
+
+				if(ir_sens->r_wall_corner == True && ir_sens->l_wall_corner == False)
+				{
+					diff = diff;
+				}
+				else if(ir_sens->l_wall_corner == True && ir_sens->r_wall_corner == False)
+				{
+					diff = -diff;
+				}
+
 				if(diff != 0.0f)
 				{
 
-					vehicle->ego.radian.set(-diff/DIAG_SECTION);
+					vehicle->ego.radian.set(-(diff/DIAG_SECTION)/2.0*0.0);
 					vehicle->ego.x_point.set(diff/2);
 					//ir_sens->Division_Wall_Correction_Reset();
 					Indicate_LED((0x0f)|Return_LED_Status());
@@ -161,21 +184,31 @@ void Motion::Adjust_wall_corner()
 
 			}
 
+
+			/*
 			if(ir_sens->r_wall_corner == True && vehicle->ideal.velo.get() > 0.2)
 			{
 				float diff = ir_sens->IrSensorMaxValueFromLog(sensor_sr) - DIAG_SECTION/2.0f;
-				vehicle->ego.radian.set(((diff/20.0) + vehicle->ego.radian.get())/2.0f);
-				vehicle->ego.x_point.set((diff+vehicle->ego.x_point.get())/2);
+				vehicle->ego.radian.set(-(diff/DIAG_SECTION)/2.0*0.0);
+				vehicle->ego.x_point.set(diff/4);
+
 				Indicate_LED((0x0f)|Return_LED_Status());
 
 			}
+			*/
+			/*
 			if(ir_sens->l_wall_corner == True && vehicle->ideal.velo.get() > 0.2)
 			{
 				float diff = -(ir_sens->IrSensorMaxValueFromLog(sensor_sl) - DIAG_SECTION/2.0f);
-				vehicle->ego.radian.set(((diff/20.0) + vehicle->ego.radian.get())/2.0f);
-				vehicle->ego.x_point.set((diff+vehicle->ego.x_point.get())/2);
+
+				//vehicle->ego.radian.set(((diff/20.0) + vehicle->ego.radian.get())/2.0f);
+				//vehicle->ego.x_point.set((diff+vehicle->ego.x_point.get())/2);
+
+				vehicle->ego.radian.set(-(diff/DIAG_SECTION)/2.0*0.0);
+				vehicle->ego.x_point.set(diff/4);
 				Indicate_LED((0x0f)|Return_LED_Status());
 			}
+			*/
 		}
 
 
@@ -183,11 +216,11 @@ void Motion::Adjust_wall_corner()
 		{
 			if(ir_sens->r_corner_time > (int)((8.0)/vehicle->ideal.velo.get()) )
 			{
-				Indicate_LED((~0x01)&Return_LED_Status());
+				Indicate_LED((~(0x01 << 4))&Return_LED_Status());
 			}
 			if(ir_sens->l_corner_time > (int)((8.0)/vehicle->ideal.velo.get()) )
 			{
-				Indicate_LED((~0x08)&Return_LED_Status());
+				Indicate_LED((~(0x01 << 5))&Return_LED_Status());
 			}
 			if(ir_sens->r_corner_time > (int)((8.0)/vehicle->ideal.velo.get())
 					&& ir_sens->l_corner_time > (int)((8.0)/vehicle->ideal.velo.get()) )
@@ -199,11 +232,11 @@ void Motion::Adjust_wall_corner()
 		{
 			if(ir_sens->r_corner_time > 40 )
 			{
-				Indicate_LED((~0x01)&Return_LED_Status());
+				Indicate_LED((~(0x01 << 4))&Return_LED_Status());
 			}
 			if(ir_sens->l_corner_time > 40 )
 			{
-				Indicate_LED((~0x08)&Return_LED_Status());
+				Indicate_LED((~(0x01 << 5))&Return_LED_Status());
 			}
 
 			if(ir_sens->l_corner_time > 40 && ir_sens->r_corner_time > 40 )
@@ -389,8 +422,8 @@ void  Motion::SetIdeal_search_turn()
 
 			vehicle->Vehicle_controller.speed_ctrl.Gain_Set(*straight_motion_param.sp_gain);
 			vehicle->Vehicle_controller.omega_ctrl.Gain_Set(*straight_motion_param.om_gain);
-			vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
-			//vehicle->Vehicle_controller.omega_ctrl.I_param_reset();
+			//vehicle->Vehicle_controller.speed_ctrl.I_param_reset();
+			vehicle->Vehicle_controller.omega_ctrl.I_param_reset();
 		}
 	}
 

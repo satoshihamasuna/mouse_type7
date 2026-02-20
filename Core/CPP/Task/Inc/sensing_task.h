@@ -23,6 +23,8 @@
 #define FRONT_THRESHOLD		(122.0)
 
 #define SIDE_CORNER_THRESHOLD (68.0)
+#define CORNER_R_THRESHOLD		(60.0)
+#define CORNER_L_THRESHOLD		(60.0)
 
 typedef struct{
 	int16_t value;
@@ -53,19 +55,20 @@ class IrSensTask
 	private:
 		float Sensor_CalcDistance(t_sensor_dir dir,int16_t value);
 		float IrSensor_adc2voltage(int16_t value);
-		float IrSensor_Vce(int16_t value);
-		float IrSensor_SensingCurrent(int16_t value);
-		float IrSensor_RelativeCurrent(int16_t value);
-		float IrSensor_Irradiance(int16_t value);
 		float	 wall_ref = STRAIGHT_REF;
 		t_bool	 isEnableIrSens = False;
 		t_irsens_motion irsens_motion;
 		int ir_log_cnt;
+
 	public:
+
+		param_element control_ir;
+		param_element control_ir_dot;
 		t_sensor sen_fr,sen_fl,sen_r,sen_l;
 		t_bool 	 wall_correction;
-		t_bool 	 r_wall_corner,l_wall_corner;
-		uint16_t r_corner_time,l_corner_time;
+		t_bool 	 r_wall_corner,		l_wall_corner;
+		uint16_t r_corner_time,		l_corner_time;
+		param_element 	 r_corner_length,	l_corner_length;
 		t_wall_state conv_Sensin2Wall(t_sensor_dir sens_dir);
 		virtual 		void IrSensorSet();
 		void IrSensMotion_Set(t_irsens_motion _irsens_motion){irsens_motion = _irsens_motion;	}
@@ -113,7 +116,10 @@ class IrSensTask
 			//r_check = l_check =
 			wall_correction = False;
 		}
+
+
 };
+
 
 class IrSensTask_type7: public IrSensTask,public Singleton<IrSensTask_type7>
 {
